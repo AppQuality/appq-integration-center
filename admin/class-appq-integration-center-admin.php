@@ -73,7 +73,31 @@ class AppQ_Integration_Center_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/appq-integration-center-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	
 
+	/**
+	 * Register the WP admin menus.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_menus() {
+
+	    add_menu_page(
+	        __( 'Integration center', $this->plugin_name ),
+	        'Integration center',
+	        'manage_options',
+	        $this->get_partial('settings'),
+	        '',
+	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
+	        6
+	    );
 	}
 
+	/** 
+	 * Return admin partial path
+	 * @var $slug
+	 */
+	public function get_partial($slug) {
+		return $this->plugin_name . '/admin/partials/appq-integration-center-admin-'. $slug .'.php';
+	}
 }
