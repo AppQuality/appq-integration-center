@@ -5,7 +5,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       http://example.com
+ * @link       https://bitbucket.org/appqdevel/appq-integration-center
  * @since      1.0.0
  *
  * @package    AppQ_Integration_Center

@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://example.com
+ * @link       https://bitbucket.org/appqdevel/appq-integration-center
  * @since      1.0.0
  *
  * @package    AppQ_Integration_Center

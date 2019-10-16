@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              https://bitbucket.org/appqdevel/appq-integration-center
  * @since             1.0.0
  * @package           AppQ_Integration_Center
  *
  * @wordpress-plugin
  * Plugin Name:       Integration Center
- * Plugin URI:        http://example.com/appq-integration-center-uri/
+ * Plugin URI:        https://bitbucket.org/appqdevel/appq-integration-center
  * Description:       Integrate AppQuality Campaigns with most used BugTracking services
  * Version:           1.0.0
  * Author:            Davide Bizzi
- * Author URI:        http://example.com/
+ * Author URI:        https://bitbucket.org/%7B1c7dab51-4872-4f3e-96ac-11f21c44fd4b%7D/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       appq-integration-center

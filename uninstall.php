@@ -13,7 +13,7 @@
  * - Repeat with other user roles. Best directly by using the links/query string parameters.
  * - Repeat things for multisite. Once for a single site in the network, once sitewide.
  *
- * @link       http://example.com
+ * @link       https://bitbucket.org/appqdevel/appq-integration-center
  * @since      1.0.0
  *
  * @package    AppQ_Integration_Center
