@@ -91,6 +91,15 @@ class AppQ_Integration_Center_Admin {
 	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
 	        6
 	    );
+		
+	    add_submenu_page(
+			'/appq-integration-center/admin/partials/appq-integration-center-admin-settings.php',
+	        __( 'General settings', $this->plugin_name ),
+	        'General settings',
+	        'manage_options',
+			$this->get_partial('settings'),
+	        ''
+	    );
 	}
 
 	/** 
