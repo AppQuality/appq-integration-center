@@ -44,9 +44,9 @@ class AppQ_Integration_Center {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $appq_integration_center    The string used to uniquely identify this plugin.
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
-	protected $appq_integration_center;
+	protected $plugin_name;
 
 	/**
 	 * The current version of the plugin.
@@ -72,7 +72,7 @@ class AppQ_Integration_Center {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->appq_integration_center = 'appq-integration-center';
+		$this->plugin_name = 'appq-integration-center';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -145,7 +145,7 @@ class AppQ_Integration_Center {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new AppQ_Integration_Center_Admin( $this->get_appq_integration_center(), $this->get_version() );
+		$plugin_admin = new AppQ_Integration_Center_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,8 +168,8 @@ class AppQ_Integration_Center {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_appq_integration_center() {
-		return $this->appq_integration_center;
+	public function get_plugin_name() {
+		return $this->plugin_name;
 	}
 
 	/**

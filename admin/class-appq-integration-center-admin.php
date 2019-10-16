@@ -25,9 +25,9 @@ class AppQ_Integration_Center_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $appq_integration_center    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $appq_integration_center;
+	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
@@ -45,9 +45,9 @@ class AppQ_Integration_Center_Admin {
 	 * @param      string    $appq_integration_center       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $appq_integration_center, $version ) {
+	public function __construct( $plugin_name, $version ) {
 
-		$this->appq_integration_center = $appq_integration_center;
+		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
 	}
@@ -59,7 +59,7 @@ class AppQ_Integration_Center_Admin {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->appq_integration_center, plugin_dir_url( __FILE__ ) . 'css/appq-integration-center-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/appq-integration-center-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -70,7 +70,9 @@ class AppQ_Integration_Center_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->appq_integration_center, plugin_dir_url( __FILE__ ) . 'js/appq-integration-center-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/appq-integration-center-admin.js', array( 'jquery' ), $this->version, false );
+
+	}
 
 	}
 
