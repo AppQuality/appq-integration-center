@@ -93,7 +93,7 @@ class AppQ_Integration_Center_Admin {
 	    );
 		
 	    add_submenu_page(
-			'/appq-integration-center/admin/partials/appq-integration-center-admin-settings.php',
+			$this->get_partial('settings'),
 	        __( 'General settings', $this->plugin_name ),
 	        'General settings',
 	        'manage_options',
