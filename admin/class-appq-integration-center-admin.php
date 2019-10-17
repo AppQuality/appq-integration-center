@@ -38,6 +38,11 @@ class AppQ_Integration_Center_Admin {
 	 */
 	private $version;
 
+	/** 
+	 * An array of integration types
+	 * @var array
+	 */
+	private $integrations;
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -49,6 +54,9 @@ class AppQ_Integration_Center_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->integrations = apply_filters( 'register_integrations', null );
+		
+
 
 	}
 
@@ -86,27 +94,37 @@ class AppQ_Integration_Center_Admin {
 	        __( 'Integration center', $this->plugin_name ),
 	        'Integration center',
 	        'manage_options',
-	        $this->get_partial('settings'),
-	        '',
+			'integration-center',
+	        array($this,'settings_page'),
 	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
 	        6
 	    );
 		
-	    add_submenu_page(
-			$this->get_partial('settings'),
-	        __( 'General settings', $this->plugin_name ),
-	        'General settings',
-	        'manage_options',
-			$this->get_partial('settings'),
-	        ''
-	    );
+		
 	}
-
+	
+	
+	/** 
+	 * Settings page show
+	 * @method settings_page
+	 * @date   2019-10-17T14:30:28+020
+	 * @author: Davide Bizzi <clochard>
+	 */
+	public function settings_page() {
+	   $this->partial('settings');
+	}
 	/** 
 	 * Return admin partial path
 	 * @var $slug
 	 */
 	public function get_partial($slug) {
 		return $this->plugin_name . '/admin/partials/appq-integration-center-admin-'. $slug .'.php';
+	}
+	/** 
+	 * Include admin partial
+	 * @var $slug
+	 */
+	public function partial($slug) {
+	   include(WP_PLUGIN_DIR . '/' . $this->get_partial($slug));
 	}
 }
