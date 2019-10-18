@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The settings view area 
+ * Provide a admin area view for the plugin
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
@@ -13,4 +13,4 @@
  */
 ?>
 
-<h2>Integration Center Settings</h2>
+<h2> Page not found </h2>

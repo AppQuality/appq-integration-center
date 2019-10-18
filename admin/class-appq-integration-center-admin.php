@@ -97,9 +97,19 @@ class AppQ_Integration_Center_Admin {
 	        'Integration center',
 	        'manage_options',
 			'integration-center',
-	        array($this,'settings_page'),
+	        array($this,'campaigns_page'),
 	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
 	        6
+	    );
+		
+
+	    add_submenu_page(
+			'',
+	        __( 'Integration center', $this->plugin_name ),
+	        'Integration center',
+	        'manage_options',
+			'integration-center-campaign',
+	        array($this,'bugs_page')
 	    );
 		
 		
@@ -107,13 +117,36 @@ class AppQ_Integration_Center_Admin {
 	
 	
 	/** 
-	 * Settings page show
-	 * @method settings_page
+	 * Campaings page show
+	 * @method campaigns_page
 	 * @date   2019-10-17T14:30:28+020
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public function settings_page() {
-	   $this->partial('settings');
+	public function campaigns_page() {
+		$this->partial('campaigns',array(
+			'campaigns' => $this->get_campaigns()
+		));
+	}
+	/** 
+	 * Bugs page show
+	 * @method campaigns_page
+	 * @date   2019-10-17T14:30:28+020
+	 * @author: Davide Bizzi <clochard>
+	 */
+	public function bugs_page() {
+		if (!array_key_exists('id',$_GET)) {
+			$this->partial('not-found');
+			return;
+		}
+		$campaign = $this->get_campaign($_GET['id']);
+		if (!$campaign) {
+			$this->partial('not-found');
+			return;
+		}
+		$this->partial('bugs',array(
+			'bugs' => $this->get_bugs(),
+			'campaign' => $campaign
+		));
 	}
 	/** 
 	 * Return admin partial path
@@ -135,5 +168,28 @@ class AppQ_Integration_Center_Admin {
 		include(WP_PLUGIN_DIR . '/' . $this->get_partial($slug));
 	}
 	
+	public function get_campaign($id) {
+		return array( 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA');
+	}
+	
+	public function get_campaigns() {
+		$campaigns = array(
+			array('id' => 1, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA'),
+			array('id' => 2, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => false),
+			array('id' => 3, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'Redmine'),
+			array('id' => 4, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'Not Set')
+		);
+		
+		return $campaigns;
+	}
+	public function get_bugs() {
+		$campaigns = array(
+			array('id' => 1, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Malfunction', 'status' => 'Approved', 'severity' => 'HIGH', 'duplicate' => true , 'tags' => array('tag1','tag2'),'uploaded' => true),
+			array('id' => 2, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Crash', 'status' => 'Refused', 'severity' => 'LOW', 'tags' => array('tag3'),'duplicate' => false,'uploaded' => true),
+			array('id' => 3, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Performance', 'status' => 'Need Review', 'severity' => 'MEDIUM','duplicate' => false, 'tags' => array('tag1'), 'bugtracker' => 'Redmine','uploaded' => false),
+			array('id' => 4, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Malfunction', 'status' => 'Approved', 'severity' => 'HIGH','duplicate' => false, 'tags' => array('tag2'), 'bugtracker' => 'Not Set','uploaded' => true)
+		);
+		
+		return $campaigns;
 	}
 }
