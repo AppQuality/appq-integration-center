@@ -66,7 +66,6 @@ class AppQ_Integration_Center_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
 		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '4.1.3', 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/appq-integration-center-admin.css', array(), $this->version, 'all' );
 
@@ -117,38 +116,6 @@ class AppQ_Integration_Center_Admin {
 	
 	
 	/** 
-	 * Campaings page show
-	 * @method campaigns_page
-	 * @date   2019-10-17T14:30:28+020
-	 * @author: Davide Bizzi <clochard>
-	 */
-	public function campaigns_page() {
-		$this->partial('campaigns',array(
-			'campaigns' => $this->get_campaigns()
-		));
-	}
-	/** 
-	 * Bugs page show
-	 * @method campaigns_page
-	 * @date   2019-10-17T14:30:28+020
-	 * @author: Davide Bizzi <clochard>
-	 */
-	public function bugs_page() {
-		if (!array_key_exists('id',$_GET)) {
-			$this->partial('not-found');
-			return;
-		}
-		$campaign = $this->get_campaign($_GET['id']);
-		if (!$campaign) {
-			$this->partial('not-found');
-			return;
-		}
-		$this->partial('bugs',array(
-			'bugs' => $this->get_bugs(),
-			'campaign' => $campaign
-		));
-	}
-	/** 
 	 * Return admin partial path
 	 * @var $slug
 	 */
@@ -196,4 +163,51 @@ class AppQ_Integration_Center_Admin {
 	public function get_integrations(){
 		return $this->integrations;
 	}
+	
+	
+	
+	/**
+	 * PAGES AND PARTIALS
+	 */
+	
+	 
+ 	/** 
+ 	 * Campaings page show
+ 	 * @method campaigns_page
+ 	 * @date   2019-10-17T14:30:28+020
+ 	 * @author: Davide Bizzi <clochard>
+ 	 */
+ 	public function campaigns_page() {
+ 		$this->partial('campaigns',array(
+ 			'campaigns' => $this->get_campaigns()
+ 		));
+ 	}
+ 	/** 
+ 	 * Bugs page show
+ 	 * @method campaigns_page
+ 	 * @date   2019-10-17T14:30:28+020
+ 	 * @author: Davide Bizzi <clochard>
+ 	 */
+ 	public function bugs_page() {
+ 		if (!array_key_exists('id',$_GET)) {
+ 			$this->partial('not-found');
+ 			return;
+ 		}
+ 		$campaign = $this->get_campaign($_GET['id']);
+ 		if (!$campaign) {
+ 			$this->partial('not-found');
+ 			return;
+ 		}
+ 		$this->partial('bugs',array(
+ 			'bugs' => $this->get_bugs(),
+ 			'campaign' => $campaign
+ 		));
+ 	}
+	
+	public function general_settings() {
+		$this->partial('bugs/general-settings',array(
+			'integrations' => $this->get_integrations()
+		));
+	}
+	
 }
