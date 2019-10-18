@@ -192,4 +192,8 @@ class AppQ_Integration_Center_Admin {
 		
 		return $campaigns;
 	}
+	
+	public function get_integrations(){
+		return $this->integrations;
+	}
 }
