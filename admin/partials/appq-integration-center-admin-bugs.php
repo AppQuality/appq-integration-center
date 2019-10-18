@@ -13,7 +13,6 @@
  */
 ?>
 
-<h2><?= $campaign['title'] ?></h2>
 <div>
 	<ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
 	  <li class="nav-item">
@@ -24,6 +23,7 @@
 	  </li>
 	</ul>
 	<div class="tab-content" id="bugs-tabs-content">
+	  <h2><?= $campaign['title'] ?></h2>
 	  <div class="tab-pane active" id="bugs" role="tabpanel" aria-labelledby="bugs-tab"><?php $this->partial('bugs/list',array('bugs' => $bugs)) ?></div>
 	  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab"><?php $this->partial('bugs/settings',array('integrations' => $this->get_integrations())) ?></div>
 	</div>
