@@ -24,7 +24,7 @@
 	  </li>
 	</ul>
 	<div class="tab-content" id="bugs-tabs-content">
-	  <div class="tab-pane fade show active" id="bugs" role="tabpanel" aria-labelledby="bugs-tab"><?php $this->partial('bugs/list',array('bugs' => $bugs)) ?></div>
-	  <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab"><?php $this->partial('bugs/settings') ?></div>
+	  <div class="tab-pane active" id="bugs" role="tabpanel" aria-labelledby="bugs-tab"><?php $this->partial('bugs/list',array('bugs' => $bugs)) ?></div>
+	  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab"><?php $this->partial('bugs/settings') ?></div>
 	</div>
 </div>
