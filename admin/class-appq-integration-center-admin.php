@@ -138,6 +138,8 @@ class AppQ_Integration_Center_Admin {
 	public function get_campaign($id) {
 		$campaign_model = mvc_model('Campaign');		
 		$campaign = $campaign_model->find_by_id($id);
+		$campaign->bugtracker = 'jira';
+		$campaign->credentials = true;
 		return $campaign;
 	}
 	
@@ -157,9 +159,9 @@ class AppQ_Integration_Center_Admin {
 		global $wpdb;
 		
 		$bug_model = mvc_model('Bug');
-		
 		$bugs = $bug_model->find_by_campaign_id($cp_id);
 		
+		$campaign = $this->get_campaign($cp_id);
 		
 		$type = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type',OBJECT_K);
 		$severity = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity',OBJECT_K);
@@ -169,12 +171,16 @@ class AppQ_Integration_Center_Admin {
 			'severity' => $severity,
 			'type' => $type
 		);
-		$bugs = array_map(function($bug) use($data) {
+		$bugs = array_map(function($bug) use($data,$campaign) {
+			global $wpdb;
+			
 			$bug->status = array_key_exists($bug->status_id,$data['status']) ? $data['status'][$bug->status_id]->name : 'Not valid';
 			$bug->severity = array_key_exists($bug->severity_id,$data['severity']) ? $data['severity'][$bug->severity_id]->name : 'Not valid';
 			$bug->category = array_key_exists($bug->bug_type_id,$data['type']) ? $data['type'][$bug->bug_type_id]->name : 'Not valid';
-			$bug->tags = array();
-			$bug->uploaded = $bug->id % 2 == false;
+			$bug->tags = $wpdb->get_col($wpdb->prepare('SELECT display_name FROM '. $wpdb->prefix.'appq_bug_taxonomy WHERE bug_id = %d',$bug->id));
+			$bug->uploaded = $wpdb->get_var(
+				$wpdb->prepare('SELECT COUNT(bug_id) FROM ' . $wpdb->prefix .'appq_integration_center_bugs WHERE bug_id = %d AND integration = %s',$bug->id,$campaign->bugtracker)
+			) > 0;
 			return $bug;
 		},$bugs);
 		

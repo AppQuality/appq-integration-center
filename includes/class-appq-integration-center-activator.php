@@ -30,6 +30,7 @@ class AppQ_Integration_Center_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		global $wpdb;
 		$error = false;
 		
 		if (!is_plugin_active('app-q-test/app_q_test.php'))
@@ -41,6 +42,18 @@ class AppQ_Integration_Center_Activator {
 			$error[] = "App Q Test dependency plugin is not active";
 		}
 		
+		//CREATE TABLES
+		
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+        $charset_collate = $wpdb->get_charset_collate();
+		$bugUploadedTable = "CREATE TABLE " . $wpdb->prefix . "appq_integration_center_bugs (
+			bug_id int NOT NULL,
+			integration varchar(32),
+            upload_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+     		PRIMARY KEY  (bug_id, integration)
+        ) $charset_collate;";
+        dbDelta( $bugUploadedTable );
 		
 		
 		
