@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="general" aria-selected="true">Home</a>
       <?php foreach ($integrations as $integration) : ?>
@@ -11,7 +11,7 @@
       <?php endforeach ?>
     </div>
   </div>
-  <div class="col-9">
+  <div class="col-10">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane active" id="general" role="tabpanel" aria-labelledby="general-tab"><?php $this->general_settings() ?></div>
       <?php foreach ($integrations as $integration) : ?>

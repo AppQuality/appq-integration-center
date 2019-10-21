@@ -136,7 +136,7 @@ class AppQ_Integration_Center_Admin {
 	}
 	
 	public function get_campaign($id) {
-		return array( 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA');
+		return array( 'id' => $id, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA');
 	}
 	
 	public function get_campaigns() {
