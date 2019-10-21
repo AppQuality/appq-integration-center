@@ -26,11 +26,11 @@
 		</thead>
 		<tbody>
 			<?php foreach ($campaigns as $campaign) : ?>
-				<tr onclick="document.location = '<?= admin_url('/admin.php?page=integration-center-campaign&id=' . $campaign['id'] )?>';" style="cursor: pointer ">
-					<td><?= $campaign['id'] ?></td>
-					<td><?= $campaign['title'] ?></td>
-					<td><?= $campaign['credentials'] ? '<span class="fa fa-check"></span>' : '' ?></td>
-					<td><?= array_key_exists('bugtracker',$campaign) ? $campaign['bugtracker']  : '' ?></td>
+				<tr onclick="document.location = '<?= admin_url('/admin.php?page=integration-center-campaign&id=' . $campaign->id )?>';" style="cursor: pointer ">
+					<td><?= $campaign->id ?></td>
+					<td><?= $campaign->title ?></td>
+					<td><?= $campaign->credentials ? '<span class="fa fa-check"></span>' : '' ?></td>
+					<td><?= property_exists($campaign,'bugtracker') ? $campaign->bugtracker  : '' ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

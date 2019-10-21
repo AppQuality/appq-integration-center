@@ -136,28 +136,49 @@ class AppQ_Integration_Center_Admin {
 	}
 	
 	public function get_campaign($id) {
-		return array( 'id' => $id, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA');
+		$campaign_model = mvc_model('Campaign');		
+		$campaign = $campaign_model->find_by_id($id);
+		return $campaign;
 	}
 	
 	public function get_campaigns() {
-		$campaigns = array(
-			array('id' => 1, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'JIRA'),
-			array('id' => 2, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => false),
-			array('id' => 3, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'Redmine'),
-			array('id' => 4, 'title' => 'CPXXXX - XXXXXXX', 'credentials' => true, 'bugtracker' => 'Not Set')
-		);
+		$campaign_model = mvc_model('Campaign');
+		
+		$campaigns = $campaign_model->find();
+		$campaigns = array_map(function($cp) {
+			$cp->bugtracker = 'jira';
+			$cp->credentials = true;
+			return $cp;
+		},$campaigns);
 		
 		return $campaigns;
 	}
-	public function get_bugs() {
-		$campaigns = array(
-			array('id' => 1, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Malfunction', 'status' => 'Approved', 'severity' => 'HIGH', 'duplicate' => true , 'tags' => array('tag1','tag2'),'uploaded' => true),
-			array('id' => 2, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Crash', 'status' => 'Refused', 'severity' => 'LOW', 'tags' => array('tag3'),'duplicate' => false,'uploaded' => true),
-			array('id' => 3, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Performance', 'status' => 'Need Review', 'severity' => 'MEDIUM','duplicate' => false, 'tags' => array('tag1'), 'bugtracker' => 'Redmine','uploaded' => false),
-			array('id' => 4, 'message' => '[XXXXXX] - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'category' => 'Malfunction', 'status' => 'Approved', 'severity' => 'HIGH','duplicate' => false, 'tags' => array('tag2'), 'bugtracker' => 'Not Set','uploaded' => true)
-		);
+	public function get_bugs($cp_id) {
+		global $wpdb;
 		
-		return $campaigns;
+		$bug_model = mvc_model('Bug');
+		
+		$bugs = $bug_model->find_by_campaign_id($cp_id);
+		
+		
+		$type = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type',OBJECT_K);
+		$severity = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity',OBJECT_K);
+		$status = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_status',OBJECT_K);
+		$data = array(
+			'status' => $status,
+			'severity' => $severity,
+			'type' => $type
+		);
+		$bugs = array_map(function($bug) use($data) {
+			$bug->status = array_key_exists($bug->status_id,$data['status']) ? $data['status'][$bug->status_id]->name : 'Not valid';
+			$bug->severity = array_key_exists($bug->severity_id,$data['severity']) ? $data['severity'][$bug->severity_id]->name : 'Not valid';
+			$bug->category = array_key_exists($bug->bug_type_id,$data['type']) ? $data['type'][$bug->bug_type_id]->name : 'Not valid';
+			$bug->tags = array();
+			$bug->uploaded = $bug->id % 2 == false;
+			return $bug;
+		},$bugs);
+		
+		return $bugs;
 	}
 	
 	public function get_integrations(){
@@ -199,7 +220,7 @@ class AppQ_Integration_Center_Admin {
  			return;
  		}
  		$this->partial('bugs',array(
- 			'bugs' => $this->get_bugs(),
+ 			'bugs' => $this->get_bugs($_GET['id']),
  			'campaign' => $campaign
  		));
  	}
