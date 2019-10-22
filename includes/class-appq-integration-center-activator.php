@@ -46,8 +46,13 @@ class AppQ_Integration_Center_Activator {
 		
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
+		
+		$table = $wpdb->prefix . "appq_integration_center_bugs";
+		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		}
         $charset_collate = $wpdb->get_charset_collate();
-		$bugUploadedTable = "CREATE TABLE " . $wpdb->prefix . "appq_integration_center_bugs (
+		$bugUploadedTable = "CREATE TABLE $table (
 			bug_id int NOT NULL,
 			integration varchar(32),
             upload_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -55,14 +60,19 @@ class AppQ_Integration_Center_Activator {
         ) $charset_collate;";
         dbDelta( $bugUploadedTable );
 		
-		$campaignConfigTable = "CREATE TABLE " . $wpdb->prefix . "appq_integration_center_config (
+		$table = $wpdb->prefix . "appq_integration_center_config";
+		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		}
+		$campaignConfigTable = "CREATE TABLE $table (
 			campaign_id int NOT NULL,
 			integration varchar(32) NOT NULL,
 			endpoint varchar(128),
 			apikey varchar(512),	
 			field_mapping text,
+			is_active bit,
      		PRIMARY KEY  (campaign_id, integration)
-        ) $charset_collate;";
+		) $charset_collate;";
         dbDelta( $campaignConfigTable );
 		
 		

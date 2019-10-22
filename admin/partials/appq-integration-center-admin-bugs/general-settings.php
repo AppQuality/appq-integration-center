@@ -1,10 +1,10 @@
 <h3> General Settings</h3>
-<div class="container">
+<form id="general_settings" class="container">
     <div class="form-group row">
         <label for="type" class="col-sm-2 col-form-label">Type</label>
         <div class="col-sm-10">
-            <select class="custom-select">
-              <option selected>Select bugtracker type</option>
+            <select name="bugtracker" class="custom-select">
+              <option selected disabled>Select bugtracker type</option>
               <?php foreach ($integrations as $integration) : ?>
                   <option <?= !empty($campaign->bugtracker) && $campaign->bugtracker->integration === $integration['slug'] ? 'selected="selected"' : '' ?>value="<?= $integration['slug'] ?>"><?= $integration['name'] ?></option>
               <?php endforeach ?>
@@ -37,4 +37,7 @@
         </div>
     </div>
     */ ?>
-</div>
+    <div class="row">
+    	<button id="save_general_settings" type="button" class="col-sm-2 offset-sm-10 btn btn-primary">Save</button>
+    </div>
+</form>

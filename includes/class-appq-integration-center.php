@@ -114,7 +114,15 @@ class AppQ_Integration_Center {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-appq-integration-center-admin.php';
 
-
+		
+		/**
+		 * Require ajax actions
+		 */		
+		foreach (glob(plugin_dir_path( dirname( __FILE__ ) ) . 'ajax/*.php') as $filename)
+		{
+			require_once $filename;
+		}
+		
 		$this->loader = new AppQ_Integration_Center_Loader();
 
 	}
