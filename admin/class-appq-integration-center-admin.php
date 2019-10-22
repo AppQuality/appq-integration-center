@@ -55,7 +55,10 @@ class AppQ_Integration_Center_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->integrations = apply_filters( 'register_integrations', null );
-		
+		if (empty($this->integrations))
+		{
+			$this->integrations = array();
+		}
 
 
 	}
