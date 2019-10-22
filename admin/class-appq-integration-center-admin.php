@@ -147,7 +147,7 @@ class AppQ_Integration_Center_Admin {
 		$campaign_model = mvc_model('Campaign');		
 		$campaign = $campaign_model->find_by_id($id);
 		$bugtracker = $wpdb->get_row(
-			$wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d', $id)
+			$wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND is_active = 1', $id)
 		);
 		$campaign->bugtracker = !empty($bugtracker) ? $bugtracker : '' ;
 		$campaign->credentials = !empty($bugtracker);
@@ -157,7 +157,7 @@ class AppQ_Integration_Center_Admin {
 	public function get_campaigns() {
 		global $wpdb;
 		$campaign_model = mvc_model('Campaign');
-		$bugtrackers = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config',OBJECT_K);
+		$bugtrackers = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1',OBJECT_K);
 		
 		$campaigns = $campaign_model->find();
 		$campaigns = array_map(function($cp) use($bugtrackers){
