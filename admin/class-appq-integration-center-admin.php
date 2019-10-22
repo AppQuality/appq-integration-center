@@ -139,20 +139,26 @@ class AppQ_Integration_Center_Admin {
 	}
 	
 	public function get_campaign($id) {
+		global $wpdb;
 		$campaign_model = mvc_model('Campaign');		
 		$campaign = $campaign_model->find_by_id($id);
-		$campaign->bugtracker = 'jira';
-		$campaign->credentials = true;
+		$bugtracker = $wpdb->get_row(
+			$wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d', $id)
+		);
+		$campaign->bugtracker = !empty($bugtracker) ? $bugtracker : '' ;
+		$campaign->credentials = !empty($bugtracker);
 		return $campaign;
 	}
 	
 	public function get_campaigns() {
+		global $wpdb;
 		$campaign_model = mvc_model('Campaign');
+		$bugtrackers = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config',OBJECT_K);
 		
 		$campaigns = $campaign_model->find();
-		$campaigns = array_map(function($cp) {
-			$cp->bugtracker = 'jira';
-			$cp->credentials = true;
+		$campaigns = array_map(function($cp) use($bugtrackers){
+			$cp->bugtracker = array_key_exists($cp->id,$bugtrackers) ? $bugtrackers[$cp->id] : '' ;
+			$cp->credentials = array_key_exists($cp->id,$bugtrackers);
 			return $cp;
 		},$campaigns);
 		
@@ -181,9 +187,12 @@ class AppQ_Integration_Center_Admin {
 			$bug->severity = array_key_exists($bug->severity_id,$data['severity']) ? $data['severity'][$bug->severity_id]->name : 'Not valid';
 			$bug->category = array_key_exists($bug->bug_type_id,$data['type']) ? $data['type'][$bug->bug_type_id]->name : 'Not valid';
 			$bug->tags = $wpdb->get_col($wpdb->prepare('SELECT display_name FROM '. $wpdb->prefix.'appq_bug_taxonomy WHERE bug_id = %d',$bug->id));
-			$bug->uploaded = $wpdb->get_var(
-				$wpdb->prepare('SELECT COUNT(bug_id) FROM ' . $wpdb->prefix .'appq_integration_center_bugs WHERE bug_id = %d AND integration = %s',$bug->id,$campaign->bugtracker)
-			) > 0;
+			$bug->uploaded = false;	
+			if (!empty($campaign->bugtracker)) {
+				$bug->uploaded = $wpdb->get_var(
+					$wpdb->prepare('SELECT COUNT(bug_id) FROM ' . $wpdb->prefix .'appq_integration_center_bugs WHERE bug_id = %d AND integration = %s',$bug->id, $campaign->bugtracker->integration)
+					) > 0;
+			}
 			return $bug;
 		},$bugs);
 		
@@ -234,9 +243,10 @@ class AppQ_Integration_Center_Admin {
  		));
  	}
 	
-	public function general_settings() {
+	public function general_settings($campaign = null) {
 		$this->partial('bugs/general-settings',array(
-			'integrations' => $this->get_integrations()
+			'integrations' => $this->get_integrations(),
+			'campaign' => $campaign
 		));
 	}
 	

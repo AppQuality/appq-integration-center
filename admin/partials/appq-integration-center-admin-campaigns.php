@@ -30,7 +30,7 @@
 					<td><?= $campaign->id ?></td>
 					<td><?= $campaign->title ?></td>
 					<td><?= $campaign->credentials ? '<span class="fa fa-check"></span>' : '' ?></td>
-					<td><?= property_exists($campaign,'bugtracker') ? $campaign->bugtracker  : '' ?></td>
+					<td><?= property_exists($campaign,'bugtracker') && !empty($campaign->bugtracker) ? $campaign->bugtracker->integration  : '' ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

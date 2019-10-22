@@ -55,6 +55,16 @@ class AppQ_Integration_Center_Activator {
         ) $charset_collate;";
         dbDelta( $bugUploadedTable );
 		
+		$campaignConfigTable = "CREATE TABLE " . $wpdb->prefix . "appq_integration_center_config (
+			campaign_id int NOT NULL,
+			integration varchar(32) NOT NULL,
+			endpoint varchar(128),
+			apikey varchar(512),	
+			field_mapping text,
+     		PRIMARY KEY  (campaign_id, integration)
+        ) $charset_collate;";
+        dbDelta( $campaignConfigTable );
+		
 		
 		
 		if ($error) 

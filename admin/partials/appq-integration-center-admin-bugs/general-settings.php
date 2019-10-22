@@ -6,11 +6,12 @@
             <select class="custom-select">
               <option selected>Select bugtracker type</option>
               <?php foreach ($integrations as $integration) : ?>
-                  <option value="<?= $integration['slug'] ?>"><?= $integration['name'] ?></option>
+                  <option <?= !empty($campaign->bugtracker) && $campaign->bugtracker->integration === $integration['slug'] ? 'selected="selected"' : '' ?>value="<?= $integration['slug'] ?>"><?= $integration['name'] ?></option>
               <?php endforeach ?>
             </select>
         </div>
     </div>
+    <?php /* MAXIMIZE NOT DONE WORK 
     <div class="row">
         <div class="col-sm-2">
           <div class="form-group form-check">
@@ -35,4 +36,5 @@
             </div>
         </div>
     </div>
+    */ ?>
 </div>

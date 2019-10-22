@@ -13,14 +13,14 @@
   </div>
   <div class="col-10">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane active" id="general" role="tabpanel" aria-labelledby="general-tab"><?php $this->general_settings() ?></div>
+      <div class="tab-pane active" id="general" role="tabpanel" aria-labelledby="general-tab"><?php $this->general_settings($campaign) ?></div>
       <?php foreach ($integrations as $integration) : ?>
           <?php 
           $slug = $integration['slug'];
           $name = $integration['name'];
           $class = $integration['class'];
           ?>
-          <div class="tab-pane" id="<?= $slug ?>" role="tabpanel" aria-labelledby="<?= $slug ?>-tab"><?= $class->settings() ?></div>
+          <div class="tab-pane" id="<?= $slug ?>" role="tabpanel" aria-labelledby="<?= $slug ?>-tab"><?= $class->settings($campaign) ?></div>
       <?php endforeach ?>
     </div>
   </div>
