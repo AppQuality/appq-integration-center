@@ -28,7 +28,7 @@
 				<td><?= $bug->is_duplicated ? '<span class="fa fa-check"></span>' : '' ?></td>
 				<td><?= '#' . implode(', #',$bug->tags) ?></td>
 				<td><?= $bug->uploaded ? '<span class="fa fa-upload text-secondary"></span>' : '<span data-bug-id="'.$bug->id.'" class="fa fa-upload"></span>' ?></td>
-				<td><?= $bug->uploaded ? '<span class="fa fa-check"></span>' : '' ?></td>
+				<td class="is_uploaded"><?= $bug->uploaded ? '<span class="fa fa-check"></span>' : '' ?></td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>
