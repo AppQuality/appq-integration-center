@@ -62,6 +62,16 @@
 			]
 		});
 
+		$('#bugs_list .send-all').click(function(e){
+			e.preventDefault()
+			$('#bugs_list .fa-upload').not('.text-secondary').click()
+		})
+		$('#bugs_list .send-selected').click(function(e){
+			e.preventDefault()
+			$('#bugs_list .check:checked').each(function(){
+				$(this).closest('tr').find('.fa-upload').not('.text-secondary').click()
+			})
+		})
 		$('#bugs_list .select_all').change(function(){
 			if ($(this).attr('checked') == 'checked') {
 				$('#bugs_list input.check').attr('checked','checked')
