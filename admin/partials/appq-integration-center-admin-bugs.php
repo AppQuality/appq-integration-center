@@ -16,7 +16,7 @@
 <div>
 	<ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
 	  <li class="nav-item">
-	    <a class="nav-link active" id="bugs-tab" data-toggle="tab" href="#bugs" role="tab" aria-controls="home" aria-selected="true">Bugs</a>
+	    <a class="nav-link active" id="bugs-tab" data-toggle="tab" href="#bugs_list" role="tab" aria-controls="home" aria-selected="true">Bugs</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="home" aria-selected="true">Settings</a>
