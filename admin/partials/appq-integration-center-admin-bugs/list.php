@@ -1,4 +1,4 @@
-<input id="bugs_list-search" class="float-right form-control mr-sm-2 custom-search" type="search" placeholder="Search by id, name, category, status, severity,tags or 'duplicated','uploaded'. The search is in OR, use + to search in AND (e.g. HIGH+approved)" aria-label="Search">
+<input id="bugs_list-search" class="float-right form-control mr-sm-2 custom-search" type="search" placeholder="Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)" aria-label="Search">
 <button class="send-all btn-primary btn">Send All</button>
 <button class="send-selected btn-primary btn">Send Selected</button>
 <table class="table table-striped">
@@ -19,8 +19,8 @@
 	<tbody class="list">
 		<?php foreach ($bugs as $bug) : ?>
 			<tr>
-				<td class="uploaded" style="display:none"><?= $bug->uploaded ? 'uploaded' : '' ?></td>
-				<td class="duplicated" style="display:none"><?= $bug->is_duplicated ? 'duplicated' : '' ?></td>
+				<td class="uploaded" style="display:none"><?= $bug->uploaded ? 'uploaded' : 'to-upload' ?></td>
+				<td class="duplicated" style="display:none"><?= $bug->is_duplicated ? 'duplicated' : 'unique' ?></td>
 				<td>
 				  <input class="check" type="checkbox" aria-label="Select for upload">
 				</td>
@@ -29,7 +29,7 @@
 				<td class="category"><?= $bug->category ?></td>
 				<td class="status"><?= $bug->status ?></td>
 				<td class="severity"><?= $bug->severity ?></td>
-				<td data-is_duplicated="<?= $bug->is_duplicated ? 'duplicated' : '' ?>"><?= $bug->is_duplicated ? '<span class="fa fa-check"></span>' : '' ?></td>
+				<td><?= $bug->is_duplicated ? '<span class="fa fa-check"></span>' : '' ?></td>
 				<td class="tags"><?= '#' . implode(', #',$bug->tags) ?></td>
 				<td><?= $bug->uploaded ? '<span class="fa fa-upload text-secondary"></span>' : '<span data-bug-id="'.$bug->id.'" class="fa fa-upload"></span>' ?></td>
 				<td class="is_uploaded"><?= $bug->uploaded ? '<span class="fa fa-check"></span>' : '' ?></td>
