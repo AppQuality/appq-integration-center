@@ -17,9 +17,18 @@
 					'cp_id': cp_id,
 					'bug_id': bug_id
 				},
-				success: function(msg) {
+				success: function(res) {
 					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
 					button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+					if (!res.success)
+					{
+						toastr.error(res.data,'Oh no!')
+					}
+				},
+				error: function(res) {
+					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
+					button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+					toastr.error(JSON.stringify(res),'Oh no!')
 				}
 			});
 		})
