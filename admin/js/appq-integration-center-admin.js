@@ -19,14 +19,15 @@
 				},
 				success: function(res) {
 					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
-					button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
-					if (!res.success) {
+					if (res.success) {
+						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+					} else {
+						button.removeClass('text-secondary')
 						toastr.error(res.data, 'Oh no!')
 					}
 				},
 				error: function(res) {
-					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
-					button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+					button.removeClass('fa-spinner fa-spin text-secondary').addClass('fa-upload')
 					toastr.error(JSON.stringify(res), 'Oh no!')
 				}
 			});
