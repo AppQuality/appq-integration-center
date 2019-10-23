@@ -16,10 +16,11 @@ function appq_upload_bugs_to_bugtracker(){
 		}
 		
 		$res = $upload_fn($cp_id,$bug_id);
-		if (is_null($res)) {
-			wp_send_json_error( "Error on upload bug." );
+		if ($res['status']) {
+			wp_send_json_success( $res['message'] );
+		} else {
+			wp_send_json_error( $res['message'] );
 		}
-		wp_send_json_success( $res );
 	} catch (\Throwable $ex) {
 		wp_send_json_error( $ex->getMessage() );
 	}
