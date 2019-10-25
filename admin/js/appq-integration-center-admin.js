@@ -2,6 +2,15 @@
 	'use strict';
 
 	$(document).ready(function() {
+		
+		$('.nav-item').click(function(){
+			$(this).closest('.nav').find('.nav-link').removeClass('active')
+			$(this).find('.nav-link').addClass('active')
+		})
+		$('.nav-link').click(function(){
+			$(this).parent().find('.nav-link').removeClass('active')
+			$(this).addClass('active')
+		})
 
 		$('#bugs-tabs-content .fa.fa-upload').not(".text-secondary").click(function() {
 			var cp_id = $('#cp_id').val()
