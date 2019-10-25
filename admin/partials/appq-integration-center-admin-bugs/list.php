@@ -1,3 +1,15 @@
+<?php 
+/*
+ * The Bugs list tab partial for upload
+ * 
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   23/10/2019
+ * @Filename: list.php
+ * @Last modified by:   clochard
+ * @Last modified time: 25/10/2019
+ */
+
+?>
 <input id="bugs_list-search" class="float-right form-control mr-sm-2 custom-search" type="search" placeholder="Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)" aria-label="Search">
 <button class="send-all btn-primary btn">Send All</button>
 <button class="send-selected btn-primary btn">Send Selected</button>

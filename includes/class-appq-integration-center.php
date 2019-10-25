@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The file that defines the core plugin class
  *
@@ -27,7 +28,8 @@
  * @subpackage AppQ_Integration_Center/includes
  * @author     Davide Bizzi <davide.bizzi@app-quality.com>
  */
-class AppQ_Integration_Center {
+class AppQ_Integration_Center
+{
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -66,8 +68,9 @@ class AppQ_Integration_Center {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
-		if ( defined( 'APPQ_INTEGRATION_CENTERVERSION' ) ) {
+	public function __construct()
+	{
+		if (defined('APPQ_INTEGRATION_CENTERVERSION')) {
 			$this->version = APPQ_INTEGRATION_CENTERVERSION;
 		} else {
 			$this->version = '1.0.0';
@@ -77,7 +80,6 @@ class AppQ_Integration_Center {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-
 	}
 
 	/**
@@ -95,36 +97,35 @@ class AppQ_Integration_Center {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function load_dependencies() {
+	private function load_dependencies()
+	{
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-appq-integration-center-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-appq-integration-center-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-appq-integration-center-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-appq-integration-center-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-appq-integration-center-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-appq-integration-center-admin.php';
 
-		
 		/**
 		 * Require ajax actions
-		 */		
-		foreach (glob(plugin_dir_path( dirname( __FILE__ ) ) . 'ajax/*.php') as $filename)
+		 */
+		foreach (glob(plugin_dir_path(dirname(__FILE__)) . 'ajax/*.php') as $filename)
 		{
 			require_once $filename;
 		}
-		
-		$this->loader = new AppQ_Integration_Center_Loader();
 
+		$this->loader = new AppQ_Integration_Center_Loader();
 	}
 
 	/**
@@ -136,12 +137,12 @@ class AppQ_Integration_Center {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function set_locale() {
+	private function set_locale()
+	{
 
 		$plugin_i18n = new AppQ_Integration_Center_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
 	/**
@@ -151,15 +152,15 @@ class AppQ_Integration_Center {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_admin_hooks()
+	{
 
-		$plugin_admin = new AppQ_Integration_Center_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new AppQ_Integration_Center_Admin($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_menus' );
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
+		$this->loader->add_action('admin_menu', $plugin_admin, 'register_menus');
 	}
 
 	/**
@@ -167,7 +168,8 @@ class AppQ_Integration_Center {
 	 *
 	 * @since    1.0.0
 	 */
-	public function run() {
+	public function run()
+	{
 		$this->loader->run();
 	}
 
@@ -178,7 +180,8 @@ class AppQ_Integration_Center {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_plugin_name() {
+	public function get_plugin_name()
+	{
 		return $this->plugin_name;
 	}
 
@@ -188,7 +191,8 @@ class AppQ_Integration_Center {
 	 * @since     1.0.0
 	 * @return    AppQ_Integration_Center_Loader    Orchestrates the hooks of the plugin.
 	 */
-	public function get_loader() {
+	public function get_loader()
+	{
 		return $this->loader;
 	}
 
@@ -198,8 +202,8 @@ class AppQ_Integration_Center {
 	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
 	 */
-	public function get_version() {
+	public function get_version()
+	{
 		return $this->version;
 	}
-
 }

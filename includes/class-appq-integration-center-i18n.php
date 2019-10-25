@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +25,8 @@
  * @subpackage AppQ_Integration_Center/includes
  * @author     Davide Bizzi <davide.bizzi@app-quality.com>
  */
-class AppQ_Integration_Center_i18n {
+class AppQ_Integration_Center_i18n
+{
 
 
 	/**
@@ -32,16 +34,13 @@ class AppQ_Integration_Center_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function load_plugin_textdomain()
+	{
 
 		load_plugin_textdomain(
 			'appq-integration-center',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
-
 	}
-
-
-
 }

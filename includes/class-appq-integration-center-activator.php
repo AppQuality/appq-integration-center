@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Fired during plugin activation
  *
@@ -20,19 +21,22 @@
  * @subpackage AppQ_Integration_Center/includes
  * @author     Davide Bizzi <davide.bizzi@app-quality.com>
  */
-class AppQ_Integration_Center_Activator {
+class AppQ_Integration_Center_Activator
+{
 
 	/**
-	 * Short Description. (use period)
+	 * Method to call on activation
 	 *
-	 * Long Description.
+	 * Create necessary tables for configuration and uploaded bugs
+	 * Fail if app-q-test plugin is not active
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function activate()
+	{
 		global $wpdb;
 		$error = false;
-		
+
 		if (!is_plugin_active('app-q-test/app_q_test.php'))
 		{
 			if (!$error)
@@ -41,25 +45,23 @@ class AppQ_Integration_Center_Activator {
 			}
 			$error[] = "App Q Test dependency plugin is not active";
 		}
-		
-		//CREATE TABLES
-		
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-		
+		// CREATE TABLES
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
 		$table = $wpdb->prefix . "appq_integration_center_bugs";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
 			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
 		}
-        $charset_collate = $wpdb->get_charset_collate();
+		$charset_collate = $wpdb->get_charset_collate();
 		$bugUploadedTable = "CREATE TABLE $table (
 			bug_id int NOT NULL,
 			integration varchar(32),
             upload_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
      		PRIMARY KEY  (bug_id, integration)
         ) $charset_collate;";
-        dbDelta( $bugUploadedTable );
-		
+		dbDelta($bugUploadedTable);
+
 		$table = $wpdb->prefix . "appq_integration_center_config";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
 			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
@@ -73,14 +75,11 @@ class AppQ_Integration_Center_Activator {
 			is_active bit,
      		PRIMARY KEY  (campaign_id, integration)
 		) $charset_collate;";
-        dbDelta( $campaignConfigTable );
-		
-		
-		
-		if ($error) 
+		dbDelta($campaignConfigTable);
+
+		if ($error)
 		{
-			die('Plugin NOT activated: ' . implode(', ',$error));
+			die('Plugin NOT activated: ' . implode(', ', $error));
 		}
 	}
-
 }

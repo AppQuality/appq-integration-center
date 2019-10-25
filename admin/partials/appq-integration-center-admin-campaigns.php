@@ -3,8 +3,6 @@
 /**
  * The settings view area 
  *
- * This file is used to markup the admin-facing aspects of the plugin.
- *
  * @link       https://bitbucket.org/appqdevel/appq-integration-center
  * @since      1.0.0
  *

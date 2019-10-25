@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Provide a admin area view for the plugin
- *
- * This file is used to markup the admin-facing aspects of the plugin.
- *
+ * Not found partial
+ * 
  * @link       https://bitbucket.org/appqdevel/appq-integration-center
  * @since      1.0.0
  *

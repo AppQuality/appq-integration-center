@@ -146,6 +146,15 @@ class AppQ_Integration_Center_Admin {
 		include(WP_PLUGIN_DIR . '/' . $this->get_partial($slug));
 	}
 	
+	
+	/**
+	 * Get a Campaign by id with bugtracker data
+	 * @method get_campaign
+	 * @date   2019-10-25T12:48:21+020
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $id The id of the campaign
+	 * @return object                      MVC Campaign Object with bugtracker property and credentials property
+	 */
 	public function get_campaign($id) {
 		global $wpdb;
 		$campaign_model = mvc_model('Campaign');		
@@ -158,6 +167,13 @@ class AppQ_Integration_Center_Admin {
 		return $campaign;
 	}
 	
+	/**
+	 * Get all Campaigns with bugtracker data
+	 * @method get_campaigns
+	 * @date   2019-10-25T12:50:51+020
+	 * @author: Davide Bizzi <clochard>
+	 * @return array                      An array of MVC Campaign Objects with bugtracker property and credentials property
+	 */
 	public function get_campaigns() {
 		global $wpdb;
 		$campaign_model = mvc_model('Campaign');
@@ -172,6 +188,15 @@ class AppQ_Integration_Center_Admin {
 		
 		return $campaigns;
 	}
+	
+	/**
+	 * Get all Bugs of a Campaign with text values, tags and bugtracker data
+	 * @method get_bugs
+	 * @date   2019-10-25T12:51:29+020
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $cp_id The id of the campaign
+	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
+	 */
 	public function get_bugs($cp_id) {
 		global $wpdb;
 		
@@ -207,6 +232,16 @@ class AppQ_Integration_Center_Admin {
 		return $bugs;
 	}
 	
+	/**
+	 * Get the list of integrations
+	 * @method get_integrations
+	 * @date   2019-10-25T12:53:53+020
+	 * @author: Davide Bizzi <clochard>
+	 * @return array                  An array of integrations array(
+	 *	 'slug' => the slug of the integration,
+     *	 'name' => the extended name of the integration
+	 * );
+	 */
 	public function get_integrations(){
 		return $this->integrations;
 	}
@@ -251,6 +286,13 @@ class AppQ_Integration_Center_Admin {
  		));
  	}
 	
+	/**
+	 * General settings partial for a specific campaign
+	 * @method general_settings
+	 * @date   2019-10-25T12:55:22+020
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $campaign The campaign data
+	 */
 	public function general_settings($campaign = null) {
 		$this->partial('bugs/general-settings',array(
 			'integrations' => $this->get_integrations(),

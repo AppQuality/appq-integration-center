@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The settings view area 
+ * The Bug upload and settings view area 
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *

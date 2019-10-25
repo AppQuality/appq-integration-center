@@ -1,3 +1,15 @@
+<?php 
+/*
+ * The general settings partial
+ * 
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   23/10/2019
+ * @Filename: general-settings.php
+ * @Last modified by:   clochard
+ * @Last modified time: 25/10/2019
+ */
+
+?>
 <h3> General Settings</h3>
 <form id="general_settings" class="container">
     <div class="form-group row">

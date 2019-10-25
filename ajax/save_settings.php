@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * AJAX action to update general settings
+ * @method appq_integration_center_save_settings
+ * @date   2019-10-25T12:42:27+020
+ * @author: Davide Bizzi <clochard>
+ */
 function appq_integration_center_save_settings()
 {
 	global $wpdb;

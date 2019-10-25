@@ -1,4 +1,14 @@
-<div class="row">
+<?php
+/*
+ * The settings tab partial
+ * 
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   23/10/2019
+ * @Filename: settings.php
+ * @Last modified by:   clochard
+ * @Last modified time: 25/10/2019
+ */
+?><div class="row">
   <div class="col-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="general" aria-selected="true">Home</a>
