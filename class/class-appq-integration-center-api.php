@@ -77,7 +77,14 @@ class IntegrationCenterRestApi
 		$value = str_replace('{Bug.model}', $bug->model, $value);
 		$value = str_replace('{Bug.os}', $bug->os, $value);
 		$value = str_replace('{Bug.os_version}', $bug->os_version, $value);
-
+		
+		// Only if {Bug.media} exists
+		if (strpos($value,'{Bug.media}') !== false)
+		{
+			$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id)); 
+			$value = str_replace('{Bug.media}', implode(', ',$media), $value);
+		}
+		
 		if (property_exists($bug, 'fields') && sizeof($bug->fields) > 0)
 		{
 			foreach ($bug->fields as $slug => $field_value) {
