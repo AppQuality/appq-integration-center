@@ -83,3 +83,4 @@ function run_appq_integration_center()
 	$plugin->run();
 }
 run_appq_integration_center();
+do_action('appq_integration_center_run');

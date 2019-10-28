@@ -116,6 +116,12 @@ class AppQ_Integration_Center
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-appq-integration-center-admin.php';
+		
+		
+		/**
+		 * The base class responsible for communication with rest api
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'class/class-appq-integration-center-api.php';
 
 		/**
 		 * Require ajax actions
