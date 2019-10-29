@@ -10,6 +10,7 @@ function appq_integration_center_save_settings()
 	global $wpdb;
 	$cp_id = array_key_exists('cp_id', $_POST) ? intval($_POST['cp_id']) : false;
 	$bugtracker = array_key_exists('bugtracker', $_POST) ? $_POST['bugtracker'] : false;
+	$upload_media = array_key_exists('upload_media', $_POST) ? $_POST['upload_media'] == 'on' : false;
 
 	if (!($cp_id > 0) || !$bugtracker)
 	{
@@ -26,9 +27,9 @@ function appq_integration_center_save_settings()
 		$wpdb->query($sql);
 	}
 
-	$sql = $wpdb->prepare('INSERT INTO ' . $wpdb->prefix . 'appq_integration_center_config (campaign_id,integration,is_active)
-	VALUES (%d,%s,1) ON DUPLICATE KEY UPDATE is_active = 1
-	', $cp_id, $bugtracker);
+	$sql = $wpdb->prepare('INSERT INTO ' . $wpdb->prefix . 'appq_integration_center_config (campaign_id,integration,is_active, upload_media)
+	VALUES (%d,%s,1,%d) ON DUPLICATE KEY UPDATE is_active = 1 , upload_media = %d
+	', $cp_id, $bugtracker, $upload_media, $upload_media);
 	$wpdb->query($sql);
 	wp_send_json_success("ok");
 }

@@ -23,6 +23,14 @@
             </select>
         </div>
     </div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <div class="custom-control custom-checkbox">
+              <input <?= !empty($campaign->bugtracker) && intval($campaign->bugtracker->upload_media) !== 0 ? 'checked="checked"' : '' ?> type="checkbox" class="custom-control-input" name="upload_media" id="upload_media">
+              <label class="custom-control-label" for="upload_media">Upload media</label>
+            </div>
+        </div>
+    </div>
     <?php /* MAXIMIZE NOT DONE WORK 
     <div class="row">
         <div class="col-sm-2">

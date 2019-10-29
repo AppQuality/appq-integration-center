@@ -72,7 +72,8 @@ class AppQ_Integration_Center_Activator
 			endpoint varchar(128),
 			apikey varchar(512),	
 			field_mapping text,
-			is_active bit,
+			is_active boolean default 0,
+			upload_media boolean default 1,
      		PRIMARY KEY  (campaign_id, integration)
 		) $charset_collate;";
 		dbDelta($campaignConfigTable);
