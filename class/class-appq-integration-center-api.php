@@ -19,6 +19,54 @@ class IntegrationCenterRestApi
 		$this->basic_configuration = array();
 	}
 
+	public function http_post($url, $headers, $data)
+	{
+		return Requests::post($url, $headers, $data);
+	}
+
+	public function http_patch($url, $headers, $data)
+	{
+		return Requests::patch($url, $headers, $data);
+	}
+
+	public function http_get($url, $headers, $data)
+	{
+		return Requests::get($url, $headers);
+	}
+
+	public function http_multipart_post($url, $headers, $data)
+	{
+		$url = parse_url($url);
+		$user = $url['user'];
+		$pass = $url['pass'];
+		$url = $url['scheme'] . '://' . $url['host'] . $url['path'];
+		
+		$curl_headers = array();
+		foreach ($headers as $key => $value) {
+			$curl_headers[] = $key . ': '. $value;
+		}
+		
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL => $url,
+			CURLOPT_USERPWD => $user . ':' . $pass,
+			CURLOPT_POST => 1,
+			CURLOPT_HTTPHEADER => $curl_headers,
+			CURLOPT_POSTFIELDS => $data,
+			CURLOPT_RETURNTRANSFER => true
+		);
+		curl_setopt_array($ch, $options);
+		$req = curl_exec($ch);
+		
+		$res = new stdClass();
+		$res->status = !curl_errno($ch);
+		$res->body = $req;
+		$res->info = curl_getinfo($ch);
+		$res->error = $res->status ? false : curl_error($ch);
+		
+		curl_close($ch);
+		return $res;
+	}
 
 	public function get_apiurl()
 	{
