@@ -19,21 +19,64 @@ class IntegrationCenterRestApi
 		$this->basic_configuration = array();
 	}
 
+	/**
+	 * Send post request
+	 * @method http_post
+	 * @date   2019-10-30T14:43:49+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @param  mixed                  $data  The data to post    
+	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
+	 */
 	public function http_post($url, $headers, $data)
 	{
 		return Requests::post($url, $headers, $data);
 	}
 
+	/**
+	 * Send patch request
+	 * @method http_patch
+	 * @date   2019-10-30T14:47:18+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to PATCH. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @param  mixed                  $data  The data to patch    
+	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
+	 */
 	public function http_patch($url, $headers, $data)
 	{
 		return Requests::patch($url, $headers, $data);
 	}
 
-	public function http_get($url, $headers, $data)
+	/**
+	 * Send get request
+	 * @method http_get
+	 * @date   2019-10-30T14:47:54+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to GET. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
+	 */
+	public function http_get($url, $headers)
 	{
 		return Requests::get($url, $headers);
 	}
 
+	/**
+	 * Send post request as sent from a form
+	 * @method http_multipart_post
+	 * @date   2019-10-30T14:48:17+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @param  mixed                  $data  The data to post  
+	 * @return object                           An object {status: bool, body: string, info: array, error: mixed}
+	 * 												status - if the request was successfully completed 
+	 * 												body - the body of the response 
+	 * 												info - an array of data as returned from curl_getinfo 
+	 * 												error - false if no error or the string describing the error 
+	 */
 	public function http_multipart_post($url, $headers, $data)
 	{
 		$url = parse_url($url);
@@ -68,19 +111,57 @@ class IntegrationCenterRestApi
 		return $res;
 	}
 
+	/**
+	 * Get the apiurl
+	 * @method get_apiurl
+	 * @date   2019-10-30T14:52:24+010
+	 * @author: Davide Bizzi <clochard>
+	 * @return string                  The api URL
+	 */
 	public function get_apiurl()
 	{
 		return $this->configuration->endpoint;
 	}
+	
+	/**
+	 * Get the token
+	 * @method get_token
+	 * @date   2019-10-30T14:53:08+010
+	 * @author: Davide Bizzi <clochard>
+	 * @return string                  The api token/key
+	 */
 	public function get_token()
 	{
 		return $this->configuration->apikey;
 	}
+	
+	/**
+	 * Get the data for authorization
+	 * @method get_authorization
+	 * @date   2019-10-30T14:53:28+010
+	 * @author: Davide Bizzi <clochard>
+	 * @return string	The data for the authorization. Overwrite in the subclass if you need manipulation of the token (base64 encoding,...)
+	 */
 	public function get_authorization()
 	{
 		return $this->get_token();
 	}
 
+	/**
+	 * Get the configuration data for a campaign
+	 * @method get_configuration
+	 * @date   2019-10-30T15:00:15+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $cp_id The id of the campaign
+	 * @return object                       {
+	 * 											integration: string,   	The slug of the integration type
+	 * 											endpoint: string,		The apiurl
+	 * 											apikey: string,			The token/apikey
+	 * 											field_mapping:string,	A json representing the field mapping
+	 * 											is_active: bool,		true if is the current active integration for the cp 
+	 * 											upload_media:bool		true if an issue should be sent with attachments
+	 * 										}
+	 */
 	public function get_configuration($cp_id)
 	{
 		global $wpdb;
@@ -90,11 +171,27 @@ class IntegrationCenterRestApi
 		);
 	}
 
+	/**
+	 * Return the issue type
+	 * @method get_issue_type
+	 * @date   2019-10-30T15:05:06+010
+	 * @author: Davide Bizzi <clochard>
+	 * @return string			The issue type
+	 */
 	public function get_issue_type()
 	{
 		return 'Issue';
 	}
 
+	/**
+	 * Replace {placeholders} in a field mapping value with data from a bug
+	 * @method bug_data_replace
+	 * @date   2019-10-30T15:06:02+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  MvcObject                  $bug   The bug (MvcObject with additional fields on field property)
+	 * @param  string                  $value The string with {placeholders} to fill
+	 * @return string                         
+	 */
 	public function bug_data_replace($bug, $value)
 	{
 		global $wpdb;
@@ -145,17 +242,13 @@ class IntegrationCenterRestApi
 		return $value;
 	}
 
-	public function map_key_and_value($bug, $key, $value)
-	{
-		$key = $this->bug_data_replace($bug, $key);
-		$value = $this->bug_data_replace($bug, $value);
-
-		return array(
-			'key' => $key,
-			'value' => $value
-		);
-	}
-	
+	/**
+	 * Get the field mapping
+	 * @method get_field_mapping
+	 * @date   2019-10-30T15:18:22+010
+	 * @author: Davide Bizzi <clochard>
+	 * @return array                  An associative array with bugtracker field as key and a string with {placeholders} as value
+	 */
 	public function get_field_mapping()
 	{
 		$data = array();
@@ -164,6 +257,14 @@ class IntegrationCenterRestApi
 		return $field_mapping;
 	}
 
+	/**
+	 * Get mapped field data
+	 * @method map_fields
+	 * @date   2019-10-30T15:20:13+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  MvcObject                  $bug The bug to map (MvcObject with additional fields on field property)
+	 * @return array                       An associative array with bugtracker field as key and the data to send as value
+	 */
 	public function map_fields($bug)
 	{
 		$data = array();
@@ -171,13 +272,25 @@ class IntegrationCenterRestApi
 		$field_mapping = array_merge($this->basic_configuration, $field_mapping);
 
 		foreach ($field_mapping as $key => $value) {
-			$map = $this->map_key_and_value($bug, $key, $value);
-			$data[$map['key']] = $map['value'];
+			$key = $this->bug_data_replace($bug, $key);
+			$value = $this->bug_data_replace($bug, $value);
+			$data[$key] = $value;
 		}
 
 		return $data;
 	}
 
+	/** 
+	 * Send the issue
+	 * @method send_issue
+	 * @date   2019-10-30T15:21:44+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  MvcObject                  $bug The bug to upload (MvcObject with additional fields on field property)
+	 * @return array 					An associative array {
+	 * 										status: bool,		If uploaded successfully
+	 * 										message: string		The response of the upload or an error message on error 
+	 * 									}
+	 */
 	public function send_issue($bug)
 	{
 		return array(
@@ -186,14 +299,29 @@ class IntegrationCenterRestApi
 		);
 	}
 
+	/**
+	 * Get an issue associated with a bug
+	 * @method get_issue_by_id
+	 * @date   2019-10-30T15:24:54+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $id The bug id
+	 * @return mixed                      false on error, an object on success
+	 */
 	public function get_issue_by_id($id)
 	{
-		return null;
+		return false;
 	}
 
 
 
-
+	/**
+	 * Get a bug by id
+	 * @method get_bug
+	 * @date   2019-10-30T15:26:14+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $bug_id The bug id 
+	 * @return MvcObject                           (MvcObject with additional fields on field property)
+	 */
 	public function get_bug($bug_id)
 	{
 		$bug_model = mvc_model('Bug');
