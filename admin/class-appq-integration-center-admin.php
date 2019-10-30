@@ -155,7 +155,7 @@ class AppQ_Integration_Center_Admin {
 	 * @param  int                  $id The id of the campaign
 	 * @return object                      MVC Campaign Object with bugtracker property and credentials property
 	 */
-	public function get_campaign($id) {
+	public static function get_campaign($id) {
 		global $wpdb;
 		$campaign_model = mvc_model('Campaign');		
 		$campaign = $campaign_model->find_by_id($id);
@@ -174,7 +174,7 @@ class AppQ_Integration_Center_Admin {
 	 * @author: Davide Bizzi <clochard>
 	 * @return array                      An array of MVC Campaign Objects with bugtracker property and credentials property
 	 */
-	public function get_campaigns() {
+	public static function get_campaigns() {
 		global $wpdb;
 		$campaign_model = mvc_model('Campaign');
 		$bugtrackers = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1',OBJECT_K);
@@ -197,13 +197,13 @@ class AppQ_Integration_Center_Admin {
 	 * @param  int                  $cp_id The id of the campaign
 	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
 	 */
-	public function get_bugs($cp_id) {
+	public static function get_bugs($cp_id) {
 		global $wpdb;
 		
 		$bug_model = mvc_model('Bug');
 		$bugs = $bug_model->find_by_campaign_id($cp_id);
 		
-		$campaign = $this->get_campaign($cp_id);
+		$campaign = AppQ_Integration_Center_Admin::get_campaign($cp_id);
 		
 		$type = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type',OBJECT_K);
 		$severity = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity',OBJECT_K);
