@@ -46,6 +46,11 @@ class AppQ_Integration_Center_Activator
 			$error[] = "App Q Test dependency plugin is not active";
 		}
 
+		$tmp_folder = ABSPATH . 'wp-content/plugins/appq-integration-center/tmp/';
+		if (!file_exists($tmp_folder)) {
+		    mkdir($tmp_folder, 0777, true);
+		}
+		
 		// CREATE TABLES
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
