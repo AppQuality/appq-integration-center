@@ -237,7 +237,6 @@ class IntegrationCenterRestApi
 			}
 		}
 		$value = nl2br($value);
-		$value = stripslashes($value);
 
 		return $value;
 	}
