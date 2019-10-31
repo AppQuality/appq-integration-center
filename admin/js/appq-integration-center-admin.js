@@ -74,7 +74,9 @@
 
 		$('#bugs_list .send-all').click(function(e){
 			e.preventDefault()
-			$('#bugs_list .fa-upload').not('.text-secondary').click()
+			if (confirm('Are you sure you want to send ALL the bugs? It will take a while. The list can contain REFUSED and PENDING bugs, if you want to send only some bugs use Send Selected')) {
+				$('#bugs_list .fa-upload').not('.text-secondary').click()
+			}
 		})
 		$('#bugs_list .send-selected').click(function(e){
 			e.preventDefault()
