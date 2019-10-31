@@ -21,6 +21,8 @@ function appq_upload_bugs_to_bugtracker()
 		$bugtracker = $campaign->bugtracker;
 		if (property_exists($bugtracker, 'integration')) {
 			$upload_fn = 'appq_' . str_replace('-', '_', $bugtracker->integration) . '_upload_bugs';
+		} else {
+			wp_send_json_error("You need to configure the bugtracker");
 		}
 
 		$res = $upload_fn($cp_id,$bug_id);
