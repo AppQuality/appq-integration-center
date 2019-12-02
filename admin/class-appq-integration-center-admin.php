@@ -105,7 +105,7 @@ class AppQ_Integration_Center_Admin {
 	    add_menu_page(
 	        __( 'Integration center', $this->plugin_name ),
 	        'Integration center',
-	        'manage_options',
+	        'edit_campaigns',
 			'integration-center',
 	        array($this,'campaigns_page'),
 	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
@@ -117,7 +117,7 @@ class AppQ_Integration_Center_Admin {
 			'',
 	        __( 'Integration center', $this->plugin_name ),
 	        'Integration center',
-	        'manage_options',
+	        'edit_campaigns',
 			'integration-center-campaign',
 	        array($this,'bugs_page')
 	    );
