@@ -96,16 +96,27 @@ class AppQ_Integration_Center_Admin {
 	
 
 	/**
+	 * Register the WP admin settings.
+	 *
+	 * @since    1.1.0
+	 */
+	public function register_settings() {		
+   		add_option( $this->plugin_name . '_capability', 'manage_options');
+   		register_setting( $this->plugin_name . '_settings_group', $this->plugin_name . '_capability' );
+	}
+	
+	/**
 	 * Register the WP admin menus.
 	 *
 	 * @since    1.0.0
 	 */
 	public function register_menus() {
+  	 	$necessary_capability = get_option($this->plugin_name . '_capability');
 
 	    add_menu_page(
 	        __( 'Integration center', $this->plugin_name ),
 	        'Integration center',
-	        'edit_campaigns',
+	        $necessary_capability,
 			'integration-center',
 	        array($this,'campaigns_page'),
 	        plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
@@ -117,11 +128,19 @@ class AppQ_Integration_Center_Admin {
 			'',
 	        __( 'Integration center', $this->plugin_name ),
 	        'Integration center',
-	        'edit_campaigns',
+	        $necessary_capability,
 			'integration-center-campaign',
 	        array($this,'bugs_page')
 	    );
 		
+	    add_submenu_page(
+			'integration-center',
+	        __( 'Integration center', $this->plugin_name ),
+	        'Settings',
+	        'manage_options',
+			'integration-center-settings',
+	        array($this,'settings_page')
+	    );
 		
 	}
 	
@@ -253,6 +272,40 @@ class AppQ_Integration_Center_Admin {
 	 */
 	
 	 
+ 	/** 
+ 	 * Settings page show
+ 	 * @method campaigns_page
+ 	 * @date   2019-10-17T14:30:28+020
+ 	 * @author: Davide Bizzi <clochard>
+ 	 */
+ 	public function settings_page() {
+	    global $wp_roles;
+		$capabilities = array();
+
+	    $all_roles = $wp_roles->roles;
+    	$editable_roles = apply_filters('editable_roles', $all_roles);
+		
+		foreach($editable_roles as $role) {
+			$capabilities = array_merge($capabilities, array_keys($role['capabilities']));
+		}
+		$capabilities = array_unique($capabilities);
+		sort($capabilities);
+		
+  	 	$necessary_capability = get_option($this->plugin_name . '_capability');
+		$settings = array(
+			$this->plugin_name . '_capability' => array(
+				'type' => 'select',
+				'value' => $necessary_capability,
+				'label' => 'Necessary Capability',
+				'select_options' => $capabilities
+			)
+		);
+ 		$this->partial('settings',array(
+			'capabilities' => $capabilities,
+			'settings' => $settings,
+			'group_name' =>  $this->plugin_name . '_settings_group'
+		));
+ 	}
  	/** 
  	 * Campaings page show
  	 * @method campaigns_page
