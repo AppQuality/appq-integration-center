@@ -195,10 +195,14 @@ class IntegrationCenterRestApi
 	}
 
 
-	public function apply_appq_data_manipulation($value,$function,$args) {
-		if ($function == 'map') {
-			$value = $this->apply_appq_data_manipulation_map($value,$args);
+	public function apply_appq_data_manipulation($value,$mappings,$function,$args) {
+		foreach($mappings as $key => $item) {
+			if ($function == 'map') {
+				$item = $this->apply_appq_data_manipulation_map($item,$args);
+			}
+			$value = str_replace($key,$item,$value);
 		}
+		
 		return $value;
 	}
 	
@@ -231,53 +235,52 @@ class IntegrationCenterRestApi
 			}
 			$value = str_replace('::appq::' . $value_data,'',$value);
 		}
-		$value = str_replace('{Bug.message}', $bug->message, $value);
-		$value = str_replace('{Bug.steps}', $bug->description, $value);
-		$value = str_replace('{Bug.expected}', $bug->expected_result, $value);
-		$value = str_replace('{Bug.actual}', $bug->current_result, $value);
-		$value = str_replace('{Bug.note}', $bug->note, $value);
-		$value = str_replace('{Bug.id}', $bug->id, $value);
-		$value = str_replace('{Bug.internal_id}', $bug->internal_id, $value);
-
-		$value = str_replace('{Bug.status_id}', $bug->status_id, $value);
-		$value = str_replace('{Bug.severity_id}', $bug->severity_id, $value);
-		$value = str_replace('{Bug.replicability_id}', $bug->bug_replicability_id, $value);
-		$value = str_replace('{Bug.type_id}', $bug->bug_type_id, $value);
-
+		
 		$type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
 		$severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
 		$status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
 		$replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
 
-		$value = str_replace('{Bug.severity}', $severity, $value);
-		$value = str_replace('{Bug.replicability}', $replicability, $value);
-		$value = str_replace('{Bug.type}', $type, $value);
-		$value = str_replace('{Bug.status}', $status, $value);
+		$mappings = array(
+			'{Bug.message}' => $bug->message,
+			'{Bug.steps}' => $bug->description,
+			'{Bug.expected}' => $bug->expected_result,
+			'{Bug.actual}' => $bug->current_result,
+			'{Bug.note}' => $bug->note,
+			'{Bug.id}' => $bug->id,
+			'{Bug.internal_id}' => $bug->internal_id,
+			'{Bug.replicability_id}' => $bug->bug_replicability_id,
+			'{Bug.status_id}' => $bug->status_id,
+			'{Bug.type_id}' => $bug->bug_type_id,
+			'{Bug.severity_id}' => $bug->severity_id,
+			'{Bug.severity}' => $severity,
+			'{Bug.replicability}' => $replicability,
+			'{Bug.type}' => $type,
+			'{Bug.status}' => $status,
+			'{Bug.manufacturer}' => $bug->manufacturer,
+			'{Bug.model}' => $bug->model,
+			'{Bug.os}' => $bug->os,
+			'{Bug.os_version}' => $bug->os_version,
+		);
 
-		$value = str_replace('{Bug.manufacturer}', $bug->manufacturer, $value);
-		$value = str_replace('{Bug.model}', $bug->model, $value);
-		$value = str_replace('{Bug.os}', $bug->os, $value);
-		$value = str_replace('{Bug.os_version}', $bug->os_version, $value);
 		
 		// Only if {Bug.media} exists
 		if (strpos($value,'{Bug.media}') !== false || strpos($value,'{Bug.media_links}') !== false )
 		{
 			$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id)); 
-			$value = str_replace('{Bug.media}', implode(' , ',$media), $value);
-			$value = str_replace('{Bug.media_links}', implode(' , ',$media), $value);
+			$mappings['{Bug.media}'] = implode(' , ',$media);
+			$mappings['{Bug.media_links}'] = implode(' , ',$media);
 		}
 		
 		if (property_exists($bug, 'fields') && sizeof($bug->fields) > 0)
 		{
 			foreach ($bug->fields as $slug => $field_value) {
-				$value = str_replace('{Bug.field.'.$slug.'}', $field_value, $value);
+				$mappings['{Bug.field.'.$slug.'}'] = $field_value;
 			}
 		}
 		
 		
-		if ($value_function !== false) {
-			$value = $this->apply_appq_data_manipulation($value,$value_function,$value_function_args);
-		}
+		$value = $this->apply_appq_data_manipulation($value,$mappings,$value_function,$value_function_args);
 		
 		
 		$value = nl2br($value);
