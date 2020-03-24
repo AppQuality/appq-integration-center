@@ -183,6 +183,25 @@ class IntegrationCenterRestApi
 		return 'Issue';
 	}
 
+
+	public function apply_appq_data_manipulation_map($value,$args) {
+		$map = json_decode($args,true);
+		
+		foreach($map as $k => $v) {
+			$value = str_replace($k,$v,$value);
+		}
+		
+		return $value;
+	}
+
+
+	public function apply_appq_data_manipulation($value,$function,$args) {
+		if ($function == 'map') {
+			$value = $this->apply_appq_data_manipulation_map($value,$args);
+		}
+		return $value;
+	}
+	
 	/**
 	 * Replace {placeholders} in a field mapping value with data from a bug
 	 * @method bug_data_replace
@@ -195,6 +214,23 @@ class IntegrationCenterRestApi
 	public function bug_data_replace($bug, $value)
 	{
 		global $wpdb;
+		$value_function = false;
+		$value_function_args = false;
+		if (strpos($value, '::appq::') !== false) {
+			preg_match('/{Bug.\S+::appq::(\S+)}/', $value, $matches);
+			if (sizeof($matches) > 1) {
+				$value_data = $matches[1];
+				$value_function = $value_data;
+				if (strpos($value, '|||') !== false) {
+					preg_match('/(\S+)\|\|\|(\S+)/', $value_data, $matches);
+					if (sizeof($matches) > 2) {
+						$value_function = $matches[1];
+						$value_function_args = $matches[2];
+					}
+				}
+			}
+			$value = str_replace('::appq::' . $value_data,'',$value);
+		}
 		$value = str_replace('{Bug.message}', $bug->message, $value);
 		$value = str_replace('{Bug.steps}', $bug->description, $value);
 		$value = str_replace('{Bug.expected}', $bug->expected_result, $value);
@@ -237,6 +273,13 @@ class IntegrationCenterRestApi
 				$value = str_replace('{Bug.field.'.$slug.'}', $field_value, $value);
 			}
 		}
+		
+		
+		if ($value_function !== false) {
+			$value = $this->apply_appq_data_manipulation($value,$value_function,$value_function_args);
+		}
+		
+		
 		$value = nl2br($value);
 
 		return $value;
