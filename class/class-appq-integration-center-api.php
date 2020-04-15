@@ -5,6 +5,7 @@ class IntegrationCenterRestApi
 
 	protected $cp_id;
 	protected $configuration;
+	protected $content_type;
 
 
 	public function __construct($cp_id,$slug,$name)
@@ -17,6 +18,7 @@ class IntegrationCenterRestApi
 
 		$this->configuration = $this->get_configuration($this->cp_id);
 		$this->basic_configuration = array();
+		$this->content_type = 'html';
 	}
 
 	/**
@@ -267,8 +269,17 @@ class IntegrationCenterRestApi
 		// Only if {Bug.media} exists
 		if (strpos($value,'{Bug.media}') !== false || strpos($value,'{Bug.media_links}') !== false )
 		{
-			$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id)); 
+			$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id));
 			$mappings['{Bug.media}'] = implode(' , ',$media);
+			if ($this->content_type == 'markdown') {
+				$media = array_map(function($m){
+					return '['.$m.']('.$m.')';
+				},$media);
+			} elseif ($this->content_type == 'html') {
+				$media = array_map(function($m){
+					return '<a href="'.$m.'">'.$m.'</a>';
+				},$media);
+			}
 			$mappings['{Bug.media_links}'] = implode(' , ',$media);
 		}
 		
