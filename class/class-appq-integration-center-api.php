@@ -223,12 +223,12 @@ class IntegrationCenterRestApi
 		$value_function = false;
 		$value_function_args = false;
 		if (strpos($value, '::appq::') !== false) {
-			preg_match('/{Bug.\S+::appq::(\S+)}/', $value, $matches);
+			preg_match('/{Bug.\S+::appq::([\S ]+)}/', $value, $matches);
 			if (sizeof($matches) > 1) {
 				$value_data = $matches[1];
 				$value_function = $value_data;
 				if (strpos($value, '|||') !== false) {
-					preg_match('/(\S+)\|\|\|(\S+)/', $value_data, $matches);
+					preg_match('/(\S+)\|\|\|([\S ]+)/', $value_data, $matches);
 					if (sizeof($matches) > 2) {
 						$value_function = $matches[1];
 						$value_function_args = $matches[2];
