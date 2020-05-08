@@ -3,6 +3,33 @@
 
 	$(document).ready(function() {
 		
+		if($('#add_new_field_map').length) {
+			$('#add_new_field_map').click(function(e){
+				var current_maps = $('.custom_field_map').length
+				var template = $($('#field_map_template').html())
+				template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
+				template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
+				$('#custom_field_maps').append(template)
+			})
+		}
+		if ($('#add_new_field').length) {
+			$('#add_new_field').click(function(e){
+				e.preventDefault()
+				var cp_id = $('#cp_id').val()
+				var formData = $('#add_custom_map :input').serializeArray()
+				formData.push({'name':'cp_id', 'value':cp_id})
+				formData.push({'name':'action', 'value':"appq_add_custom_field"})
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: custom_object.ajax_url,
+					data: formData
+				}).then(function(res){
+					console.log(res)
+				})
+			})
+		}
+		
 		$('.nav-item').click(function(){
 			$(this).closest('.nav').find('.nav-link').removeClass('active')
 			$(this).find('.nav-link').addClass('active')
