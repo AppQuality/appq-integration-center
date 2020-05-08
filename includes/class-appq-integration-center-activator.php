@@ -82,6 +82,21 @@ class AppQ_Integration_Center_Activator
      		PRIMARY KEY  (campaign_id, integration)
 		) $charset_collate;";
 		dbDelta($campaignConfigTable);
+		
+		
+		
+		$table = $wpdb->prefix . "appq_integration_center_custom_map";
+		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		}
+		$campaignCustomMapTable = "CREATE TABLE $table (
+			campaign_id int NOT NULL,
+			source varchar(128) NOT NULL,
+			name varchar(128) NOT NULL,
+			map text NOT NULL,
+     		PRIMARY KEY  (campaign_id, name)
+		) $charset_collate;";
+		dbDelta($campaignCustomMapTable);
 
 		if ($error)
 		{
