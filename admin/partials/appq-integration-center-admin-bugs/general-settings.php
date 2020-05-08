@@ -64,10 +64,12 @@
         <?php foreach ($additional_fields as $additional_field) : ?>
             <span class="additional"> {Bug.field.<?=$additional_field->slug ?>} - Additional field <?=$additional_field->title ?> </span>
         <?php endforeach ?>
+        <?php foreach ($custom_fields as $custom_field) : ?>
+            <span data-target="#addFieldModal" data-map="<?= esc_attr($custom_field->map) ?>" data-source="<?= esc_attr($custom_field->source) ?>" data-name="<?= esc_attr($custom_field->name) ?>" class="custom"> <?=$custom_field->name ?> </span>
+        <?php endforeach ?>
     </div>
 </div>
 
 <?php 
-$this->partial('bugs/add-field-modal', array(
-)) 
+$this->partial('bugs/add-field-modal', array()) 
 ?>

@@ -24,11 +24,11 @@
           <div class="custom_field_map row mt-4">
               <div class="col-6 form-group" style="position: relative;">
                   <label for="fields_to_map" style="position: absolute;top:-20px ;font-size: 12px; opacity: 0.5; margin-bottom: 0;">Field Value</label>
-                  <input class="form-control col-12" type="text" name="key" placeholder="LOW" />
+                  <input class="key form-control col-12" type="text" name="key" placeholder="LOW" />
               </div>
               <div class="col-6 form-group" style="position: relative;">
                   <label for="fields_to_map" style="position: absolute;top: -20px ;font-size: 12px; opacity: 0.5; margin-bottom: 0;">Map value</label>
-                  <input class="form-control col-12" type="text" name="value" placeholder="Customer severity - low" />
+                  <input class="value form-control col-12" type="text" name="value" placeholder="Customer severity - low" />
               </div>
           </div>
       </script>

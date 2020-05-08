@@ -3,13 +3,43 @@
 
 	$(document).ready(function() {
 		
+		
+		function addCustomFieldToModal(){
+			var current_maps = $('.custom_field_map').length
+			var template = $($('#field_map_template').html())
+			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
+			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
+			$('#custom_field_maps').append(template)
+			return template
+		}
+		$('#addFieldModal').on('hidden.bs.modal', function (e) {
+			$('#addFieldModal input').val("")
+			$('#custom_field_maps *').remove()
+		})
+		
+		if ($('.available_fields .custom').length) {
+			$('.available_fields .custom').click(function(){
+				var map = $(this).data('map')
+				var source = $(this).data('source')
+				var name = $(this).data('name')
+				var modal = $($(this).data('target'))
+				modal.find('input[name="custom_map_source"]').val(source)
+				modal.find('input[name="custom_map_name"]').val(name)
+				
+				Object.keys(map).forEach((k) => {
+					var field = addCustomFieldToModal()
+					field.find('.key').val(k)
+					field.find('.value').val(map[k])
+				});
+				
+				
+				modal.modal('show')
+			})
+		}
+		
 		if($('#add_new_field_map').length) {
 			$('#add_new_field_map').click(function(e){
-				var current_maps = $('.custom_field_map').length
-				var template = $($('#field_map_template').html())
-				template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
-				template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
-				$('#custom_field_maps').append(template)
+				addCustomFieldToModal()
 			})
 		}
 		if ($('#add_new_field').length) {
