@@ -31,33 +31,43 @@
             </div>
         </div>
     </div>
-    <?php /* MAXIMIZE NOT DONE WORK 
-    <div class="row">
-        <div class="col-sm-2">
-          <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="use_ssh" name="use_ssh">
-              <label class="form-check-label" for="use_ssh">Connect with SSH</label>
-          </div>
-        </div>
-        <div class="col-sm-5">
-            <div class="form-group row">
-                <label for="ssh_username" class="col-sm-2 col-form-label">Username</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ssh_username"placeholder="Username">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-5">
-            <div class="form-group row">
-                <label for="ssh_password" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="ssh_password" placeholder="••••••••••">
-                </div>
-            </div>
-        </div>
-    </div>
-    */ ?>
     <div class="row">
     	<button id="save_general_settings" type="button" class="col-sm-2 offset-sm-10 btn btn-primary">Save</button>
     </div>
 </form>
+
+
+<div class="row">
+    <h4 class="col-sm-12"> Available fields <button type="button" class="btn btn-primary float-right"  data-toggle="modal" data-target="#addFieldModal">Add new</button> </h4>
+    <div class="col-sm-12 available_fields">
+        <span> {Bug.message} - Titolo del bug </span> 
+        <span> {Bug.steps} - Step by step description del bug </span> 
+        <span> {Bug.expected} - Expected result del bug </span> 
+        <span> {Bug.actual} - Actual result del bug </span> 
+        <span> {Bug.note} - Note del bug </span> 
+        <span> {Bug.id} - ID del bug </span> 
+        <span> {Bug.internal_id} - Internal id del bug </span> 
+        <span> {Bug.status_id} - Status id del bug </span> 
+        <span> {Bug.status} - Status name del bug </span> 
+        <span> {Bug.severity_id} - Severity id del bug </span> 
+        <span> {Bug.severity} - Severity name del bug </span> 
+        <span> {Bug.replicability_id} - Replicability id del bug </span> 
+        <span> {Bug.replicability} - Replicability name del bug </span> 
+        <span> {Bug.type_id} - Bug Type id id del bug </span> 
+        <span> {Bug.type} - Bug Type name del bug </span> 
+        <span> {Bug.manufacturer} - Manufacturer del device del bug </span> 
+        <span> {Bug.model} - Modello del device del bug </span> 
+        <span> {Bug.os} - OS del device del bug </span> 
+        <span> {Bug.os_version} - OS version del device del bug </span>
+        <span> {Bug.media} - Media del bug, le immagini verranno mostrate nel contenuto </span>
+        <span> {Bug.media_links} - Link ai media del bug </span>
+        <?php foreach ($additional_fields as $additional_field) : ?>
+            <span class="additional"> {Bug.field.<?=$additional_field->slug ?>} - Additional field <?=$additional_field->title ?> </span>
+        <?php endforeach ?>
+    </div>
+</div>
+
+<?php 
+$this->partial('bugs/add-field-modal', array(
+)) 
+?>
