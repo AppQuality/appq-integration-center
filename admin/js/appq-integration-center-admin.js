@@ -51,6 +51,9 @@
 		if ($('#add_new_field').length) {
 			$('#add_new_field').click(function(e){
 				e.preventDefault()
+				var self = this
+				var content = $(this).html()
+				$(this).html('<i class="fa fa-spinner fa-spin"></i>')
 				var cp_id = $('#cp_id').val()
 				var formData = $('#add_custom_map :input').serializeArray()
 				formData.push({'name':'cp_id', 'value':cp_id})
@@ -65,6 +68,7 @@
 						location.reload()
 					} else {
 						toastr.error('There was an error adding custom map')
+						$(self).html(content)
 					}
 				})
 			})
