@@ -17,6 +17,7 @@ class IntegrationCenterRestApi
 		);
 
 		$this->configuration = $this->get_configuration($this->cp_id);
+		$this->custom_fields = AppQ_Integration_Center_Admin::get_custom_fields($this->cp_id);
 		$this->basic_configuration = array();
 		$this->content_type = 'html';
 	}
@@ -304,8 +305,25 @@ class IntegrationCenterRestApi
 		$value = $this->apply_appq_data_manipulation($value,$mappings,$value_function,$value_function_args);
 		
 		
+		$value = $this->apply_appq_custom_mappings($bug,$value);
+		
+		
 		$value = nl2br($value);
 
+		return $value;
+	}
+	
+	private function apply_appq_custom_mappings($bug,$value) {
+		foreach($this->custom_fields as $custom_field) {
+			if (strpos($value,$custom_field->name) !== false) {
+				$source_value = $this->bug_data_replace($bug,$custom_field->source);
+				$map = json_decode($custom_field->map,true);
+				foreach ($map as $search => $replace) {
+					$source_value = str_replace($search,$replace,$source_value);
+				}
+				$value = str_replace($custom_field->name,$source_value,$value);
+			}
+		}
 		return $value;
 	}
 

@@ -3,6 +3,77 @@
 
 	$(document).ready(function() {
 		
+		
+		$('#custom_field_maps').on('click','.remove',function(){
+			$(this).closest('.custom_field_map').remove()
+		})
+		function addCustomFieldToModal(){
+			var current_maps = $('.custom_field_map').length
+			while( $('#custom_field_maps input[name="custom_map['+current_maps+'][key]"]').length != 0) {
+				current_maps++
+			}
+			var template = $($('#field_map_template').html())
+			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
+			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
+			$('#custom_field_maps').append(template)
+			return template
+		}
+		$('#addFieldModal').on('hidden.bs.modal', function (e) {
+			$('#addFieldModal input').val("")
+			$('#custom_field_maps *').remove()
+		})
+		
+		if ($('.available_fields .custom').length) {
+			$('.available_fields .custom').click(function(){
+				var map = $(this).data('map')
+				var source = $(this).data('source')
+				var name = $(this).data('name')
+				var modal = $($(this).data('target'))
+				modal.find('input[name="custom_map_source"]').val(source)
+				modal.find('input[name="custom_map_name"]').val(name)
+				
+				Object.keys(map).forEach((k) => {
+					var field = addCustomFieldToModal()
+					field.find('.key').val(k)
+					field.find('.value').val(map[k])
+				});
+				
+				
+				modal.modal('show')
+			})
+		}
+		
+		if($('#add_new_field_map').length) {
+			$('#add_new_field_map').click(function(e){
+				addCustomFieldToModal()
+			})
+		}
+		if ($('#add_new_field').length) {
+			$('#add_new_field').click(function(e){
+				e.preventDefault()
+				var self = this
+				var content = $(this).html()
+				$(this).html('<i class="fa fa-spinner fa-spin"></i>')
+				var cp_id = $('#cp_id').val()
+				var formData = $('#add_custom_map :input').serializeArray()
+				formData.push({'name':'cp_id', 'value':cp_id})
+				formData.push({'name':'action', 'value':"appq_add_custom_field"})
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: custom_object.ajax_url,
+					data: formData
+				}).then(function(res){
+					if (res.success) {
+						location.reload()
+					} else {
+						toastr.error('There was an error adding custom map')
+						$(self).html(content)
+					}
+				})
+			})
+		}
+		
 		$('.nav-item').click(function(){
 			$(this).closest('.nav').find('.nav-link').removeClass('active')
 			$(this).find('.nav-link').addClass('active')

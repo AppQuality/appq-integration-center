@@ -340,6 +340,23 @@ class AppQ_Integration_Center_Admin {
  	}
 	
 	/**
+	 * Get Custom Mapping for a campaign
+	 * @method get_custom_fields
+	 * @date   2020-05-08T14:40:54+020
+	 * @author: Davide Bizzi <clochard>
+	 * @param  int                  $campaign_id 
+	 * @return array                               
+	 */
+	public function get_custom_fields($campaign_id) {
+		global $wpdb;
+		
+		$sql = $wpdb->prepare('SELECT * FROM wp_appq_integration_center_custom_map 
+			WHERE campaign_id = %d',$campaign_id);
+		
+		return $wpdb->get_results($sql);
+	}
+	
+	/**
 	 * General settings partial for a specific campaign
 	 * @method general_settings
 	 * @date   2019-10-25T12:55:22+020
@@ -347,9 +364,14 @@ class AppQ_Integration_Center_Admin {
 	 * @param  int                  $campaign The campaign data
 	 */
 	public function general_settings($campaign = null) {
+		$additional_fields = appq_get_campaign_additional_fields($campaign->id);
+		$custom_fields = $this->get_custom_fields($campaign->id);
+
 		$this->partial('bugs/general-settings',array(
 			'integrations' => $this->get_integrations(),
-			'campaign' => $campaign
+			'campaign' => $campaign,
+ 			'additional_fields' => $additional_fields,
+ 			'custom_fields' => $custom_fields,
 		));
 	}
 	
