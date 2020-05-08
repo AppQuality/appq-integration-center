@@ -4,8 +4,14 @@
 	$(document).ready(function() {
 		
 		
+		$('#custom_field_maps').on('click','.remove',function(){
+			$(this).closest('.custom_field_map').remove()
+		})
 		function addCustomFieldToModal(){
 			var current_maps = $('.custom_field_map').length
+			while( $('#custom_field_maps input[name="custom_map['+current_maps+'][key]"]').length != 0) {
+				current_maps++
+			}
 			var template = $($('#field_map_template').html())
 			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
 			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')

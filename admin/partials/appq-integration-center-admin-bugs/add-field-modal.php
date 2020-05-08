@@ -22,11 +22,14 @@
       </div>
       <script type="text/html" id="field_map_template">
           <div class="custom_field_map row mt-4">
+              <div class="col-1" >
+                  <button class="btn btn-danger remove w-100"><i class="fa fa-minus"></i></button>
+              </div>
               <div class="col-6 form-group" style="position: relative;">
                   <label for="fields_to_map" style="position: absolute;top:-20px ;font-size: 12px; opacity: 0.5; margin-bottom: 0;">Field Value</label>
                   <input class="key form-control col-12" type="text" name="key" placeholder="LOW" />
               </div>
-              <div class="col-6 form-group" style="position: relative;">
+              <div class="col-5 form-group" style="position: relative;">
                   <label for="fields_to_map" style="position: absolute;top: -20px ;font-size: 12px; opacity: 0.5; margin-bottom: 0;">Map value</label>
                   <input class="value form-control col-12" type="text" name="value" placeholder="Customer severity - low" />
               </div>
