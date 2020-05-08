@@ -61,7 +61,11 @@
 					url: custom_object.ajax_url,
 					data: formData
 				}).then(function(res){
-					console.log(res)
+					if (res.success) {
+						location.reload()
+					} else {
+						toastr.error('There was an error adding custom map')
+					}
 				})
 			})
 		}
