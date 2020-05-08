@@ -266,6 +266,16 @@ class IntegrationCenterRestApi
 		);
 
 		
+		// Only if {Bug.tags} or {Bug.tags_list} exists
+		if (strpos($value,'{Bug.tags}') !== false || strpos($value,'{Bug.tags_list}') !== false )
+		{
+			$tags =  $wpdb->get_col($wpdb->prepare('SELECT display_name FROM wp_appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
+			if (sizeof($tags) > 0) {
+				$mappings['{Bug.tags}'] = implode(' ; ',$tags);
+				$tags_list = '["' . implode('","',$tags) . '"]';
+				$mappings['{Bug.tags_list}'] = $tags_list;
+			}
+		}
 		// Only if {Bug.media} exists
 		if (strpos($value,'{Bug.media}') !== false || strpos($value,'{Bug.media_links}') !== false )
 		{
