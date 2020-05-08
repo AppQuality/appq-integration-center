@@ -61,6 +61,8 @@
         <span> {Bug.os_version} - OS version del device del bug </span>
         <span> {Bug.media} - Media del bug, le immagini verranno mostrate nel contenuto </span>
         <span> {Bug.media_links} - Link ai media del bug </span>
+        <span> {Bug.tags} - Tags del bug, verranno mostrati separati da punto e virgola (e.g. "tag1 ; tag2")</span>
+        <span> {Bug.tags_list} - Tags del bug, verranno mostrati come un array json (e.g. "["tag1" , "tag2"]")</span>
         <?php foreach ($additional_fields as $additional_field) : ?>
             <span class="additional"> {Bug.field.<?=$additional_field->slug ?>} - Additional field <?=$additional_field->title ?> </span>
         <?php endforeach ?>
