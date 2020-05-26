@@ -1,7 +1,30 @@
+/**
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   08/05/2020
+ * @Filename: appq-integration-center-admin.js
+ * @Last modified by:   clochard
+ * @Last modified time: 26/05/2020
+ */
+
+
+
 (function($) {
 	'use strict';
 
 	$(document).ready(function() {
+		
+		if($('.open_bug_menu').length) {
+			$('.open_bug_menu').click(function(e) {
+				e.preventDefault()
+				
+				if ($(this).closest('td').find('.bug_menu').is(':visible')) {
+					$(this).closest('td').find('.bug_menu').hide()
+				} else {
+					$('.bug_menu').hide()
+					$(this).closest('td').find('.bug_menu').show()
+				}
+			})
+		}
 		
 		
 		$('#custom_field_maps').on('click','.remove',function(){

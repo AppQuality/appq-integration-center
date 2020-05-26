@@ -43,7 +43,15 @@
 				<td class="severity"><?= $bug->severity ?></td>
 				<td><?= $bug->is_duplicated ? '<span class="fa fa-check"></span>' : '' ?></td>
 				<td class="tags"><?= '#' . implode(', #',$bug->tags) ?></td>
-				<td><?= $bug->uploaded ? '<span class="fa fa-upload text-secondary"></span>' : '<span data-bug-id="'.$bug->id.'" class="fa fa-upload"></span>' ?></td>
+				<td style="position:relative">
+					<?php if ($bug->uploaded) : ?>
+						<div class="bug_menu" style="display:none">
+							<button class="btn delete_issue fa fa-close text-danger"></button>
+						</div>
+						<button class="open_bug_menu fa fa-upload text-secondary btn-flat btn"></button>
+					<?php else: ?>
+						<button data-bug-id="<?= $bug->id ?>" class="btn-flat btn fa fa-upload"></button>
+					<?php endif ?>
 				<td class="is_uploaded">
 				<?php if ($bug->uploaded): ?>
 					<?php if ($bug->bugtracker_url) : ?>

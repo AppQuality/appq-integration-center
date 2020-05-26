@@ -260,8 +260,11 @@ class AppQ_Integration_Center_Admin {
 				
 				if (!empty($uploaded_bug_data)) {
 					$bug->uploaded = true;
-					if (!empty($campaign->url_model) && !empty($uploaded_bug_data->bugtracker_id)) {
-						$bug->bugtracker_url = str_replace('{bugtracker_id}',$uploaded_bug_data->bugtracker_id,$campaign->url_model);
+					if (!empty($uploaded_bug_data->bugtracker_id)) {
+						$bug->bugtracker_id = $uploaded_bug_data->bugtracker_id;
+						if (!empty($campaign->url_model)) {
+							$bug->bugtracker_url = str_replace('{bugtracker_id}',$uploaded_bug_data->bugtracker_id,$campaign->url_model);
+						}
 					}
 				}
 				
