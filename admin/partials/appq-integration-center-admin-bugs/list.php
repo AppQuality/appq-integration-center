@@ -45,12 +45,17 @@
 				<td class="tags"><?= '#' . implode(', #',$bug->tags) ?></td>
 				<td style="position:relative">
 					<?php if ($bug->uploaded) : ?>
+						
+						<?php if (property_exists($bug,'bugtracker_id')) : ?>
 						<div class="bug_menu" style="display:none">
-							<button class="btn delete_issue fa fa-close text-danger"></button>
+							<button data-bug-id="<?= $bug->id ?>" data-bugtracker-id="<?= $bug->bugtracker_id ?>" class="btn delete_issue fa fa-close text-danger"></button>
 						</div>
-						<button class="open_bug_menu fa fa-upload text-secondary btn-flat btn"></button>
+						<button class="open_bug_menu fa fa-upload text-primary btn-flat btn"></button>
+						<?php else : ?>
+							<span class="fa fa-upload text-secondary btn-flat btn"></span>
+						<?php endif ?>
 					<?php else: ?>
-						<button data-bug-id="<?= $bug->id ?>" class="btn-flat btn fa fa-upload"></button>
+						<button data-bug-id="<?= $bug->id ?>" class="btn-link text-dark btn fa fa-upload upload_bug"></button>
 					<?php endif ?>
 				<td class="is_uploaded">
 				<?php if ($bug->uploaded): ?>

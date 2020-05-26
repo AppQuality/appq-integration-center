@@ -13,6 +13,30 @@
 
 	$(document).ready(function() {
 		
+		if ($('.delete_issue').length) {
+			$('.delete_issue').click(function(e) {
+				e.preventDefault()
+				var cp_id = $('#cp_id').val()
+				var bug_name = $(this).closest('tr').find('td.name').text()
+				var bugtracker_id = $(this).attr('data-bugtracker-id')
+				if (confirm("Are you sure you want to delete issue "+ bugtracker_id +" - " + bug_name + '?')) {
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: custom_object.ajax_url,
+						data: {
+							'action': 'appq_delete_bug_from_bugtracker',
+							'cp_id': cp_id,
+							'bugtracker_id': bugtracker_id
+						}
+					}).then(function(res){
+						console.log(res)
+					})
+				}
+			})
+		}
+		
+		
 		if($('.open_bug_menu').length) {
 			$('.open_bug_menu').click(function(e) {
 				e.preventDefault()
@@ -106,7 +130,7 @@
 			$(this).addClass('active')
 		})
 
-		$('#bugs-tabs-content .fa.fa-upload').not(".text-secondary").click(function() {
+		$('#bugs-tabs-content .upload_bug').click(function() {
 			var cp_id = $('#cp_id').val()
 			var bug_id = $(this).data('bug-id')
 			var button = $(this)
