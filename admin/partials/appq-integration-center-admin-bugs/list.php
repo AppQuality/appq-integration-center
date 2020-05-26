@@ -6,7 +6,7 @@
  * @Date:   23/10/2019
  * @Filename: list.php
  * @Last modified by:   clochard
- * @Last modified time: 25/10/2019
+ * @Last modified time: 26/05/2020
  */
 
 ?>
@@ -44,7 +44,15 @@
 				<td><?= $bug->is_duplicated ? '<span class="fa fa-check"></span>' : '' ?></td>
 				<td class="tags"><?= '#' . implode(', #',$bug->tags) ?></td>
 				<td><?= $bug->uploaded ? '<span class="fa fa-upload text-secondary"></span>' : '<span data-bug-id="'.$bug->id.'" class="fa fa-upload"></span>' ?></td>
-				<td class="is_uploaded"><?= $bug->uploaded ? '<span class="fa fa-check"></span>' : '' ?></td>
+				<td class="is_uploaded">
+				<?php if ($bug->uploaded): ?>
+					<?php if ($bug->bugtracker_url) : ?>
+						<a href="<?=$bug->bugtracker_url ?>" target="_blank"><span class="fa fa-external-link"></span></a>
+					<?php else: ?>
+						<span class="fa fa-check"></span>
+					<?php endif ?>
+				<?php endif ?>
+				</td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>
