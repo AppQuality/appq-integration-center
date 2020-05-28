@@ -3,7 +3,7 @@
  * @Date:   08/05/2020
  * @Filename: appq-integration-center-admin.js
  * @Last modified by:   clochard
- * @Last modified time: 26/05/2020
+ * @Last modified time: 2020-05-28T15:10:25+02:00
  */
 
 
@@ -20,6 +20,9 @@
 				var bug_name = $(this).closest('tr').find('td.name').text()
 				var bugtracker_id = $(this).attr('data-bugtracker-id')
 				if (confirm("Are you sure you want to delete issue "+ bugtracker_id +" - " + bug_name + '?')) {
+					var button_text = $(this).removeClass('fa-close')
+					var self = this
+					$(this).html('<span class="fa fa-spin fa-spinner"></span>')
 					$.ajax({
 						type: "post",
 						dataType: "json",
@@ -30,7 +33,19 @@
 							'bugtracker_id': bugtracker_id
 						}
 					}).then(function(res){
-						console.log(res)
+						if (res.success) {
+							$(self).closest('td').find('.open_bug_menu').removeClass('fa-upload').addClass('fa-close').addClass('text-danger')
+							$(self).closest('tr').find('.is_uploaded').html('')
+							$(self).closest('.bug_menu').remove()
+							if (res.data.auth_error) {
+								toastr.warning(res.data.message)
+							} else {
+								toastr.success(res.data.message)
+							}
+						} else {
+							$(this).html(button_text)
+							toastr.error(res.data.message)
+						}
 					})
 				}
 			})

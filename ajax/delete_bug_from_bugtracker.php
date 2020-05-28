@@ -20,16 +20,16 @@ function appq_delete_bug_from_bugtracker()
 
 		$bugtracker = $campaign->bugtracker;
 		if (property_exists($bugtracker, 'integration')) {
-			$upload_fn = 'appq_' . str_replace('-', '_', $bugtracker->integration) . '_delete_bugs';
+			$delete_fn = 'appq_' . str_replace('-', '_', $bugtracker->integration) . '_delete_bugs';
 		} else {
 			wp_send_json_error("You need to configure the bugtracker");
 		}
 
-		$res = $upload_fn($cp_id,$bugtracker_id);
+		$res = $delete_fn($cp_id,$bugtracker_id);
 		if ($res['status']) {
-			wp_send_json_success($res['message']);
+			wp_send_json_success($res['data']);
 		} else {
-			wp_send_json_error($res['message']);
+			wp_send_json_error($res['data']);
 		}
 	} catch (\Throwable $ex) {
 		wp_send_json_error($ex->getMessage());

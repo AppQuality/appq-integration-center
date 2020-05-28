@@ -65,6 +65,20 @@ class IntegrationCenterRestApi
 	{
 		return Requests::get($url, $headers);
 	}
+	
+	/**
+	 * Send delete request
+	 * @method http_delete
+	 * @date    2020-05-28T12:22:22+020
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to GET. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
+	 */
+	public function http_delete($url, $headers)
+	{
+		return Requests::delete($url, $headers);
+	}
 
 	/**
 	 * Send post request as sent from a form
