@@ -3,7 +3,7 @@
  * @Date:   08/05/2020
  * @Filename: appq-integration-center-admin.js
  * @Last modified by:   clochard
- * @Last modified time: 2020-05-28T15:10:25+02:00
+ * @Last modified time: 2020-05-28T15:12:59+02:00
  */
 
 
@@ -145,11 +145,11 @@
 			$(this).addClass('active')
 		})
 
-		$('#bugs-tabs-content .upload_bug').click(function() {
+		$('#bugs-tabs-content .upload_bug').not('.disabled').click(function() {
 			var cp_id = $('#cp_id').val()
 			var bug_id = $(this).data('bug-id')
 			var button = $(this)
-			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary')
+			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
@@ -164,7 +164,7 @@
 					if (res.success) {
 						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
 					} else {
-						button.removeClass('text-secondary')
+						button.removeClass('text-secondary disabled')
 						toastr.error(res.data, 'Oh no!')
 					}
 				},
