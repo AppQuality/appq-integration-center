@@ -181,8 +181,18 @@ class AppQ_Integration_Center_Admin {
 		$bugtracker = $wpdb->get_row(
 			$wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND is_active = 1', $id)
 		);
-		$campaign->bugtracker = !empty($bugtracker) ? $bugtracker : '' ;
-		$campaign->credentials = !empty($bugtracker);
+		
+		$campaign->bugtracker = '';
+		$campaign->credentials = false;
+		$campaign->url_model = '#';
+		if (!empty($bugtracker)) {
+			$campaign->bugtracker = $bugtracker;
+			$campaign->credentials = true;
+			$url_model_function = 'appq_ic_' . $bugtracker->integration . '_get_url_model';
+			if (function_exists($url_model_function)) {
+				$campaign->url_model = $url_model_function($bugtracker);
+			}
+		}
 		return $campaign;
 	}
 	
@@ -241,9 +251,20 @@ class AppQ_Integration_Center_Admin {
 			$bug->tags = $wpdb->get_col($wpdb->prepare('SELECT display_name FROM '. $wpdb->prefix.'appq_bug_taxonomy WHERE bug_id = %d',$bug->id));
 			$bug->uploaded = false;	
 			if (!empty($campaign->bugtracker)) {
-				$bug->uploaded = $wpdb->get_var(
-					$wpdb->prepare('SELECT COUNT(bug_id) FROM ' . $wpdb->prefix .'appq_integration_center_bugs WHERE bug_id = %d AND integration = %s',$bug->id, $campaign->bugtracker->integration)
-					) > 0;
+				$sql = $wpdb->prepare('SELECT bug_id,bugtracker_id FROM ' . $wpdb->prefix .'appq_integration_center_bugs 
+					WHERE bug_id = %d AND integration = %s',$bug->id, $campaign->bugtracker->integration);
+				
+				$uploaded_bug_data = $wpdb->get_row($sql);
+				$bug->uploaded = false;
+				$bug->bugtracker_url = false;
+				
+				if (!empty($uploaded_bug_data)) {
+					$bug->uploaded = true;
+					if (!empty($campaign->url_model) && !empty($uploaded_bug_data->bugtracker_id)) {
+						$bug->bugtracker_url = str_replace('{bugtracker_id}',$uploaded_bug_data->bugtracker_id,$campaign->url_model);
+					}
+				}
+				
 			}
 			return $bug;
 		},$bugs);

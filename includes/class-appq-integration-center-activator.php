@@ -1,4 +1,14 @@
 <?php
+/*
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   08/05/2020
+ * @Filename: class-appq-integration-center-activator.php
+ * @Last modified by:   clochard
+ * @Last modified time: 26/05/2020
+ */
+
+
+
 
 
 /**
@@ -62,6 +72,7 @@ class AppQ_Integration_Center_Activator
 		$bugUploadedTable = "CREATE TABLE $table (
 			bug_id int NOT NULL,
 			integration varchar(32),
+			bugtracker_id varchar(32),
             upload_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
      		PRIMARY KEY  (bug_id, integration)
         ) $charset_collate;";
