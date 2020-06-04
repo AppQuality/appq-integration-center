@@ -184,7 +184,7 @@ class AppQ_Integration_Center_Admin {
 		
 		$campaign->bugtracker = '';
 		$campaign->credentials = false;
-		$campaign->url_model = '#';
+		$campaign->url_model = '';
 		if (!empty($bugtracker)) {
 			$campaign->bugtracker = $bugtracker;
 			$campaign->credentials = true;
