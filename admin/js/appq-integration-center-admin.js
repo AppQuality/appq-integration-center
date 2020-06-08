@@ -3,7 +3,7 @@
  * @Date:   08/05/2020
  * @Filename: appq-integration-center-admin.js
  * @Last modified by:   clochard
- * @Last modified time: 2020-05-28T15:12:59+02:00
+ * @Last modified time: 2020-06-08T10:48:16+02:00
  */
 
 
@@ -43,7 +43,7 @@
 								toastr.success(res.data.message)
 							}
 						} else {
-							$(this).html(button_text)
+							$(self).html(button_text)
 							toastr.error(res.data.message)
 						}
 					})
