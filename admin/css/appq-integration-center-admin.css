@@ -1,3 +1,13 @@
+/**
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   08/05/2020
+ * @Filename: appq-integration-center-admin.css
+ * @Last modified by:   clochard
+ * @Last modified time: 26/05/2020
+ */
+
+
+
 input[type=checkbox].form-check-input {
     margin-top: .3rem;
     margin-left: -1.25rem;
@@ -20,4 +30,27 @@ input[type=checkbox].form-check-input {
 }
 .available_fields span.custom {
     background: #9f8eff;
+}
+
+
+.bug_menu {
+   text-align: center;
+   position: absolute;
+   width: 100%;
+   left: 0;
+   right: 0;
+   top: -50%;
+}
+.bug_menu:after {
+    border-width: 5px;
+    border-style: solid;
+    content: '';
+    position: absolute;
+    left:40%;
+    right:50%;
+    bottom: -10px;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #aaa;
+    border-left-color: transparent;
 }

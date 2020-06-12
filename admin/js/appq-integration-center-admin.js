@@ -1,7 +1,69 @@
+/**
+ * @Author: Davide Bizzi <clochard>
+ * @Date:   08/05/2020
+ * @Filename: appq-integration-center-admin.js
+ * @Last modified by:   clochard
+ * @Last modified time: 2020-06-08T10:48:16+02:00
+ */
+
+
+
 (function($) {
 	'use strict';
 
 	$(document).ready(function() {
+		
+		if ($('.delete_issue').length) {
+			$('.delete_issue').click(function(e) {
+				e.preventDefault()
+				var cp_id = $('#cp_id').val()
+				var bug_name = $(this).closest('tr').find('td.name').text()
+				var bugtracker_id = $(this).attr('data-bugtracker-id')
+				if (confirm("Are you sure you want to delete issue "+ bugtracker_id +" - " + bug_name + '?')) {
+					var button_text = $(this).removeClass('fa-close')
+					var self = this
+					$(this).html('<span class="fa fa-spin fa-spinner"></span>')
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: custom_object.ajax_url,
+						data: {
+							'action': 'appq_delete_bug_from_bugtracker',
+							'cp_id': cp_id,
+							'bugtracker_id': bugtracker_id
+						}
+					}).then(function(res){
+						if (res.success) {
+							$(self).closest('td').find('.open_bug_menu').removeClass('fa-upload').addClass('fa-close').addClass('text-danger')
+							$(self).closest('tr').find('.is_uploaded').html('')
+							$(self).closest('.bug_menu').remove()
+							if (res.data.auth_error) {
+								toastr.warning(res.data.message)
+							} else {
+								toastr.success(res.data.message)
+							}
+						} else {
+							$(self).html(button_text)
+							toastr.error(res.data.message)
+						}
+					})
+				}
+			})
+		}
+		
+		
+		if($('.open_bug_menu').length) {
+			$('.open_bug_menu').click(function(e) {
+				e.preventDefault()
+				
+				if ($(this).closest('td').find('.bug_menu').is(':visible')) {
+					$(this).closest('td').find('.bug_menu').hide()
+				} else {
+					$('.bug_menu').hide()
+					$(this).closest('td').find('.bug_menu').show()
+				}
+			})
+		}
 		
 		
 		$('#custom_field_maps').on('click','.remove',function(){
@@ -83,11 +145,11 @@
 			$(this).addClass('active')
 		})
 
-		$('#bugs-tabs-content .fa.fa-upload').not(".text-secondary").click(function() {
+		$('#bugs-tabs-content .upload_bug').not('.disabled').click(function() {
 			var cp_id = $('#cp_id').val()
 			var bug_id = $(this).data('bug-id')
 			var button = $(this)
-			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary')
+			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
@@ -102,7 +164,7 @@
 					if (res.success) {
 						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
 					} else {
-						button.removeClass('text-secondary')
+						button.removeClass('text-secondary disabled')
 						toastr.error(res.data, 'Oh no!')
 					}
 				},

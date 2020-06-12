@@ -184,11 +184,12 @@ class AppQ_Integration_Center_Admin {
 		
 		$campaign->bugtracker = '';
 		$campaign->credentials = false;
-		$campaign->url_model = '#';
+		$campaign->url_model = '';
 		if (!empty($bugtracker)) {
 			$campaign->bugtracker = $bugtracker;
 			$campaign->credentials = true;
-			$url_model_function = 'appq_ic_' . $bugtracker->integration . '_get_url_model';
+			$integration = str_replace('-','_',$bugtracker->integration);
+			$url_model_function = 'appq_ic_' . $integration . '_get_url_model';
 			if (function_exists($url_model_function)) {
 				$campaign->url_model = $url_model_function($bugtracker);
 			}
@@ -260,8 +261,11 @@ class AppQ_Integration_Center_Admin {
 				
 				if (!empty($uploaded_bug_data)) {
 					$bug->uploaded = true;
-					if (!empty($campaign->url_model) && !empty($uploaded_bug_data->bugtracker_id)) {
-						$bug->bugtracker_url = str_replace('{bugtracker_id}',$uploaded_bug_data->bugtracker_id,$campaign->url_model);
+					if (!empty($uploaded_bug_data->bugtracker_id)) {
+						$bug->bugtracker_id = $uploaded_bug_data->bugtracker_id;
+						if (!empty($campaign->url_model)) {
+							$bug->bugtracker_url = str_replace('{bugtracker_id}',$uploaded_bug_data->bugtracker_id,$campaign->url_model);
+						}
 					}
 				}
 				
