@@ -231,7 +231,12 @@ class AppQ_Integration_Center_Admin {
 		global $wpdb;
 		
 		$bug_model = mvc_model('Bug');
-		$bugs = $bug_model->find_by_campaign_id($cp_id);
+		$bugs = $bug_model->find(array(
+			'conditions' => array(
+				'campaign_id' => $cp_id,
+				'publish' => 1
+			)
+		));
 		
 		$campaign = AppQ_Integration_Center_Admin::get_campaign($cp_id);
 		
