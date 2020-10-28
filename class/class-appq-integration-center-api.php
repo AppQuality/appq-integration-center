@@ -20,6 +20,114 @@ class IntegrationCenterRestApi
 		$this->custom_fields = AppQ_Integration_Center_Admin::get_custom_fields($this->cp_id);
 		$this->basic_configuration = array();
 		$this->content_type = 'html';
+		
+		$this->mappings = array(
+			'{Bug.message}' => array(
+				'prop' => 'message',
+				'description' => 'Titolo del bug'
+			),
+			'{Bug.steps}' => array(
+				'prop' => 'description',
+				'description' => 'Step by step description del bug'
+			),
+			'{Bug.expected}' => array(
+				'prop' => 'expected_result',
+				'description' => 'Expected result del bug'
+			),
+			'{Bug.actual}' => array(
+				'prop' => 'current_result',
+				'description' => 'Actual result del bug'
+			),
+			'{Bug.note}' => array(
+				'prop' => 'note',
+				'description' => 'Note del bug'
+			),
+			'{Bug.id}' => array(
+				'prop' => 'id',
+				'description' => 'ID del bug'
+			),
+			'{Bug.internal_id}' => array(
+				'prop' => 'internal_id',
+				'description' => 'Internal id del bug'
+			),
+			'{Bug.application_section_id}' => array(
+				'prop' => 'application_section_id',
+				'description' => 'Usecase / step id del bug'
+			),
+			'{Bug.status_id}' => array(
+				'prop' => 'status_id',
+				'description' => 'Status id del bug'
+			),
+			'{Bug.status}' => array(
+				'prop' => 'status',
+				'description' => 'Status name del bug'
+			),
+			'{Bug.severity_id}' => array(
+				'prop' => 'severity_id',
+				'description' => 'Severity id del bug'
+			),
+			'{Bug.severity}' => array(
+				'prop' => 'severity',
+				'description' => 'Severity name del bug'
+			),
+			'{Bug.replicability_id}' => array(
+				'prop' => 'bug_replicability_id',
+				'description' => 'Replicability id del bug'
+			),
+			'{Bug.replicability}' => array(
+				'prop' => 'replicability',
+				'description' => 'Replicability name del bug'
+			),
+			'{Bug.type_id}' => array(
+				'prop' => 'bug_type_id',
+				'description' => 'Bug Type id id del bug'
+			),
+			'{Bug.type}' => array(
+				'prop' => 'type',
+				'description' => 'Bug Type name id del bug'
+			),
+			'{Bug.manufacturer}' => array(
+				'prop' => 'manufacturer',
+				'description' => 'Manufacturer del device del bug'
+			),
+			'{Bug.model}' => array(
+				'prop' => 'model',
+				'description' => 'Modello del device del bug'
+			),
+			'{Bug.os}' => array(
+				'prop' => 'os',
+				'description' => 'OS del device del bug'
+			),
+			'{Bug.os_version}' => array(
+				'prop' => 'os_version',
+				'description' => 'OS version del device del bug'
+			),
+			'{Bug.tags}' => array(
+				'prop' => false,
+				'description' => 'Tags del bug, verranno mostrati separati da punto e virgola (e.g. "tag1 ; tag2")'
+			),
+			'{Bug.tags_list}' => array(
+				'prop' => false,
+				'description' => 'Tags del bug, verranno mostrati come un array json (e.g. "["tag1" , "tag2"]")'
+			),
+			'{Bug.media}' => array(
+				'prop' => false,
+				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto'
+			),
+			'{Bug.media_links}' => array(
+				'prop' => false,
+				'description' => 'Link ai media del bug'
+			)
+		);
+		
+		$additional_fields = appq_get_campaign_additional_fields($cp_id);
+		
+		foreach ($additional_fields as $field) {
+			$this->mappings['{Bug.field.'.$field->slug.'}'] = array(
+				'prop' => false,
+				'description' => 'Additional field ' .$field->title
+			);
+		}
 	}
 
 	/**
@@ -253,34 +361,18 @@ class IntegrationCenterRestApi
 			$value = str_replace('::appq::' . $value_data,'',$value);
 		}
 		
-		$type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
-		$severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
-		$status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
-		$replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
+		$bug->type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
+		$bug->severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
+		$bug->status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
+		$bug->replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
 
-		$mappings = array(
-			'{Bug.message}' => $bug->message,
-			'{Bug.steps}' => $bug->description,
-			'{Bug.expected}' => $bug->expected_result,
-			'{Bug.actual}' => $bug->current_result,
-			'{Bug.note}' => $bug->note,
-			'{Bug.id}' => $bug->id,
-			'{Bug.internal_id}' => $bug->internal_id,
-			'{Bug.application_section_id}' => $bug->application_section_id,
-			'{Bug.replicability_id}' => $bug->bug_replicability_id,
-			'{Bug.status_id}' => $bug->status_id,
-			'{Bug.type_id}' => $bug->bug_type_id,
-			'{Bug.severity_id}' => $bug->severity_id,
-			'{Bug.severity}' => $severity,
-			'{Bug.replicability}' => $replicability,
-			'{Bug.type}' => $type,
-			'{Bug.status}' => $status,
-			'{Bug.manufacturer}' => $bug->manufacturer,
-			'{Bug.model}' => $bug->model,
-			'{Bug.os}' => $bug->os,
-			'{Bug.os_version}' => $bug->os_version,
-		);
-
+		$mappings = [];
+		foreach ($this->mappings as $map_name => $map_data) {
+			$prop = $map_data['prop'];
+			if ($prop) {
+				$mappings[$map_name] = $bug->$prop;
+			}
+		}
 		
 		// Only if {Bug.tags} or {Bug.tags_list} exists
 		if (strpos($value,'{Bug.tags}') !== false || strpos($value,'{Bug.tags_list}') !== false )
