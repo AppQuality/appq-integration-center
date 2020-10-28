@@ -54,3 +54,10 @@ input[type=checkbox].form-check-input {
     border-top-color: #aaa;
     border-left-color: transparent;
 }
+
+button.save {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 9;
+}
