@@ -394,13 +394,11 @@ class AppQ_Integration_Center_Admin {
 	 * @param  int                  $campaign The campaign data
 	 */
 	public function general_settings($campaign = null) {
-		$additional_fields = appq_get_campaign_additional_fields($campaign->id);
 		$custom_fields = $this->get_custom_fields($campaign->id);
 
 		$this->partial('bugs/general-settings',array(
 			'integrations' => $this->get_integrations(),
 			'campaign' => $campaign,
- 			'additional_fields' => $additional_fields,
  			'custom_fields' => $custom_fields,
 		));
 	}

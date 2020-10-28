@@ -125,6 +125,7 @@ class IntegrationCenterRestApi
 		foreach ($additional_fields as $field) {
 			$this->mappings['{Bug.field.'.$field->slug.'}'] = array(
 				'prop' => false,
+				'type' => 'additional',
 				'description' => 'Additional field ' .$field->title
 			);
 		}
