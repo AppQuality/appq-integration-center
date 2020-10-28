@@ -377,7 +377,7 @@ class AppQ_Integration_Center_Admin {
 	 * @param  int                  $campaign_id 
 	 * @return array                               
 	 */
-	public function get_custom_fields($campaign_id) {
+	public static function get_custom_fields($campaign_id) {
 		global $wpdb;
 		
 		$sql = $wpdb->prepare('SELECT * FROM wp_appq_integration_center_custom_map 
