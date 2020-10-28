@@ -266,6 +266,7 @@ class IntegrationCenterRestApi
 			'{Bug.note}' => $bug->note,
 			'{Bug.id}' => $bug->id,
 			'{Bug.internal_id}' => $bug->internal_id,
+			'{Bug.application_section_id}' => $bug->application_section_id,
 			'{Bug.replicability_id}' => $bug->bug_replicability_id,
 			'{Bug.status_id}' => $bug->status_id,
 			'{Bug.type_id}' => $bug->bug_type_id,
