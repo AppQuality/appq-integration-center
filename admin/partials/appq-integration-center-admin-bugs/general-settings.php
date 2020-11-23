@@ -10,7 +10,9 @@
  */
 $api = new IntegrationCenterRestApi($campaign->id,null,null);
 ?>
-<h3> General Settings</h3>
+<h3> General Settings   
+	<button data-toggle="modal" data-target="#import_from_cp_modal" type="button" class="btn btn-success float-right">Import from cp</button>
+</h3>
 <form id="general_settings" class="container">
     <div class="form-group row">
         <label for="type" class="col-sm-2 col-form-label">Type</label>
@@ -50,5 +52,6 @@ $api = new IntegrationCenterRestApi($campaign->id,null,null);
 </div>
 
 <?php 
-$this->partial('bugs/add-field-modal', array()) 
+$this->partial('bugs/add-field-modal', array());
+$this->partial('bugs/import-configuration-modal', array()) 
 ?>
