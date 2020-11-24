@@ -25,7 +25,7 @@ class IntegrationCenterRestApi
 			'{Bug.message}' => array(
 				'prop' => 'message',
 				'description' => 'Titolo del bug',
-				'default' => '{Title}'
+				'default' => '[Phase/Section] - Brief Issue description'
 			),
 			'{Bug.steps}' => array(
 				'prop' => 'description',
