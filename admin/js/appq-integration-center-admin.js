@@ -328,6 +328,10 @@
 					button.html(text)
 					if (!res.success) {
 						toastr.error(res.data, 'Oh no!')
+					} else {
+						toastr.success('Default bug uploaded')
+						button.prop('disabled',true)
+						location.reload()
 					}
 				},
 				error: function(res) {
