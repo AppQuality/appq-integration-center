@@ -24,98 +24,124 @@ class IntegrationCenterRestApi
 		$this->mappings = array(
 			'{Bug.message}' => array(
 				'prop' => 'message',
-				'description' => 'Titolo del bug'
+				'description' => 'Titolo del bug',
+				'default' => '[Phase/Section] - Brief Issue description'
 			),
 			'{Bug.steps}' => array(
 				'prop' => 'description',
-				'description' => 'Step by step description del bug'
+				'description' => 'Step by step description del bug',
+				'default' => '{Description}'
 			),
 			'{Bug.expected}' => array(
 				'prop' => 'expected_result',
-				'description' => 'Expected result del bug'
+				'description' => 'Expected result del bug',
+				'default' => '{Expected Result}'
 			),
 			'{Bug.actual}' => array(
 				'prop' => 'current_result',
-				'description' => 'Actual result del bug'
+				'description' => 'Actual result del bug',
+				'default' => '{Actual Result}'
 			),
 			'{Bug.note}' => array(
 				'prop' => 'note',
-				'description' => 'Note del bug'
+				'description' => 'Note del bug',
+				'default' => '{Note}'
 			),
 			'{Bug.id}' => array(
 				'prop' => 'id',
-				'description' => 'ID del bug'
+				'description' => 'ID del bug',
+				'default' => '0'
 			),
 			'{Bug.internal_id}' => array(
 				'prop' => 'internal_id',
-				'description' => 'Internal id del bug'
+				'description' => 'Internal id del bug',
+				'default' => 'AQ0'
 			),
 			'{Bug.application_section_id}' => array(
 				'prop' => 'application_section_id',
-				'description' => 'Usecase / step id del bug'
+				'description' => 'Usecase / step id del bug',
+				'default' => '0'
 			),
 			'{Bug.status_id}' => array(
 				'prop' => 'status_id',
-				'description' => 'Status id del bug'
+				'description' => 'Status id del bug',
+				'default' => '1'
 			),
 			'{Bug.status}' => array(
 				'prop' => 'status',
-				'description' => 'Status name del bug'
+				'description' => 'Status name del bug',
+				'default' => 'Refused'
 			),
 			'{Bug.severity_id}' => array(
 				'prop' => 'severity_id',
-				'description' => 'Severity id del bug'
+				'description' => 'Severity id del bug',
+				'default' => '1'
 			),
 			'{Bug.severity}' => array(
 				'prop' => 'severity',
-				'description' => 'Severity name del bug'
+				'description' => 'Severity name del bug',
+				'default' => 'LOW'
 			),
 			'{Bug.replicability_id}' => array(
 				'prop' => 'bug_replicability_id',
-				'description' => 'Replicability id del bug'
+				'description' => 'Replicability id del bug',
+				'default' => '1'
 			),
 			'{Bug.replicability}' => array(
 				'prop' => 'replicability',
-				'description' => 'Replicability name del bug'
+				'description' => 'Replicability name del bug',
+				'default' => 'Always'
 			),
 			'{Bug.type_id}' => array(
 				'prop' => 'bug_type_id',
-				'description' => 'Bug Type id id del bug'
+				'description' => 'Bug Type id id del bug',
+				'default' => '1'
 			),
 			'{Bug.type}' => array(
 				'prop' => 'type',
-				'description' => 'Bug Type name id del bug'
+				'description' => 'Bug Type name id del bug',
+				'default' => 'Crash'
 			),
 			'{Bug.manufacturer}' => array(
 				'prop' => 'manufacturer',
-				'description' => 'Manufacturer del device del bug'
+				'description' => 'Manufacturer del device del bug',
+				'default' => '{Device Manufacturer}'
 			),
 			'{Bug.model}' => array(
 				'prop' => 'model',
-				'description' => 'Modello del device del bug'
+				'description' => 'Modello del device del bug',
+				'default' => '{Device Model}'
 			),
 			'{Bug.os}' => array(
 				'prop' => 'os',
-				'description' => 'OS del device del bug'
+				'description' => 'OS del device del bug',
+				'default' => '{Device OS}'
 			),
 			'{Bug.os_version}' => array(
 				'prop' => 'os_version',
-				'description' => 'OS version del device del bug'
+				'description' => 'OS version del device del bug',
+				'default' => '{Device OS version}'
 			),
 			'{Bug.tags}' => array(
-				'prop' => false,
-				'description' => 'Tags del bug, verranno mostrati separati da punto e virgola (e.g. "tag1 ; tag2")'
+				'prop' => 'tags',
+				'complex' => true,
+				'description' => 'Tags del bug, verranno mostrati separati da punto e virgola (e.g. "tag1 ; tag2")',
+				'default' => 'tag1 ; tag2'
 			),
 			'{Bug.tags_list}' => array(
-				'prop' => false,
-				'description' => 'Tags del bug, verranno mostrati come un array json (e.g. "["tag1" , "tag2"]")'
+				'prop' => 'tags_list',
+				'complex' => true,
+				'description' => 'Tags del bug, verranno mostrati come un array json (e.g. "["tag1" , "tag2"]")',
+				'default' => '["tag1" , "tag2"]'
 			),
 			'{Bug.media}' => array(
-				'prop' => false,
+				'prop' => 'media',
+				'complex' => true,
 				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto'
 			),
 			'{Bug.media_links}' => array(
-				'prop' => false,
+				'prop' => 'media_links',
+				'complex' => true,
 				'description' => 'Link ai media del bug'
 			)
 		);
@@ -124,7 +150,8 @@ class IntegrationCenterRestApi
 		
 		foreach ($additional_fields as $field) {
 			$this->mappings['{Bug.field.'.$field->slug.'}'] = array(
-				'prop' => false,
+				'prop' => $field->slug,
+				'complex' => true,
 				'type' => 'additional',
 				'description' => 'Additional field ' .$field->title
 			);
@@ -362,15 +389,19 @@ class IntegrationCenterRestApi
 			$value = str_replace('::appq::' . $value_data,'',$value);
 		}
 		
-		$bug->type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
-		$bug->severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
-		$bug->status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
-		$bug->replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
+		if (!property_exists($bug,'type'))
+			$bug->type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
+		if (!property_exists($bug,'severity'))
+			$bug->severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
+		if (!property_exists($bug,'status'))
+			$bug->status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
+		if (!property_exists($bug,'replicability'))
+			$bug->replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
 
 		$mappings = [];
 		foreach ($this->mappings as $map_name => $map_data) {
 			$prop = $map_data['prop'];
-			if ($prop) {
+			if ($prop && (!array_key_exists('complex',$map_data) || !$map_data['complex'])) {
 				$mappings[$map_name] = $bug->$prop;
 			}
 		}
@@ -378,15 +409,28 @@ class IntegrationCenterRestApi
 		// Only if {Bug.tags} or {Bug.tags_list} exists
 		if (strpos($value,'{Bug.tags}') !== false || strpos($value,'{Bug.tags_list}') !== false )
 		{
-			$tags =  $wpdb->get_col($wpdb->prepare('SELECT display_name FROM wp_appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
-			$mappings['{Bug.tags}'] = implode(' ; ',$tags);
-			$tags_list = '["' . implode('","',$tags) . '"]';
-			$mappings['{Bug.tags_list}'] = $tags_list;
+			if (!property_exists($bug,'tags') || !property_exists($bug,'tags_list')) {
+				$tags =  $wpdb->get_col($wpdb->prepare('SELECT display_name FROM wp_appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
+				$mappings['{Bug.tags}'] = implode(' ; ',$tags);
+				$tags_list = '["' . implode('","',$tags) . '"]';
+				$mappings['{Bug.tags_list}'] = $tags_list;
+			}
+			
+			if (property_exists($bug,'tags')) {
+				$mappings['{Bug.tags}'] = $bug->tags;
+			}
+			if (property_exists($bug,'tags_list')) {
+				$mappings['{Bug.tags_list}'] = $bug->tags_list;
+			}
 		}
 		// Only if {Bug.media} exists
 		if (strpos($value,'{Bug.media}') !== false || strpos($value,'{Bug.media_links}') !== false )
 		{
-			$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id));
+			if (!property_exists($bug,'media')) {
+				$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id));
+			} else {
+				$media = $bug->media;
+			}
 			$mappings['{Bug.media}'] = implode(' , ',$media);
 			if ($this->content_type == 'markdown') {
 				$media = array_map(function($m){
@@ -515,6 +559,9 @@ class IntegrationCenterRestApi
 	 */
 	public function get_bug($bug_id)
 	{
+		if ($bug_id == 'default') {
+			return $this->get_default_bug();
+		}
 		$bug_model = mvc_model('Bug');
 		$bug = $bug_model->find_by_id($bug_id);
 		$additional_fields = appq_get_campaign_additional_fields_data($bug_id);
@@ -529,6 +576,21 @@ class IntegrationCenterRestApi
 			$bug->fields[$additional_field->slug] = $additional_field->value;
 		}
 
+		return $bug;
+	}
+	
+	
+	public function get_default_bug() {
+		
+		$bug = new stdClass();
+		$bug->id = - $this->cp_id;
+		foreach ($this->mappings as $map => $data) {
+			if ($data['prop'] && $data['default']) {
+				$prop = $data['prop'];
+				$bug->$prop = $data['default'];
+			}
+		}
+		
 		return $bug;
 	}
 }
