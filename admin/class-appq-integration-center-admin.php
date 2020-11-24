@@ -192,7 +192,10 @@ class AppQ_Integration_Center_Admin {
 			$url_model_function = 'appq_ic_' . $integration . '_get_url_model';
 			if (function_exists($url_model_function)) {
 				$campaign->url_model = $url_model_function($bugtracker);
-				$campaign->bugtracker->default_bug = str_replace('{bugtracker_id}',AppQ_Integration_Center_Admin::get_uploaded_bug($integration,-$id),$campaign->url_model);
+				$default_bug_id = AppQ_Integration_Center_Admin::get_uploaded_bug($integration,-$id);
+				if (!empty($default_bug_id)) {
+					$campaign->bugtracker->default_bug = str_replace('{bugtracker_id}',$default_bug_id,$campaign->url_model);
+				}
 			}
 		}
 		return $campaign;
