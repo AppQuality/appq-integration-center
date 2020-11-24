@@ -34,6 +34,14 @@ $api = new IntegrationCenterRestApi($campaign->id,null,null);
         </div>
     </div>
     <div class="row">
+    	<button id="import_default_bug" type="button" class="col-sm-2 btn btn-primary" <?= property_exists($campaign->bugtracker,'default_bug') ? 'disabled' : ''?>>Import default bug</button>
+    	<?php if (property_exists($campaign->bugtracker,'default_bug')) : ?>
+			<a href="<?= $campaign->bugtracker->default_bug?>" class="btn btn-secondary" target="_blank">
+				<i class="fa fa-external"></i> Show default bug
+			</a>
+		<?php endif;?>
+	</div>
+    <div class="row">
     	<button id="save_general_settings" type="button" class="col-sm-2 offset-sm-10 btn btn-primary">Save</button>
     </div>
 </form>

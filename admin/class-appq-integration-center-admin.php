@@ -192,6 +192,7 @@ class AppQ_Integration_Center_Admin {
 			$url_model_function = 'appq_ic_' . $integration . '_get_url_model';
 			if (function_exists($url_model_function)) {
 				$campaign->url_model = $url_model_function($bugtracker);
+				$campaign->bugtracker->default_bug = str_replace('{bugtracker_id}',AppQ_Integration_Center_Admin::get_uploaded_bug($integration,-$id),$campaign->url_model);
 			}
 		}
 		return $campaign;
@@ -403,4 +404,12 @@ class AppQ_Integration_Center_Admin {
 		));
 	}
 	
+	public static function get_uploaded_bug($integration_type, $bug_id) {
+		global $wpdb;
+		
+		$sql = $wpdb->prepare('SELECT bugtracker_id FROM wp_appq_integration_center_bugs
+			WHERE bug_id = %d AND integration = %s',$bug_id,$integration_type);
+		
+		return $wpdb->get_var($sql);
+	}
 }
