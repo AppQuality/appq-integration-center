@@ -137,7 +137,8 @@ class IntegrationCenterRestApi
 			'{Bug.media}' => array(
 				'prop' => 'media',
 				'complex' => true,
-				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto'
+				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto',
+				'default' => ['https://placehold.it/200','https://placehold.it/200']
 			),
 			'{Bug.media_links}' => array(
 				'prop' => 'media_links',
