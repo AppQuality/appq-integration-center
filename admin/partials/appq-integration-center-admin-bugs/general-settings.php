@@ -34,11 +34,13 @@ $api = new IntegrationCenterRestApi($campaign->id,null,null);
         </div>
     </div>
     <div class="row">
-    	<button id="import_default_bug" type="button" class="col-sm-2 btn btn-primary" <?= property_exists($campaign->bugtracker,'default_bug') ? 'disabled' : ''?>>Import default bug</button>
     	<?php if (property_exists($campaign->bugtracker,'default_bug')) : ?>
+			<button id="update_default_bug" type="button" class="col-sm-2 btn btn-primary">Update default bug</button>
 			<a href="<?= $campaign->bugtracker->default_bug?>" class="btn btn-secondary" target="_blank">
 				<i class="fa fa-external"></i> Show default bug
 			</a>
+		<?php else: ?>
+			<button id="import_default_bug" type="button" class="col-sm-2 btn btn-primary">Import default bug</button>
 		<?php endif;?>
 	</div>
     <div class="row">

@@ -340,6 +340,38 @@
 				}
 			});
 		})
+		$('#update_default_bug').click(function(e){
+			e.preventDefault()
+			var cp_id = $('#cp_id').val()
+			var bug_id = 'default'
+			var button = $(this)
+			var text = $(this).html()
+			button.html('<i class="fa-spinner fa-spin text-secondary disabled"></i>')
+			jQuery.ajax({
+				type: "post",
+				dataType: "json",
+				url: custom_object.ajax_url,
+				data: {
+					'action': 'appq_update_bugs_in_bugtracker',
+					'cp_id': cp_id,
+					'bug_id': bug_id
+				},
+				success: function(res) {
+					button.html(text)
+					if (!res.success) {
+						toastr.error(res.data, 'Oh no!')
+					} else {
+						toastr.success('Default bug updated')
+						// button.prop('disabled',true)
+						// location.reload()
+					}
+				},
+				error: function(res) {
+					button.html(text)
+					toastr.error(JSON.stringify(res), 'Oh no!')
+				}
+			});
+		})
 	});
 
 })(jQuery);
