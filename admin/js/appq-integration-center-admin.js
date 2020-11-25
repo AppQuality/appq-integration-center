@@ -174,6 +174,35 @@
 				}
 			});
 		})
+		$('#bugs-tabs-content .update_bug').not('.disabled').click(function() {
+			var cp_id = $('#cp_id').val()
+			var bug_id = $(this).data('bug-id')
+			var button = $(this)
+			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
+			jQuery.ajax({
+				type: "post",
+				dataType: "json",
+				url: custom_object.ajax_url,
+				data: {
+					'action': 'appq_update_bugs_in_bugtracker',
+					'cp_id': cp_id,
+					'bug_id': bug_id
+				},
+				success: function(res) {
+					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
+					if (res.success) {
+						toastr.success('Updated!')
+					} else {
+						button.removeClass('text-secondary disabled')
+						toastr.error(res.data, 'Oh no!')
+					}
+				},
+				error: function(res) {
+					button.removeClass('fa-spinner fa-spin text-secondary').addClass('fa-upload')
+					toastr.error(JSON.stringify(res), 'Oh no!')
+				}
+			});
+		})
 
 		$('#campaign-tabs .nav-link').click(function() {
 			window.location.hash = $(this).attr('href')
