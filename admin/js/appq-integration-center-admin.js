@@ -36,7 +36,8 @@
 						if (res.success) {
 							$(self).closest('td').find('.open_bug_menu').removeClass('fa-upload').addClass('fa-close').addClass('text-danger')
 							$(self).closest('tr').find('.is_uploaded').html('')
-							$(self).closest('.bug_menu').remove()
+							$(self).closest('td').find('button').prop('disabled',true)
+							$(self).remove()
 							if (res.data.auth_error) {
 								toastr.warning(res.data.message)
 							} else {
