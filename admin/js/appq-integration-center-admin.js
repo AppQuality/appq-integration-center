@@ -36,7 +36,8 @@
 						if (res.success) {
 							$(self).closest('td').find('.open_bug_menu').removeClass('fa-upload').addClass('fa-close').addClass('text-danger')
 							$(self).closest('tr').find('.is_uploaded').html('')
-							$(self).closest('.bug_menu').remove()
+							$(self).closest('td').find('button').prop('disabled',true)
+							$(self).remove()
 							if (res.data.auth_error) {
 								toastr.warning(res.data.message)
 							} else {
@@ -163,6 +164,35 @@
 					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
 					if (res.success) {
 						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+					} else {
+						button.removeClass('text-secondary disabled')
+						toastr.error(res.data, 'Oh no!')
+					}
+				},
+				error: function(res) {
+					button.removeClass('fa-spinner fa-spin text-secondary').addClass('fa-upload')
+					toastr.error(JSON.stringify(res), 'Oh no!')
+				}
+			});
+		})
+		$('#bugs-tabs-content .update_bug').not('.disabled').click(function() {
+			var cp_id = $('#cp_id').val()
+			var bug_id = $(this).data('bug-id')
+			var button = $(this)
+			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
+			jQuery.ajax({
+				type: "post",
+				dataType: "json",
+				url: custom_object.ajax_url,
+				data: {
+					'action': 'appq_update_bugs_in_bugtracker',
+					'cp_id': cp_id,
+					'bug_id': bug_id
+				},
+				success: function(res) {
+					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
+					if (res.success) {
+						toastr.success('Updated!')
 					} else {
 						button.removeClass('text-secondary disabled')
 						toastr.error(res.data, 'Oh no!')
@@ -332,6 +362,38 @@
 						toastr.success('Default bug uploaded')
 						button.prop('disabled',true)
 						location.reload()
+					}
+				},
+				error: function(res) {
+					button.html(text)
+					toastr.error(JSON.stringify(res), 'Oh no!')
+				}
+			});
+		})
+		$('#update_default_bug').click(function(e){
+			e.preventDefault()
+			var cp_id = $('#cp_id').val()
+			var bug_id = 'default'
+			var button = $(this)
+			var text = $(this).html()
+			button.html('<i class="fa-spinner fa-spin text-secondary disabled"></i>')
+			jQuery.ajax({
+				type: "post",
+				dataType: "json",
+				url: custom_object.ajax_url,
+				data: {
+					'action': 'appq_update_bugs_in_bugtracker',
+					'cp_id': cp_id,
+					'bug_id': bug_id
+				},
+				success: function(res) {
+					button.html(text)
+					if (!res.success) {
+						toastr.error(res.data, 'Oh no!')
+					} else {
+						toastr.success('Default bug updated')
+						// button.prop('disabled',true)
+						// location.reload()
 					}
 				},
 				error: function(res) {

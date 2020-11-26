@@ -137,7 +137,8 @@ class IntegrationCenterRestApi
 			'{Bug.media}' => array(
 				'prop' => 'media',
 				'complex' => true,
-				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto'
+				'description' => 'Media del bug, le immagini verranno mostrate nel contenuto',
+				'default' => ['https://placehold.it/200','https://placehold.it/200']
 			),
 			'{Bug.media_links}' => array(
 				'prop' => 'media_links',
@@ -171,6 +172,20 @@ class IntegrationCenterRestApi
 	public function http_post($url, $headers, $data)
 	{
 		return Requests::post($url, $headers, $data);
+	}
+	/**
+	 * Send put request
+	 * @method http_put
+	 * @date             2020-11-25T10:53:50+010
+	 * @author: Davide Bizzi <clochard>
+	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
+	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
+	 * @param  mixed                  $data  The data to post    
+	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
+	 */
+	public function http_put($url, $headers, $data)
+	{
+		return Requests::put($url, $headers, $data);
 	}
 
 	/**
