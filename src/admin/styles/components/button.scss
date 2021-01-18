@@ -1,0 +1,29 @@
+.btn {
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  line-height: 1.2;
+  min-width: 200px;
+  padding: 10px;
+
+  &-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+  &-secondary {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+  &-success {
+    background-color: $green;
+    border-color: $green;
+  }
+  &-danger {
+    background-color: $red;
+    border-color: $red;
+  }
+  &-warning {
+    background-color: $yellow;
+    border-color: $yellow;
+  }
+}

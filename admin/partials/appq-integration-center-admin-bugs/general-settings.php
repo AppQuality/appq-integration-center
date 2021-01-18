@@ -63,5 +63,6 @@ $api = new IntegrationCenterRestApi($campaign->id,null,null);
 
 <?php 
 $this->partial('bugs/add-field-modal', array());
-$this->partial('bugs/import-configuration-modal', array()) 
+$this->partial('bugs/import-configuration-modal', array());
+$this->partial('bugs/manual-configuration-modal', array()) 
 ?>
