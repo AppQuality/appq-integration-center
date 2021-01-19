@@ -94,7 +94,7 @@ class AppQ_Integration_Center_Admin
 			wp_enqueue_script($this->plugin_name, APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js', array('jquery'), $this->version, false);
 			wp_localize_script($this->plugin_name, 'appq_ajax', array(
 				'url' => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('ajax-nonce')
+				'nonce' => wp_create_nonce('appq-ajax-nonce')
 			));
 
 			if (strpos(site_url(), '//appquality')) {

@@ -30,16 +30,15 @@
                 printf('<input type="text" class="form-control" name="auth" id="auth" placeholder="%s">', __('email@adress.com:APITOKEN', $this->plugin_name));
                 ?>
               </div>
-              <div class="form-group">
-                <?php
-                printf('<label for="project">%s</label>', __('Project ID', $this->plugin_name));
-                printf('<input type="text" class="form-control" name="project" id="project" placeholder="%s">', __('ABC', $this->plugin_name));
-                ?>
-              </div>
+              <?php foreach ($integrations as $integration) { ?>
+                <div class="extra-fields" data-tracker="<?= $integration['slug'];?>">
+                  <?php do_action('appq-save-tracker-settings-fields', $integration['slug']); ?>
+                </div>
+              <?php } ?>
               <div class="form-group">
                 <?php
                 printf('<label for="media">%s</label><br>', __('Media preferences', $this->plugin_name));
-                printf('<label><input type="checkbox" class="form-control" name="media" id="media" value="1"> %s</label>', __('Upload media', $this->plugin_name));
+                printf('<label><input type="checkbox" class="form-control" name="media" id="media"> %s</label>', __('Upload media', $this->plugin_name));
                 ?>
               </div>
             </div>
