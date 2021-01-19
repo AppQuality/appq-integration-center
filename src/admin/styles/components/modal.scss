@@ -1,9 +1,9 @@
 .modal {
-  // .modal-backdrop {
-  //   background-color: rgba($black, 0.3);
-  //   backdrop-filter: blur(2px);
-  //   opacity: 1;
-  // }
+  .modal-backdrop {
+    background-color: rgba($black, 0.3);
+    backdrop-filter: blur(2px);
+    opacity: 1;
+  }
   .modal-dialog {
     top: 50%;
     transform: translateY(-50%);

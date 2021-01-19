@@ -92,6 +92,10 @@ class AppQ_Integration_Center_Admin
 			wp_enqueue_script('listjs-fuzzysearch', plugin_dir_url(__FILE__) . 'js/list.fuzzysearch.min.js', array(), '0.1.0', 'all');
 			// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/appq-integration-center-admin.js', array('jquery'), $this->version, false);
 			wp_enqueue_script($this->plugin_name, APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js', array('jquery'), $this->version, false);
+			wp_localize_script($this->plugin_name, 'appq_ajax', array(
+				'url' => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('ajax-nonce')
+			));
 
 			if (strpos(site_url(), '//appquality')) {
 				wp_register_script('docker-browsersync', '', [], '', true);

@@ -305,39 +305,7 @@
 					console.log(msg);
 				}
 			});
-		})
-		$('#import_from_cp').submit(function(e){
-			e.preventDefault()
-			var submit_btn = $(this).find('button[type="submit"]')
-			var submit_btn_html = submit_btn.html()
-			submit_btn.html('<i class="fa fa-spinner fa-spin"></i>')
-			var srcParams = new URLSearchParams(window.location.search)
-			var cp_id = srcParams.has('id') ? srcParams.get('id') : -1
-			var data = $(this).serializeArray()
-			data.push({
-				'name': 'cp_id',
-				'value': cp_id
-			})
-			data.push({
-				'name': 'action',
-				'value': 'appq_integration_center_import_from_cp'
-			})
-			jQuery.ajax({
-				type: "post",
-				dataType: "json",
-				url: custom_object.ajax_url,
-				data: data
-			}).then(function(res){
-				if (res.success) {
-					location.reload()
-				} else {
-					toastr.error(res.data,'Error')
-					submit_btn.html(submit_btn_html)
-				}
-			});
-		})
-		
-		
+		})	
 		$('#import_default_bug').click(function(e){
 			e.preventDefault()
 			var cp_id = $('#cp_id').val()
