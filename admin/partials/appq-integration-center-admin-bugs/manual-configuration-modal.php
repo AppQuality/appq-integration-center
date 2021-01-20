@@ -10,7 +10,7 @@
           </button>
         </div>
         <div class="modal-body form px-4">
-          <form id="setup_manually_cp" class="modal-form pb-4">
+          <div id="setup_manually_cp" class="modal-form pb-4">
             <select name="bugtracker" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', $this->plugin_name); ?>">
               <option></option>
               <?php foreach ($integrations as $integration) : ?>
@@ -18,23 +18,16 @@
               <?php endforeach ?>
             </select>
             <div class="settings" style="display: none;">
-              <div class="form-group mt-5">
-                <?php
-                printf('<label for="endpoint">%s</label>', __('Endpoint', $this->plugin_name));
-                printf('<input type="text" class="form-control" name="endpoint" id="endpoint" placeholder="%s">', __('https://yourcompanyname.atlassian.com', $this->plugin_name));
-                ?>
-              </div>
-              <div class="form-group">
-                <?php
-                printf('<label for="auth">%s</label>', __('Authentication', $this->plugin_name));
-                printf('<input type="text" class="form-control" name="auth" id="auth" placeholder="%s">', __('email@adress.com:APITOKEN', $this->plugin_name));
-                ?>
-              </div>
-              <?php foreach ($integrations as $integration) { ?>
-                <div class="extra-fields" data-tracker="<?= $integration['slug'];?>">
-                  <?php do_action('appq-save-tracker-settings-fields', $integration['slug']); ?>
-                </div>
-              <?php } ?>
+              <?php
+              foreach ($integrations as $integration) {
+                $slug = $integration['slug'];
+                $name = $integration['name'];
+                $class = $integration['class'];
+                printf('<div class="extra-fields" data-tracker="%s" style="display: none;">', $slug);
+                (method_exists($class, 'main_settings') ? $class->main_settings($campaign) : $class->settings($campaign));
+                echo '</div>';
+              }
+              ?>
               <div class="form-group">
                 <?php
                 printf('<label for="media">%s</label><br>', __('Media preferences', $this->plugin_name));
@@ -50,7 +43,7 @@
                 <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', $this->plugin_name)); ?>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

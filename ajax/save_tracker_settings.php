@@ -11,10 +11,6 @@ function appq_save_tracker_settings()
     $bugtracker = array_key_exists('bugtracker', $_POST) ? $_POST['bugtracker'] : false;
 	$upload_media = array_key_exists('media', $_POST) ? $_POST['media'] == 'on' : false;
 
-    $data = apply_filters('appq-save-tracker-settings-data', $_REQUEST, $bugtracker);
-
-    extract($data);
-
     $has_value = intval($wpdb->get_var(
         $wpdb->prepare('SELECT COUNT(*) FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE integration = "%s" AND campaign_id = %d', $bugtracker, $cp_id)
     ));
@@ -25,9 +21,8 @@ function appq_save_tracker_settings()
         ));
     }
     $wpdb->update($wpdb->prefix . 'appq_integration_center_config', array(
-        'endpoint' => $endpoint,
-        'apikey' => $auth,
-        'upload_media' => $upload_media ? 1 : 0
+        'upload_media' => $upload_media ? 1 : 0,
+        'is_active' => 1
     ), array(
         'integration' => $bugtracker,
         'campaign_id' => $cp_id
