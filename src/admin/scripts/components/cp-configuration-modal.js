@@ -53,55 +53,16 @@
     });
     $("#setup_manually_cp_modal").ready(function () {
       var modal = $("#setup_manually_cp_modal");
-      var form = "";
       var submit_button = $(modal).find('button[type="submit"]');
       var select = $(modal).find(".ux-select");
+      var form = select.val() ? select.val() + "_settings" : "";
       var settings = $(modal).find(".settings");
       submit_button.on("click", function () {
         var submit_btn = $(this);
         var submit_btn_html = submit_btn.html();
         submit_btn.html('<i class="fa fa-spinner fa-spin"></i>');
-        var srcParams = new URLSearchParams(window.location.search);
-        var cp_id = srcParams.has("id") ? srcParams.get("id") : -1;
-        var bugtracker = $(modal).find('select[name="bugtracker"]').val();
-        var media = $(modal).find('input[name="media"]').val();
-        var data = [];
-        data.push({
-          name: "cp_id",
-          value: cp_id,
-        });
-        data.push({
-          name: "action",
-          value: "appq_save_tracker_settings",
-        });
-        data.push({
-          name: "nonce",
-          value: appq_ajax.nonce,
-        });
-        data.push({
-          name: "media",
-          value: media,
-        });
-        data.push({
-          name: "bugtracker",
-          value: bugtracker,
-        });
-        jQuery
-          .ajax({
-            type: "post",
-            dataType: "json",
-            url: appq_ajax.url,
-            data: data,
-          })
-          .then(function (res) {
-            if (res.success) {
-              toastr.success("Media settings saved!");
-            } else {
-              toastr.error(res.data, "Error");
-            }
-          });
-
         var tracker_form = $("#" + form);
+        console.log(tracker_form);
         tracker_form.submit();
         submit_btn.html(submit_btn_html);
       });

@@ -14,30 +14,32 @@
             <select name="bugtracker" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', $this->plugin_name); ?>">
               <option></option>
               <?php foreach ($integrations as $integration) : ?>
-                <option value="<?= $integration['slug'] ?>"><?= $integration['name'] ?></option>
+                <option value="<?= $integration['slug'] ?>"<?php isset($campaign->bugtracker->integration) ? selected( $campaign->bugtracker->integration, $integration['slug'] ) : '' ?>><?= $integration['name'] ?></option>
               <?php endforeach ?>
             </select>
-            <div class="settings" style="display: none;">
+            <div class="settings" style="display: <?php echo (isset($campaign->bugtracker->integration) ? 'block' : 'none'); ?>;">
               <?php
               foreach ($integrations as $integration) {
                 $slug = $integration['slug'];
                 $name = $integration['name'];
                 $class = $integration['class'];
-                printf('<div class="extra-fields" data-tracker="%s" style="display: none;">', $slug);
+                printf(
+                  '<div class="extra-fields" data-tracker="%s" style="display: %s;">',
+                  $slug,
+                  isset($campaign->bugtracker->integration) && $slug == $campaign->bugtracker->integration ? 'block' : 'none'
+                );
                 (method_exists($class, 'main_settings') ? $class->main_settings($campaign) : $class->settings($campaign));
                 echo '</div>';
               }
               ?>
-              <div class="form-group">
-                <?php
-                printf('<label for="media">%s</label><br>', __('Media preferences', $this->plugin_name));
-                printf('<label><input type="checkbox" class="form-control" name="media" id="media"> %s</label>', __('Upload media', $this->plugin_name));
-                ?>
-              </div>
             </div>
             <div class="row mt-5">
               <div class="col-6 col-lg-4 offset-lg-2 text-right">
-                <?php printf('<button type="submit" class="btn btn-primary" disabled="disabled">%s</button>', __('Save settings', $this->plugin_name)); ?>
+                <?php printf(
+                  '<button type="submit" class="btn btn-primary"%s>%s</button>', 
+                  isset($campaign->bugtracker->integration) ? '' : ' disabled="disabled"',
+                  __('Save settings', $this->plugin_name)
+                  ); ?>
               </div>
               <div class="col-6 col-lg-4">
                 <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', $this->plugin_name)); ?>

@@ -51,40 +51,27 @@
     $class = $bugtracker['class'];
   ?>
     <div class="settings container-fluid">
-      <div class="settings-group">
-        <?php
-        printf('<h4>%s</h4>', __('Current setup', $this->plugin_name));
-        ?>
-        <div class="row">
-          <div class="col-1">
-            logo
-          </div>
-          <div class="col-11">
-            <div class="row">
-              <div class="col-3">Endpoint</div>
-              <div class="col-3">Authentication</div>
-              <div class="col-3">
-                <div class="row">
-                  <div class="col-6">Project ID</div>
-                  <div class="col-6">Media upload</div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="row">
-                  <div class="col-6">Upload default bug</div>
-                  <div class="col-6">Edit / delete</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <?php (method_exists($class, 'full_settings') ? $class->full_settings($campaign) : $class->settings($campaign)); ?>
+      <div class="settings-group available_fields">
+        <?php
+        printf('<h4 class="title">%s</h4>', __('Available fields', $this->plugin_name));
+        ?>
+        <?php $this->general_settings($campaign) ?>
+      </div>
     </div>
   <?php
   } ?>
 </div>
-
+<?php
+$this->partial('bugs/add-field-modal', array());
+$this->partial('bugs/import-configuration-modal', [
+    'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
+]);
+$this->partial('bugs/manual-configuration-modal', [
+    'campaign' => $campaign,
+    'integrations' => $integrations,
+]);
+?>
 
 
 
@@ -112,7 +99,7 @@
         $name = $integration['name'];
         $class = $integration['class'];
         ?>
-        <div class="tab-pane" id="<?= $slug ?>" role="tabpanel" aria-labelledby="<?= $slug ?>-tab"><?= (method_exists($class, 'main_settings') ? $class->main_settings($campaign) : $class->settings($campaign)) ?></div>
+        <div class="tab-pane" id="<?= $slug ?>" role="tabpanel" aria-labelledby="<?= $slug ?>-tab"><?= $class->settings($campaign) ?></div>
       <?php endforeach ?>
     </div>
   </div>
