@@ -1,17 +1,35 @@
 .settings {
-    .settings-group {
-        @extend .py-3;
-        border-bottom: 1px solid $grey-e;
-        .title {
-            font-size: 18px;
-        }
-        small {
-            display: block;
-        }
-        .actions {
-            .btn {
-                min-width: unset;
-            }
-        }
+  .settings-group {
+    //@extend .py-3;
+    border-bottom: 1px solid $grey-e;
+    position: relative;
+    .title {
+      font-size: 18px;
+      margin: 0;
     }
+    small {
+      display: block;
+    }
+    .actions {
+      .btn {
+        min-width: unset;
+      }
+    }
+    .btn-no-style {
+      cursor: pointer;
+      font-size: 25px;
+      i {
+        transform: rotate(-270deg);
+        transition: transform 0.2s ease;
+      }
+      &.collapsed i {
+        transform: rotate(-90deg);
+      }
+    }
+    &.available_fields {
+      .custom {
+        cursor: pointer;
+      }
+    }
+  }
 }

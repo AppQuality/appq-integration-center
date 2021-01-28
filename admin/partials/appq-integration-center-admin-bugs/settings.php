@@ -53,10 +53,18 @@
     <div class="settings container-fluid">
       <?php (method_exists($class, 'full_settings') ? $class->full_settings($campaign) : $class->settings($campaign)); ?>
       <div class="settings-group available_fields">
-        <?php
-        printf('<h4 class="title">%s</h4>', __('Available fields', $this->plugin_name));
-        ?>
-        <?php $this->general_settings($campaign) ?>
+        <div class="row">
+          <div class="col-10"><?php printf('<h4 class="title py-3">%s</h4>', __('Available fields', $this->plugin_name)); ?></div>
+          <div class="col-2 text-right actions">
+            <button type="button" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#addFieldModal"><?php _e('New field', $this->plugin_name); ?></button>
+            <button class="btn btn-no-style collapsed" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="false" aria-controls="available_fields">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="collapse mb-3" id="available_fields">
+          <?php $this->general_settings($campaign) ?>
+        </div>
       </div>
     </div>
   <?php
@@ -65,11 +73,11 @@
 <?php
 $this->partial('bugs/add-field-modal', array());
 $this->partial('bugs/import-configuration-modal', [
-    'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
+  'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
 ]);
 $this->partial('bugs/manual-configuration-modal', [
-    'campaign' => $campaign,
-    'integrations' => $integrations,
+  'campaign' => $campaign,
+  'integrations' => $integrations,
 ]);
 ?>
 

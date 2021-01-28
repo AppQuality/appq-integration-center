@@ -3,7 +3,7 @@
   color: $white;
   font-weight: bold;
   line-height: 1.2;
-  min-width: 200px;
+  //min-width: 200px;
   padding: 10px;
 
   &-primary {
@@ -25,5 +25,9 @@
   &-warning {
     background-color: $yellow;
     border-color: $yellow;
+  }
+  &.btn-no-style {
+    background: transparent;
+    color: $black;
   }
 }
