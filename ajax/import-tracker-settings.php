@@ -1,7 +1,7 @@
 <?php 
 
 
-function appq_integration_center_import_from_cp() {
+function appq_integration_center_import_tracker_settings() {
     if(!check_ajax_referer('appq-ajax-nonce', 'nonce', false)){
         wp_send_json_error('You don\'t have the permission to do this');
 	}
@@ -52,4 +52,4 @@ function appq_integration_center_import_from_cp() {
 	wp_send_json_success();	
 }
 
-add_action('wp_ajax_appq_integration_center_import_from_cp', 'appq_integration_center_import_from_cp');
+add_action('wp_ajax_appq_integration_center_import_tracker_settings', 'appq_integration_center_import_tracker_settings');

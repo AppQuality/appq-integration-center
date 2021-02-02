@@ -5,10 +5,10 @@
       e.preventDefault();
       var srcParams = new URLSearchParams(window.location.search);
       var cp_id = srcParams.has("id") ? srcParams.get("id") : -1;
-      var data = $("#jira_settings").serializeArray();
+      var data = [];
       data.push({
         name: "action",
-        value: "appq_integration_center_delete_settings",
+        value: "appq_integration_center_delete_tracker_settings",
       });
       data.push({
         name: "cp_id",

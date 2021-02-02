@@ -30,6 +30,17 @@
       .custom {
         cursor: pointer;
       }
+      button[data-target="#available_fields"] {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        width: 100%;
+        &:focus {
+          outline: none !important;
+          box-shadow: none !important;
+        }
+      }
     }
   }
 }

@@ -19,23 +19,25 @@
         ?>
       </div>
       <div class="actions">
-        <div class="row">
-          <div class="col-6 col-lg-4 offset-lg-2 text-center">
-            <div class="wrapper p-3">
-              <?php
-              printf('<h4>%s</h4>', __('Import settings from an existing campaign', $this->plugin_name));
-              printf('<p>%s</p>', __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', $this->plugin_name));
-              printf('<button data-toggle="modal" data-target="#import_from_cp_modal" type="button" class="btn btn-primary mt-3">%s</button>', __('Import settings', $this->plugin_name));
-              ?>
+        <div class="container">
+          <div class="row">
+            <div class="col-6 col-lg-4 offset-lg-2 text-center">
+              <div class="wrapper p-3">
+                <?php
+                printf('<h4>%s</h4>', __('Import settings from an existing campaign', $this->plugin_name));
+                printf('<p>%s</p>', __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', $this->plugin_name));
+                printf('<button data-toggle="modal" data-target="#import_tracker_settings_modal" type="button" class="btn btn-primary mt-3">%s</button>', __('Import settings', $this->plugin_name));
+                ?>
+              </div>
             </div>
-          </div>
-          <div class="col-6 col-lg-4 text-center">
-            <div class="wrapper p-3">
-              <?php
-              printf('<h4>%s</h4>', __('Create a new setup', $this->plugin_name));
-              printf('<p>%s</p>', __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', $this->plugin_name));
-              printf('<button data-toggle="modal" data-target="#setup_manually_cp_modal" type="button" class="btn btn-secondary mt-3">%s</button>', __('Setup manually', $this->plugin_name));
-              ?>
+            <div class="col-6 col-lg-4 text-center">
+              <div class="wrapper p-3">
+                <?php
+                printf('<h4>%s</h4>', __('Create a new setup', $this->plugin_name));
+                printf('<p>%s</p>', __('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', $this->plugin_name));
+                printf('<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mt-3">%s</button>', __('Setup manually', $this->plugin_name));
+                ?>
+              </div>
             </div>
           </div>
         </div>
@@ -51,64 +53,37 @@
     $class = $bugtracker['class'];
   ?>
     <div class="settings container-fluid">
-      <?php (method_exists($class, 'full_settings') ? $class->full_settings($campaign) : $class->settings($campaign)); ?>
+      <?php $class->get_settings($campaign, 'current-settings'); ?>
       <div class="settings-group available_fields">
         <div class="row">
-          <div class="col-10"><?php printf('<h4 class="title py-3">%s</h4>', __('Available fields', $this->plugin_name)); ?></div>
-          <div class="col-2 text-right actions">
-            <button type="button" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#addFieldModal"><?php _e('New field', $this->plugin_name); ?></button>
+          <div class="col-10">
             <button class="btn btn-no-style collapsed" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="false" aria-controls="available_fields">
-              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <?php printf('<h4 class="title py-3">%s</h4>', __('Available fields', $this->plugin_name)); ?>
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </button>
+          </div>
+          <div class="col-2 text-right actions">
+            <button type="button" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#add_field_modal"><?php _e('New field', $this->plugin_name); ?></button>
           </div>
         </div>
         <div class="collapse mb-3" id="available_fields">
-          <?php $this->general_settings($campaign) ?>
+          <?php $this->fields_settings($campaign) ?>
         </div>
+      </div>
+      <div class="settings-group fields_mapping border-0">
+        <?php $class->get_settings($campaign, 'fields-settings') ?>
       </div>
     </div>
   <?php
-  } ?>
-</div>
-<?php
-$this->partial('bugs/add-field-modal', array());
-$this->partial('bugs/import-configuration-modal', [
-  'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
-]);
-$this->partial('bugs/manual-configuration-modal', [
-  'campaign' => $campaign,
-  'integrations' => $integrations,
-]);
-?>
-
-
-
-
-
-<div class="row">
-  <div class="col-2">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="general" aria-selected="true">Home</a>
-      <?php foreach ($integrations as $integration) : ?>
-        <?php
-        $slug = $integration['slug'];
-        $name = $integration['name'];
-        ?>
-        <a class="nav-link" id="<?= $slug ?>-tab" data-toggle="pill" href="#<?= $slug ?>" role="tab" aria-controls="<?= $slug ?>" aria-selected="true"><?= $name ?></a>
-      <?php endforeach ?>
-    </div>
-  </div>
-  <div class="col-10">
-    <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane active" id="general" role="tabpanel" aria-labelledby="general-tab"><?php $this->general_settings($campaign) ?></div>
-      <?php foreach ($integrations as $integration) : ?>
-        <?php
-        $slug = $integration['slug'];
-        $name = $integration['name'];
-        $class = $integration['class'];
-        ?>
-        <div class="tab-pane" id="<?= $slug ?>" role="tabpanel" aria-labelledby="<?= $slug ?>-tab"><?= $class->settings($campaign) ?></div>
-      <?php endforeach ?>
-    </div>
-  </div>
+  }
+  $this->partial('bugs/add-field-modal', array());
+  $this->partial('bugs/import-tracker-modal', [
+    'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
+  ]);
+  $this->partial('bugs/custom-tracker-modal', [
+    'campaign' => $campaign,
+    'integrations' => $integrations,
+  ]);
+  $this->partial('bugs/reset-tracker-modal');
+  ?>
 </div>

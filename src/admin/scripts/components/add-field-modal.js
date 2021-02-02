@@ -13,7 +13,7 @@
       }
     });
   
-    $("#addFieldModal").on("hidden.bs.modal", function (e) {
+    $("#add_field_modal").on("hidden.bs.modal", function (e) {
       var set_field_checkbox = $("#add_new_field_values");
       if (set_field_checkbox.is(":checked")) {
         $("#add_new_field_values").click();

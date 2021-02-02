@@ -1,8 +1,8 @@
 (function ($) {
   "use strict";
   $(document).ready(function () {
-    $("#import_from_cp_modal").ready(function () {
-      var modal = $("#import_from_cp_modal");
+    $("#import_tracker_settings_modal").ready(function () {
+      var modal = $("#import_tracker_settings_modal");
       var form = $(modal).find("form");
       var submit_button = $(modal).find('button[type="submit"]');
       var select = $(modal).find(".ux-select");
@@ -20,7 +20,7 @@
         });
         data.push({
           name: "action",
-          value: "appq_integration_center_import_from_cp",
+          value: "appq_integration_center_import_tracker_settings",
         });
         data.push({
           name: "nonce",
@@ -43,39 +43,34 @@
           });
       });
       select.on("select2:select", function (e) {
-        toastr.success("Campaign selected!");
         submit_button.prop("disabled", false);
       });
       select.on("select2:unselect", function (e) {
-        toastr.error("Campaign unselected!");
         submit_button.prop("disabled", true);
       });
     });
-    $("#setup_manually_cp_modal").ready(function () {
-      var modal = $("#setup_manually_cp_modal");
-      var submit_button = $(modal).find('button[type="submit"]');
+    $("#custom_tracker_settings_modal").ready(function () {
+      var modal = $("#custom_tracker_settings_modal");
+      var submit_button = $(modal).find(".confirm");
       var select = $(modal).find(".ux-select");
-      var form = select.val() ? select.val() + "_settings" : "";
+      var form = select.val() ? select.val() + "_tracker_settings" : "";
       var settings = $(modal).find(".settings");
       submit_button.on("click", function () {
         var submit_btn = $(this);
         var submit_btn_html = submit_btn.html();
         submit_btn.html('<i class="fa fa-spinner fa-spin"></i>');
         var tracker_form = $("#" + form);
-        console.log(tracker_form);
-        tracker_form.submit();
+        tracker_form.trigger("submit");
         submit_btn.html(submit_btn_html);
       });
       select.on("select2:select", function (e) {
-        toastr.success("Bugtracker selected!");
         settings.show();
         modal.find(".extra-fields").hide();
         modal.find('[data-tracker="' + select.val() + '"]').show();
         submit_button.prop("disabled", false);
-        form = select.val() + "_settings";
+        form = select.val() + "_tracker_settings";
       });
       select.on("select2:unselect", function (e) {
-        toastr.error("Bugtracker unselected!");
         settings.hide();
         submit_button.prop("disabled", true);
       });

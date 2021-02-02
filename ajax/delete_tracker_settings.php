@@ -1,7 +1,7 @@
 <?php 
 
 
-function appq_integration_center_delete_settings() {
+function appq_integration_center_delete_tracker_settings() {
     if(!check_ajax_referer('appq-ajax-nonce', 'nonce', false)){
         wp_send_json_error('You don\'t have the permission to do this');
 	}
@@ -27,4 +27,4 @@ function appq_integration_center_delete_settings() {
 	wp_send_json_success();	
 }
 
-add_action('wp_ajax_appq_integration_center_delete_settings', 'appq_integration_center_delete_settings');
+add_action('wp_ajax_appq_integration_center_delete_tracker_settings', 'appq_integration_center_delete_tracker_settings');
