@@ -42,5 +42,15 @@
         }
       }
     }
+    #get_from_bug .raw-content {
+      max-height: 400px;
+      overflow: scroll;
+      background: $grey-e;
+      color: $black;
+      padding: 15px;
+    }
+    #add_mapping_field_modal textarea {
+      height: 300px;
+    }
   }
 }

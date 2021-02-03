@@ -33,7 +33,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
     </div>
 <?php } ?>
 <?php foreach ($custom_fields as $custom_field) { ?>
-    <div class="row mb-2 custom" title="<?php _e('Edit', $this->plugin_name); ?>" data-target="#addFieldModal" data-map="<?= esc_attr($custom_field->map) ?>" data-source="<?= esc_attr($custom_field->source) ?>" data-name="<?= esc_attr($custom_field->name) ?>">
+    <div class="row mb-2 custom" title="<?php _e('Edit', $this->plugin_name); ?>" data-target="#add_field_modal" data-map="<?= esc_attr($custom_field->map) ?>" data-source="<?= esc_attr($custom_field->source) ?>" data-name="<?= esc_attr($custom_field->name) ?>">
         <?php
         printf(
             '<div class="col-4">%s</div><div class="col-4"></div><div class="col-4">%s</div>',
