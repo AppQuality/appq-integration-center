@@ -18,6 +18,10 @@
       if (set_field_checkbox.is(":checked")) {
         $("#add_new_field_values").click();
       }
+      $("#custom_field_maps_wrap").hide();
+      $("#custom_field_maps").html('');
+      $("#custom_map_source").val('');
+      $("#custom_map_name").val('');
     });
   });
 })(jQuery);

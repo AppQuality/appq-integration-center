@@ -19,6 +19,7 @@
       cursor: pointer;
       font-size: 25px;
       i {
+        margin-left: 2rem;
         transform: rotate(-270deg);
         transition: transform 0.2s ease;
       }
@@ -35,7 +36,7 @@
         display: flex;
         justify-content: space-between;
         padding: 0;
-        width: 100%;
+        // width: 100%;
         &:focus {
           outline: none !important;
           box-shadow: none !important;

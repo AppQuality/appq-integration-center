@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div style="z-index: 99999;" class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Add / Edit field', $this->plugin_name)); ?>
+        <?php printf('<h5 class="modal-title">%s</h5>', __('Add / Edit available field', $this->plugin_name)); ?>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

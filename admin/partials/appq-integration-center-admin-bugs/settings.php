@@ -63,7 +63,7 @@
             </button>
           </div>
           <div class="col-2 text-right actions">
-            <button type="button" class="btn btn-secondary  mt-2" data-toggle="modal" data-target="#add_field_modal"><?php _e('New field', $this->plugin_name); ?></button>
+            <button type="button" class="btn btn-secondary  mt-2" data-toggle="modal" data-target="#add_field_modal"><?php _e('New available field', $this->plugin_name); ?></button>
           </div>
         </div>
         <div class="collapse mb-3" id="available_fields">
