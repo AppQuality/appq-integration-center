@@ -345,7 +345,7 @@
 			var bug_id = 'default'
 			var button = $(this)
 			var text = $(this).html()
-			button.html('<i class="fa-spinner fa-spin text-secondary disabled"></i>')
+			button.html('<i class="fa fa-spinner fa-spin"></i>')
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
