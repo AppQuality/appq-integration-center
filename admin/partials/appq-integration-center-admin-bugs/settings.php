@@ -10,7 +10,8 @@
  */
 ?>
 <div class="ux py-4">
-  <?php if (empty($campaign->bugtracker)) { ?>
+  <?php
+  if (empty($campaign->bugtracker)) { ?>
     <div class="settings-wizard">
       <div class="info pb-5">
         <?php
@@ -53,13 +54,15 @@
     $class = $bugtracker['class'];
   ?>
     <div class="settings container-fluid">
-      <?php $class->get_settings($campaign, 'current-settings'); ?>
+      <div class="settings-group">
+        <?php $this->current_setup($campaign) ?>
+      </div>
       <div class="settings-group available_fields">
         <div class="row">
           <div class="col-10">
             <button class="btn btn-no-style collapsed" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="false" aria-controls="available_fields">
-            <?php printf('<h4 class="title py-3">%s</h4>', __('Available fields', $this->plugin_name)); ?>
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+              <?php printf('<h4 class="title py-3">%s</h4>', __('Available fields', $this->plugin_name)); ?>
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col-2 text-right actions">
@@ -67,23 +70,24 @@
           </div>
         </div>
         <div class="collapse mb-3" id="available_fields">
-          <?php $this->fields_settings($campaign) ?>
+          <?php $this->available_fields($campaign) ?>
         </div>
       </div>
       <div class="settings-group fields_mapping border-0">
-        <?php $class->get_settings($campaign, 'fields-settings') ?>
+        <?php 
+        $class->get_settings($campaign, 'fields-settings') ?>
       </div>
     </div>
   <?php
   }
-  $this->partial('bugs/add-field-modal', array());
-  $this->partial('bugs/import-tracker-modal', [
+  $this->partial('bugs/modal/new-available-field');
+  $this->partial('bugs/modal/import-tracker', [
     'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
   ]);
-  $this->partial('bugs/custom-tracker-modal', [
+  $this->partial('bugs/modal/edit-tracker', [
     'campaign' => $campaign,
     'integrations' => $integrations,
   ]);
-  $this->partial('bugs/reset-tracker-modal');
+  $this->partial('bugs/modal/delete-tracker-settings');
   ?>
 </div>

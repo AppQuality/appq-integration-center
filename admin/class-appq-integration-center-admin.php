@@ -415,20 +415,30 @@ class AppQ_Integration_Center_Admin
 
 	/**
 	 * Fields settings partial for a specific campaign
-	 * @method fields_settings
+	 * @method available_fields
 	 * @date   2019-10-25T12:55:22+020
 	 * @author: Davide Bizzi <clochard>
 	 * @param  int                  $campaign The campaign data
 	 */
-	public function fields_settings($campaign = null)
+	public function available_fields($campaign = null)
 	{
 		$custom_fields = $this->get_custom_fields($campaign->id);
 
-		$this->partial('bugs/fields-mapping', array(
+		$this->partial('bugs/available-fields', array(
 			'integrations' => $this->get_integrations(),
 			'campaign' => $campaign,
 			'custom_fields' => $custom_fields,
 		));
+	}
+
+	public function current_setup($campaign = null)
+	{
+		$this->partial('bugs/current-setup', ['campaign' => $campaign]);
+	}
+
+	public function fields_mapping($campaign = null)
+	{
+		$this->partial('bugs/fields-mapping', ['campaign' => $campaign]);
 	}
 
 	public static function get_uploaded_bug($integration_type, $bug_id)
