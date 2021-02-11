@@ -36,7 +36,6 @@
         display: flex;
         justify-content: space-between;
         padding: 0;
-        // width: 100%;
         &:focus {
           outline: none !important;
           box-shadow: none !important;
@@ -44,10 +43,11 @@
       }
     }
     #get_from_bug .raw-content {
-      max-height: 400px;
-      overflow: scroll;
       background: $grey-e;
       color: $black;
+      margin: 0;
+      max-height: 300px;
+      overflow: scroll;
       padding: 15px;
     }
     #add_mapping_field_modal textarea {

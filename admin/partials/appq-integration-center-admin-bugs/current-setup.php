@@ -6,7 +6,6 @@ printf('<h4 class="title py-3">%s</h4>', __('Current setup', $this->plugin_name)
 ?>
 <div class="row mb-3">
     <div class="col-1">
-        <?php printf('<small>%s</small>', __('Tracker', $this->plugin_name)); ?>
         <?php
         printf(
             '<img src="%s" alt="%s">',
