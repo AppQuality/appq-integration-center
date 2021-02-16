@@ -113,7 +113,6 @@
 		}
 		if ($('#add_new_field').length) {
 			$('#add_new_field').click(function(e){
-				console.log('OK');
 				e.preventDefault()
 				var self = this
 				var content = $(this).html()
@@ -303,7 +302,6 @@
 				data: data,
 				success: function(msg) {
 					button.text(text)
-					console.log(msg);
 				}
 			});
 		})	
