@@ -14,7 +14,6 @@
 ?>
 
 <h2><?= $campaign->title ?></h2>
-
 <div>
 	<ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
 	  <li class="nav-item">
