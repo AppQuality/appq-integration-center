@@ -163,8 +163,10 @@ class AppQ_Integration_Center
 
 		$plugin_admin = new AppQ_Integration_Center_Admin($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
-		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+		$this->loader->add_action('load-toplevel_page_integration-center', $plugin_admin, 'enqueueAdminAssets');
+		$this->loader->add_action('load-admin_page_integration-center-settings', $plugin_admin, 'enqueueAdminAssets');
+		$this->loader->add_action('load-admin_page_integration-center-campaign', $plugin_admin, 'enqueueAdminAssets');
+		$this->loader->add_action('load-admin_page_campaigns_page', $plugin_admin, 'enqueueAdminAssets');
 
 		$this->loader->add_action('admin_menu', $plugin_admin, 'register_menus');
 		$this->loader->add_action('admin_menu', $plugin_admin, 'register_settings');

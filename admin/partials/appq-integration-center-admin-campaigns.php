@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The settings view area 
  *
@@ -9,6 +8,7 @@
  * @package    AppQ_Integration_Center
  * @subpackage AppQ_Integration_Center/admin/partials
  */
+
 ?>
 
 <h2>Integration Center Settings</h2>

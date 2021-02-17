@@ -137,14 +137,14 @@
 			})
 		}
 		
-		$('.nav-item').click(function(){
-			$(this).closest('.nav').find('.nav-link').removeClass('active')
-			$(this).find('.nav-link').addClass('active')
-		})
-		$('.nav-link').click(function(){
-			$(this).parent().find('.nav-link').removeClass('active')
-			$(this).addClass('active')
-		})
+		// $('.nav-item').click(function(){
+		// 	$(this).closest('.nav').find('.nav-link').removeClass('active')
+		// 	$(this).find('.nav-link').addClass('active')
+		// })
+		// $('.nav-link').click(function(){
+		// 	$(this).parent().find('.nav-link').removeClass('active')
+		// 	$(this).addClass('active')
+		// })
 
 		$('#bugs-tabs-content .upload_bug').not('.disabled').click(function() {
 			var cp_id = $('#cp_id').val()
