@@ -18,6 +18,15 @@
   display: none;
 }
 
+#get_from_bug .raw-content {
+  background: $grey-e;
+  color: $black;
+  margin: 0;
+  max-height: 300px;
+  overflow: scroll;
+  padding: 15px;
+}
+
 .select2-container {
   &.select2-container--open {
     z-index: 999999;

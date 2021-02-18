@@ -12,7 +12,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
 ?>
 <div class="row mb-2 p-0">
     <div class="col-12">
-        <table class="table">
+        <table class="table table-hover table-sm">
             <thead>
             <tr>
                 <th scope="col">AppQuality Bug Field</th>
