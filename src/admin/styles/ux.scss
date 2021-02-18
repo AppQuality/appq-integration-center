@@ -1,0 +1,46 @@
+.ux {
+  @import "./components/_loader";
+}
+
+.d-flex-vertical-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+
+.stick-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+#wpfooter
+{
+  display: none;
+}
+
+#get_from_bug .raw-content {
+  background: $grey-e;
+  color: $black;
+  margin: 0;
+  max-height: 300px;
+  overflow: scroll;
+  padding: 15px;
+}
+
+.select2-container {
+  &.select2-container--open {
+    z-index: 999999;
+  }
+
+  .select2-selection--single {
+    height: 35px !important;
+
+    .select2-selection__rendered {
+      line-height: 31px !important;
+    }
+
+    .select2-selection__arrow {
+      height: 34px !important;
+    }
+  }
+}

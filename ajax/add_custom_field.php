@@ -8,7 +8,7 @@ function appq_add_custom_field() {
 	$custom_map_name = array_key_exists("custom_map_name",$_POST) ? $_POST["custom_map_name"] : null;
 	$custom_map = array_key_exists("custom_map",$_POST) ? $_POST["custom_map"] : null;
 	
-	if ( $cp_id <= 0 || empty($custom_map) || empty($custom_map_source) || empty($custom_map_name)) {
+	if ( $cp_id <= 0 || empty($custom_map_source) || empty($custom_map_name)) {
 		wp_send_json_error($custom_map);
 	}
 	$custom_map_object = new stdClass();

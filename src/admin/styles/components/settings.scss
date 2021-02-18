@@ -1,0 +1,50 @@
+.settings {
+  .settings-group {
+    //@extend .py-3;
+    border-bottom: 1px solid $grey-e;
+    position: relative;
+    .title {
+      font-size: 18px;
+      margin: 0;
+    }
+    small {
+      display: block;
+    }
+    .actions {
+      .btn {
+        min-width: unset;
+      }
+    }
+    .btn-no-style {
+      cursor: pointer;
+      font-size: 25px;
+      i {
+        margin-left: 2rem;
+        transform: rotate(-270deg);
+        transition: transform 0.2s ease;
+      }
+      &.collapsed i {
+        transform: rotate(-90deg);
+      }
+    }
+    &.available_fields {
+      .custom {
+        cursor: pointer;
+      }
+      button[data-target="#available_fields"] {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        &:focus {
+          outline: none !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+
+    #add_mapping_field_modal textarea {
+      height: 300px;
+    }
+  }
+}

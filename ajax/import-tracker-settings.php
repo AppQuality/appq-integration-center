@@ -1,16 +1,17 @@
 <?php 
 
 
-function appq_integration_center_import_from_cp() {
+function appq_integration_center_import_tracker_settings() {
+    if(!check_ajax_referer('appq-ajax-nonce', 'nonce', false)){
+        wp_send_json_error('You don\'t have the permission to do this');
+	}
+	
 	global $wpdb;
 	$cp_id = array_key_exists("cp_id",$_POST) ? intval($_POST["cp_id"]) : 0;
 	$source_id = array_key_exists("source_id",$_POST) ? intval($_POST["source_id"]) : 0;
 	
 	if ( $cp_id <= 0 || $source_id <= 0 ) {
 		wp_send_json_error('Invalid cp_id "'.$cp_id.'" or source_id "'.$source_id.'"');
-	}
-	if ( !current_user_can('edit_campaigns') ) {
-		wp_send_json_error('You don\'t have the permission to do this');
 	}
 	
 	$sql = $wpdb->prepare('SELECT * FROM wp_appq_integration_center_config WHERE campaign_id = %d',$source_id);
@@ -51,4 +52,4 @@ function appq_integration_center_import_from_cp() {
 	wp_send_json_success();	
 }
 
-add_action('wp_ajax_appq_integration_center_import_from_cp', 'appq_integration_center_import_from_cp');
+add_action('wp_ajax_appq_integration_center_import_tracker_settings', 'appq_integration_center_import_tracker_settings');

@@ -1,0 +1,8 @@
+.collapse {
+  .in, &:not(.show) {
+    display: block;
+  }
+  &:not(.in) {
+    display: none;
+  }
+}

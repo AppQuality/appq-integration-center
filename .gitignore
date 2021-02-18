@@ -40,3 +40,5 @@ intermediate
 .idea
 cache
 tmp
+node_modules
+assets

@@ -39,6 +39,11 @@ if (! defined('WPINC')) {
 define('APPQ_INTEGRATION_CENTERVERSION', '1.1.0');
 
 /**
+ * Currently plugin url.
+ */
+define('APPQ_INTEGRATION_CENTERURL', plugin_dir_url( __FILE__ ));
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-appq-integration-center-activator.php
  */

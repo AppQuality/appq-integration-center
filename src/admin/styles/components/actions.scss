@@ -1,0 +1,7 @@
+.actions {
+  .col-6 {
+    &:last-child {
+      border-left: 1px solid $black;
+    }
+  }
+}

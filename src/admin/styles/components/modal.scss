@@ -1,0 +1,19 @@
+.modal {
+  .modal-backdrop {
+    background-color: rgba($black, 0.3);
+    backdrop-filter: blur(2px);
+    opacity: 1;
+  }
+  .modal-dialog {
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1041;
+    .modal-content {
+      border: 0;
+      border-radius: 0;
+      .modal-header {
+        border: 0;
+      }
+    }
+  }
+}
