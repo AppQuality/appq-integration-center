@@ -54,7 +54,7 @@
 	?>
     <div class="settings container-fluid">
         <div class="settings-group">
-			<?php $this->current_setup( $campaign ) ?>
+			<?php $class->current_setup( $campaign ) ?>
         </div>
         <div class="settings-group available_fields">
             <div class="accordion" id="accordionFields">
