@@ -406,13 +406,15 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function bugs_page()
 	{
-		if ( ! array_key_exists( 'id', $_GET ) )
+		global $wp;
+		if ( ! array_key_exists( 'id', $_GET ) && ! array_key_exists( 'appq-integration-center', $wp->query_vars ) )
 		{
 			$this->partial( 'not-found' );
 
 			return;
 		}
-		$campaign = $this->get_campaign( $_GET['id'] );
+		$id = array_key_exists( 'id', $_GET ) ? $_GET['id'] :  array_key_exists( 'appq-integration-center',  $wp->query_vars ) ?  $wp->query_vars['appq-integration-center'] : 0;
+		$campaign = $this->get_campaign( $id );
 		if ( ! $campaign )
 		{
 			$this->partial( 'not-found' );
@@ -420,7 +422,7 @@ class AppQ_Integration_Center_Admin
 			return;
 		}
 		$this->partial( 'bugs', array(
-			'bugs'     => $this->get_bugs( $_GET['id'] ),
+			'bugs'     => $this->get_bugs( $id ),
 			'campaign' => $campaign
 		) );
 	}
