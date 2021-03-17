@@ -52,17 +52,17 @@
 	$bugtracker = $bugtracker[0];
 	$class      = $bugtracker['class'];
 	?>
-    <div class="settings container-fluid">
-        <div class="settings-group">
+    <div class="settings">
+        <div class="settings-group mb-3">
 			<?php $class->current_setup( $campaign ) ?>
         </div>
         <div class="settings-group available_fields">
             <div class="accordion" id="accordionFields">
                 <div class="row">
                     <div class="col-12">
-                        <a class="btn btn-link btn-block" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="true" aria-controls="available_fields">
+                        <a class="btn btn-link btn-block p-0" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="true" aria-controls="available_fields">
                             <div class="card-header">
-                                <h5 class="mb-0">
+                                <h5 class="m-0 text-left">
 									<?= __( 'Available fields', $this->plugin_name ); ?>
                                     <i class="fa fa-angle-down"></i>
                                 </h5>
