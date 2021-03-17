@@ -27,14 +27,6 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <?php
-          printf(
-            '<label><input type="checkbox" class="form-control" name="media" id="add_new_field_values"> %s</label>',
-            __('Set field values ', $this->plugin_name)
-          );
-          ?>
-        </div>
         <div id="custom_field_maps_wrap">
           <div id="custom_field_maps">
           </div>
