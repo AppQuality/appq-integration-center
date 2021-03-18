@@ -34,9 +34,9 @@
         </div>
 
         <div class="row mt-5 pb-4">
-          <div class="col-6 col-lg-4 offset-lg-2 text-right">
+          <div class="col-6 col-lg-2 offset-lg-4 text-right">
             <?php printf(
-              '<button type="button" disabled id="add_new_field" class="btn btn-primary">%s</button>',
+              '<button type="button" disabled id="add_new_field" class="btn btn-block btn-primary">%s</button>',
               __('Save field', $this->plugin_name)
             ); ?>
           </div>
