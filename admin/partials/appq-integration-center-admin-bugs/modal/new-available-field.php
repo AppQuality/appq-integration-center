@@ -8,13 +8,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body form px-4" id="add_custom_map">
+      <form class="modal-body form px-4" id="add_custom_map">
         <div class="row">
           <div class="col-6">
             <div class="form-group">
               <?php
               printf('<label for="custom_map_source">%s</label>', __('Source field', $this->plugin_name));
-              printf('<input type="text" class="form-control" name="custom_map_source" id="custom_map_source" placeholder="%s">', __('{Bug.xx}', $this->plugin_name));
+              printf('<input required type="text" class="form-control" name="custom_map_source" id="custom_map_source" placeholder="%s">', __('{Bug.xx}', $this->plugin_name));
               ?>
             </div>
           </div>
@@ -22,7 +22,7 @@
             <div class="form-group">
               <?php
               printf('<label for="custom_map_name">%s</label>', __('Target field', $this->plugin_name));
-              printf('<input type="text" class="form-control" name="custom_map_name" id="custom_map_name" placeholder="%s">', __('{Bug.yy}', $this->plugin_name));
+              printf('<input required type="text" class="form-control" name="custom_map_name" id="custom_map_name" placeholder="%s">', __('{Bug.yy}', $this->plugin_name));
               ?>
             </div>
           </div>
@@ -36,7 +36,7 @@
         <div class="row mt-5 pb-4">
           <div class="col-6 col-lg-4 offset-lg-2 text-right">
             <?php printf(
-              '<button type="button" id="add_new_field" class="btn btn-primary">%s</button>',
+              '<button type="button" disabled id="add_new_field" class="btn btn-primary">%s</button>',
               __('Save field', $this->plugin_name)
             ); ?>
           </div>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                   <?php
                   printf('<label for="key">%s</label>', __('Field value', $this->plugin_name));
-                  printf('<input type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', $this->plugin_name));
+                  printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', $this->plugin_name));
                   ?>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                   <?php
                   printf('<label for="value">%s</label>', __('Map value', $this->plugin_name));
-                  printf('<input type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', $this->plugin_name));
+                  printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', $this->plugin_name));
                   ?>
                 </div>
               </div>
