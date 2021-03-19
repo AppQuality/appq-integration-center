@@ -65,3 +65,12 @@
       max-width: 800px;
   }
 }
+
+[data-clip-icon] {
+  position: absolute; 
+  right: 25px;
+}
+[data-clip-icon]::after {
+  content: '\f0ea'; 
+  font-family: FontAwesome; 
+}
