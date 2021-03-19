@@ -132,6 +132,8 @@ class AppQ_Integration_Center
 				 ) 
 			),
 			function () {
+				$admin = new AppQ_Integration_Center_Admin($this->plugin_name,$this->version);
+				
 				wp_localize_script( $this->plugin_name, 'appq_ajax', array(
 					'url'   => admin_url( 'admin-ajax.php' ),
 					'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
@@ -140,6 +142,10 @@ class AppQ_Integration_Center
 				wp_localize_script( $this->plugin_name, 'custom_object',array( 
 					'ajax_url' => admin_url( 'admin-ajax.php' ) 
 				) );
+				
+				
+				$admin->enqueue_integration_scripts();
+				$admin->enqueue_integration_styles();
 			}
 		);
 	}

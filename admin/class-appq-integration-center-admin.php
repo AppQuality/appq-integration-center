@@ -108,6 +108,18 @@ class AppQ_Integration_Center_Admin
 		}
 	}
 
+	public function enqueue_integration_scripts() {
+		foreach($this->integrations as $i) {
+			$i['class']->enqueue_scripts($i['class']->plugin_name);
+		}
+	}
+	
+	public function enqueue_integration_styles() {
+		foreach($this->integrations as $i) {
+			$i['class']->enqueue_styles($i['class']->plugin_name);
+		}
+	}
+	
 	public function enqueueAdminAssets()
 	{
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
