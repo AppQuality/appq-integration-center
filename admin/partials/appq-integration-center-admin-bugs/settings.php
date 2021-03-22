@@ -75,7 +75,7 @@
 	                <div id="available_fields" class="collapse" aria-labelledby="available_fields" data-parent="#accordionFields">
 	                    <div class="row">
 	                        <div class="col">
-	                            <button type="button" class="btn btn-default float-right m-2" data-toggle="modal" data-target="#add_field_modal">
+	                            <button type="button" class="btn btn-secondary float-right m-2" data-toggle="modal" data-target="#add_field_modal">
 			                        <?php _e( 'Add new field', $this->plugin_name ); ?>
 	                            </button>
 	                        </div>

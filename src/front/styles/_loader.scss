@@ -9,6 +9,15 @@
 	    border-color: mix(black,$primary-color, 20%) ;
 		}
 }
+.btn-secondary {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+		
+		&:hover {
+			background-color: mix(black,$secondary-color, 20%) ;
+	    border-color: mix(black,$secondary-color, 20%) ;
+		}
+}
 
 .show {
 	visibility: visible!important;
