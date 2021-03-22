@@ -502,7 +502,7 @@ class IntegrationCenterRestApi
 	public function get_field_mapping()
 	{
 		$data = array();
-		$field_mapping = property_exists($this->configuration, 'field_mapping') ? json_decode($this->configuration->field_mapping, true) : array();
+		$field_mapping = property_exists($this->configuration, 'field_mapping') && !empty($this->configuration->field_mapping)? json_decode($this->configuration->field_mapping, true) : array();
 		$field_mapping = array_merge($this->basic_configuration, $field_mapping);
 		return $field_mapping;
 	}
