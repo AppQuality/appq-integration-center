@@ -19,6 +19,21 @@
 		}
 }
 
+.nav-item {
+  .nav-link {
+    text-decoration: none;
+    color: $secondary-color;
+    font-weight: 900;
+    
+    &.active {
+      color: $success-color;
+      box-shadow: inset 0 -2px 0 0 $primary-color;
+    }
+  }
+}
+.nav-tabs > li > a {
+  margin-right: 0px!important;
+}
 .show {
 	visibility: visible!important;
 }

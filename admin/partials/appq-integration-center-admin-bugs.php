@@ -17,12 +17,12 @@
 <div class="card">
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="bugs-tab" data-toggle="tab" href="#bugs_list">
+            <a class="nav-link active px-5 clean" id="bugs-tab" data-toggle="tab" href="#bugs_list">
                 Bugs
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
+            <a class="nav-link px-5 clean" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
                 Settings
             </a>
         </li>
