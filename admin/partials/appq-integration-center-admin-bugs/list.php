@@ -13,7 +13,8 @@
     <div class="row">
         <div class="col d-flex flex-column">
             <div class="input-group mb-3">
-                <input id="bugs_list-search" class="form-control custom-search" type="search" placeholder="Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)" aria-label="Search">
+              <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="Search..." aria-label="Search">
+              <small>Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)</small>
             </div>
         </div>
 
