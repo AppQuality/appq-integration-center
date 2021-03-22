@@ -12,7 +12,7 @@
  * @subpackage AppQ_Integration_Center/admin/partials
  */
 ?>
-
+<input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <h2><?= $campaign->title ?></h2>
 <div>
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">

@@ -283,8 +283,7 @@
 
 		});
 		$('#save_general_settings').click(function() {
-			var srcParams = new URLSearchParams(window.location.search)
-			var cp_id = srcParams.has('id') ? srcParams.get('id') : -1
+			var cp_id = $('#campaign_id').val()
 			var button = $(this)
 			var text = button.text()
 			var data = $('#general_settings').serializeArray()
