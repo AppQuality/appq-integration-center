@@ -9,7 +9,8 @@
  * @Last modified time: 25/10/2019
  */
 ?>
-	<div class="py-4">
+	<h4 class="pb-3">Tracker settings</h4>
+	<div class="pb-4">
 		<?php if ( empty( $campaign->bugtracker ) ): ?>
 	        <div class="settings-wizard">
 	            <div class="info pb-5">
