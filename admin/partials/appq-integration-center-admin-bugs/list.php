@@ -10,8 +10,6 @@
  */
 
 ?>
-<div class="card">
-  <div class="card-body">
     <div class="row">
         <div class="col d-flex flex-column">
             <div class="input-group mb-3">
@@ -82,5 +80,3 @@
     </table>
     <button class="send-all btn-primary btn">Send All</button>
     <button class="send-selected btn-primary btn">Send Selected</button>
-  </div>
-</div>

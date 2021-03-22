@@ -14,7 +14,7 @@
 ?>
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <h2><?= $campaign->title ?></h2>
-<div>
+<div class="card">
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="bugs-tab" data-toggle="tab" href="#bugs_list">
@@ -27,6 +27,7 @@
             </a>
         </li>
     </ul>
+  <div class="card-body">
     <div class="tab-content" id="bugs-tabs-content">
         <input id="cp_id" type="hidden" value="<?= $campaign->id ?>"/>
         <div class="tab-pane active" id="bugs_list" role="tabpanel"
@@ -41,4 +42,5 @@
 			) ) ?>
         </div>
     </div>
+</div>
 </div>

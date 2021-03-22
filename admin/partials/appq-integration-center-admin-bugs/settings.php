@@ -9,8 +9,7 @@
  * @Last modified time: 25/10/2019
  */
 ?>
-<div class="card">
-	<div class="py-4 card-body">
+	<div class="py-4">
 		<?php if ( empty( $campaign->bugtracker ) ): ?>
 	        <div class="settings-wizard">
 	            <div class="info pb-5">
@@ -106,4 +105,3 @@
 	$this->partial( 'bugs/modal/delete-tracker-settings' );
 	?>
 	</div>
-</div>
