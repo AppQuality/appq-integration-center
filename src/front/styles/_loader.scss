@@ -1,0 +1,15 @@
+@import "./variables";
+
+.btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+		
+		&:hover {
+			background-color: mix(black,$primary-color, 20%) ;
+	    border-color: mix(black,$primary-color, 20%) ;
+		}
+}
+
+.show {
+	visibility: visible!important;
+}

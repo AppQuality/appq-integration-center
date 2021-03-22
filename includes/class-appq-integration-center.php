@@ -98,7 +98,17 @@ class AppQ_Integration_Center
 				 ),
 				 $this->plugin_name => array(
 					 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/admin.css',
-					 'version' => '1.0'
+					 'version' => '1.0',
+				 ),
+				 'material-bootstrap-ic' => array(
+					 'src' => get_stylesheet_directory_uri() .'/assets/css/material-bootstrap.css',
+					 'version' => '1.0',
+					 'dependencies' => array( $this->plugin_name )
+				 ),
+				 $this->plugin_name .'-front' => array(
+					 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/front.css',
+					 'version' => '1.0',
+					 'dependencies' => array('bootstrap-3')
 				 ),
 			),
 			array(
@@ -134,6 +144,11 @@ class AppQ_Integration_Center
 			function () {
 				$admin = new AppQ_Integration_Center_Admin($this->plugin_name,$this->version);
 				
+				add_action('wp_print_scripts',function(){
+					wp_dequeue_script('app-script');
+					wp_dequeue_style('material-bootstrap');
+					wp_dequeue_script('bootstrap');
+				});
 				wp_localize_script( $this->plugin_name, 'appq_ajax', array(
 					'url'   => admin_url( 'admin-ajax.php' ),
 					'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
@@ -170,13 +185,18 @@ class AppQ_Integration_Center
 
 			add_action( 'parse_request', function ( &$wp ) use($parameter,$template,$styles,$scripts,$fn){
 			    if ( array_key_exists( $parameter, $wp->query_vars ) ) {
+							if ($fn) {
+								add_action('wp_enqueue_scripts',$fn);
+							}
 							if ($styles) {
 								foreach($styles as $name => $style) {
 									if (array_key_exists('src',$style)) {
 										$version = array_key_exists('version',$style) ? $style['version'] : '1.0';
 										$dependencies = array_key_exists('dependencies',$style) ? $style['dependencies'] : array();
 										
-										wp_enqueue_style( $name, $style['src'], $dependencies, $version );
+										add_action('wp_enqueue_scripts',function() use($name,$style,$dependencies,$version){
+											wp_enqueue_style( $name, $style['src'], $dependencies, $version );
+										});
 									}
 								}
 							}
@@ -186,12 +206,11 @@ class AppQ_Integration_Center
 										$version = array_key_exists('version',$script) ? $script['version'] : '1.0';
 										$dependencies = array_key_exists('dependencies',$script) ? $script['dependencies'] : array();
 										
-										wp_enqueue_script( $name, $script['src'], $dependencies, $version );
+										add_action('wp_enqueue_scripts',function() use($name,$script,$dependencies,$version){
+											wp_enqueue_script( $name, $script['src'], $dependencies, $version );
+										});
 									}
 								}
-							}
-							if ($fn) {
-								$fn();
 							}
 							do_action('template_redirect');
 							do_action('wp');

@@ -1,5 +1,7 @@
 @import "./variables";
 @import '~bootstrap';
-
+.modal-backdrop {
+	z-index: 1050;
+}
 @import "./hold";
 @import "./ux";
