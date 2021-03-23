@@ -256,9 +256,21 @@ class AppQ_Integration_Center_Admin
 	{
 		global $wpdb;
 		$campaign_model = mvc_model( 'Campaign' );
-		$bugtrackers    = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1', OBJECT_K );
+		$sql = 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1';
+		
+		
+		$bugtrackers    = $wpdb->get_results( $sql , OBJECT_K );
 
-		$campaigns = $campaign_model->find();
+		$available_campaign_ids = AppQ_Integration_Center_Admin::get_available_campaign_ids();
+		
+		$campaigns = array();
+		if (!empty($available_campaign_ids)) {
+			$campaigns = $campaign_model->find(array(
+				'conditions' => array(
+					'id' => $available_campaign_ids
+				)
+			));
+		}
 		$campaigns = array_map( function ( $cp ) use ( $bugtrackers ) {
 			$cp->bugtracker  = array_key_exists( $cp->id, $bugtrackers ) ? $bugtrackers[ $cp->id ] : '';
 			$cp->credentials = array_key_exists( $cp->id, $bugtrackers );
@@ -268,30 +280,73 @@ class AppQ_Integration_Center_Admin
 
 		return $campaigns;
 	}
+	
+	public static function get_available_campaign_ids() {
+		global $wpdb;
+		$sql = 'SELECT id FROM wp_appq_evd_campaign';
+		if (is_a_customer()) {
+			$sql = '
+			SELECT cp.id
+			FROM wp_appq_customer c
+			         JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
+			         JOIN wp_appq_project p ON p.customer_id = c.id
+			         JOIN wp_appq_evd_campaign cp on p.id = cp.project_id
+			WHERE 
+				u2c.wp_user_id = %d
+			  AND (
+			    EXISTS(
+						SELECT * 
+						FROM wp_appq_user_to_project u2p 
+						WHERE u2p.wp_user_id = %d AND u2p.project_id = p.id
+					)
+			    OR NOT EXISTS(
+						SELECT * 
+						FROM wp_appq_user_to_project u2p 
+						WHERE u2p.project_id = p.id
+					)
+			  )';
+			$sql = $wpdb->prepare(
+				$sql,
+				get_current_user_id(),
+				get_current_user_id()
+			);
+		}
+		
+		return $wpdb->get_col($sql);
+		
+	}
 
 	/**
 	 * Get all Bugs of a Campaign with text values, tags and bugtracker data
 	 * @method get_bugs
 	 * @date   2019-10-25T12:51:29+020
 	 *
-	 * @param int $cp_id The id of the campaign
+	 * @param MvcObject $campaign  The campaign
 	 *
 	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_bugs( $cp_id )
+	public static function get_bugs( $campaign )
 	{
 		global $wpdb;
 
 		$bug_model = mvc_model( 'Bug' );
+		$conditions = array(
+			'campaign_id' => $campaign->id,
+			'publish'     => 1
+		);
+		
+		if (is_a_customer()) {
+			$conditions['status_id'] = array(2);
+			if ($campaign->cust_bug_vis == "1") {
+				$conditions['status_id'] = array(2,4);
+			}
+		}
+		
 		$bugs      = $bug_model->find( array(
-			'conditions' => array(
-				'campaign_id' => $cp_id,
-				'publish'     => 1
-			)
+			'conditions' => $conditions
 		) );
 
-		$campaign = AppQ_Integration_Center_Admin::get_campaign( $cp_id );
 
 		$type     = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type', OBJECT_K );
 		$severity = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity', OBJECT_K );
@@ -444,7 +499,7 @@ class AppQ_Integration_Center_Admin
 			return;
 		}
 		$this->partial( 'bugs', array(
-			'bugs'     => $this->get_bugs( $id ),
+			'bugs'     => $this->get_bugs( $campaign ),
 			'campaign' => $campaign
 		) );
 	}

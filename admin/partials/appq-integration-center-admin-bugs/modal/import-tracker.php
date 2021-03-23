@@ -13,7 +13,9 @@
           <select name="source_id" class="ux-select" data-placeholder="<?php _e('Search campaign', $this->plugin_name); ?>">
             <option></option>
             <?php foreach ($campaigns as $campaign) {
-              printf('<option value="%1$s">%1$s - %2$s</option>', $campaign->id, $campaign->title);
+              if ($campaign->id != $current->id) {
+                printf('<option value="%1$s">%1$s - %2$s</option>', $campaign->id, $campaign->title);
+              }
             } ?>
           </select>
           <div class="row mt-5">

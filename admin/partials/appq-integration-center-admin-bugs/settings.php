@@ -97,7 +97,8 @@
 
 	$this->partial( 'bugs/modal/new-available-field' );
 	$this->partial( 'bugs/modal/import-tracker', [
-		'campaigns' => AppQ_Integration_Center_Admin::get_campaigns()
+		'campaigns' => AppQ_Integration_Center_Admin::get_campaigns(),
+		'current' => $campaign
 	] );
 	$this->partial( 'bugs/modal/edit-tracker', [
 		'campaign'     => $campaign,
