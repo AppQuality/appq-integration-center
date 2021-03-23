@@ -474,22 +474,11 @@ class AppQ_Integration_Center_Admin
 	public function bugs_page()
 	{
 		global $wp;
-		if ( ! array_key_exists( 'id', $_GET ) && ! array_key_exists( 'appq-integration-center', $wp->query_vars ) )
-		{
+		$id = $this->get_campaign_id();
+		if ($id == 0) {
 			$this->partial( 'not-found' );
 
 			return;
-		}
-		$id = 0;
-		if (array_key_exists( 'id', $_GET )) {
-			$id = $_GET['id'];
-		}
-		if (
-			!empty($wp->query_vars)
-			&& array_key_exists( 'appq-integration-center', $wp->query_vars ) 
-			&& !empty($wp->query_vars['appq-integration-center'])
-		) {
-			$id = $wp->query_vars['appq-integration-center'];
 		}
 		$campaign = $this->get_campaign( $id );
 		if ( ! $campaign )
@@ -562,5 +551,26 @@ class AppQ_Integration_Center_Admin
 			WHERE bug_id = %d AND integration = %s', $bug_id, $integration_type );
 
 		return $wpdb->get_var( $sql );
+	}
+	
+	
+	public function get_campaign_id() {
+		global $wp;
+		if ( ! array_key_exists( 'id', $_GET ) && ! array_key_exists( 'appq-integration-center', $wp->query_vars ) )
+		{
+			return 0;
+		}
+		$id = 0;
+		if (array_key_exists( 'id', $_GET )) {
+			$id = $_GET['id'];
+		}
+		if (
+			!empty($wp->query_vars)
+			&& array_key_exists( 'appq-integration-center', $wp->query_vars ) 
+			&& !empty($wp->query_vars['appq-integration-center'])
+		) {
+			$id = $wp->query_vars['appq-integration-center'];
+		}
+		return $id;
 	}
 }
