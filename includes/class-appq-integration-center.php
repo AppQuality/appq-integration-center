@@ -149,14 +149,16 @@ class AppQ_Integration_Center
 					wp_dequeue_style('material-bootstrap');
 					wp_dequeue_script('bootstrap');
 				});
-				wp_localize_script( $this->plugin_name, 'appq_ajax', array(
-					'url'   => admin_url( 'admin-ajax.php' ),
-					'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
-				) );
-				
-				wp_localize_script( $this->plugin_name, 'custom_object',array( 
-					'ajax_url' => admin_url( 'admin-ajax.php' ) 
-				) );
+				add_action('wp_enqueue_scripts',function(){
+					wp_localize_script( $this->plugin_name, 'appq_ajax', array(
+						'url'   => admin_url( 'admin-ajax.php' ),
+						'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
+					) );
+					
+					wp_localize_script( $this->plugin_name, 'custom_object',array( 
+						'ajax_url' => admin_url( 'admin-ajax.php' ) 
+					) );
+				},11);
 				
 				
 				$admin->enqueue_integration_scripts();
