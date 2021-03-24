@@ -53,6 +53,12 @@ function appq_upload_bugs_to_bugtracker()
 
 		$res = $upload_fn($cp_id,$bug_id);
 		if ($res['status']) {
+			if (array_key_exists('warning',$res)) {
+				wp_send_json_error(array(
+					'warning' => $res['warning'],
+					'message' => $res['message']
+				));
+			}
 			wp_send_json_success($res['message']);
 		} else {
 			wp_send_json_error($res['message']);

@@ -168,8 +168,13 @@
 					if (res.success) {
 						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
 					} else {
-						button.removeClass('text-secondary disabled')
-						toastr.error(res.data, 'Oh no!')
+						if (res.data.warning) {
+							button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+							toastr.warning(res.data.warning, 'Your bug was uploaded, but there was some errors')
+						} else {
+							button.removeClass('text-secondary disabled')
+							toastr.error(res.data, 'Oh no!')
+						}
 					}
 				},
 				error: function(res) {
