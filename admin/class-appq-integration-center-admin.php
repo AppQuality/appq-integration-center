@@ -543,6 +543,11 @@ class AppQ_Integration_Center_Admin
 		$this->partial( 'bugs/fields-mapping', [ 'campaign' => $campaign ] );
 	}
 
+	public function current_setup_edit_buttons( $campaign = null )
+	{
+		$this->partial( 'settings/current-setup-edit-buttons', [ 'campaign' => $campaign ] );
+	}
+
 	public static function get_uploaded_bug( $integration_type, $bug_id )
 	{
 		global $wpdb;
