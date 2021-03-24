@@ -517,9 +517,7 @@ class IntegrationCenterRestApi
 	 */
 	public function map_fields($bug)
 	{
-		$data = array();
-		$field_mapping = property_exists($this->configuration, 'field_mapping') ? json_decode($this->configuration->field_mapping, true) : array();
-		$field_mapping = array_merge($this->basic_configuration, $field_mapping);
+		$field_mapping = $this->get_field_mapping();
 
 		foreach ($field_mapping as $key => $value) {
 			$key = $this->bug_data_replace($bug, $key);
