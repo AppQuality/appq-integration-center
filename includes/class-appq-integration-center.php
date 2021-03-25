@@ -84,63 +84,81 @@ class AppQ_Integration_Center
 	}
 	
 	public function define_frontend_hooks(){
+		
+		$scripts = array(
+			'popper' => array(
+				'src' =>  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+				'version' => '1.12.9'
+			),
+			'bootstrap-4' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/bootstrap.min.js',
+				'version' => '4.1.3',
+				'dependencies' => array('popper')
+			),
+			'toastr-min' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/toastr.min.js',
+				'version' => '2.1.3',
+				'dependencies' => array('jquery')
+			),
+			'listjs' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.min.js',
+				'version' => '1.5.0'
+			),
+			'listjs-fuzzysearch' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.fuzzysearch.min.js',
+				'version' => '0.1.0'
+			),
+			'introjs' => array(
+				'src' => 'https://unpkg.com/intro.js/minified/intro.min.js',
+				'version' => '3.3.1'
+			),
+			$this->plugin_name .'-front' => array(
+				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/front.js',
+				'version' => '1.0',
+				'dependencies' => array('wp-i18n')
+			),
+			 $this->plugin_name => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js',
+				 'version' => '1.0',
+				 'dependencies' => array(
+						'jquery',
+						'listjs',
+						'listjs-fuzzysearch',
+						'bootstrap-4',
+						'toastr'
+					)
+			 ) 
+		);
+		$styles = array(
+			 'bootstrap-style' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/bootstrap.min.css',
+				 'version' => '4.1.3'
+			 ),
+			 'toastr' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/toastr.min.css',
+				 'version' => '2.1.3'
+			 ),
+			 $this->plugin_name => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/admin.css',
+				 'version' => '1.0',
+			 ),
+			 'material-bootstrap-ic' => array(
+				 'src' => get_stylesheet_directory_uri() .'/assets/css/material-bootstrap.css',
+				 'version' => '1.0',
+				 'dependencies' => array( $this->plugin_name )
+			 ),
+			 $this->plugin_name .'-front' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/front.css',
+				 'version' => '1.0',
+				 'dependencies' => array('bootstrap-3')
+			 ),
+		);
+		
 		$this->add_custom_frontoffice_page(
 			'appq-integration-center',
 			'appq-integration-center-frontoffice.php',
-			array(
-				 'bootstrap-style' => array(
-					 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/bootstrap.min.css',
-					 'version' => '4.1.3'
-				 ),
-				 'toastr' => array(
-					 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/toastr.min.css',
-					 'version' => '2.1.3'
-				 ),
-				 $this->plugin_name => array(
-					 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/admin.css',
-					 'version' => '1.0',
-				 ),
-				 'material-bootstrap-ic' => array(
-					 'src' => get_stylesheet_directory_uri() .'/assets/css/material-bootstrap.css',
-					 'version' => '1.0',
-					 'dependencies' => array( $this->plugin_name )
-				 ),
-				 $this->plugin_name .'-front' => array(
-					 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/front.css',
-					 'version' => '1.0',
-					 'dependencies' => array('bootstrap-3')
-				 ),
-			),
-			array(
-				'bootstrap-4' => array(
-					'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/bootstrap.min.js',
-					'version' => '4.1.3'
-				),
-				'toastr-min' => array(
-					'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/toastr.min.js',
-					'version' => '2.1.3',
-					'dependencies' => array('jquery')
-				),
-				'listjs' => array(
-					'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.min.js',
-					'version' => '1.5.0'
-				),
-				'listjs-fuzzysearch' => array(
-					'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.fuzzysearch.min.js',
-					'version' => '0.1.0'
-				),
-				 $this->plugin_name => array(
-					 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js',
-					 'version' => '1.0',
-					 'dependencies' => array(
-			 				'jquery',
-			 				'listjs',
-			 				'listjs-fuzzysearch',
-			 				'bootstrap-4',
-			 				'toastr'
-			 			)
-				 ) 
-			),
+			$styles,
+			$scripts,
 			function () {
 				$admin = new AppQ_Integration_Center_Admin($this->plugin_name,$this->version);
 				
