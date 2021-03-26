@@ -72,9 +72,9 @@
 		})
 		
 		if ($('#settings .settings-wizard').length) {
-			var wizardBtn = $('[data-target=#custom_tracker_settings_modal]')
+			var wizardBtn = $('[data-target="#custom_tracker_settings_modal"]')
 			.closest('.wrapper')
-			var importBtn = $('[data-target=#import_tracker_settings_modal]')
+			var importBtn = $('[data-target="#import_tracker_settings_modal"]')
 				.closest('.wrapper')
 			
 			if (wizardBtn.length) {
