@@ -3,7 +3,7 @@
 					<button id="update_default_bug" class="btn btn-secondary mr-1" title="Click to update the example bug previously uploaded" type="button">
 		<?= __( 'Update example issue', $this->plugin_name ) ?>
 					</button>
-					<a href="<?= $campaign->bugtracker->default_bug; ?>" target="_blank" class="btn btn-secondary"
+					<a href="<?= $campaign->bugtracker->default_bug; ?>" target="_blank" class="btn btn-secondary mr-1"
 						 title="<?= __( 'Show example issue', $this->plugin_name ) ?>">
 							<i class="fa fa-external-link"></i>
 					</a>
