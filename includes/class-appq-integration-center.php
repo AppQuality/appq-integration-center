@@ -208,6 +208,8 @@ class AppQ_Integration_Center
 
 			add_action( 'parse_request', function ( &$wp ) use($parameter,$template,$styles,$scripts,$fn){
 			    if ( array_key_exists( $parameter, $wp->query_vars ) ) {
+							global $custom_translation;
+							$custom_translation = true;
 							if ($fn) {
 								add_action('wp_enqueue_scripts',$fn);
 							}
