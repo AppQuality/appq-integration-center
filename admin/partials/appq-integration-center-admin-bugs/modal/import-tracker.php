@@ -10,8 +10,8 @@
       </div>
       <div class="modal-body form px-4">
         <form id="import_from_cp" class="modal-form pb-4">
-          <select name="source_id" class="ux-select" data-placeholder="<?php _e('Search campaign', $this->plugin_name); ?>">
-            <option></option>
+          <select data-clear data-parent="#import_from_cp" name="source_id" class="ux-select select2" data-placeholder="<?php _e('Search campaign', $this->plugin_name); ?>">
+            <option selected disabled></option>
             <?php foreach ($campaigns as $campaign) {
               if ($campaign->id != $current->id) {
                 printf('<option value="%1$s">%1$s - %2$s</option>', $campaign->id, $campaign->title);
