@@ -38,7 +38,7 @@
 		
 		if ($('#bugs-tabs-content .table .is_uploaded *').length) {
 			steps.push(	{ 
-				element: $('#bugs-tabs-content .table .is_uploaded')[0],
+				element: $('#bugs-tabs-content .table .is_uploaded > *').parent()[0],
 				intro: "Click here to go to bug on tracker"
 			})
 		} 
