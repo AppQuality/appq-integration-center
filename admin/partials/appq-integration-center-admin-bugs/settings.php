@@ -107,5 +107,8 @@
 		'campaign'     => $campaign,
 		'integrations' => $integrations,
 	] );
+	$this->partial( 'bugs/modal/api-key-modal', array(
+		'apikey' => $campaign->bugtracker->apikey
+	));
 	?>
 	</div>
