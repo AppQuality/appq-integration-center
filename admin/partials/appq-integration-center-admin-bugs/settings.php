@@ -93,9 +93,12 @@
 			$class->get_settings( $campaign, 'fields-settings' ) ?>
 	    </div><!-- END .fields_mapping -->
 	</div>
-	<?php endif;
-
+	<?php 
+	
 	$this->partial( 'bugs/modal/new-available-field' );
+	$this->partial( 'bugs/modal/delete-tracker-settings' );
+	endif;
+	
 	$this->partial( 'bugs/modal/import-tracker', [
 		'campaigns' => AppQ_Integration_Center_Admin::get_campaigns(),
 		'current' => $campaign
@@ -104,6 +107,5 @@
 		'campaign'     => $campaign,
 		'integrations' => $integrations,
 	] );
-	$this->partial( 'bugs/modal/delete-tracker-settings' );
 	?>
 	</div>
