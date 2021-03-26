@@ -109,13 +109,13 @@ class AppQ_Integration_Center_Admin
 	}
 
 	public function enqueue_integration_scripts() {
-		foreach($this->integrations as $i) {
+		foreach($this->get_integrations() as $i) {
 			$i['class']->enqueue_scripts($i['class']->plugin_name);
 		}
 	}
 	
 	public function enqueue_integration_styles() {
-		foreach($this->integrations as $i) {
+		foreach($this->get_integrations() as $i) {
 			$i['class']->enqueue_styles($i['class']->plugin_name);
 		}
 	}
@@ -403,10 +403,17 @@ class AppQ_Integration_Center_Admin
 	 * );
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public function get_integrations()
-	{
-		return $this->integrations;
-	}
+	 public function get_integrations() {
+	 	if (is_a_customer()) {
+	 		return array_filter($this->integrations,function($i){
+	 			return (
+	 				array_key_exists('visible_to_customer',$i)
+	 				&& $i['visible_to_customer']
+	 			);
+	 		});
+	 	}
+	 	return $this->integrations;
+	 }
 
 
 
