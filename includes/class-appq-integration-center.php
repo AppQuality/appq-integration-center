@@ -192,9 +192,12 @@ class AppQ_Integration_Center
 		$scripts = false,
 		$fn = false
 	) {
-		
+		add_action('plugins_loaded',function() use($parameter,$template,$styles,$scripts,$fn){
 			add_action( 'init', function () use($parameter){
-		    add_rewrite_rule( $parameter.'/([a-z0-9-]+)[/]?$', 'index.php?'.$parameter.'=$matches[1]', 'top' );
+				add_rewrite_rule( $parameter.'/([a-z0-9-]+)[/]?$', 'index.php?'.$parameter.'=$matches[1]' ,'top');
+			},8);
+			add_action( 'init', function () use($parameter){
+		    add_rewrite_rule( 'it/' .$parameter.'/([a-z0-9-]+)[/]?$', 'index.php?'.$parameter.'=$matches[1]&lang=it' ,'top');
 			},8);
 
 			add_filter( 'query_vars', function ( $query_vars ) use($parameter){
@@ -239,6 +242,8 @@ class AppQ_Integration_Center
 			    }
 			    return;
 			} );
+			
+		});
 	}
 	/**
 	 * Load the required dependencies for this plugin.
