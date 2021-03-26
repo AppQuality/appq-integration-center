@@ -107,8 +107,15 @@
 		'campaign'     => $campaign,
 		'integrations' => $integrations,
 	] );
+	$apikey = '';
+	if (
+		property_exists($campaign,'bugtracker') 
+		&& property_exists($campaign->bugtracker,'apikey')
+	) {
+		$apikey = $campaign->bugtracker->apikey;
+	}
 	$this->partial( 'bugs/modal/api-key-modal', array(
-		'apikey' => $campaign->bugtracker->apikey
+		'apikey' => $apikey
 	));
 	?>
 	</div>
