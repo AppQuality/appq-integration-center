@@ -14,14 +14,14 @@
         <div class="col d-flex flex-column">
             <div class="input-group mb-3">
               <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="Search..." aria-label="Search">
-              <small>Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)</small>
+              <small><?= __("Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)",$this->plugin_name); ?></small>
             </div>
         </div>
 
         <div class="col-sm-auto">
             <div class="btn-group" role="group" aria-label="table controls button group">
-                <button class="send-all btn btn-primary btn">Send All</button>
-                <button class="send-selected btn btn-primary btn">Send Selected</button>
+                <button class="send-all btn btn-primary btn"><?= __("Send All","integration-center") ?></button>
+                <button class="send-selected btn btn-primary btn"><?= __("Send Selected","integration-center") ?></button>
             </div>
         </div>
     </div>
@@ -30,12 +30,12 @@
         <tr>
             <th><input class="select_all" type="checkbox" aria-label="Select all for upload"></th>
             <th>#</th>
-            <th>Message</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Severity</th>
-            <th>Duplicated</th>
-            <th>Tags</th>
+            <th><?= __("Message","integration-center") ?></th>
+            <th><?= __("Category","integration-center") ?></th>
+            <th><?= __("Status","integration-center") ?></th>
+            <th><?= __("Severity","integration-center") ?></th>
+            <th><?= __("Duplicated","integration-center") ?></th>
+            <th><?= __("Tags","integration-center") ?></th>
             <th></th>
             <th></th>
         </tr>
@@ -79,5 +79,5 @@
     	<?php endforeach ?>
         </tbody>
     </table>
-    <button class="send-all btn-primary btn">Send All</button>
-    <button class="send-selected btn-primary btn">Send Selected</button>
+    <button class="send-all btn-primary btn"><?= __("Send All","integration-center") ?></button>
+    <button class="send-selected btn-primary btn"><?= __("Send Selected","integration-center") ?></button>

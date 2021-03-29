@@ -1,12 +1,11 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
 "POT-Creation-Date: 2021-03-29 15:08+0200\n"
-"PO-Revision-Date: 2021-03-29 12:19+0200\n"
+"PO-Revision-Date: 2021-03-29 15:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: AppQuality\n"
-"Language: en\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,281 +22,314 @@ msgstr ""
 #: admin/class-appq-integration-center-admin.php:162
 #: admin/class-appq-integration-center-admin.php:171
 msgid "Integration center"
-msgstr ""
+msgstr "Integration Center"
 
 #: admin/partials/appq-integration-center-admin-bugs.php:21
 msgid "Documentation"
-msgstr ""
+msgstr "Documentazione"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:12
 msgid "Field mapping"
-msgstr ""
+msgstr "Mapping campi"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:14
 msgid "Get mapping from bug"
-msgstr ""
+msgstr "Ottieni Mapping da issue"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:15
 msgid "New mapping field"
-msgstr ""
+msgstr "Nuovo mapping campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:20
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:23
 msgid "Content"
-msgstr ""
+msgstr "Contenuto"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:26
 msgid "Needs sanitizing"
-msgstr ""
+msgstr "Necessita sanitizzazione"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:29
 msgid "Contains JSON"
-msgstr ""
+msgstr "Contiene JSON"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:17
-msgid "Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)"
+msgid ""
+"Search by id, name, category, status, severity,tags or "
+"'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to "
+"search in AND (e.g. HIGH+approved)"
 msgstr ""
+"Ricerca per id, titolo, tipologia, status, severity, tags o "
+"'duplicated','unique','uploaded','to-upload'. La ricerca è in OR, utilizza + "
+"per cercare in AND (e.g. HIGH+approved)"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:23
 #: admin/partials/appq-integration-center-admin-bugs/list.php:82
 msgid "Send All"
-msgstr ""
+msgstr "Carica tutto"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:24
 #: admin/partials/appq-integration-center-admin-bugs/list.php:83
 msgid "Send Selected"
-msgstr ""
+msgstr "Carica selezionati"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:33
 msgid "Message"
-msgstr ""
+msgstr "Titolo"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:34
 msgid "Category"
-msgstr ""
+msgstr "Tipologia"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:35
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:36
 msgid "Severity"
-msgstr ""
+msgstr "Severity"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:37
 msgid "Duplicated"
-msgstr ""
+msgstr "Duplicato"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:38
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:6
 msgid "Delete current tracker settings?"
-msgstr ""
+msgstr "Cancellare le impostazioni del tracker?"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:17
 #: src/front/scripts/components/intro.js:105
 msgid "Delete settings"
-msgstr ""
+msgstr "Cancella impostazioni"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:21
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:44
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:26
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:44
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:6
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:18
 msgid "Setup your issue tracker"
-msgstr ""
+msgstr "Configura il tuo issue tracker"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:13
 msgid "Select Issue Tracker"
-msgstr ""
+msgstr "Seleziona il tuo Issue Tracker"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:40
 msgid "Save settings"
-msgstr ""
+msgstr "Salva impostazioni"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:6
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:30
 msgid "Import settings"
-msgstr ""
+msgstr "Importa Impostazioni"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:13
 msgid "Search campaign"
-msgstr ""
+msgstr "Cerca una campagna"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:23
 msgid "Import now"
-msgstr ""
+msgstr "Importa"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:6
 msgid "Add / Edit available field"
-msgstr ""
+msgstr "Aggiungi/modifica campo disponibile"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:16
 msgid "Source field"
-msgstr ""
+msgstr "Campo sorgente"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:17
 msgid "{Bug.xx}"
-msgstr ""
+msgstr "{Bug.xx}"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:24
 msgid "Target field"
-msgstr ""
+msgstr "Nuovo campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:25
 msgid "{Bug.yy}"
-msgstr ""
+msgstr "{Bug.yy}"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:40
 msgid "Save field"
-msgstr ""
+msgstr "Salva campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:56
 msgid "Field value"
-msgstr ""
+msgstr "Valore del campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:57
 msgid "Some value"
-msgstr ""
+msgstr "Un valore"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:64
 msgid "Map value"
-msgstr ""
+msgstr "Valore da mappare"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:65
 msgid "Some other value"
-msgstr ""
+msgstr "Un altro valore"
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:19
-msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+"quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo "
+"consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse "
+"cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat "
+"non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:28
 msgid "Import settings from an existing campaign"
-msgstr ""
+msgstr "Importa impostazioni da una campagna esistente"
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:29
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:38
-msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua."
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:37
 msgid "Create a new setup"
-msgstr ""
+msgstr "Crea una nuova impostazione"
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:39
 msgid "Setup manually"
-msgstr ""
+msgstr "Imposta manualmente"
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:67
 msgid "Available fields"
-msgstr ""
+msgstr "Campi disponibili"
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:79
 msgid "Add new field"
-msgstr ""
+msgstr "Aggiungi un nuovo campo"
 
 #: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:4
 msgid "Update example issue"
-msgstr ""
+msgstr "Modifica issue di esempio"
 
 #: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:7
 msgid "Show example issue"
-msgstr ""
+msgstr "Mostra issue di esempio"
 
 #: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:14
 msgid "Create example issue"
-msgstr ""
+msgstr "Crea issue di esempio"
 
 #: src/front/scripts/components/intro.js:10
-msgid "Read carefully the following steps to learn to integrate AppQuality's Issue Tracker with your company's one."
+msgid ""
+"Read carefully the following steps to learn to integrate AppQuality's Issue "
+"Tracker with your company's one."
 msgstr ""
+"Leggi con attenzione i seguenti passi per imparare a integrare l'Issue "
+"Tracker di AppQuality con quello della tua azienda."
 
 #: src/front/scripts/components/intro.js:15
-msgid "This is the full list of bugs created by tester for this specific Campaign"
+msgid ""
+"This is the full list of bugs created by tester for this specific Campaign"
 msgstr ""
+"Questa è la lista completa dei bug creati dai tester per questa specifica "
+"campagna"
 
 #: src/front/scripts/components/intro.js:20
 msgid "Click here to upload a specific bug"
-msgstr ""
+msgstr "Clicca qui per caricare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:26
 msgid "Click here to update a specific bug"
-msgstr ""
+msgstr "Clicca qui per aggiornare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:32
 msgid "Click here to delete a specific bug"
-msgstr ""
+msgstr "Clicca qui per cancellare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:38
 msgid "Click here to go to bug on your tracker"
-msgstr ""
+msgstr "Clicca qui per aprire il bug sul tuo tracker"
 
 #: src/front/scripts/components/intro.js:50
 msgid "You can upload all the list"
-msgstr ""
+msgstr "Puoi caricare tutta la lista"
 
 #: src/front/scripts/components/intro.js:54
 msgid "You can upload all the selected bugs"
-msgstr ""
+msgstr "Puoi caricare tutti i bug selezionati"
 
 #: src/front/scripts/components/intro.js:57
 msgid "But first, you need to setup the connection with your Issue Tracker"
-msgstr ""
+msgstr "Prima di tutto devi impostare la connessione con il tuo Issue Tracker"
 
 #: src/front/scripts/components/intro.js:62
 msgid "This is the summary of your settings for this campaign"
-msgstr ""
+msgstr "Questo è il riepilogo delle tue impostazioni per questa campagna"
 
 #: src/front/scripts/components/intro.js:73
-msgid "Configure a connection to your Issue Tracker if it's the first time you're pushing some bugs to it"
+msgid ""
+"Configure a connection to your Issue Tracker if it's the first time you're "
+"pushing some bugs to it"
 msgstr ""
+"Configura una connessione al tuo Issue Tracker se è la prima volta che stai "
+"inviando dei bug"
 
 #: src/front/scripts/components/intro.js:90
 msgid "You can create a new fake bug at anytime to test the settings"
-msgstr ""
+msgstr "Puoi creare un bug di esempio quando vuoi per testare le impostazioni"
 
 #: src/front/scripts/components/intro.js:96
 msgid "Update the fake bug used to test settings"
-msgstr ""
+msgstr "Modifica il bug di esempio per testare le impostazioni"
 
 #: src/front/scripts/components/intro.js:101
-msgid "Edit settings, this might come in handy also in the future if the token is expired or you change the project ID"
+msgid ""
+"Edit settings, this might come in handy also in the future if the token is "
+"expired or you change the project ID"
 msgstr ""
+"Modifica le impostazioni. Questo potrà esserti utile in futuro se il tuo "
+"token scade o se cambi l'id del progetto"
 
 #: src/front/scripts/components/intro.js:110
 msgid "Read bugs from your tracker"
-msgstr ""
+msgstr "Leggi i bug dal tuo tracker"
 
 #: src/front/scripts/components/intro.js:115
-msgid "This is the most important part, where you decide how to map and write the bug on your side starting from the info you have here."
+msgid ""
+"This is the most important part, where you decide how to map and write the "
+"bug on your side starting from the info you have here."
 msgstr ""
+"Questa è la parte più importante, dove decidi come mappare e scrivere il bug "
+"nel tuo tracker, partendo dalle informazioni che hai qui."
 
 #: src/front/scripts/components/intro.js:129
 msgid "Delete a single mapping"
-msgstr ""
+msgstr "Elimina un mapping"
 
 #: src/front/scripts/components/intro.js:146
 msgid "Done"
-msgstr ""
+msgstr "Fine"
 
 #: src/front/scripts/components/intro.js:147
 msgid "Skip"
-msgstr ""
+msgstr "Salta"
 
 #: src/front/scripts/components/intro.js:148
 msgid "← Back"
-msgstr ""
+msgstr "← Indietro"
 
 #: src/front/scripts/components/intro.js:149
 msgid "Next →"
-msgstr ""
+msgstr "Avanti →"
