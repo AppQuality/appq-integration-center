@@ -59,7 +59,7 @@
     				<?php if ($bug->uploaded) : ?>
     					<?php if (property_exists($bug,'bugtracker_id')) : ?>
                             <button data-bug-id="<?= $bug->id ?>" class="btn-link text-dark btn fa fa-upload update_bug"></button>
-                            <button data-bug-id="<?= $bug->id ?>" data-bugtracker-id="<?= $bug->bugtracker_id ?>" class="btn delete_issue fa fa-close text-danger"></button>
+                            <button data-bug-id="<?= $bug->id ?>" data-bugtracker-id="<?= $bug->bugtracker_id ?>" class="btn delete_issue fa fa-trash text-danger"></button>
     					<?php else : ?>
                             <span class="fa fa-upload text-secondary btn-flat btn"></span>
     					<?php endif ?>
@@ -79,5 +79,8 @@
     	<?php endforeach ?>
         </tbody>
     </table>
-    <button class="send-all btn-primary btn"><?= __("Send All","integration-center") ?></button>
-    <button class="send-selected btn-primary btn"><?= __("Send Selected","integration-center") ?></button>
+    
+    <div class="btn-group" role="group" aria-label="table controls button group">
+        <button class="send-all btn btn-primary btn"><?= __("Send All","appq-integration-center") ?></button>
+        <button class="send-selected btn btn-primary btn"><?= __("Send Selected","appq-integration-center") ?></button>
+    </div>
