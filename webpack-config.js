@@ -29,7 +29,7 @@ const config = {
   // One for frontend and one for the admin area.
   entry: {
     // frontend and admin will replace the [name] portion of the output config below.
-    // frontend: "./src/scripts/loader_frontend.js",
+    front: ["./src/front/styles/_loader.scss","./src/front/scripts/_loader.js"],
     admin: "./src/admin/scripts/_loader.js",
   },
 

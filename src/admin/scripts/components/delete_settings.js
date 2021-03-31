@@ -3,8 +3,7 @@
   $(document).ready(function () {
     $("#delete_tracker_settings").click(function (e) {
       e.preventDefault();
-      var srcParams = new URLSearchParams(window.location.search);
-      var cp_id = srcParams.has("id") ? srcParams.get("id") : -1;
+      var cp_id = $('#campaign_id').val();
       var data = [];
       data.push({
         name: "action",

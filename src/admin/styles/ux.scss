@@ -44,3 +44,33 @@
     }
   }
 }
+
+.fields-list {
+  .row {
+    border-bottom: 1px solid $grey-e;
+  }
+}
+
+.admin_page_integration-center-campaign .card {
+  max-width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg, .modal-xl {
+      max-width: 800px;
+  }
+}
+
+[data-clip-icon] {
+  position: absolute; 
+  right: 25px;
+}
+[data-clip-icon]::after {
+  content: '\f0ea'; 
+  font-family: FontAwesome; 
+}

@@ -108,6 +108,18 @@ class AppQ_Integration_Center_Admin
 		}
 	}
 
+	public function enqueue_integration_scripts() {
+		foreach($this->get_integrations() as $i) {
+			$i['class']->enqueue_scripts($i['class']->plugin_name);
+		}
+	}
+	
+	public function enqueue_integration_styles() {
+		foreach($this->get_integrations() as $i) {
+			$i['class']->enqueue_styles($i['class']->plugin_name);
+		}
+	}
+	
 	public function enqueueAdminAssets()
 	{
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -244,9 +256,21 @@ class AppQ_Integration_Center_Admin
 	{
 		global $wpdb;
 		$campaign_model = mvc_model( 'Campaign' );
-		$bugtrackers    = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1', OBJECT_K );
+		$sql = 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1';
+		
+		
+		$bugtrackers    = $wpdb->get_results( $sql , OBJECT_K );
 
-		$campaigns = $campaign_model->find();
+		$available_campaign_ids = AppQ_Integration_Center_Admin::get_available_campaign_ids();
+		
+		$campaigns = array();
+		if (!empty($available_campaign_ids)) {
+			$campaigns = $campaign_model->find(array(
+				'conditions' => array(
+					'id' => $available_campaign_ids
+				)
+			));
+		}
 		$campaigns = array_map( function ( $cp ) use ( $bugtrackers ) {
 			$cp->bugtracker  = array_key_exists( $cp->id, $bugtrackers ) ? $bugtrackers[ $cp->id ] : '';
 			$cp->credentials = array_key_exists( $cp->id, $bugtrackers );
@@ -256,30 +280,73 @@ class AppQ_Integration_Center_Admin
 
 		return $campaigns;
 	}
+	
+	public static function get_available_campaign_ids() {
+		global $wpdb;
+		$sql = 'SELECT id FROM wp_appq_evd_campaign';
+		if (is_a_customer()) {
+			$sql = '
+			SELECT cp.id
+			FROM wp_appq_customer c
+			         JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
+			         JOIN wp_appq_project p ON p.customer_id = c.id
+			         JOIN wp_appq_evd_campaign cp on p.id = cp.project_id
+			WHERE 
+				u2c.wp_user_id = %d
+			  AND (
+			    EXISTS(
+						SELECT * 
+						FROM wp_appq_user_to_project u2p 
+						WHERE u2p.wp_user_id = %d AND u2p.project_id = p.id
+					)
+			    OR NOT EXISTS(
+						SELECT * 
+						FROM wp_appq_user_to_project u2p 
+						WHERE u2p.project_id = p.id
+					)
+			  )';
+			$sql = $wpdb->prepare(
+				$sql,
+				get_current_user_id(),
+				get_current_user_id()
+			);
+		}
+		
+		return $wpdb->get_col($sql);
+		
+	}
 
 	/**
 	 * Get all Bugs of a Campaign with text values, tags and bugtracker data
 	 * @method get_bugs
 	 * @date   2019-10-25T12:51:29+020
 	 *
-	 * @param int $cp_id The id of the campaign
+	 * @param MvcObject $campaign  The campaign
 	 *
 	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_bugs( $cp_id )
+	public static function get_bugs( $campaign )
 	{
 		global $wpdb;
 
 		$bug_model = mvc_model( 'Bug' );
+		$conditions = array(
+			'campaign_id' => $campaign->id,
+			'publish'     => 1
+		);
+		
+		if (is_a_customer()) {
+			$conditions['status_id'] = array(2);
+			if ($campaign->cust_bug_vis == "1") {
+				$conditions['status_id'] = array(2,4);
+			}
+		}
+		
 		$bugs      = $bug_model->find( array(
-			'conditions' => array(
-				'campaign_id' => $cp_id,
-				'publish'     => 1
-			)
+			'conditions' => $conditions
 		) );
 
-		$campaign = AppQ_Integration_Center_Admin::get_campaign( $cp_id );
 
 		$type     = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type', OBJECT_K );
 		$severity = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity', OBJECT_K );
@@ -336,10 +403,17 @@ class AppQ_Integration_Center_Admin
 	 * );
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public function get_integrations()
-	{
-		return $this->integrations;
-	}
+	 public function get_integrations() {
+	 	if (is_a_customer()) {
+	 		return array_filter($this->integrations,function($i){
+	 			return (
+	 				array_key_exists('visible_to_customer',$i)
+	 				&& $i['visible_to_customer']
+	 			);
+	 		});
+	 	}
+	 	return $this->integrations;
+	 }
 
 
 
@@ -406,13 +480,14 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function bugs_page()
 	{
-		if ( ! array_key_exists( 'id', $_GET ) )
-		{
+		global $wp;
+		$id = $this->get_campaign_id();
+		if ($id == 0) {
 			$this->partial( 'not-found' );
 
 			return;
 		}
-		$campaign = $this->get_campaign( $_GET['id'] );
+		$campaign = $this->get_campaign( $id );
 		if ( ! $campaign )
 		{
 			$this->partial( 'not-found' );
@@ -420,7 +495,7 @@ class AppQ_Integration_Center_Admin
 			return;
 		}
 		$this->partial( 'bugs', array(
-			'bugs'     => $this->get_bugs( $_GET['id'] ),
+			'bugs'     => $this->get_bugs( $campaign ),
 			'campaign' => $campaign
 		) );
 	}
@@ -475,6 +550,11 @@ class AppQ_Integration_Center_Admin
 		$this->partial( 'bugs/fields-mapping', [ 'campaign' => $campaign ] );
 	}
 
+	public function current_setup_edit_buttons( $campaign = null )
+	{
+		$this->partial( 'settings/current-setup-edit-buttons', [ 'campaign' => $campaign ] );
+	}
+
 	public static function get_uploaded_bug( $integration_type, $bug_id )
 	{
 		global $wpdb;
@@ -483,5 +563,26 @@ class AppQ_Integration_Center_Admin
 			WHERE bug_id = %d AND integration = %s', $bug_id, $integration_type );
 
 		return $wpdb->get_var( $sql );
+	}
+	
+	
+	public function get_campaign_id() {
+		global $wp;
+		if ( ! array_key_exists( 'id', $_GET ) && ! array_key_exists( 'appq-integration-center', $wp->query_vars ) )
+		{
+			return 0;
+		}
+		$id = 0;
+		if (array_key_exists( 'id', $_GET )) {
+			$id = $_GET['id'];
+		}
+		if (
+			!empty($wp->query_vars)
+			&& array_key_exists( 'appq-integration-center', $wp->query_vars ) 
+			&& !empty($wp->query_vars['appq-integration-center'])
+		) {
+			$id = $wp->query_vars['appq-integration-center'];
+		}
+		return $id;
 	}
 }

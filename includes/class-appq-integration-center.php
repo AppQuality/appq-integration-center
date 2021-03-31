@@ -79,9 +79,174 @@ class AppQ_Integration_Center
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->define_frontend_hooks();
 		$this->define_admin_hooks();
 	}
+	
+	public function define_frontend_hooks(){
+		
+		$scripts = array(
+			'popper' => array(
+				'src' =>  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+				'version' => '1.12.9'
+			),
+			'bootstrap-4' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/bootstrap.min.js',
+				'version' => '4.1.3',
+				'dependencies' => array('popper')
+			),
+			'toastr-min' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/toastr.min.js',
+				'version' => '2.1.3',
+				'dependencies' => array('jquery')
+			),
+			'listjs' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.min.js',
+				'version' => '1.5.0'
+			),
+			'listjs-fuzzysearch' => array(
+				'src' =>  APPQ_INTEGRATION_CENTERURL . 'admin/js/list.fuzzysearch.min.js',
+				'version' => '0.1.0'
+			),
+			'introjs' => array(
+				'src' => 'https://unpkg.com/intro.js/minified/intro.min.js',
+				'version' => '3.3.1'
+			),
+			$this->plugin_name .'-front' => array(
+				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/front.js',
+				'version' => '1.0',
+				'dependencies' => array('wp-i18n')
+			),
+			 $this->plugin_name => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js',
+				 'version' => '1.0',
+				 'dependencies' => array(
+						'jquery',
+						'listjs',
+						'listjs-fuzzysearch',
+						'bootstrap-4',
+						'toastr'
+					)
+			 ) 
+		);
+		$styles = array(
+			 'bootstrap-style' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/bootstrap.min.css',
+				 'version' => '4.1.3'
+			 ),
+			 'toastr' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'admin/css/toastr.min.css',
+				 'version' => '2.1.3'
+			 ),
+			 $this->plugin_name => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/admin.css',
+				 'version' => '1.0',
+			 ),
+			 'material-bootstrap-ic' => array(
+				 'src' => get_stylesheet_directory_uri() .'/assets/css/material-bootstrap.css',
+				 'version' => '1.0',
+				 'dependencies' => array( $this->plugin_name )
+			 ),
+			 $this->plugin_name .'-front' => array(
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/css/front.css',
+				 'version' => '1.0',
+				 'dependencies' => array('bootstrap-3')
+			 ),
+		);
+		
+		$this->add_custom_frontoffice_page(
+			'appq-integration-center',
+			'appq-integration-center-frontoffice.php',
+			$styles,
+			$scripts,
+			function () {
+				$admin = new AppQ_Integration_Center_Admin($this->plugin_name,$this->version);
+				
+				add_action('wp_print_scripts',function(){
+					wp_dequeue_script('app-script');
+					wp_dequeue_style('material-bootstrap');
+					wp_dequeue_script('bootstrap');
+				});
+				add_action('wp_enqueue_scripts',function(){
+					wp_localize_script( $this->plugin_name, 'appq_ajax', array(
+						'url'   => admin_url( 'admin-ajax.php' ),
+						'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
+					) );
+					
+					wp_localize_script( $this->plugin_name, 'custom_object',array( 
+						'ajax_url' => admin_url( 'admin-ajax.php' ) 
+					) );
+				},11);
+				
+				
+				$admin->enqueue_integration_scripts();
+				$admin->enqueue_integration_styles();
+			}
+		);
+	}
 
+	private function add_custom_frontoffice_page(
+		$parameter,
+		$template,
+		$styles = false,
+		$scripts = false,
+		$fn = false
+	) {
+		add_action('plugins_loaded',function() use($parameter,$template,$styles,$scripts,$fn){
+			add_action( 'init', function () use($parameter){
+				add_rewrite_rule( $parameter.'/([a-z0-9-]+)[/]?$', 'index.php?'.$parameter.'=$matches[1]' ,'top');
+			},8);
+			add_action( 'init', function () use($parameter){
+		    add_rewrite_rule( 'it/' .$parameter.'/([a-z0-9-]+)[/]?$', 'index.php?'.$parameter.'=$matches[1]&lang=it' ,'top');
+			},8);
+
+			add_filter( 'query_vars', function ( $query_vars ) use($parameter){
+			    $query_vars[] = $parameter;
+			    return $query_vars;
+			} );
+			
+
+			add_action( 'parse_request', function ( &$wp ) use($parameter,$template,$styles,$scripts,$fn){
+			    if ( array_key_exists( $parameter, $wp->query_vars ) ) {
+							global $custom_translation;
+							$custom_translation = true;
+							if ($fn) {
+								add_action('wp_enqueue_scripts',$fn);
+							}
+							if ($styles) {
+								foreach($styles as $name => $style) {
+									if (array_key_exists('src',$style)) {
+										$version = array_key_exists('version',$style) ? $style['version'] : '1.0';
+										$dependencies = array_key_exists('dependencies',$style) ? $style['dependencies'] : array();
+										
+										add_action('wp_enqueue_scripts',function() use($name,$style,$dependencies,$version){
+											wp_enqueue_style( $name, $style['src'], $dependencies, $version );
+										});
+									}
+								}
+							}
+							if ($scripts) {
+								foreach($scripts as $name => $script) {
+									if (array_key_exists('src',$script)) {
+										$version = array_key_exists('version',$script) ? $script['version'] : '1.0';
+										$dependencies = array_key_exists('dependencies',$script) ? $script['dependencies'] : array();
+										
+										add_action('wp_enqueue_scripts',function() use($name,$script,$dependencies,$version){
+											wp_enqueue_script( $name, $script['src'], $dependencies, $version );
+										});
+									}
+								}
+							}
+							do_action('template_redirect');
+							do_action('wp');
+							include(dirname(dirname(__FILE__)).'/front/'.$template);
+			        exit();
+			    }
+			    return;
+			} );
+			
+		});
+	}
 	/**
 	 * Load the required dependencies for this plugin.
 	 *

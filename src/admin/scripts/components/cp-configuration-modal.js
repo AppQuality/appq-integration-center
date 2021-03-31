@@ -11,8 +11,7 @@
         var submit_btn = $(this).find('button[type="submit"]');
         var submit_btn_html = submit_btn.html();
         submit_btn.html('<i class="fa fa-spinner fa-spin"></i>');
-        var srcParams = new URLSearchParams(window.location.search);
-        var cp_id = srcParams.has("id") ? srcParams.get("id") : -1;
+  			var cp_id = $('#campaign_id').val()
         var data = $(this).serializeArray();
         data.push({
           name: "cp_id",

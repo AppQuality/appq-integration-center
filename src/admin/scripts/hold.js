@@ -71,6 +71,7 @@
 			$(this).closest('.custom_field_map').remove()
 		})
 		function addCustomFieldToModal(){
+			$('#add_new_field').removeAttr('disabled')
 			var current_maps = $('.custom_field_map').length
 			while( $('#custom_field_maps input[name="custom_map['+current_maps+'][key]"]').length != 0) {
 				current_maps++
@@ -116,24 +117,26 @@
 				e.preventDefault()
 				var self = this
 				var content = $(this).html()
-				$(this).html('<i class="fa fa-spinner fa-spin"></i>')
 				var cp_id = $('#cp_id').val()
-				var formData = $('#add_custom_map :input').serializeArray()
-				formData.push({'name':'cp_id', 'value':cp_id})
-				formData.push({'name':'action', 'value':"appq_add_custom_field"})
-				$.ajax({
-					type: "post",
-					dataType: "json",
-					url: custom_object.ajax_url,
-					data: formData
-				}).then(function(res){
-					if (res.success) {
-						location.reload()
-					} else {
-						toastr.error('There was an error adding custom map')
-						$(self).html(content)
-					}
-				})
+				if ($('#add_custom_map').valid()) {
+					$(this).html('<i class="fa fa-spinner fa-spin"></i>')
+					var formData = $('#add_custom_map :input').serializeArray()
+					formData.push({'name':'cp_id', 'value':cp_id})
+					formData.push({'name':'action', 'value':"appq_add_custom_field"})
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: custom_object.ajax_url,
+						data: formData
+					}).then(function(res){
+						if (res.success) {
+							location.reload()
+						} else {
+							toastr.error('There was an error adding custom map')
+							$(self).html(content)
+						}
+					})
+				}
 			})
 		}
 		
@@ -165,8 +168,13 @@
 					if (res.success) {
 						button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
 					} else {
-						button.removeClass('text-secondary disabled')
-						toastr.error(res.data, 'Oh no!')
+						if (res.data.warning) {
+							button.closest('tr').find('td.is_uploaded').append('<span class="fa fa-check"></span>')
+							toastr.warning(res.data.warning, 'Your bug was uploaded, but there was some errors')
+						} else {
+							button.removeClass('text-secondary disabled')
+							toastr.error(res.data, 'Oh no!')
+						}
 					}
 				},
 				error: function(res) {
@@ -280,8 +288,7 @@
 
 		});
 		$('#save_general_settings').click(function() {
-			var srcParams = new URLSearchParams(window.location.search)
-			var cp_id = srcParams.has('id') ? srcParams.get('id') : -1
+			var cp_id = $('#campaign_id').val()
 			var button = $(this)
 			var text = button.text()
 			var data = $('#general_settings').serializeArray()

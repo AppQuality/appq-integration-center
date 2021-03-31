@@ -12,21 +12,37 @@
  * @subpackage AppQ_Integration_Center/admin/partials
  */
 ?>
-
-<h2><?= $campaign->title ?></h2>
-<div>
+<input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
+<div class="d-flex justify-content-between">
+  <h2 class="py-3"><?= $campaign->title ?></h2>
+  <div class="d-flex align-items-center">
+    <div class="h4 mr-3">
+      <a class="clean" href="http://wiki.app-quality.com/index.php/Configurazioni_Integration_Center" target="_blank">
+        <span><?= __('Documentation',$this->plugin_name) ?></span>
+        <i class="fa fa-book"></i>
+      </a>
+    </div>
+    <div class="h4">
+      <a href="#" id="start-introjs" class="clean">
+        <i class="fa fa-question-circle"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="card">
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="bugs-tab" data-toggle="tab" href="#bugs_list">
+            <a class="nav-link active px-5 clean" id="bugs-tab" data-toggle="tab" href="#bugs_list">
                 Bugs
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
+            <a class="nav-link px-5 clean" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
                 Settings
             </a>
         </li>
     </ul>
+  <div class="card-body">
     <div class="tab-content" id="bugs-tabs-content">
         <input id="cp_id" type="hidden" value="<?= $campaign->id ?>"/>
         <div class="tab-pane active" id="bugs_list" role="tabpanel"
@@ -41,4 +57,5 @@
 			) ) ?>
         </div>
     </div>
+</div>
 </div>
