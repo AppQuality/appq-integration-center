@@ -1,7 +1,7 @@
 <?php
 /*
  * The Bugs list tab partial for upload
- * 
+ *
  * @Author: Davide Bizzi <clochard>
  * @Date:   23/10/2019
  * @Filename: list.php
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col d-flex flex-column">
             <div class="input-group mb-3">
-              <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="Search..." aria-label="Search">
+              <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="<?= __("Search...", "integration center search bugs input", $this->plugin_name); ?>" aria-label="Search">
               <small><?= __("Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)",$this->plugin_name); ?></small>
             </div>
         </div>
@@ -79,7 +79,7 @@
     	<?php endforeach ?>
         </tbody>
     </table>
-    
+
     <div class="btn-group" role="group" aria-label="table controls button group">
         <button class="send-all btn btn-primary btn"><?= __("Send All","appq-integration-center") ?></button>
         <button class="send-selected btn btn-primary btn"><?= __("Send Selected","appq-integration-center") ?></button>

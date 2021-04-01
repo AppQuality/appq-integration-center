@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-04-01 12:12+0200\n"
-"PO-Revision-Date: 2021-04-01 12:21+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2021-04-01 12:44+0200\n"
+"PO-Revision-Date: 2021-04-01 12:46+0200\n"
+"Last-Translator: Luca Cannarozzo <luca.cannarozzo@app-quality.com>\n"
 "Language-Team: AppQuality\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_x;_e;_n\n"
@@ -55,6 +55,10 @@ msgstr "Necessita sanitizzazione"
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:29
 msgid "Contains JSON"
 msgstr "Contiene JSON"
+
+#: admin/partials/appq-integration-center-admin-bugs/list.php:16
+msgid "Search..."
+msgstr "Cerca..."
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:17
 msgid ""
@@ -105,7 +109,6 @@ msgid "Delete current tracker settings?"
 msgstr "Cancellare le impostazioni del tracker?"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:17
-#: src/front/scripts/components/intro.js:105
 msgid "Delete settings"
 msgstr "Cancella impostazioni"
 
@@ -182,26 +185,9 @@ msgstr "Valore da mappare"
 msgid "Some other value"
 msgstr "Un altro valore"
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:19
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
-"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
-"quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo "
-"consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse "
-"cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat "
-"non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-msgstr ""
-
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:28
 msgid "Import settings from an existing campaign"
 msgstr "Importa impostazioni da una campagna esistente"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:29
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:38
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
-"tempor incididunt ut labore et dolore magna aliqua."
-msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:37
 msgid "Create a new setup"
@@ -232,6 +218,7 @@ msgid "Create example issue"
 msgstr "Crea issue di esempio"
 
 #: src/front/scripts/components/intro.js:10
+msgctxt "Integration Center Introjs"
 msgid ""
 "Read carefully the following steps to learn to integrate AppQuality's Issue "
 "Tracker with your company's one."
@@ -240,6 +227,7 @@ msgstr ""
 "Tracker di AppQuality con quello della tua azienda."
 
 #: src/front/scripts/components/intro.js:15
+msgctxt "Integration Center Introjs"
 msgid ""
 "This is the full list of bugs created by tester for this specific Campaign"
 msgstr ""
@@ -247,22 +235,27 @@ msgstr ""
 "campagna"
 
 #: src/front/scripts/components/intro.js:20
+msgctxt "Integration Center Introjs"
 msgid "Click here to upload a specific bug"
 msgstr "Clicca qui per caricare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:26
+msgctxt "Integration Center Introjs"
 msgid "Click here to update a specific bug"
 msgstr "Clicca qui per aggiornare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:32
+msgctxt "Integration Center Introjs"
 msgid "Click here to delete a specific bug"
 msgstr "Clicca qui per cancellare uno specifico bug"
 
 #: src/front/scripts/components/intro.js:38
+msgctxt "Integration Center Introjs"
 msgid "Click here to go to bug on your tracker"
 msgstr "Clicca qui per aprire il bug sul tuo tracker"
 
 #: src/front/scripts/components/intro.js:43
+msgctxt "Integration Center Introjs"
 msgid ""
 "Here you can filter the bug list.\n"
 "\t\t\t\t\t\tThe search is really powerful, you can search by ID or text if "
@@ -278,22 +271,27 @@ msgstr ""
 "potrai trovare una lista di queste funzionalità sotto la barra di ricerca."
 
 #: src/front/scripts/components/intro.js:50
+msgctxt "Integration Center Introjs"
 msgid "You can upload all the list"
 msgstr "Puoi caricare tutta la lista"
 
 #: src/front/scripts/components/intro.js:54
+msgctxt "Integration Center Introjs"
 msgid "You can upload all the selected bugs"
 msgstr "Puoi caricare tutti i bug selezionati"
 
 #: src/front/scripts/components/intro.js:57
+msgctxt "Integration Center Introjs"
 msgid "But first, you need to setup the connection with your Issue Tracker"
 msgstr "Prima di tutto devi impostare la connessione con il tuo Issue Tracker"
 
 #: src/front/scripts/components/intro.js:62
+msgctxt "Integration Center Introjs"
 msgid "This is the summary of your settings for this campaign"
 msgstr "Questo è il riepilogo delle tue impostazioni per questa campagna"
 
 #: src/front/scripts/components/intro.js:73
+msgctxt "Integration Center Introjs"
 msgid ""
 "Configure a connection to your Issue Tracker if it's the first time you're "
 "pushing some bugs to it"
@@ -302,6 +300,7 @@ msgstr ""
 "inviando dei bug"
 
 #: src/front/scripts/components/intro.js:85
+msgctxt "Integration Center Introjs"
 msgid ""
 "In order to be able to fill this settings make sure you have enough rights "
 "on your Issue Tracker and a bit of knowledge about how its API works, but "
@@ -312,14 +311,17 @@ msgstr ""
 "funzionano le API, ma non ti preoccupare, siamo qui per aiutarti"
 
 #: src/front/scripts/components/intro.js:90
+msgctxt "Integration Center Introjs"
 msgid "You can create a new fake bug at anytime to test the settings"
 msgstr "Puoi creare un bug di esempio quando vuoi per testare le impostazioni"
 
 #: src/front/scripts/components/intro.js:96
+msgctxt "Integration Center Introjs"
 msgid "Update the fake bug used to test settings"
 msgstr "Modifica il bug di esempio per testare le impostazioni"
 
 #: src/front/scripts/components/intro.js:101
+msgctxt "Integration Center Introjs"
 msgid ""
 "Edit settings, this might come in handy also in the future if the token is "
 "expired or you change the project ID"
@@ -327,11 +329,18 @@ msgstr ""
 "Modifica le impostazioni. Questo potrà esserti utile in futuro se il tuo "
 "token scade o se cambi l'id del progetto"
 
+#: src/front/scripts/components/intro.js:105
+msgctxt "Integration Center Introjs"
+msgid "Delete settings"
+msgstr "Cancella impostazioni"
+
 #: src/front/scripts/components/intro.js:110
+msgctxt "Integration Center Introjs"
 msgid "Read bugs from your tracker"
 msgstr "Leggi i bug dal tuo tracker"
 
 #: src/front/scripts/components/intro.js:115
+msgctxt "Integration Center Introjs"
 msgid ""
 "This is the most important part, where you decide how to map and write the "
 "bug on your side starting from the info you have here."
@@ -340,6 +349,7 @@ msgstr ""
 "nel tuo tracker, partendo dalle informazioni che hai qui."
 
 #: src/front/scripts/components/intro.js:119
+msgctxt "Integration Center Introjs"
 msgid ""
 "Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
 "and the name of the label that you should see.\n"
@@ -359,6 +369,7 @@ msgstr ""
 "Tracker."
 
 #: src/front/scripts/components/intro.js:125
+msgctxt "Integration Center Introjs"
 msgid ""
 "Here you will find a modal to better customize the mapping for a single field"
 msgstr ""
@@ -366,21 +377,26 @@ msgstr ""
 "ogni singolo campo"
 
 #: src/front/scripts/components/intro.js:129
+msgctxt "Integration Center Introjs"
 msgid "Delete a single mapping"
 msgstr "Elimina un mapping"
 
 #: src/front/scripts/components/intro.js:146
+msgctxt "Integration Center Introjs"
 msgid "Done"
 msgstr "Fine"
 
 #: src/front/scripts/components/intro.js:147
+msgctxt "Integration Center Introjs"
 msgid "Skip"
 msgstr "Salta"
 
 #: src/front/scripts/components/intro.js:148
+msgctxt "Integration Center Introjs"
 msgid "← Back"
 msgstr "← Indietro"
 
 #: src/front/scripts/components/intro.js:149
+msgctxt "Integration Center Introjs"
 msgid "Next →"
 msgstr "Avanti →"
