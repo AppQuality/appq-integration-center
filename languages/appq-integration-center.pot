@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-04-01 12:12+0200\n"
+"POT-Creation-Date: 2021-04-01 12:44+0200\n"
 "PO-Revision-Date: 2021-03-29 12:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: AppQuality\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_x:1,2c;_e;_n:1,2\n"
@@ -55,6 +55,10 @@ msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:29
 msgid "Contains JSON"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/list.php:16
+msgid "Search..."
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:17
@@ -176,17 +180,8 @@ msgstr ""
 msgid "Some other value"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:19
-msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-msgstr ""
-
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:28
 msgid "Import settings from an existing campaign"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:29
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:38
-msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:37
