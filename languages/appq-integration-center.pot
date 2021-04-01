@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-03-29 15:08+0200\n"
+"POT-Creation-Date: 2021-04-01 12:12+0200\n"
 "PO-Revision-Date: 2021-03-29 12:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: AppQuality\n"
@@ -10,10 +10,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: __;_x;_e;_n\n"
+"X-Poedit-KeywordsList: __;_x:1,2c;_e;_n:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
@@ -62,12 +62,12 @@ msgid "Search by id, name, category, status, severity,tags or 'duplicated','uniq
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:23
-#: admin/partials/appq-integration-center-admin-bugs/list.php:82
+#: admin/partials/appq-integration-center-admin-bugs/list.php:84
 msgid "Send All"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:24
-#: admin/partials/appq-integration-center-admin-bugs/list.php:83
+#: admin/partials/appq-integration-center-admin-bugs/list.php:85
 msgid "Send Selected"
 msgstr ""
 
@@ -100,7 +100,6 @@ msgid "Delete current tracker settings?"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:17
-#: src/front/scripts/components/intro.js:105
 msgid "Delete settings"
 msgstr ""
 
@@ -219,85 +218,138 @@ msgid "Create example issue"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:10
+msgctxt "Integration Center Introjs"
 msgid "Read carefully the following steps to learn to integrate AppQuality's Issue Tracker with your company's one."
 msgstr ""
 
 #: src/front/scripts/components/intro.js:15
+msgctxt "Integration Center Introjs"
 msgid "This is the full list of bugs created by tester for this specific Campaign"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:20
+msgctxt "Integration Center Introjs"
 msgid "Click here to upload a specific bug"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:26
+msgctxt "Integration Center Introjs"
 msgid "Click here to update a specific bug"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:32
+msgctxt "Integration Center Introjs"
 msgid "Click here to delete a specific bug"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:38
+msgctxt "Integration Center Introjs"
 msgid "Click here to go to bug on your tracker"
 msgstr ""
 
+#: src/front/scripts/components/intro.js:43
+msgctxt "Integration Center Introjs"
+msgid ""
+"Here you can filter the bug list.\n"
+"\t\t\t\t\t\tThe search is really powerful, you can search by ID or text if you are looking for a specific bug,\n"
+"\t\t\t\t\t\tbut most likely you will be willing to look groups of bugs by status etc.\n"
+"\t\t\t\t\t\tYou can see a list of feature below the search bar."
+msgstr ""
+
 #: src/front/scripts/components/intro.js:50
+msgctxt "Integration Center Introjs"
 msgid "You can upload all the list"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:54
+msgctxt "Integration Center Introjs"
 msgid "You can upload all the selected bugs"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:57
+msgctxt "Integration Center Introjs"
 msgid "But first, you need to setup the connection with your Issue Tracker"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:62
+msgctxt "Integration Center Introjs"
 msgid "This is the summary of your settings for this campaign"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:73
+msgctxt "Integration Center Introjs"
 msgid "Configure a connection to your Issue Tracker if it's the first time you're pushing some bugs to it"
 msgstr ""
 
+#: src/front/scripts/components/intro.js:85
+msgctxt "Integration Center Introjs"
+msgid "In order to be able to fill this settings make sure you have enough rights on your Issue Tracker and a bit of knowledge about how its API works, but don't worry, we're here to help"
+msgstr ""
+
 #: src/front/scripts/components/intro.js:90
+msgctxt "Integration Center Introjs"
 msgid "You can create a new fake bug at anytime to test the settings"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:96
+msgctxt "Integration Center Introjs"
 msgid "Update the fake bug used to test settings"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:101
+msgctxt "Integration Center Introjs"
 msgid "Edit settings, this might come in handy also in the future if the token is expired or you change the project ID"
 msgstr ""
 
+#: src/front/scripts/components/intro.js:105
+msgctxt "Integration Center Introjs"
+msgid "Delete settings"
+msgstr ""
+
 #: src/front/scripts/components/intro.js:110
+msgctxt "Integration Center Introjs"
 msgid "Read bugs from your tracker"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:115
+msgctxt "Integration Center Introjs"
 msgid "This is the most important part, where you decide how to map and write the bug on your side starting from the info you have here."
 msgstr ""
 
+#: src/front/scripts/components/intro.js:119
+msgctxt "Integration Center Introjs"
+msgid ""
+"Each row maps a Content to a Name, that is a Key in the Issue Tracker API and the name of the label that you should see.\n"
+"\t\t\t\t\t\t\t\tIn Content we invite you to use all the informations you find useful from our platform, format them as you prefer and then send it over, you can choose any field from the Available Field (also listed above).\n"
+"\t\t\t\t\t\t\t\tIn Name you need to use the proper naming that your Issue Tracker expects."
+msgstr ""
+
+#: src/front/scripts/components/intro.js:125
+msgctxt "Integration Center Introjs"
+msgid "Here you will find a modal to better customize the mapping for a single field"
+msgstr ""
+
 #: src/front/scripts/components/intro.js:129
+msgctxt "Integration Center Introjs"
 msgid "Delete a single mapping"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:146
+msgctxt "Integration Center Introjs"
 msgid "Done"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:147
+msgctxt "Integration Center Introjs"
 msgid "Skip"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:148
+msgctxt "Integration Center Introjs"
 msgid "← Back"
 msgstr ""
 
 #: src/front/scripts/components/intro.js:149
+msgctxt "Integration Center Introjs"
 msgid "Next →"
 msgstr ""

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-03-29 15:08+0200\n"
-"PO-Revision-Date: 2021-03-29 15:10+0200\n"
+"POT-Creation-Date: 2021-04-01 12:12+0200\n"
+"PO-Revision-Date: 2021-04-01 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: AppQuality\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_x;_e;_n\n"
@@ -67,12 +67,12 @@ msgstr ""
 "per cercare in AND (e.g. HIGH+approved)"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:23
-#: admin/partials/appq-integration-center-admin-bugs/list.php:82
+#: admin/partials/appq-integration-center-admin-bugs/list.php:84
 msgid "Send All"
 msgstr "Carica tutto"
 
 #: admin/partials/appq-integration-center-admin-bugs/list.php:24
-#: admin/partials/appq-integration-center-admin-bugs/list.php:83
+#: admin/partials/appq-integration-center-admin-bugs/list.php:85
 msgid "Send Selected"
 msgstr "Carica selezionati"
 
@@ -262,6 +262,21 @@ msgstr "Clicca qui per cancellare uno specifico bug"
 msgid "Click here to go to bug on your tracker"
 msgstr "Clicca qui per aprire il bug sul tuo tracker"
 
+#: src/front/scripts/components/intro.js:43
+msgid ""
+"Here you can filter the bug list.\n"
+"\t\t\t\t\t\tThe search is really powerful, you can search by ID or text if "
+"you are looking for a specific bug,\n"
+"\t\t\t\t\t\tbut most likely you will be willing to look groups of bugs by "
+"status etc.\n"
+"\t\t\t\t\t\tYou can see a list of feature below the search bar."
+msgstr ""
+"Qui puoi filtrare la tua lista di bug.\n"
+"\t\t\t\t\t\tLa ricerca è molto potente, puoi effettuare una ricerca per ID o "
+"testo all'interno di un bug specifico,\n"
+"\t\t\t\t\t\tma se volessi invece filtrare i bug per stato o altri parametri, "
+"potrai trovare una lista di queste funzionalità sotto la barra di ricerca."
+
 #: src/front/scripts/components/intro.js:50
 msgid "You can upload all the list"
 msgstr "Puoi caricare tutta la lista"
@@ -285,6 +300,16 @@ msgid ""
 msgstr ""
 "Configura una connessione al tuo Issue Tracker se è la prima volta che stai "
 "inviando dei bug"
+
+#: src/front/scripts/components/intro.js:85
+msgid ""
+"In order to be able to fill this settings make sure you have enough rights "
+"on your Issue Tracker and a bit of knowledge about how its API works, but "
+"don't worry, we're here to help"
+msgstr ""
+"Al fine di poter completare queste impostazioni assicurati di avere "
+"sufficienti permessi sul tuo Bug Tracker e un minimo di conoscenza su come "
+"funzionano le API, ma non ti preoccupare, siamo qui per aiutarti"
 
 #: src/front/scripts/components/intro.js:90
 msgid "You can create a new fake bug at anytime to test the settings"
@@ -313,6 +338,32 @@ msgid ""
 msgstr ""
 "Questa è la parte più importante, dove decidi come mappare e scrivere il bug "
 "nel tuo tracker, partendo dalle informazioni che hai qui."
+
+#: src/front/scripts/components/intro.js:119
+msgid ""
+"Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
+"and the name of the label that you should see.\n"
+"\t\t\t\t\t\t\t\tIn Content we invite you to use all the informations you "
+"find useful from our platform, format them as you prefer and then send it "
+"over, you can choose any field from the Available Field (also listed "
+"above).\n"
+"\t\t\t\t\t\t\t\tIn Name you need to use the proper naming that your Issue "
+"Tracker expects."
+msgstr ""
+"Ogni riga associa un Contenuto ad un Nome, che è una Chiave per le API del "
+"Bug Tracker e anche il nome dell'etichetta che dovresti vedere. \n"
+"\t\t\t\t\t\t\t\tTi invitiamo ad inserire nel Contenuto tutte le informazioni "
+"che trovi utili sulla nostra piattaforma, formattandole come preferisci, per "
+"poi inviarle. Puoi scegliere qualsiasi campo da quelli disponibili. Nel "
+"campo Nome devi usare la corretta nomenclatura che si aspetta il tuo Bug "
+"Tracker."
+
+#: src/front/scripts/components/intro.js:125
+msgid ""
+"Here you will find a modal to better customize the mapping for a single field"
+msgstr ""
+"Qui troverai una finestra per personalizzare al meglio l'associazione di "
+"ogni singolo campo"
 
 #: src/front/scripts/components/intro.js:129
 msgid "Delete a single mapping"
