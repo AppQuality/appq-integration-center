@@ -17,10 +17,14 @@
   <h2 class="py-3"><?= $campaign->title ?></h2>
   <div class="d-flex align-items-center">
     <div class="h4 mr-3">
-      <a class="clean" href="http://wiki.app-quality.com/index.php/Configurazioni_Integration_Center" target="_blank">
+      <?php 
+      $docs_link = get_field('appq_integration_center_docs','options');
+      if (!empty($docs_link)): ?>
+      <a class="clean" href="<?= $docs_link ?>" target="_blank">
         <span><?= __('Documentation',$this->plugin_name) ?></span>
         <i class="fa fa-book"></i>
       </a>
+      <?php endif; ?>
     </div>
     <div class="h4">
       <a href="#" id="start-introjs" class="clean">
