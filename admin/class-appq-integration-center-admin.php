@@ -283,7 +283,7 @@ class AppQ_Integration_Center_Admin
 	
 	public static function get_available_campaign_ids() {
 		global $wpdb;
-		$sql = 'SELECT id FROM wp_appq_evd_campaign';
+		$sql = false;
 		if (is_a_customer()) {
 			$sql = '
 			SELECT cp.id
@@ -310,8 +310,16 @@ class AppQ_Integration_Center_Admin
 				get_current_user_id(),
 				get_current_user_id()
 			);
+		} else {
+			$cp_item = new CampaignItem();
+			if ($cp_item->has_full_access()) {
+				$sql = 'SELECT id FROM wp_appq_evd_campaign';
+			}
 		}
 		
+		if (!$sql) {
+			return [];
+		}
 		return $wpdb->get_col($sql);
 		
 	}
