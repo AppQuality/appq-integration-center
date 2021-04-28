@@ -8,7 +8,7 @@
 			<?php if (in_array($cp_id,$available_campaign_ids)) : ?>
 				<?php $admin->bugs_page(); ?>
 			<?php else: ?>
-				<?php $admin->partial('not-found'); ?>
+				<?php handle_error_page(); ?>
 			<?php endif ?>
 		</section>
 	</div>
