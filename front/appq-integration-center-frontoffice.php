@@ -3,13 +3,13 @@
 <?php $available_campaign_ids = $admin->get_available_campaign_ids() ?>
 <?php get_header(); ?>
 <div id="base">
-	<div id="content">
-		<section>
-			<?php if (in_array($cp_id,$available_campaign_ids)) : ?>
-				<?php $admin->bugs_page(); ?>
-			<?php else: ?>
-				<?php handle_error_page(); ?>
-			<?php endif ?>
-		</section>
-	</div>
+    <?php if (in_array($cp_id,$available_campaign_ids)) : ?>
+		<div id="content">
+			<section>
+                <?php $admin->bugs_page(); ?>
+			</section>
+		</div>
+    <?php else: ?>
+        <?php handle_error_page(); ?>
+    <?php endif ?>
 </div>
