@@ -20,7 +20,7 @@ class IntegrationCenterRestApi
 		$this->custom_fields = AppQ_Integration_Center_Admin::get_custom_fields($this->cp_id);
 		$this->basic_configuration = array();
 		$this->content_type = 'html';
-		
+
 		$this->mappings = array(
 			'{Bug.message}' => array(
 				'prop' => 'message',
@@ -47,6 +47,11 @@ class IntegrationCenterRestApi
 				'description' => 'Note del bug',
 				'default' => '{Note}'
 			),
+            '{Bug.occurred_time}' => array(
+                'prop' => 'last_seen',
+                'description' => 'Data e ora di avvenimento del bug',
+                'default' => '{Data e ora di avvenimento del bug}'
+            ),
 			'{Bug.id}' => array(
 				'prop' => 'id',
 				'description' => 'ID del bug',
@@ -146,9 +151,9 @@ class IntegrationCenterRestApi
 				'description' => 'Link ai media del bug'
 			)
 		);
-		
+
 		$additional_fields = appq_get_campaign_additional_fields($cp_id);
-		
+
 		foreach ($additional_fields as $field) {
 			$this->mappings['{Bug.field.'.$field->slug.'}'] = array(
 				'prop' => $field->slug,
@@ -166,7 +171,7 @@ class IntegrationCenterRestApi
 	 * @author: Davide Bizzi <clochard>
 	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
 	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
-	 * @param  mixed                  $data  The data to post    
+	 * @param  mixed                  $data  The data to post
 	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
 	 */
 	public function http_post($url, $headers, $data)
@@ -180,7 +185,7 @@ class IntegrationCenterRestApi
 	 * @author: Davide Bizzi <clochard>
 	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
 	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
-	 * @param  mixed                  $data  The data to post    
+	 * @param  mixed                  $data  The data to post
 	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
 	 */
 	public function http_put($url, $headers, $data)
@@ -195,7 +200,7 @@ class IntegrationCenterRestApi
 	 * @author: Davide Bizzi <clochard>
 	 * @param  string                  $url     The url to PATCH. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
 	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
-	 * @param  mixed                  $data  The data to patch    
+	 * @param  mixed                  $data  The data to patch
 	 * @return Requests_Response                           https://developer.wordpress.org/reference/classes/requests_response/
 	 */
 	public function http_patch($url, $headers, $data)
@@ -216,7 +221,7 @@ class IntegrationCenterRestApi
 	{
 		return Requests::get($url, $headers);
 	}
-	
+
 	/**
 	 * Send delete request
 	 * @method http_delete
@@ -238,12 +243,12 @@ class IntegrationCenterRestApi
 	 * @author: Davide Bizzi <clochard>
 	 * @param  string                  $url     The url to POST. If you need basic authentication (with USER and PASS) use http(s)?://{USER}:{PASS}@{HOST}/{PATH}
 	 * @param  array                  $headers An associative array with the headers. E.g. array('Content-type' => 'application/json')
-	 * @param  mixed                  $data  The data to post  
+	 * @param  mixed                  $data  The data to post
 	 * @return object                           An object {status: bool, body: string, info: array, error: mixed}
-	 * 												status - if the request was successfully completed 
-	 * 												body - the body of the response 
-	 * 												info - an array of data as returned from curl_getinfo 
-	 * 												error - false if no error or the string describing the error 
+	 * 												status - if the request was successfully completed
+	 * 												body - the body of the response
+	 * 												info - an array of data as returned from curl_getinfo
+	 * 												error - false if no error or the string describing the error
 	 */
 	public function http_multipart_post($url, $headers, $data)
 	{
@@ -251,12 +256,12 @@ class IntegrationCenterRestApi
 		$user = $url['user'];
 		$pass = $url['pass'];
 		$url = $url['scheme'] . '://' . $url['host'] . $url['path'];
-		
+
 		$curl_headers = array();
 		foreach ($headers as $key => $value) {
 			$curl_headers[] = $key . ': '. $value;
 		}
-		
+
 		$ch = curl_init();
 		$options = array(
 			CURLOPT_URL => $url,
@@ -268,13 +273,13 @@ class IntegrationCenterRestApi
 		);
 		curl_setopt_array($ch, $options);
 		$req = curl_exec($ch);
-		
+
 		$res = new stdClass();
 		$res->status = !curl_errno($ch);
 		$res->body = $req;
 		$res->info = curl_getinfo($ch);
 		$res->error = $res->status ? false : curl_error($ch);
-		
+
 		curl_close($ch);
 		return $res;
 	}
@@ -290,7 +295,7 @@ class IntegrationCenterRestApi
 	{
 		return $this->configuration->endpoint;
 	}
-	
+
 	/**
 	 * Get the token
 	 * @method get_token
@@ -302,7 +307,7 @@ class IntegrationCenterRestApi
 	{
 		return $this->configuration->apikey;
 	}
-	
+
 	/**
 	 * Get the data for authorization
 	 * @method get_authorization
@@ -326,7 +331,7 @@ class IntegrationCenterRestApi
 	 * 											endpoint: string,		The apiurl
 	 * 											apikey: string,			The token/apikey
 	 * 											field_mapping:string,	A json representing the field mapping
-	 * 											is_active: bool,		true if is the current active integration for the cp 
+	 * 											is_active: bool,		true if is the current active integration for the cp
 	 * 											upload_media:bool		true if an issue should be sent with attachments
 	 * 										}
 	 */
@@ -354,11 +359,11 @@ class IntegrationCenterRestApi
 
 	public function apply_appq_data_manipulation_map($value,$args) {
 		$map = json_decode($args,true);
-		
+
 		foreach($map as $k => $v) {
 			$value = str_replace($k,$v,$value);
 		}
-		
+
 		return $value;
 	}
 
@@ -370,10 +375,10 @@ class IntegrationCenterRestApi
 			}
 			$value = str_replace($key,$item,$value);
 		}
-		
+
 		return $value;
 	}
-	
+
 	/**
 	 * Replace {placeholders} in a field mapping value with data from a bug
 	 * @method bug_data_replace
@@ -381,7 +386,7 @@ class IntegrationCenterRestApi
 	 * @author: Davide Bizzi <clochard>
 	 * @param  MvcObject                  $bug   The bug (MvcObject with additional fields on field property)
 	 * @param  string                  $value The string with {placeholders} to fill
-	 * @return string                         
+	 * @return string
 	 */
 	public function bug_data_replace($bug, $value)
 	{
@@ -403,7 +408,7 @@ class IntegrationCenterRestApi
 			}
 			$value = str_replace('::appq::' . $value_data,'',$value);
 		}
-		
+
 		if (!property_exists($bug,'type'))
 			$bug->type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
 		if (!property_exists($bug,'severity'))
@@ -420,7 +425,7 @@ class IntegrationCenterRestApi
 				$mappings[$map_name] = $bug->$prop;
 			}
 		}
-		
+
 		// Only if {Bug.tags} or {Bug.tags_list} exists
 		if (strpos($value,'{Bug.tags}') !== false || strpos($value,'{Bug.tags_list}') !== false )
 		{
@@ -430,7 +435,7 @@ class IntegrationCenterRestApi
 				$tags_list = '["' . implode('","',$tags) . '"]';
 				$mappings['{Bug.tags_list}'] = $tags_list;
 			}
-			
+
 			if (property_exists($bug,'tags')) {
 				$mappings['{Bug.tags}'] = $bug->tags;
 			}
@@ -458,26 +463,26 @@ class IntegrationCenterRestApi
 			}
 			$mappings['{Bug.media_links}'] = implode(' , ',$media);
 		}
-		
+
 		if (property_exists($bug, 'fields') && sizeof($bug->fields) > 0)
 		{
 			foreach ($bug->fields as $slug => $field_value) {
 				$mappings['{Bug.field.'.$slug.'}'] = $field_value;
 			}
 		}
-		
-		
+
+
 		$value = $this->apply_appq_data_manipulation($value,$mappings,$value_function,$value_function_args);
-		
-		
+
+
 		$value = $this->apply_appq_custom_mappings($bug,$value);
-		
-		
+
+
 		$value = nl2br($value);
 
 		return $value;
 	}
-	
+
 	private function apply_appq_custom_mappings($bug,$value) {
 		foreach($this->custom_fields as $custom_field) {
 			if (strpos($value,$custom_field->name) !== false) {
@@ -528,7 +533,7 @@ class IntegrationCenterRestApi
 		return $data;
 	}
 
-	/** 
+	/**
 	 * Send the issue
 	 * @method send_issue
 	 * @date   2019-10-30T15:21:44+010
@@ -536,7 +541,7 @@ class IntegrationCenterRestApi
 	 * @param  MvcObject                  $bug The bug to upload (MvcObject with additional fields on field property)
 	 * @return array 					An associative array {
 	 * 										status: bool,		If uploaded successfully
-	 * 										message: string		The response of the upload or an error message on error 
+	 * 										message: string		The response of the upload or an error message on error
 	 * 									}
 	 */
 	public function send_issue($bug)
@@ -567,7 +572,7 @@ class IntegrationCenterRestApi
 	 * @method get_bug
 	 * @date   2019-10-30T15:26:14+010
 	 * @author: Davide Bizzi <clochard>
-	 * @param  int                  $bug_id The bug id 
+	 * @param  int                  $bug_id The bug id
 	 * @return MvcObject                           (MvcObject with additional fields on field property)
 	 */
 	public function get_bug($bug_id)
@@ -591,10 +596,10 @@ class IntegrationCenterRestApi
 
 		return $bug;
 	}
-	
-	
+
+
 	public function get_default_bug() {
-		
+
 		$bug = new stdClass();
 		$bug->id = - $this->cp_id;
 		foreach ($this->mappings as $map => $data) {
@@ -603,7 +608,7 @@ class IntegrationCenterRestApi
 				$bug->$prop = $data['default'];
 			}
 		}
-		
+
 		return $bug;
 	}
 }
