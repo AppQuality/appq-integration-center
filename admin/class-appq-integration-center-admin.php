@@ -413,13 +413,13 @@ class AppQ_Integration_Center_Admin
 	 */
 	 public function get_integrations() {
 	 	if (is_a_customer()) {
-	 		return array_filter($this->integrations,function($i){
-	 			return (
-	 				array_key_exists('visible_to_customer',$i)
-	 				&& $i['visible_to_customer']
-	 			);
+	 		$integrations = array_filter($this->integrations, function($i) {
+				return $this->is_visible_to_customer($i['slug']);
 	 		});
+
+			return $integrations;
 	 	}
+		
 	 	return $this->integrations;
 	 }
 
@@ -592,5 +592,22 @@ class AppQ_Integration_Center_Admin
 			$id = $wp->query_vars['appq-integration-center'];
 		}
 		return $id;
+	}
+
+	public function get_integration_by_slug($slug) {
+		global $wpdb;
+		$campaign_id = $this->get_campaign_id();
+
+		$integration = $wpdb->get_row(
+			$wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND integration = %s', $campaign_id, $slug )
+		);		
+
+		return $integration;
+	}
+
+	public function is_visible_to_customer($slug = false) {
+		$integration = $this->get_integration_by_slug($slug);
+		
+		return ($integration->visible_to_customer === "1") ? true : false;
 	}
 }
