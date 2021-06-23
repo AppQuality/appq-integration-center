@@ -57,7 +57,7 @@
 	        <div class="settings-group mb-3">
 				<?php $class->current_setup( $campaign ) ?>
 	        </div>
-	        <div class="settings-group available_fields">
+	        <div class="settings-group available_fields accordion-fields-<?= $bugtracker_slug = $campaign->bugtracker->integration; ?>">
 	            <div class="accordion" id="accordionFields">
 	                <div class="row">
 	                    <div class="col-12">
