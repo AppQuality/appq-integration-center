@@ -66,10 +66,8 @@ class AppQ_Integration_Center_Activator
 
 		$charset_collate = $wpdb->get_charset_collate();
 
+		// Table: appq_integration_center_integrations
 		$table = $wpdb->prefix . "appq_integration_center_integrations";
-		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
-			$wpdb->query("DROP TABLE $table;");
-		}
 		$integrationsTable = "CREATE TABLE $table (
 			integration_id int NOT NULL AUTO_INCREMENT,
 			integration_slug varchar(32) NOT NULL,
@@ -80,10 +78,10 @@ class AppQ_Integration_Center_Activator
 		dbDelta($integrationsTable);
 
 		// Hardcoded integrations
-		$integrations = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_integrations');
+		$integrations = $wpdb->get_results('SELECT * FROM ' . $table);
 		if ($wpdb->num_rows <= 0) {
 			$sql = $wpdb->prepare(
-				"INSERT INTO wp_appq_integration_center_integrations 
+				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'azure-devops', 'Azure Devops', 1
@@ -91,7 +89,7 @@ class AppQ_Integration_Center_Activator
 			$wpdb->query($sql);
 
 			$sql = $wpdb->prepare(
-				"INSERT INTO wp_appq_integration_center_integrations 
+				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'csv_exporter', 'Csv Exporter', 1
@@ -99,7 +97,7 @@ class AppQ_Integration_Center_Activator
 			$wpdb->query($sql);
 
 			$sql = $wpdb->prepare(
-				"INSERT INTO wp_appq_integration_center_integrations 
+				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'jira', 'Jira', 1
@@ -107,6 +105,7 @@ class AppQ_Integration_Center_Activator
 			$wpdb->query($sql);
 		}
 
+		// Table: appq_integration_center_bugs
 		$table = $wpdb->prefix . "appq_integration_center_bugs";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
 			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
@@ -136,6 +135,7 @@ class AppQ_Integration_Center_Activator
 		) $charset_collate;";
 		dbDelta($campaignConfigTable);
 		
+		// Table: appq_integration_center_custom_map
 		$table = $wpdb->prefix . "appq_integration_center_custom_map";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
 			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
