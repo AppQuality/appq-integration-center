@@ -1,6 +1,10 @@
 <?php 
 
 function appq_set_visible_to_customer() {
+	if (!current_user_can('manage_options')) {
+		wp_send_json_error();
+	}
+
 	global $wpdb;
 	$slug = array_key_exists("slug", $_POST) ? $_POST["slug"] : "";
     $visible = array_key_exists("visible_to_customer", $_POST) ? intval($_POST["visible_to_customer"]) : 0;
