@@ -6,7 +6,7 @@
     <?php if (in_array($cp_id,$available_campaign_ids)) : ?>
 		<div id="content">
 			<section>
-                <?php $admin->bugs_page(); ?>
+        <?php $admin->bugs_page(); ?>
 			</section>
 		</div>
     <?php else: ?>
