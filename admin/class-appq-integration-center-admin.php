@@ -411,20 +411,15 @@ class AppQ_Integration_Center_Admin
 	 * @author: Davide Bizzi <clochard>
 	 */
 	public function get_integrations() {
-	 	if (is_a_customer()) {
-			$integrations = array();
-			foreach ($this->integrations as $k => $v) {
-				$visible_to_customer = $this->is_visible_to_customer($v['slug']);
-				$integrations[$k] = $v;
-				if ($visible_to_customer) {
-					$integrations[$k]['visible_to_customer'] = $visible_to_customer;
-				}
-			}
+		$integrations = array();
+		foreach ($this->integrations as $k => $v) {
+			$visible_to_customer = $this->is_visible_to_customer($v['slug']);
+			$integrations[$k] = $v;
+			$integrations[$k]['visible_to_customer'] = $visible_to_customer;
+		}
 
-			return $integrations;
-	 	}
-		
-	 	return $this->integrations;
+
+		return $integrations;
 	}
 
 
@@ -457,11 +452,7 @@ class AppQ_Integration_Center_Admin
 
 		$necessary_capability = get_option( $this->plugin_name . '_capability' );
 
-		$integrations = $this->integrations;
-		foreach ($integrations as $k => $v) {
-			$visible_to_customer = $this->is_visible_to_customer($v['slug']);
-			$integrations[$k]['visible_to_customer'] = $visible_to_customer;
-		}
+		$integrations = $this->get_integrations();
 
 		$settings             = array(
 			$this->plugin_name . '_capability' => array(
