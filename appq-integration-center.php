@@ -83,7 +83,6 @@ require plugin_dir_path(__FILE__) . 'includes/class-appq-integration-center.php'
  */
 function run_appq_integration_center()
 {
-
 	$plugin = new AppQ_Integration_Center();
 	$plugin->run();
 }

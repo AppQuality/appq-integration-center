@@ -156,7 +156,6 @@ class AppQ_Integration_Center_Admin
 			6
 		);
 
-
 		add_submenu_page(
 			'',
 			__( 'Integration center', $this->plugin_name ),
@@ -411,17 +410,22 @@ class AppQ_Integration_Center_Admin
 	 * );
 	 * @author: Davide Bizzi <clochard>
 	 */
-	 public function get_integrations() {
+	public function get_integrations() {
 	 	if (is_a_customer()) {
-	 		$integrations = array_filter($this->integrations, function($i) {
-				return $this->is_visible_to_customer($i['slug']);
-	 		});
+			$integrations = array();
+			foreach ($this->integrations as $k => $v) {
+				$visible_to_customer = $this->is_visible_to_customer($v['slug']);
+				$integrations[$k] = $v;
+				if ($visible_to_customer) {
+					$integrations[$k]['visible_to_customer'] = $visible_to_customer;
+				}
+			}
 
 			return $integrations;
 	 	}
 		
 	 	return $this->integrations;
-	 }
+	}
 
 
 
@@ -452,6 +456,13 @@ class AppQ_Integration_Center_Admin
 		sort( $capabilities );
 
 		$necessary_capability = get_option( $this->plugin_name . '_capability' );
+
+		$integrations = $this->integrations;
+		foreach ($integrations as $k => $v) {
+			$visible_to_customer = $this->is_visible_to_customer($v['slug']);
+			$integrations[$k]['visible_to_customer'] = $visible_to_customer;
+		}
+
 		$settings             = array(
 			$this->plugin_name . '_capability' => array(
 				'type'           => 'select',
@@ -460,8 +471,12 @@ class AppQ_Integration_Center_Admin
 				'select_options' => $capabilities
 			)
 		);
+
+		wp_enqueue_script( 'visible_to_customer', plugin_dir_url( __FILE__ ) . 'js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
+
 		$this->partial( 'settings', array(
 			'capabilities' => $capabilities,
+			'integrations' => $integrations,
 			'settings'     => $settings,
 			'group_name'   => $this->plugin_name . '_settings_group'
 		) );
@@ -495,6 +510,7 @@ class AppQ_Integration_Center_Admin
 
 			return;
 		}
+		
 		$campaign = $this->get_campaign( $id );
 		if ( ! $campaign )
 		{
@@ -596,16 +612,14 @@ class AppQ_Integration_Center_Admin
 
 	public function get_integration_by_slug($slug) {
 		global $wpdb;
-		$campaign_id = $this->get_campaign_id();
-
 		$integration = $wpdb->get_row(
-			$wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND integration = %s', $campaign_id, $slug )
-		);		
+			$wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_integrations WHERE integration_slug = %s', $slug )
+		);
 
 		return $integration;
 	}
 
-	public function is_visible_to_customer($slug = false) {
+	public function is_visible_to_customer($slug) {
 		$integration = $this->get_integration_by_slug($slug);
 		
 		return ($integration->visible_to_customer === "1") ? true : false;

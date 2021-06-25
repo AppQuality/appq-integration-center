@@ -64,11 +64,53 @@ class AppQ_Integration_Center_Activator
 		// CREATE TABLES
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$table = $wpdb->prefix . "appq_integration_center_integrations";
+		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$wpdb->query("DROP TABLE $table;");
+		}
+		$integrationsTable = "CREATE TABLE $table (
+			integration_id int NOT NULL AUTO_INCREMENT,
+			integration_slug varchar(32) NOT NULL,
+			integration_name varchar(32) NOT NULL,
+			visible_to_customer boolean default 1,
+     		PRIMARY KEY  (integration_id)
+		) $charset_collate;";
+		dbDelta($integrationsTable);
+
+		// Hardcoded integrations
+		$integrations = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_integrations');
+		if ($wpdb->num_rows <= 0) {
+			$sql = $wpdb->prepare(
+				"INSERT INTO wp_appq_integration_center_integrations 
+				(integration_slug,integration_name,visible_to_customer) 
+				VALUES (%s,%s,%d)", 
+				'azure-devops', 'Azure Devops', 1
+			);
+			$wpdb->query($sql);
+
+			$sql = $wpdb->prepare(
+				"INSERT INTO wp_appq_integration_center_integrations 
+				(integration_slug,integration_name,visible_to_customer) 
+				VALUES (%s,%s,%d)", 
+				'csv_exporter', 'Csv Exporter', 1
+			);
+			$wpdb->query($sql);
+
+			$sql = $wpdb->prepare(
+				"INSERT INTO wp_appq_integration_center_integrations 
+				(integration_slug,integration_name,visible_to_customer) 
+				VALUES (%s,%s,%d)", 
+				'jira', 'Jira', 1
+			);
+			$wpdb->query($sql);
+		}
+
 		$table = $wpdb->prefix . "appq_integration_center_bugs";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
 			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
 		}
-		$charset_collate = $wpdb->get_charset_collate();
 		$bugUploadedTable = "CREATE TABLE $table (
 			bug_id int NOT NULL,
 			integration varchar(32),
@@ -93,8 +135,6 @@ class AppQ_Integration_Center_Activator
      		PRIMARY KEY  (campaign_id, integration)
 		) $charset_collate;";
 		dbDelta($campaignConfigTable);
-		
-		
 		
 		$table = $wpdb->prefix . "appq_integration_center_custom_map";
 		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
