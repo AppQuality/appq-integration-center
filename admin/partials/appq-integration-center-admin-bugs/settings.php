@@ -57,11 +57,11 @@
 	        <div class="settings-group mb-3">
 				<?php $class->current_setup( $campaign ) ?>
 	        </div>
-	        <div class="settings-group available_fields accordion-fields-<?= $bugtracker_slug = $campaign->bugtracker->integration; ?>">
+	        <div class="settings-group available_fields accordion-fields-<?= $bugtracker_slug; ?>">
 	            <div class="accordion" id="accordionFields">
 	                <div class="row">
 	                    <div class="col-12">
-	                        <a class="btn btn-link btn-block p-0" type="button" data-toggle="collapse" data-target="#available_fields" aria-expanded="true" aria-controls="available_fields">
+	                        <a class="btn btn-link btn-block p-0" type="button" data-toggle="collapse" data-target="#available_fields_<?= $bugtracker_slug; ?>" aria-expanded="true" aria-controls="available_fields">
 	                            <div class="card-header">
 	                                <h5 class="m-0 text-left">
 										<?= __( 'Available fields', $this->plugin_name ); ?>
@@ -72,7 +72,7 @@
 	                    </div>
 	                </div>
 
-	                <div id="available_fields" class="collapse" aria-labelledby="available_fields" data-parent="#accordionFields">
+	                <div id="available_fields_<?= $bugtracker_slug; ?>" class="collapse" aria-labelledby="available_fields" data-parent="#accordionFields">
 	                    <div class="row">
 	                        <div class="col">
 	                            <button type="button" class="btn btn-secondary float-right m-2" data-toggle="modal" data-target="#add_field_modal">
