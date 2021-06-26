@@ -53,6 +53,9 @@
 					<?php endforeach ?>
 				</tbody>
 			</table>
+			<p class="submit">
+				<button id="save_visibility" type="button" class="button button-primary"><?= __( "Save Visibility", $this->plugin_name ); ?></button>
+			</p>
 		</div>
 		
 	</div>

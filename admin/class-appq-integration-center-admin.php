@@ -463,7 +463,9 @@ class AppQ_Integration_Center_Admin
 			)
 		);
 
-		wp_enqueue_script( 'visible_to_customer', plugin_dir_url( __FILE__ ) . 'js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
+		wp_enqueue_style( 'toastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css', array(), '2.1.3' );
+		wp_enqueue_script( 'toastr', APPQ_INTEGRATION_CENTERURL . 'admin/js/toastr.min.js', array(), '2.1.3', 'all' );
+		wp_enqueue_script( 'visible_to_customer_ajax', APPQ_INTEGRATION_CENTERURL . 'admin/js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
 
 		$this->partial( 'settings', array(
 			'capabilities' => $capabilities,
