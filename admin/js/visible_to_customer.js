@@ -1,24 +1,41 @@
 jQuery( document ).ready(function() {
-    jQuery('.visible_to_customer').on('change', setVisibleStatus);
+    jQuery('#save_visibility').on('click', setVisibleStatus);
 });
 
 const setVisibleStatus = function setVisibleStatus() {
-    let visible_to_customer = (jQuery(this).prop('checked')) ? 1 : 0;
-    let slug = jQuery(this).data('integration');
+    let integrations = {};
+    let checkboxes = jQuery('.visible_to_customer');
+    for (let i = 0; i < checkboxes.length; i++) {
+        integrations[checkboxes[i].dataset.integration] = (jQuery(checkboxes[i]).prop('checked')) ? 1 : 0;
+    }
+
+    let jsonIntegrations = JSON.stringify(integrations);
     
     jQuery.ajax( {
         url: custom_object.ajax_url,
         type: "POST",
         data: {
             action: "appq_set_visible_to_customer",
-            slug: slug,
-            visible_to_customer: visible_to_customer
+            integrations: jsonIntegrations
         },
         beforeSend: function() {
             jQuery(this).prop('disabled', true);
         },
-        success: function() {
+        success: function(response) {
             jQuery(this).prop('disabled', false);
+
+            // Parse Result
+            if ( typeof response !== "undefined" ) {
+                let result = response;
+
+                if (result.data) {
+                    if (result.data.message) {
+                        toastr[ result.data.type ]( result.data.message );
+                    }
+                }
+
+                location.reload();
+            }
         },
         error: function( response ) {
             console.log( response );
