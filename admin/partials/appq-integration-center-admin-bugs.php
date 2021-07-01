@@ -11,7 +11,8 @@
  * @package    AppQ_Integration_Center
  * @subpackage AppQ_Integration_Center/admin/partials
  */
-?>
+?> 
+
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <div class="d-flex justify-content-between">
   <h2 class="py-3"><?= $campaign->title ?></h2>
@@ -56,9 +57,9 @@
         <div class="tab-pane" id="settings" role="tabpanel"
              aria-labelledby="settings-tab">
             <?php $this->partial( 'bugs/settings', array(
-				'integrations' => $this->get_integrations(),
-				'campaign'     => $campaign
-			) ) ?>
+              'integrations' => $this->get_integrations(),
+              'campaign'     => $campaign
+            ) ) ?>
         </div>
     </div>
 </div>

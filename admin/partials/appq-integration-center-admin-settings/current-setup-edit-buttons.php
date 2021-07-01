@@ -19,9 +19,9 @@
 
 <?php endif; ?>
 
-			<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mr-1">
-					<i class="fa fa-pencil"></i>
-			</button>
-			<button data-toggle="modal" data-target="#reset_tracker_settings" type="button" class="btn btn-secondary mr-1">
-					<i class="fa fa-trash"></i>
-			</button>
+		<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mr-1">
+				<i class="fa fa-pencil"></i>
+		</button>
+		<button data-toggle="modal" data-target="#reset_tracker_settings" type="button" class="btn btn-secondary mr-1">
+				<i class="fa fa-trash"></i>
+		</button>
