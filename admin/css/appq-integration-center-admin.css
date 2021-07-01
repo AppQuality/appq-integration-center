@@ -41,6 +41,7 @@ input[type=checkbox].form-check-input {
    right: 0;
    top: -50%;
 }
+
 .bug_menu:after {
     border-width: 5px;
     border-style: solid;
