@@ -16,23 +16,25 @@
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <div class="d-flex justify-content-between">
   <h2 class="py-3"><?= $campaign->title ?></h2>
-  <div class="d-flex align-items-center">
-    <div class="h4 mr-3">
-      <?php 
-      $docs_link = get_field('appq_integration_center_docs','options');
-      if (!empty($docs_link)): ?>
-      <a class="clean" href="<?= $docs_link ?>" target="_blank">
-        <span><?= __('Documentation',$this->plugin_name) ?></span>
-        <i class="fa fa-book"></i>
-      </a>
-      <?php endif; ?>
-    </div>
-    <div class="h4">
-      <a href="#" id="start-introjs" class="clean">
-        <i class="fa fa-question-circle"></i>
-      </a>
-    </div>
-  </div>
+    <?php if ( isset( $campaign->bugtracker->integration ) && $campaign->bugtracker->integration !== "csv_exporter" ): ?>
+      <div class="d-flex align-items-center">
+        <div class="h4 mr-3">
+          <?php
+          $docs_link = get_field('appq_integration_center_docs','options');
+          if (!empty($docs_link)): ?>
+          <a class="clean" href="<?= $docs_link ?>" target="_blank">
+            <span><?= __('Documentation',$this->plugin_name) ?></span>
+            <i class="fa fa-book"></i>
+          </a>
+          <?php endif; ?>
+        </div>
+        <div class="h4">
+          <a href="#" id="start-introjs" class="clean">
+            <i class="fa fa-question-circle"></i>
+          </a>
+        </div>
+      </div>
+    <?php endif; ?>
 </div>
 <div class="card">
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
