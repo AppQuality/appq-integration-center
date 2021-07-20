@@ -8,7 +8,13 @@
  * @Last modified by:   clochard
  * @Last modified time: 26/05/2020
  */
-
+if(function_exists( 'pll_current_language'))
+{
+    $currentLanguage = pll_current_language() == pll_default_language() ? '' : pll_current_language();
+}else
+{
+    $currentLanguage = '';
+}
 ?>
     <div class="row">
         <div class="col d-flex flex-column">
@@ -30,6 +36,7 @@
         <tr>
             <th><input class="select_all" type="checkbox" aria-label="Select all for upload"></th>
             <th>#</th>
+			<th><?= __("View", "integration-center")?></th>
             <th><?= __("Message","integration-center") ?></th>
             <th><?= __("Category","integration-center") ?></th>
             <th><?= __("Status","integration-center") ?></th>
@@ -49,7 +56,8 @@
                     <input class="check" type="checkbox" aria-label="Select for upload">
                 </td>
                 <td class="id"><?= $bug->id ?></td>
-                <td class="name"><?= $bug->message ?></td>
+				<td><a href="<?= site_url() . "/$currentLanguage/bugs/show/$bug->id"?>"><i class="fa fa-search"></i></a></td>
+				<td class="name"><?= $bug->message ?></td>
                 <td class="category"><?= $bug->category ?></td>
                 <td class="status"><?= $bug->status ?></td>
                 <td class="severity"><?= $bug->severity ?></td>
