@@ -118,27 +118,75 @@
 				var self = this
 				var content = $(this).html()
 				var cp_id = $('#cp_id').val()
-				if ($('#add_custom_map').valid()) {
-					$(this).html('<i class="fa fa-spinner fa-spin"></i>')
-					var formData = $('#add_custom_map :input').serializeArray()
-					formData.push({'name':'cp_id', 'value':cp_id})
-					formData.push({'name':'action', 'value':"appq_add_custom_field"})
-					$.ajax({
-						type: "post",
-						dataType: "json",
-						url: custom_object.ajax_url,
-						data: formData
-					}).then(function(res){
-						if (res.success) {
-							location.reload()
-						} else {
-							toastr.error('There was an error adding custom map')
-							$(self).html(content)
-						}
-					})
+				$(this).html('<i class="fa fa-spinner fa-spin"></i>')
+				var formData = $('#add_custom_map :input').serializeArray()
+				if (formData.length >= 4) {
+					let valid = true;
+					formData.forEach(function(v,i) {
+						if (!v.value) valid = false;
+					});
+					if (valid) {
+						$(self).prop('disabled', true);
+						formData.push({'name':'cp_id', 'value':cp_id})
+						formData.push({'name':'action', 'value':"appq_add_custom_field"})
+						$.ajax({
+							type: "post",
+							dataType: "json",
+							url: custom_object.ajax_url,
+							data: formData
+						}).then(function(res){
+							if (res.success) {
+								toastr.success('Custom field added')
+								location.reload()
+							} else {
+								toastr.error('There was an error adding custom map')
+								$(self).html(content)
+								$(self).prop('disabled', false);
+							}
+						})
+					} else {
+						toastr.error('Please fill the mapping fields');
+						$(self).html(content)
+					}
 				}
 			})
 		}
+		$('.delete-available-field').click(function(e) {
+			e.preventDefault();
+			let self = this;
+			let content = $(this).html();
+			let cp_id = $('#cp_id').val();
+			$(this).html('<i class="fa fa-spinner fa-spin"></i>');
+			let name = $(this).data('name');
+			let data = [];
+			data.push({
+				'name': 'cp_id',
+				'value': cp_id
+			});
+			data.push({
+				'name': 'name',
+				'value': name
+			});
+			data.push({
+				'name' : 'action',
+				'value': 'appq_delete_custom_field'
+			});
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: custom_object.ajax_url,
+				data: data
+			}).then(function(res){
+				if (res.success) {
+					$('#accordionFields').find('tr[data-name="' + name + '"]').remove();
+					toastr.success('Custom field deleted');
+				} else {
+					toastr.error('There was an error adding custom map')
+					$(self).html(content)
+					$(self).prop('disabled', false);
+				}
+			})
+		});
 		
 		// $('.nav-item').click(function(){
 		// 	$(this).closest('.nav').find('.nav-link').removeClass('active')
