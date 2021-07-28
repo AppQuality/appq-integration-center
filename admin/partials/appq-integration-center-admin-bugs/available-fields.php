@@ -34,10 +34,10 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
                         <th scope="row"><?= $custom_field->name ?></th>
                         <td><?= isset($custom_field->map) ? implode(', ', (array) json_decode($custom_field->map)) : '' ?></td>
                         <td>
-                            <!--<button type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field">
+                            <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field">
                                 <i class="fa fa-pencil"></i>
-                            </button>-->
-                            <button type="button" class="btn btn-danger btn-icon-toggle delete-available-field"
+                            </button>
+                            <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field"
                                 data-name="<?= $custom_field->name ?>">
                                 <i class="fa fa-trash"></i>
                             </button>
@@ -48,3 +48,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
         </table>
     </div>
 </div>
+
+<?php
+$this->partial('settings/delete-available-field-modal', array());
+?>

@@ -151,13 +151,26 @@
 				}
 			})
 		}
-		$('.delete-available-field').click(function(e) {
+
+		$(document).on('click', '[data-target="#delete_available_field_modal"]', function() {
+			var modal_id = $(this).attr('data-target');
+			var input_name = $(modal_id).find('input[name="name"]');
+
+			input_name.val('');
+
+			var name = $(this).data('name');
+			if(!name) return;
+
+			input_name.val(name);
+		});
+
+		$('#delete_available_field').click(function(e) {
 			e.preventDefault();
 			let self = this;
 			let content = $(this).html();
 			let cp_id = $('#cp_id').val();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>');
-			let name = $(this).data('name');
+			let name = $('#delete_available_field_form').find('input[name="name"]').val();
 			let data = [];
 			data.push({
 				'name': 'cp_id',
@@ -181,10 +194,12 @@
 					$('#accordionFields').find('tr[data-name="' + name + '"]').remove();
 					toastr.success('Custom field deleted');
 				} else {
-					toastr.error('There was an error adding custom map')
+					toastr.error('There was an error deleting custom field')
 					$(self).html(content)
 					$(self).prop('disabled', false);
 				}
+
+				$('#delete_available_field_modal').modal('toggle');
 			})
 		});
 		
