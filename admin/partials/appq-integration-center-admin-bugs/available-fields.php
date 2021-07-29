@@ -1,7 +1,7 @@
 <?php
 /*
  * The general settings partial
- * 
+ *
  * @Author: Davide Bizzi <clochard>
  * @Date:   23/10/2019
  * @Filename: general-settings.php
@@ -15,9 +15,9 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
         <table class="table table-hover table-sm">
             <thead>
             <tr>
-                <th scope="col">AppQuality Bug Field</th>
-                <th scope="col">Description</th>
-                <th scope="col">Field Values</th>
+                <th scope="col">Bug Field</th>
+                <th scope="col">Field Value</th>
+                <th scope="col" class="col-1"></th>
             </tr>
             </thead>
             <tbody>
@@ -30,13 +30,25 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
                 <?php endforeach; ?>
 
                 <?php foreach ($custom_fields as $custom_field): ?>
-                    <tr>
+                    <tr data-name="<?= $custom_field->name ?>">
                         <th scope="row"><?= $custom_field->name ?></th>
-                        <td><?= $value['description'] ?></td>
                         <td><?= isset($custom_field->map) ? implode(', ', (array) json_decode($custom_field->map)) : '' ?></td>
+                        <td>
+<!--                            <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field">-->
+<!--                                <i class="fa fa-pencil"></i>-->
+<!--                            </button>-->
+                            <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field"
+                                data-name="<?= $custom_field->name ?>">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
+
+<?php
+$this->partial('settings/delete-available-field-modal', array());
+?>
