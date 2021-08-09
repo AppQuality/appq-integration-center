@@ -51,8 +51,7 @@
 				}
 			})
 		}
-		
-		
+
 		if($('.open_bug_menu').length) {
 			$('.open_bug_menu').click(function(e) {
 				e.preventDefault()
@@ -65,26 +64,18 @@
 				}
 			})
 		}
-		
-		
+
+		// Delete custom field map (row)
 		$('#custom_field_maps').on('click','.remove',function(){
 			$(this).closest('.custom_field_map').remove()
 		})
-		function addCustomFieldToModal(){
-			$('#add_new_field').removeAttr('disabled')
-			var current_maps = $('.custom_field_map').length
-			while( $('#custom_field_maps input[name="custom_map['+current_maps+'][key]"]').length != 0) {
-				current_maps++
-			}
-			var template = $($('#field_map_template').html())
-			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
-			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
-			$('#custom_field_maps').append(template)
-			return template
-		}
-		$('#addFieldModal').on('hidden.bs.modal', function (e) {
-			$('#addFieldModal input').val("")
-			$('#custom_field_maps *').remove()
+
+		// Clean modal values when closed
+		$('#add_field_modal, #edit_available_field_modal').on('hidden.bs.modal', function (e) {
+			$('#add_field_modal').find('input').val("");
+			$('#edit_available_field_modal').find('input').val("");
+			$('#custom_field_maps_add *').remove();
+			$('#custom_field_maps_edit *').remove();
 		})
 		
 		if ($('.available_fields .custom').length) {
@@ -102,55 +93,111 @@
 					field.find('.value').val(map[k])
 				});
 				
-				
-				modal.modal('show')
+				modal.modal('show');
 			})
 		}
-		
-		if($('#add_new_field_map').length) {
-			$('#add_new_field_map').click(function(e){
-				addCustomFieldToModal()
-			})
-		}
-		if ($('#add_new_field').length) {
-			$('#add_new_field').click(function(e){
-				e.preventDefault()
-				var self = this
-				var content = $(this).html()
-				var cp_id = $('#cp_id').val()
-				$(this).html('<i class="fa fa-spinner fa-spin"></i>')
-				var formData = $('#add_custom_map :input').serializeArray()
-				if (formData.length >= 4) {
-					let valid = true;
-					formData.forEach(function(v,i) {
-						if (!v.value) valid = false;
-					});
-					if (valid) {
-						$(self).prop('disabled', true);
-						formData.push({'name':'cp_id', 'value':cp_id})
-						formData.push({'name':'action', 'value':"appq_add_custom_field"})
-						$.ajax({
-							type: "post",
-							dataType: "json",
-							url: custom_object.ajax_url,
-							data: formData
-						}).then(function(res){
-							if (res.success) {
-								toastr.success('Custom field added')
-								location.reload()
-							} else {
-								toastr.error('There was an error adding custom map')
-								$(self).html(content)
-								$(self).prop('disabled', false);
-							}
-						})
-					} else {
-						toastr.error('Please fill the mapping fields');
+
+		$('.add_new_field_map').click(function(e){
+			addCustomFieldToModal($(this))
+		})
+
+		$('#add_new_field, #edit_field').click(function(e) {
+			e.preventDefault()
+			var self = this
+			var content = $(this).html()
+			var cp_id = $('#cp_id').val()
+			let form;
+			let action;
+			let fields_limit;
+			let succ_mess;
+			if ($(this).attr('id') === 'edit_field') {
+				form = '#edit_available_field_form';
+				action = 'appq_edit_custom_field';
+				fields_limit = 4;
+				succ_mess = "Custom field updated";
+			} else if ($(this).attr('id') === 'add_new_field') {
+				form = '#add_custom_map';
+				action = 'appq_add_custom_field';
+				fields_limit = 4;
+				succ_mess = "Custom field added";
+			}
+			var formData = $(form + ' input').serializeArray();
+			$(this).html('<i class="fa fa-spinner fa-spin"></i>')
+			if (formData.length >= fields_limit) {
+				let valid = true;
+				formData.forEach(function(v,i) {
+					if (!v.value) valid = false;
+				});
+				if (valid) {
+					$(self).prop('disabled', true);
+					formData.push({'name':'cp_id', 'value':cp_id})
+					formData.push({'name':'action', 'value':action})
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: custom_object.ajax_url,
+						data: formData
+					}).then(function(res){
+						if (res.success) {
+							toastr.success(succ_mess)
+							location.reload()
+						} else {
+							toastr.error('Something went wrong')
+						}
+
 						$(self).html(content)
-					}
+						$(self).prop('disabled', false);
+					})
+				} else {
+					toastr.error('Please fill the mapping fields');
+
+					$(self).html(content)
+					$(self).prop('disabled', false);
 				}
-			})
+			} else {
+				toastr.error('Please fill the mapping fields');
+
+				$(self).html(content)
+				$(self).prop('disabled', false);
+			}
+		})
+
+		function addCustomFieldToModal(button_add) {
+			let current_maps = $('.custom_field_map').length
+			while (button_add.parent().find('[id^="custom_field_maps_wrap"] input[name="custom_map['+current_maps+'][key]"]').length != 0) {
+				current_maps++
+			}
+			let template = $($('#field_map_template').html())
+			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
+			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
+			button_add.parent().find('[id^="custom_field_maps"]').append(template)
+			return template
 		}
+
+		$(document).on('click', '[data-target="#add_field_modal"]', function() {
+			$('#add_new_field').prop('disabled', false);
+		});
+
+		$(document).on('click', '[data-target="#edit_available_field_modal"]', function() {
+			var modal_id = $(this).attr('data-target');
+			var modal = $(modal_id);
+			var input_source = modal.find('input[name="custom_map_source"]');
+			var input_name = modal.find('input[name="custom_map_name"]');
+			var field_source = $(this).data('source');
+			var field_name = $(this).data('name');
+			var field_map = $(this).data('map');
+			let count = 0;
+			for (let value in field_map) {
+				let map = field_map[value];
+				addCustomFieldToModal($('#add_new_field_map'));
+				modal.find('input[name="custom_map[' + count + '][key]"]').val(value);
+				modal.find('input[name="custom_map[' + count + '][value]"]').val(map);
+				count++;
+			}
+
+			input_source.val(field_source);
+			input_name.val(field_name);
+		});
 
 		$(document).on('click', '[data-target="#delete_available_field_modal"]', function() {
 			var modal_id = $(this).attr('data-target');
@@ -170,6 +217,7 @@
 			let content = $(this).html();
 			let cp_id = $('#cp_id').val();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>');
+			$(this).prop('disabled', true);
 			let name = $('#delete_available_field_form').find('input[name="name"]').val();
 			let data = [];
 			data.push({
@@ -195,22 +243,14 @@
 					toastr.success('Custom field deleted');
 				} else {
 					toastr.error('There was an error deleting custom field')
-					$(self).html(content)
-					$(self).prop('disabled', false);
 				}
+
+				$(self).html(content);
+				$(self).prop('disabled', false);
 
 				$('#delete_available_field_modal').modal('toggle');
 			})
 		});
-		
-		// $('.nav-item').click(function(){
-		// 	$(this).closest('.nav').find('.nav-link').removeClass('active')
-		// 	$(this).find('.nav-link').addClass('active')
-		// })
-		// $('.nav-link').click(function(){
-		// 	$(this).parent().find('.nav-link').removeClass('active')
-		// 	$(this).addClass('active')
-		// })
 
 		$('#bugs-tabs-content .upload_bug').not('.disabled').click(function() {
 			var cp_id = $('#cp_id').val()
