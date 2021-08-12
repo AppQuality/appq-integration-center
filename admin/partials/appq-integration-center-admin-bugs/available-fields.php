@@ -17,7 +17,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
             <tr>
                 <th scope="col">Bug Field</th>
                 <th scope="col">Field Value</th>
-                <th scope="col" class="col-1"></th>
+                <th scope="col" class="col-2"></th>
             </tr>
             </thead>
             <tbody>
@@ -30,13 +30,21 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
                 <?php endforeach; ?>
 
                 <?php foreach ($custom_fields as $custom_field): ?>
+                    <?php
+                        $source = $custom_field->source;
+                        $name = $custom_field->name;
+                        $map = $custom_field->map;
+                    ?>
                     <tr data-name="<?= $custom_field->name ?>">
                         <th scope="row"><?= $custom_field->name ?></th>
                         <td><?= isset($custom_field->map) ? implode(', ', (array) json_decode($custom_field->map)) : '' ?></td>
-                        <td>
-<!--                            <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field">-->
-<!--                                <i class="fa fa-pencil"></i>-->
-<!--                            </button>-->
+                        <td class="text-right actions">
+                            <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field"
+                                data-source='<?= $source ?>'
+                                data-name='<?= $name ?>'
+                                data-map='<?= $map ?>'>
+                                <i class="fa fa-pencil"></i>
+                            </button>
                             <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field"
                                 data-name="<?= $custom_field->name ?>">
                                 <i class="fa fa-trash"></i>
@@ -50,5 +58,6 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
 </div>
 
 <?php
-$this->partial('settings/delete-available-field-modal', array());
+$this->partial('bugs/modal/delete-available-field-modal', array());
+$this->partial('bugs/modal/edit-available-field-modal', array());
 ?>

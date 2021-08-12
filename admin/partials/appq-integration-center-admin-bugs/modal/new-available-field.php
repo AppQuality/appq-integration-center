@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div style="z-index: 99999;" class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Add / Edit available field', $this->plugin_name)); ?>
+        <?php printf('<h5 class="modal-title">%s</h5>', __('Add available field', $this->plugin_name)); ?>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -30,13 +30,13 @@
         <div id="custom_field_maps_wrap">
           <div id="custom_field_maps">
           </div>
-          <button type="button" id="add_new_field_map" class="btn btn-secondary mt-2"><i class="fa fa-plus"></i></button>
+          <button type="button" id="add_new_field_map" class="btn btn-secondary mt-2 add_new_field_map"><i class="fa fa-plus"></i></button>
         </div>
 
         <div class="row mt-5 pb-4">
           <div class="col-6 col-lg-2 offset-lg-4 text-right">
             <?php printf(
-              '<button type="button" disabled id="add_new_field" class="btn btn-block btn-primary">%s</button>',
+              '<button type="button" id="add_new_field" class="btn btn-block btn-primary">%s</button>',
               __('Save field', $this->plugin_name)
             ); ?>
           </div>

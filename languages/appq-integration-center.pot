@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-04-01 12:44+0200\n"
+"POT-Creation-Date: 2021-08-12 10:44+0200\n"
 "PO-Revision-Date: 2021-03-29 12:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: AppQuality\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_x:1,2c;_e;_n:1,2\n"
@@ -20,12 +20,12 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: webpack-config.js\n"
 
 #: admin/class-appq-integration-center-admin.php:150
-#: admin/class-appq-integration-center-admin.php:162
-#: admin/class-appq-integration-center-admin.php:171
+#: admin/class-appq-integration-center-admin.php:161
+#: admin/class-appq-integration-center-admin.php:170
 msgid "Integration center"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs.php:21
+#: admin/partials/appq-integration-center-admin-bugs.php:26
 msgid "Documentation"
 msgstr ""
 
@@ -57,46 +57,67 @@ msgstr ""
 msgid "Contains JSON"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:16
+#: admin/partials/appq-integration-center-admin-bugs/list.php:22
 msgid "Search..."
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:17
+#: admin/partials/appq-integration-center-admin-bugs/list.php:23
 msgid "Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:23
-#: admin/partials/appq-integration-center-admin-bugs/list.php:84
+#: admin/partials/appq-integration-center-admin-bugs/list.php:29
+#: admin/partials/appq-integration-center-admin-bugs/list.php:92
 msgid "Send All"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:24
-#: admin/partials/appq-integration-center-admin-bugs/list.php:85
+#: admin/partials/appq-integration-center-admin-bugs/list.php:30
+#: admin/partials/appq-integration-center-admin-bugs/list.php:93
 msgid "Send Selected"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:33
+#: admin/partials/appq-integration-center-admin-bugs/list.php:39
+msgid "View"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/list.php:40
 msgid "Message"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:34
+#: admin/partials/appq-integration-center-admin-bugs/list.php:41
 msgid "Category"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:35
+#: admin/partials/appq-integration-center-admin-bugs/list.php:42
 msgid "Status"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:36
+#: admin/partials/appq-integration-center-admin-bugs/list.php:43
 msgid "Severity"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:37
+#: admin/partials/appq-integration-center-admin-bugs/list.php:44
 msgid "Duplicated"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:38
+#: admin/partials/appq-integration-center-admin-bugs/list.php:45
 msgid "Tags"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:6
+msgid "Delete this field?"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:19
+msgid "Delete field"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:23
+#: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:21
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:44
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:52
+#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:26
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:44
+msgid "Cancel"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:6
@@ -107,15 +128,57 @@ msgstr ""
 msgid "Delete settings"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:21
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:44
-#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:26
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:44
-msgid "Cancel"
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:6
+msgid "Edit available field"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:16
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:16
+msgid "Source field"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:17
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:17
+msgid "{Bug.xx}"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:24
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:24
+msgid "Target field"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:25
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:25
+msgid "{Bug.yy}"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:40
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:40
+msgid "Save field"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:55
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:56
+msgid "Field value"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:56
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:57
+msgid "Some value"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:63
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:64
+msgid "Map value"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:64
+#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:65
+msgid "Some other value"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:6
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:18
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:19
 msgid "Setup your issue tracker"
 msgstr ""
 
@@ -123,12 +186,12 @@ msgstr ""
 msgid "Select Issue Tracker"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:40
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:48
 msgid "Save settings"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:6
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:30
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:29
 msgid "Import settings"
 msgstr ""
 
@@ -141,74 +204,58 @@ msgid "Import now"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:6
-msgid "Add / Edit available field"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:16
-msgid "Source field"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:17
-msgid "{Bug.xx}"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:24
-msgid "Target field"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:25
-msgid "{Bug.yy}"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:40
-msgid "Save field"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:56
-msgid "Field value"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:57
-msgid "Some value"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:64
-msgid "Map value"
-msgstr ""
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:65
-msgid "Some other value"
+msgid "Add available field"
 msgstr ""
 
 #: admin/partials/appq-integration-center-admin-bugs/settings.php:28
 msgid "Import settings from an existing campaign"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:37
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:36
 msgid "Create a new setup"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:39
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:37
 msgid "Setup manually"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:67
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:65
 msgid "Available fields"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:79
+#: admin/partials/appq-integration-center-admin-bugs/settings.php:77
 msgid "Add new field"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:4
+#: admin/partials/appq-integration-center-admin-settings.php:34
+msgid "Save Capability"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-settings.php:39
+msgid "Customer Visibility"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-settings.php:46
+msgid "Add On"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-settings.php:47
+msgid "visible to customer"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-settings.php:57
+msgid "Save Visibility"
+msgstr ""
+
+#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:6
 msgid "Update example issue"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:7
+#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:9
 msgid "Show example issue"
 msgstr ""
 
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:14
+#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:16
 msgid "Create example issue"
 msgstr ""
 
