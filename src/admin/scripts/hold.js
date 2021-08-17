@@ -359,10 +359,10 @@
 			})
 		})
 		$('#bugs_list .select_all').change(function(){
-			if ($(this).attr('checked') == 'checked') {
-				$('#bugs_list input.check').attr('checked','checked')
+			if ($(this).prop('checked')) {
+				$('#bugs_list input.check').prop('checked', true)
 			} else {
-				$('#bugs_list input.check').removeAttr('checked')
+				$('#bugs_list input.check').prop('checked', false);
 			}
 		})
 
