@@ -32,7 +32,6 @@
                     </div>
                     <button type="button" id="add_new_field_map" class="btn btn-secondary mt-2 add_new_field_map"><i class="fa fa-plus"></i></button>
                 </div>
-
                 <div class="row mt-5 pb-4">
                     <div class="col-6 col-lg-2 offset-lg-4 text-right">
                         <?php printf(
@@ -44,6 +43,7 @@
                         <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', $this->plugin_name)); ?>
                     </div>
                 </div>
+            </form>
         </div>
         <script type="text/html" id="field_map_template">
             <div class="custom_field_map row mt-2">
