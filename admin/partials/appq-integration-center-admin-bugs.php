@@ -16,7 +16,7 @@
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <div class="d-flex justify-content-between">
   <h2 class="py-3"><?= $campaign->title ?></h2>
-    <?php if ( isset( $campaign->bugtracker->integration ) && $campaign->bugtracker->integration !== "csv_exporter" ): ?>
+    <?php if ( isset( $campaign->bugtracker->integration ) ) : ?>
       <div class="d-flex align-items-center">
         <div class="h4 mr-3">
           <?php
@@ -29,7 +29,7 @@
           <?php endif; ?>
         </div>
         <div class="h4">
-          <a href="#" id="start-introjs" class="clean">
+          <a href="#" id="start-introjs" class="clean" data-integration="<?= $campaign->bugtracker->integration; ?>">
             <i class="fa fa-question-circle"></i>
           </a>
         </div>
