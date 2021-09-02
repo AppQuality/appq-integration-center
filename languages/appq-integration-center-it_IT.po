@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-08-12 10:44+0200\n"
-"PO-Revision-Date: 2021-08-12 10:47+0200\n"
+"POT-Creation-Date: 2021-09-02 15:31+0200\n"
+"PO-Revision-Date: 2021-09-02 15:35+0200\n"
 "Last-Translator: Luca Cannarozzo <luca.cannarozzo@app-quality.com>\n"
 "Language-Team: AppQuality\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_x;_e;_n\n"
@@ -118,7 +118,7 @@ msgstr "Cancella campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:23
 #: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:21
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:44
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:43
 #: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:52
 #: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:26
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:44
@@ -157,7 +157,7 @@ msgstr "Nuovo campo"
 msgid "{Bug.yy}"
 msgstr "{Bug.yy}"
 
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:40
+#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:39
 #: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:40
 msgid "Save field"
 msgstr "Salva campo"
@@ -264,7 +264,7 @@ msgstr "Mostra issue di esempio"
 msgid "Create example issue"
 msgstr "Crea issue di esempio"
 
-#: src/front/scripts/components/intro.js:10
+#: src/front/scripts/components/intro.js:15
 msgctxt "Integration Center Introjs"
 msgid ""
 "Read carefully the following steps to learn to integrate AppQuality's Issue "
@@ -273,7 +273,7 @@ msgstr ""
 "Leggi con attenzione i seguenti passi per imparare a integrare l'Issue "
 "Tracker di AppQuality con quello della tua azienda."
 
-#: src/front/scripts/components/intro.js:15
+#: src/front/scripts/components/intro.js:20
 msgctxt "Integration Center Introjs"
 msgid ""
 "This is the full list of bugs created by tester for this specific Campaign"
@@ -281,63 +281,62 @@ msgstr ""
 "Questa è la lista completa dei bug creati dai tester per questa specifica "
 "campagna"
 
-#: src/front/scripts/components/intro.js:20
+#: src/front/scripts/components/intro.js:26
+msgctxt "Integration Center Introjs"
+msgid "Click here to export a specific bug"
+msgstr "Clicca qui per esportare un bug specifico"
+
+#: src/front/scripts/components/intro.js:31
 msgctxt "Integration Center Introjs"
 msgid "Click here to upload a specific bug"
 msgstr "Clicca qui per caricare uno specifico bug"
 
-#: src/front/scripts/components/intro.js:26
+#: src/front/scripts/components/intro.js:38
 msgctxt "Integration Center Introjs"
 msgid "Click here to update a specific bug"
 msgstr "Clicca qui per aggiornare uno specifico bug"
 
-#: src/front/scripts/components/intro.js:32
+#: src/front/scripts/components/intro.js:44
 msgctxt "Integration Center Introjs"
 msgid "Click here to delete a specific bug"
 msgstr "Clicca qui per cancellare uno specifico bug"
 
-#: src/front/scripts/components/intro.js:38
+#: src/front/scripts/components/intro.js:50
 msgctxt "Integration Center Introjs"
 msgid "Click here to go to bug on your tracker"
 msgstr "Clicca qui per aprire il bug sul tuo tracker"
 
-#: src/front/scripts/components/intro.js:43
+#: src/front/scripts/components/intro.js:63
 msgctxt "Integration Center Introjs"
-msgid ""
-"Here you can filter the bug list.\n"
-"\t\t\t\t\t\tThe search is really powerful, you can search by ID or text if "
-"you are looking for a specific bug,\n"
-"\t\t\t\t\t\tbut most likely you will be willing to look groups of bugs by "
-"status etc.\n"
-"\t\t\t\t\t\tYou can see a list of feature below the search bar."
-msgstr ""
-"Qui puoi filtrare la tua lista di bug.\n"
-"\t\t\t\t\t\tLa ricerca è molto potente, puoi effettuare una ricerca per ID o "
-"testo all'interno di un bug specifico,\n"
-"\t\t\t\t\t\tma se volessi invece filtrare i bug per stato o altri parametri, "
-"potrai trovare una lista di queste funzionalità sotto la barra di ricerca."
+msgid "You can export all the list"
+msgstr "Puoi exortare tutta la lista"
 
-#: src/front/scripts/components/intro.js:50
+#: src/front/scripts/components/intro.js:67
+msgctxt "Integration Center Introjs"
+msgid "You can export all the selected bugs"
+msgstr "Puoi esportare tutti i bug selezionati"
+
+#: src/front/scripts/components/intro.js:72
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the list"
 msgstr "Puoi caricare tutta la lista"
 
-#: src/front/scripts/components/intro.js:54
+#: src/front/scripts/components/intro.js:76
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the selected bugs"
 msgstr "Puoi caricare tutti i bug selezionati"
 
-#: src/front/scripts/components/intro.js:57
+#: src/front/scripts/components/intro.js:80
 msgctxt "Integration Center Introjs"
 msgid "But first, you need to setup the connection with your Issue Tracker"
 msgstr "Prima di tutto devi impostare la connessione con il tuo Issue Tracker"
 
-#: src/front/scripts/components/intro.js:62
+#: src/front/scripts/components/intro.js:85
 msgctxt "Integration Center Introjs"
 msgid "This is the summary of your settings for this campaign"
 msgstr "Questo è il riepilogo delle tue impostazioni per questa campagna"
 
-#: src/front/scripts/components/intro.js:73
+#: src/front/scripts/components/intro.js:96
 msgctxt "Integration Center Introjs"
 msgid ""
 "Configure a connection to your Issue Tracker if it's the first time you're "
@@ -346,28 +345,26 @@ msgstr ""
 "Configura una connessione al tuo Issue Tracker se è la prima volta che stai "
 "inviando dei bug"
 
-#: src/front/scripts/components/intro.js:85
-msgctxt "Integration Center Introjs"
-msgid ""
-"In order to be able to fill this settings make sure you have enough rights "
-"on your Issue Tracker and a bit of knowledge about how its API works, but "
-"don't worry, we're here to help"
-msgstr ""
-"Al fine di poter completare queste impostazioni assicurati di avere "
-"sufficienti permessi sul tuo Bug Tracker e un minimo di conoscenza su come "
-"funzionano le API, ma non ti preoccupare, siamo qui per aiutarti"
-
-#: src/front/scripts/components/intro.js:90
+#: src/front/scripts/components/intro.js:113
 msgctxt "Integration Center Introjs"
 msgid "You can create a new fake bug at anytime to test the settings"
 msgstr "Puoi creare un bug di esempio quando vuoi per testare le impostazioni"
 
-#: src/front/scripts/components/intro.js:96
+#: src/front/scripts/components/intro.js:119
 msgctxt "Integration Center Introjs"
 msgid "Update the fake bug used to test settings"
 msgstr "Modifica il bug di esempio per testare le impostazioni"
 
-#: src/front/scripts/components/intro.js:101
+#: src/front/scripts/components/intro.js:125
+msgctxt "Integration Center Introjs"
+msgid ""
+"Edit settings, here you can also select the file format and the fields for "
+"the export"
+msgstr ""
+"Modifica impostazioni, qui puoi anche selezionare il formato del file e i "
+"campi da esportare"
+
+#: src/front/scripts/components/intro.js:130
 msgctxt "Integration Center Introjs"
 msgid ""
 "Edit settings, this might come in handy also in the future if the token is "
@@ -376,17 +373,17 @@ msgstr ""
 "Modifica le impostazioni. Questo potrà esserti utile in futuro se il tuo "
 "token scade o se cambi l'id del progetto"
 
-#: src/front/scripts/components/intro.js:105
+#: src/front/scripts/components/intro.js:135
 msgctxt "Integration Center Introjs"
 msgid "Delete settings"
 msgstr "Cancella impostazioni"
 
-#: src/front/scripts/components/intro.js:110
+#: src/front/scripts/components/intro.js:140
 msgctxt "Integration Center Introjs"
 msgid "Read bugs from your tracker"
 msgstr "Leggi i bug dal tuo tracker"
 
-#: src/front/scripts/components/intro.js:115
+#: src/front/scripts/components/intro.js:146
 msgctxt "Integration Center Introjs"
 msgid ""
 "This is the most important part, where you decide how to map and write the "
@@ -395,55 +392,80 @@ msgstr ""
 "Questa è la parte più importante, dove decidi come mappare e scrivere il bug "
 "nel tuo tracker, partendo dalle informazioni che hai qui."
 
-#: src/front/scripts/components/intro.js:119
-msgctxt "Integration Center Introjs"
-msgid ""
-"Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
-"and the name of the label that you should see.\n"
-"\t\t\t\t\t\t\t\tIn Content we invite you to use all the informations you "
-"find useful from our platform, format them as you prefer and then send it "
-"over, you can choose any field from the Available Field (also listed "
-"above).\n"
-"\t\t\t\t\t\t\t\tIn Name you need to use the proper naming that your Issue "
-"Tracker expects."
-msgstr ""
-"Ogni riga associa un Contenuto ad un Nome, che è una Chiave per le API del "
-"Bug Tracker e anche il nome dell'etichetta che dovresti vedere. \n"
-"\t\t\t\t\t\t\t\tTi invitiamo ad inserire nel Contenuto tutte le informazioni "
-"che trovi utili sulla nostra piattaforma, formattandole come preferisci, per "
-"poi inviarle. Puoi scegliere qualsiasi campo da quelli disponibili. Nel "
-"campo Nome devi usare la corretta nomenclatura che si aspetta il tuo Bug "
-"Tracker."
-
-#: src/front/scripts/components/intro.js:125
-msgctxt "Integration Center Introjs"
-msgid ""
-"Here you will find a modal to better customize the mapping for a single field"
-msgstr ""
-"Qui troverai una finestra per personalizzare al meglio l'associazione di "
-"ogni singolo campo"
-
-#: src/front/scripts/components/intro.js:129
+#: src/front/scripts/components/intro.js:162
 msgctxt "Integration Center Introjs"
 msgid "Delete a single mapping"
 msgstr "Elimina un mapping"
 
-#: src/front/scripts/components/intro.js:146
+#: src/front/scripts/components/intro.js:179
 msgctxt "Integration Center Introjs"
 msgid "Done"
 msgstr "Fine"
 
-#: src/front/scripts/components/intro.js:147
+#: src/front/scripts/components/intro.js:180
 msgctxt "Integration Center Introjs"
 msgid "Skip"
 msgstr "Salta"
 
-#: src/front/scripts/components/intro.js:148
+#: src/front/scripts/components/intro.js:181
 msgctxt "Integration Center Introjs"
 msgid "← Back"
 msgstr "← Indietro"
 
-#: src/front/scripts/components/intro.js:149
+#: src/front/scripts/components/intro.js:182
 msgctxt "Integration Center Introjs"
 msgid "Next →"
 msgstr "Avanti →"
+
+#~ msgctxt "Integration Center Introjs"
+#~ msgid ""
+#~ "Here you can filter the bug list.\n"
+#~ "\t\t\t\t\t\tThe search is really powerful, you can search by ID or text "
+#~ "if you are looking for a specific bug,\n"
+#~ "\t\t\t\t\t\tbut most likely you will be willing to look groups of bugs by "
+#~ "status etc.\n"
+#~ "\t\t\t\t\t\tYou can see a list of feature below the search bar."
+#~ msgstr ""
+#~ "Qui puoi filtrare la tua lista di bug.\n"
+#~ "\t\t\t\t\t\tLa ricerca è molto potente, puoi effettuare una ricerca per "
+#~ "ID o testo all'interno di un bug specifico,\n"
+#~ "\t\t\t\t\t\tma se volessi invece filtrare i bug per stato o altri "
+#~ "parametri, potrai trovare una lista di queste funzionalità sotto la barra "
+#~ "di ricerca."
+
+#~ msgctxt "Integration Center Introjs"
+#~ msgid ""
+#~ "In order to be able to fill this settings make sure you have enough "
+#~ "rights on your Issue Tracker and a bit of knowledge about how its API "
+#~ "works, but don't worry, we're here to help"
+#~ msgstr ""
+#~ "Al fine di poter completare queste impostazioni assicurati di avere "
+#~ "sufficienti permessi sul tuo Bug Tracker e un minimo di conoscenza su "
+#~ "come funzionano le API, ma non ti preoccupare, siamo qui per aiutarti"
+
+#~ msgctxt "Integration Center Introjs"
+#~ msgid ""
+#~ "Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
+#~ "and the name of the label that you should see.\n"
+#~ "\t\t\t\t\t\t\t\tIn Content we invite you to use all the informations you "
+#~ "find useful from our platform, format them as you prefer and then send it "
+#~ "over, you can choose any field from the Available Field (also listed "
+#~ "above).\n"
+#~ "\t\t\t\t\t\t\t\tIn Name you need to use the proper naming that your Issue "
+#~ "Tracker expects."
+#~ msgstr ""
+#~ "Ogni riga associa un Contenuto ad un Nome, che è una Chiave per le API "
+#~ "del Bug Tracker e anche il nome dell'etichetta che dovresti vedere. \n"
+#~ "\t\t\t\t\t\t\t\tTi invitiamo ad inserire nel Contenuto tutte le "
+#~ "informazioni che trovi utili sulla nostra piattaforma, formattandole come "
+#~ "preferisci, per poi inviarle. Puoi scegliere qualsiasi campo da quelli "
+#~ "disponibili. Nel campo Nome devi usare la corretta nomenclatura che si "
+#~ "aspetta il tuo Bug Tracker."
+
+#~ msgctxt "Integration Center Introjs"
+#~ msgid ""
+#~ "Here you will find a modal to better customize the mapping for a single "
+#~ "field"
+#~ msgstr ""
+#~ "Qui troverai una finestra per personalizzare al meglio l'associazione di "
+#~ "ogni singolo campo"
