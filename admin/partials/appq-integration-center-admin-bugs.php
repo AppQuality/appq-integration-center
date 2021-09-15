@@ -39,14 +39,10 @@
 <div class="card">
     <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active px-5 clean" id="bugs-tab" data-toggle="tab" href="#bugs_list">
-                Bugs
-            </a>
+            <a class="nav-link active px-5 clean" id="bugs-tab" data-toggle="tab" href="#bugs_list"><?= __("Bugs", $this->plugin_name) ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-5 clean" id="settings-tab" data-toggle="tab" href="#settings" role="tab">
-                Settings
-            </a>
+            <a class="nav-link px-5 clean" id="settings-tab" data-toggle="tab" href="#settings" role="tab"><?= __("Settings", $this->plugin_name) ?></a>
         </li>
     </ul>
   <div class="card-body">

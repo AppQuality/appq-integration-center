@@ -10,7 +10,7 @@
  */
 ?>
 
-	<h4 class="pb-3">Tracker settings</h4>
+	<h4 class="pb-3"><?= __("Tracker settings", $this->plugin_name) ?></h4>
 	<div class="pb-4">
 		<?php if ( empty( $campaign->bugtracker ) ): ?>
 	        <div class="settings-wizard">

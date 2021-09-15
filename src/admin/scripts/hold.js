@@ -87,7 +87,7 @@
 				modal.find('input[name="custom_map_source"]').val(source)
 				modal.find('input[name="custom_map_name"]').val(name)
 				
-				Object.keys(map).forEach((k) => {
+				Object.keys(map).forEach(function(k) {
 					var field = addCustomFieldToModal()
 					field.find('.key').val(k)
 					field.find('.value').val(map[k])
@@ -106,10 +106,10 @@
 			var self = this
 			var content = $(this).html()
 			var cp_id = $('#cp_id').val()
-			let form;
-			let action;
-			let fields_limit;
-			let succ_mess;
+			var form;
+			var action;
+			var fields_limit;
+			var succ_mess;
 			if ($(this).attr('id') === 'edit_field') {
 				form = '#edit_available_field_form';
 				action = 'appq_edit_custom_field';
@@ -124,7 +124,7 @@
 			var formData = $(form + ' input').serializeArray();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>')
 			if (formData.length >= fields_limit) {
-				let valid = true;
+				var valid = true;
 				formData.forEach(function(v,i) {
 					if (!v.value) valid = false;
 				});
@@ -163,11 +163,11 @@
 		})
 
 		function addCustomFieldToModal(button_add) {
-			let current_maps = $('.custom_field_map').length
+			var current_maps = $('.custom_field_map').length
 			while (button_add.parent().find('[id^="custom_field_maps_wrap"] input[name="custom_map['+current_maps+'][key]"]').length != 0) {
 				current_maps++
 			}
-			let template = $($('#field_map_template').html())
+			var template = $($('#field_map_template').html())
 			template.find('input[name="key"]').attr('name','custom_map['+current_maps+'][key]')
 			template.find('input[name="value"]').attr('name','custom_map['+current_maps+'][value]')
 			button_add.parent().find('[id^="custom_field_maps"]').append(template)
@@ -186,9 +186,9 @@
 			var field_source = $(this).data('source');
 			var field_name = $(this).data('name');
 			var field_map = $(this).data('map');
-			let count = 0;
-			for (let value in field_map) {
-				let map = field_map[value];
+			var count = 0;
+			for (var value in field_map) {
+				var map = field_map[value];
 				addCustomFieldToModal($('#add_new_field_map'));
 				modal.find('input[name="custom_map[' + count + '][key]"]').val(value);
 				modal.find('input[name="custom_map[' + count + '][value]"]').val(map);
@@ -213,13 +213,13 @@
 
 		$('#delete_available_field').click(function(e) {
 			e.preventDefault();
-			let self = this;
-			let content = $(this).html();
-			let cp_id = $('#cp_id').val();
+			var self = this;
+			var content = $(this).html();
+			var cp_id = $('#cp_id').val();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>');
 			$(this).prop('disabled', true);
-			let name = $('#delete_available_field_form').find('input[name="name"]').val();
-			let data = [];
+			var name = $('#delete_available_field_form').find('input[name="name"]').val();
+			var data = [];
 			data.push({
 				'name': 'cp_id',
 				'value': cp_id

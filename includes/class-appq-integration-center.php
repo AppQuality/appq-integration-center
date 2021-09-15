@@ -84,7 +84,6 @@ class AppQ_Integration_Center
 	}
 	
 	public function define_frontend_hooks(){
-		
 		$scripts = array(
 			'popper' => array(
 				'src' =>  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
@@ -235,6 +234,9 @@ class AppQ_Integration_Center
 										
 										add_action('wp_enqueue_scripts',function() use($name,$script,$dependencies,$version){
 											wp_enqueue_script( $name, $script['src'], $dependencies, $version );
+											if ($name == "appq-integration-center-front") {
+                                                wp_set_script_translations('appq-integration-center-front', 'appq-integration-center', APPQ_INTEGRATION_CENTER_PATH . 'languages');
+                                            }
 										});
 									}
 								}
