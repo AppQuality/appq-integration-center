@@ -14,7 +14,7 @@ function appq_integration_center_import_tracker_settings() {
 		wp_send_json_error('Invalid cp_id "'.$cp_id.'" or source_id "'.$source_id.'"');
 	}
 	
-	$sql = $wpdb->prepare('SELECT * FROM wp_appq_integration_center_config WHERE campaign_id = %d',$source_id);
+	$sql = $wpdb->prepare('SELECT * FROM wp_appq_integration_center_config WHERE campaign_id = %d AND is_active = 1',$source_id);
 	$source = $wpdb->get_row($sql);
 	
 	if (empty($source)) {
