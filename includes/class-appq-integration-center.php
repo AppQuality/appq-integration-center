@@ -112,21 +112,21 @@ class AppQ_Integration_Center
 				'version' => '3.3.1'
 			),
 			$this->plugin_name .'-front' => array(
-				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/front.js',
+				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/dist/appq-integration-center-csv-addon.min.js',
 				'version' => '1.0',
 				'dependencies' => array('wp-i18n')
 			),
-			 $this->plugin_name => array(
+            $this->plugin_name => array(
 				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js',
 				 'version' => '1.0',
 				 'dependencies' => array(
-						'jquery',
-						'listjs',
-						'listjs-fuzzysearch',
-						'bootstrap-4',
-						'toastr'
-					)
-			 ) 
+                    'jquery',
+                    'listjs',
+                    'listjs-fuzzysearch',
+                    'bootstrap-4',
+                    'toastr'
+                 )
+            )
 		);
 		$styles = array(
 			 'bootstrap-style' => array(

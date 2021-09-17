@@ -10,6 +10,7 @@
 
 (function($) {
 	'use strict';
+	var _x =  wp.i18n._x
 
 	$(document).ready(function() {
 		
@@ -19,7 +20,7 @@
 				var cp_id = $('#cp_id').val()
 				var bug_name = $(this).closest('tr').find('td.name').text()
 				var bugtracker_id = $(this).attr('data-bugtracker-id')
-				if (confirm("Are you sure you want to delete issue "+ bugtracker_id +" - " + bug_name + '?')) {
+				if (confirm(__x("Are you sure you want to delete issue", "Integration Center delete issue", "appq-integration-center") + " " + bugtracker_id + " - " + bug_name + "?")) {
 					var button_text = $(this).removeClass('fa-close')
 					var self = this
 					$(this).html('<span class="fa fa-spin fa-spinner"></span>')
@@ -114,12 +115,12 @@
 				form = '#edit_available_field_form';
 				action = 'appq_edit_custom_field';
 				fields_limit = 4;
-				succ_mess = "Custom field updated";
+				succ_mess = _x("Custom field updated", "Integration Center edit available field", "appq-integration-center");
 			} else if ($(this).attr('id') === 'add_new_field') {
 				form = '#add_custom_map';
 				action = 'appq_add_custom_field';
 				fields_limit = 4;
-				succ_mess = "Custom field added";
+				succ_mess = _x("Custom field added", "Integration Center add available field", "appq-integration-center");
 			}
 			var formData = $(form + ' input').serializeArray();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>')
@@ -142,21 +143,19 @@
 							toastr.success(succ_mess)
 							location.reload()
 						} else {
-							toastr.error('Something went wrong')
+							toastr.error(__x("Something went wrong", "Integration Center available fields modal error", "appq-integration-center"));
 						}
 
 						$(self).html(content)
 						$(self).prop('disabled', false);
 					})
 				} else {
-					toastr.error('Please fill the mapping fields');
-
+					toastr.error(__x("Please fill the mapping fields", "Integration Center available fields modal error", "appq-integration-center"));
 					$(self).html(content)
 					$(self).prop('disabled', false);
 				}
 			} else {
-				toastr.error('Please fill the mapping fields');
-
+				toastr.error(__x("Please fill the mapping fields", "Integration Center available fields modal error", "appq-integration-center"));
 				$(self).html(content)
 				$(self).prop('disabled', false);
 			}
@@ -240,9 +239,9 @@
 			}).then(function(res){
 				if (res.success) {
 					$('#accordionFields').find('tr[data-name="' + name + '"]').remove();
-					toastr.success('Custom field deleted');
+					toastr.error(__x("Custom field deleted", "Integration Center delete custom field", "appq-integration-center"));
 				} else {
-					toastr.error('There was an error deleting custom field')
+					toastr.error(__x("There was an error deleting custom field", "Integration Center delete custom field error", "appq-integration-center"));
 				}
 
 				$(self).html(content);
@@ -276,13 +275,13 @@
 							toastr.warning(res.data.warning, 'Your bug was uploaded, but there was some errors')
 						} else {
 							button.removeClass('text-secondary disabled')
-							toastr.error(res.data, 'Oh no!')
+							toastr.error(res.data)
 						}
 					}
 				},
 				error: function(res) {
 					button.removeClass('fa-spinner fa-spin text-secondary').addClass('fa-upload')
-					toastr.error(JSON.stringify(res), 'Oh no!')
+					toastr.error(JSON.stringify(res))
 				}
 			});
 		})
@@ -303,15 +302,15 @@
 				success: function(res) {
 					button.removeClass('fa-spinner fa-spin').addClass('fa-upload')
 					if (res.success) {
-						toastr.success('Updated!')
+						toastr.success(__x('Updated!', "Integration Center available fields modal error", "appq-integration-center"))
 					} else {
 						button.removeClass('text-secondary disabled')
-						toastr.error(res.data, 'Oh no!')
+						toastr.error(res.data)
 					}
 				},
 				error: function(res) {
 					button.removeClass('fa-spinner fa-spin text-secondary').addClass('fa-upload')
-					toastr.error(JSON.stringify(res), 'Oh no!')
+					toastr.error(JSON.stringify(res))
 				}
 			});
 		})
@@ -348,7 +347,7 @@
 
 		$('#bugs_list .send-all').click(function(e){
 			e.preventDefault()
-			if (confirm('Are you sure you want to send ALL the bugs? It will take a while. The list can contain REFUSED and PENDING bugs, if you want to send only some bugs use Send Selected')) {
+			if (confirm(__x("Are you sure you want to process ALL the bugs? It will take a while. The list could contain REFUSED and PENDING bugs. If you want to send only some bugs, please use the \"Send Selected\" button.", "Integration Center send all confirm", "appq-integration-center"))) {
 				$('#bugs_list .fa-upload').not('.text-secondary').click()
 			}
 		})
@@ -388,7 +387,6 @@
 				})
 				return found
 			})
-
 		});
 		$('#save_general_settings').click(function() {
 			var cp_id = $('#campaign_id').val()
@@ -434,16 +432,16 @@
 				success: function(res) {
 					button.html(text)
 					if (!res.success) {
-						toastr.error(res.data, 'Oh no!')
+						toastr.error(res.data)
 					} else {
-						toastr.success('Default bug uploaded')
+						toastr.success(__x("Default bug uploaded", "Integration Center default bug upload", "appq-integration-center"))
 						button.prop('disabled',true)
 						location.reload()
 					}
 				},
 				error: function(res) {
 					button.html(text)
-					toastr.error(JSON.stringify(res), 'Oh no!')
+					toastr.error(JSON.stringify(res))
 				}
 			});
 		})
@@ -466,19 +464,16 @@
 				success: function(res) {
 					button.html(text)
 					if (!res.success) {
-						toastr.error(res.data, 'Oh no!')
+						toastr.error(res.data)
 					} else {
-						toastr.success('Default bug updated')
-						// button.prop('disabled',true)
-						// location.reload()
+						toastr.success(__x("Default bug updated", "Integration Center default bug update", "appq-integration-center"))
 					}
 				},
 				error: function(res) {
 					button.html(text)
-					toastr.error(JSON.stringify(res), 'Oh no!')
+					toastr.error(JSON.stringify(res))
 				}
 			});
 		})
 	});
-
 })(jQuery);

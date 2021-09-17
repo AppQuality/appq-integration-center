@@ -36,7 +36,7 @@
             if (res.success) {
               location.reload();
             } else {
-              toastr.error(res.data, "Error");
+              toastr.error(res.data);
               submit_btn.html(submit_btn_html);
             }
           });
