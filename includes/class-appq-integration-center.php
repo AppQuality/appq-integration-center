@@ -112,12 +112,12 @@ class AppQ_Integration_Center
 				'version' => '3.3.1'
 			),
 			$this->plugin_name .'-front' => array(
-				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/dist/appq-integration-center-csv-addon.min.js',
+				'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/front.min.js',
 				'version' => '1.0',
 				'dependencies' => array('wp-i18n')
 			),
             $this->plugin_name => array(
-				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js',
+				 'src' => APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.min.js',
 				 'version' => '1.0',
 				 'dependencies' => array(
                     'jquery',
