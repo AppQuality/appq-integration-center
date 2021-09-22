@@ -32,7 +32,7 @@ jobs:
         if [[ `git status --porcelain` ]]; then
           git config --global user.name 'Github'
           git config --global user.email 'cannarocks@users.noreply.github.com'
-          git commit -am "chore: executed grunt command"
+          git commit -am "chore: executed grunt command (ci skip)"
           git push
         else
           echo 'Nothing to commit'
