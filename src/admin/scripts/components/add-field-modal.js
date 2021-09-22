@@ -1,5 +1,6 @@
 (function ($) {
   "use strict";
+  
   $(document).ready(function () {
     $("#add_new_field_values").change(function () {
       var wrap = $("#custom_field_maps_wrap");
