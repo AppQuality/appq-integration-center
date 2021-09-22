@@ -42,6 +42,7 @@ define('APPQ_INTEGRATION_CENTERVERSION', '1.1.0');
  * Currently plugin url.
  */
 define('APPQ_INTEGRATION_CENTERURL', plugin_dir_url( __FILE__ ));
+define('APPQ_INTEGRATION_CENTER_PATH', plugin_dir_path( __FILE__ ));
 
 /**
  * The code that runs during plugin activation.
