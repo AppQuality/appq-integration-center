@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
     
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +31,9 @@ jobs:
         
     - name: Commit assets
       run: |
-        git config --global user.name 'Github'
-        git config --global user.email 'cannarocks@users.noreply.github.com'
-        git commit -am "chore: executed grunt command"
-        git push
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'Github'
+          git config --global user.email 'cannarocks@users.noreply.github.com'
+          git commit -am "chore: executed grunt command"
+          git push
+        fi 
