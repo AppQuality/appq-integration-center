@@ -25,4 +25,5 @@
       $("#custom_map_name").val('');
     });
   });
+  
 })(jQuery);
