@@ -18,10 +18,9 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: webpack-config.js\n"
 
-#: admin/class-appq-integration-center-admin.php:150
-#: admin/class-appq-integration-center-admin.php:161
-#: admin/class-appq-integration-center-admin.php:170
-msgid "Integration center"
+#. Plugin Name of the plugin
+#, fuzzy
+msgid "Integration Center"
 msgstr "Integration Center"
 
 #: admin/partials/appq-integration-center-admin-bugs.php:26
@@ -68,221 +67,25 @@ msgstr "Contenuto"
 msgid "Needs sanitizing"
 msgstr "Necessita sanitizzazione"
 
-#: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:29
-msgid "Contains JSON"
-msgstr "Contiene JSON"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:22
-msgid "Search..."
-msgstr "Cerca..."
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:23
-msgid ""
-"Search by id, name, category, status, severity,tags or "
-"'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to "
-"search in AND (e.g. HIGH+approved)"
+#. Description of the plugin
+msgid "Integrate AppQuality Campaigns with most used BugTracking services"
 msgstr ""
-"Ricerca per id, titolo, tipologia, status, severity, tags o "
-"'duplicated','unique','uploaded','to-upload'. La ricerca è in OR, utilizza + "
-"per cercare in AND (e.g. HIGH+approved)"
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:29
+#. Author of the plugin
+msgid "Davide Bizzi"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://bitbucket.org/%7B1c7dab51-4872-4f3e-96ac-11f21c44fd4b%7D/"
+msgstr ""
+
 #: admin/partials/appq-integration-center-admin-bugs/list.php:92
 msgid "Send All"
 msgstr "Carica tutto"
 
-#: admin/partials/appq-integration-center-admin-bugs/list.php:30
 #: admin/partials/appq-integration-center-admin-bugs/list.php:93
 msgid "Send Selected"
 msgstr "Carica selezionati"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:39
-msgid "View"
-msgstr "Mostra"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:40
-msgid "Message"
-msgstr "Titolo"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:41
-msgid "Category"
-msgstr "Tipologia"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:42
-msgid "Status"
-msgstr "Stato"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:43
-msgid "Severity"
-msgstr "Gravità"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:44
-msgid "Duplicated"
-msgstr "Duplicato"
-
-#: admin/partials/appq-integration-center-admin-bugs/list.php:45
-msgid "Tags"
-msgstr "Tags"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:6
-msgid "Delete this field?"
-msgstr "Cancellare il campo?"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:19
-msgid "Delete field"
-msgstr "Cancella campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-available-field-modal.php:23
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:21
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:43
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:52
-#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:26
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:44
-msgid "Cancel"
-msgstr "Annulla"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:6
-msgid "Delete current tracker settings?"
-msgstr "Cancellare le impostazioni del tracker?"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/delete-tracker-settings.php:17
-msgid "Delete settings"
-msgstr "Cancella impostazioni"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:6
-msgid "Edit available field"
-msgstr "Modifica campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:16
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:16
-msgid "Source field"
-msgstr "Campo sorgente"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:17
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:17
-msgid "{Bug.xx}"
-msgstr "{Bug.xx}"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:24
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:24
-msgid "Target field"
-msgstr "Nuovo campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:25
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:25
-msgid "{Bug.yy}"
-msgstr "{Bug.yy}"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:39
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:40
-msgid "Save field"
-msgstr "Salva campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:55
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:56
-msgid "Field value"
-msgstr "Valore del campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:56
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:57
-msgid "Some value"
-msgstr "Un valore"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:63
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:64
-msgid "Map value"
-msgstr "Valore da mappare"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-available-field-modal.php:64
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:65
-msgid "Some other value"
-msgstr "Un altro valore"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:6
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:19
-msgid "Setup your issue tracker"
-msgstr "Configura il tuo issue tracker"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:13
-msgid "Select Issue Tracker"
-msgstr "Seleziona il tuo Issue Tracker"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/edit-tracker.php:48
-msgid "Save settings"
-msgstr "Salva impostazioni"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:6
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:29
-msgid "Import settings"
-msgstr "Importa Impostazioni"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:13
-msgid "Search campaign"
-msgstr "Cerca una campagna"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/import-tracker.php:23
-msgid "Import now"
-msgstr "Importa"
-
-#: admin/partials/appq-integration-center-admin-bugs/modal/new-available-field.php:6
-msgid "Add available field"
-msgstr "Aggiungi campo"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:13
-msgid "Tracker settings"
-msgstr "Impostazioni tracker"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:28
-msgid "Import settings from an existing campaign"
-msgstr "Importa impostazioni da una campagna esistente"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:36
-msgid "Create a new setup"
-msgstr "Crea una nuova impostazione"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:37
-msgid "Setup manually"
-msgstr "Imposta manualmente"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:65
-msgid "Available fields"
-msgstr "Campi disponibili"
-
-#: admin/partials/appq-integration-center-admin-bugs/settings.php:77
-msgid "Add new field"
-msgstr "Aggiungi un nuovo campo"
-
-#: admin/partials/appq-integration-center-admin-settings.php:34
-msgid "Save Capability"
-msgstr "Salva Capability"
-
-#: admin/partials/appq-integration-center-admin-settings.php:39
-msgid "Customer Visibility"
-msgstr "Visibilità Cliente"
-
-#: admin/partials/appq-integration-center-admin-settings.php:46
-msgid "Add On"
-msgstr "Add On"
-
-#: admin/partials/appq-integration-center-admin-settings.php:47
-msgid "visible to customer"
-msgstr "visibile al cliente"
-
-#: admin/partials/appq-integration-center-admin-settings.php:57
-msgid "Save Visibility"
-msgstr "Salva visibilità"
-
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:6
-msgid "Update example issue"
-msgstr "Modifica issue di esempio"
-
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:9
-msgid "Show example issue"
-msgstr "Mostra issue di esempio"
-
-#: admin/partials/appq-integration-center-admin-settings/current-setup-edit-buttons.php:16
-msgid "Create example issue"
-msgstr "Crea issue di esempio"
 
 #: ajax/delete_bug_from_bugtracker.php:17
 msgid "Invalid data: CP_ID or bugtracker_id not set"
@@ -292,18 +95,17 @@ msgstr "Dati non validi: cp_id o bugtracker_id mancanti"
 msgid "You need to configure the bugtracker"
 msgstr "E' necessario configurare il bugtracker"
 
-#: assets/js/admin.js:1 assets/js/admin.min.js:1 src/admin/scripts/hold.js:118
+#: assets/js/admin.js:1 src/admin/scripts/hold.js:118
 msgctxt "Integration Center edit available field"
 msgid "Custom field updated"
 msgstr "Custom field aggiornato"
 
-#: assets/js/admin.js:1 assets/js/admin.min.js:1 src/admin/scripts/hold.js:123
+#: assets/js/admin.js:1 src/admin/scripts/hold.js:123
 msgctxt "Integration Center add available field"
 msgid "Custom field added"
 msgstr "Custom field aggiunto"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:15
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:15
 msgctxt "Integration Center Introjs"
 msgid ""
 "Read carefully the following steps to learn to integrate AppQuality's Issue "
@@ -312,8 +114,7 @@ msgstr ""
 "Leggi con attenzione i seguenti passi per imparare a integrare l'Issue "
 "Tracker di AppQuality con quello della tua azienda."
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:20
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:20
 msgctxt "Integration Center Introjs"
 msgid ""
 "This is the full list of bugs created by tester for this specific Campaign"
@@ -321,32 +122,27 @@ msgstr ""
 "Questa è la lista completa dei bug creati dai tester per questa specifica "
 "campagna"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:26
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:26
 msgctxt "Integration Center Introjs"
 msgid "Click here to export a specific bug"
 msgstr "Clicca qui per esportare un bug specifico"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:31
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:31
 msgctxt "Integration Center Introjs"
 msgid "Click here to upload a specific bug"
 msgstr "Clicca qui per caricare uno specifico bug"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:38
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:38
 msgctxt "Integration Center Introjs"
 msgid "Click here to update a specific bug"
 msgstr "Clicca qui per aggiornare uno specifico bug"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:44
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:44
 msgctxt "Integration Center Introjs"
 msgid "Click here to delete a specific bug"
 msgstr "Clicca qui per cancellare uno specifico bug"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:50
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:50
 msgctxt "Integration Center Introjs"
 msgid "Click here to go to bug on your tracker"
 msgstr "Clicca qui per aprire il bug sul tuo tracker"
@@ -365,44 +161,37 @@ msgstr ""
 "volessi invece filtrare i bug per stato o altri parametri, potrai trovare "
 "una lista di queste funzionalità sotto la barra di ricerca."
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:60
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:60
 msgctxt "Integration Center Introjs"
 msgid "You can export all the list"
 msgstr "Puoi exortare tutta la lista"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:64
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:64
 msgctxt "Integration Center Introjs"
 msgid "You can export all the selected bugs"
 msgstr "Puoi esportare tutti i bug selezionati"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:69
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:69
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the list"
 msgstr "Puoi caricare tutta la lista"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:73
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:73
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the selected bugs"
 msgstr "Puoi caricare tutti i bug selezionati"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:77
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:77
 msgctxt "Integration Center Introjs"
 msgid "But first, you need to setup the connection with your Issue Tracker"
 msgstr "Prima di tutto devi impostare la connessione con il tuo Issue Tracker"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:82
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:82
 msgctxt "Integration Center Introjs"
 msgid "This is the summary of your settings for this campaign"
 msgstr "Questo è il riepilogo delle tue impostazioni per questa campagna"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:93
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:93
 msgctxt "Integration Center Introjs"
 msgid ""
 "Configure a connection to your Issue Tracker if it's the first time you're "
@@ -411,8 +200,7 @@ msgstr ""
 "Configura una connessione al tuo Issue Tracker se è la prima volta che stai "
 "inviando dei bug"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:105
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:105
 msgctxt "Integration Center Introjs"
 msgid ""
 "In order to be able to fill this settings make sure you have enough rights "
@@ -423,20 +211,17 @@ msgstr ""
 "sufficienti permessi sul tuo Bug Tracker e un minimo di conoscenza su come "
 "funzionano le API, ma non ti preoccupare, siamo qui per aiutarti"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:110
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:110
 msgctxt "Integration Center Introjs"
 msgid "You can create a new fake bug at anytime to test the settings"
 msgstr "Puoi creare un bug di esempio quando vuoi per testare le impostazioni"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:116
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:116
 msgctxt "Integration Center Introjs"
 msgid "Update the fake bug used to test settings"
 msgstr "Modifica il bug di esempio per testare le impostazioni"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:122
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:122
 msgctxt "Integration Center Introjs"
 msgid ""
 "Edit settings, here you can also select the file format and the fields for "
@@ -445,8 +230,7 @@ msgstr ""
 "Modifica impostazioni, qui puoi anche selezionare il formato del file e i "
 "campi da esportare"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:127
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:127
 msgctxt "Integration Center Introjs"
 msgid ""
 "Edit settings, this might come in handy also in the future if the token is "
@@ -455,20 +239,17 @@ msgstr ""
 "Modifica le impostazioni. Questo potrà esserti utile in futuro se il tuo "
 "token scade o se cambi l'id del progetto"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:132
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:132
 msgctxt "Integration Center Introjs"
 msgid "Delete settings"
 msgstr "Cancella impostazioni"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:137
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:137
 msgctxt "Integration Center Introjs"
 msgid "Read bugs from your tracker"
 msgstr "Leggi i bug dal tuo tracker"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:143
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:143
 msgctxt "Integration Center Introjs"
 msgid ""
 "This is the most important part, where you decide how to map and write the "
@@ -495,8 +276,7 @@ msgstr ""
 "qualsiasi campo da quelli disponibili. Nel campo Nome devi usare la corretta "
 "nomenclatura che si aspetta il tuo Bug Tracker."
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:152
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:152
 msgctxt "Integration Center Introjs"
 msgid ""
 "Here you will find a modal to better customize the mapping for a single field"
@@ -504,32 +284,198 @@ msgstr ""
 "Qui troverai una finestra per personalizzare al meglio l'associazione di "
 "ogni singolo campo"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:157
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:157
 msgctxt "Integration Center Introjs"
 msgid "Delete a single mapping"
 msgstr "Elimina un mapping"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:174
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:174
 msgctxt "Integration Center Introjs"
 msgid "Done"
 msgstr "Fine"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:175
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:175
 msgctxt "Integration Center Introjs"
 msgid "Skip"
 msgstr "Salta"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:176
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:176
 msgctxt "Integration Center Introjs"
 msgid "← Back"
 msgstr "← Indietro"
 
-#: assets/js/front.js:1 assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:177
+#: assets/js/front.js:1 src/front/scripts/components/intro.js:177
 msgctxt "Integration Center Introjs"
 msgid "Next →"
 msgstr "Avanti →"
+
+#~ msgid "Documentation"
+#~ msgstr "Documentazione"
+
+#~ msgid "Bugs"
+#~ msgstr "Bugs"
+
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
+
+#~ msgid "Field mapping"
+#~ msgstr "Mapping campi"
+
+#~ msgid "Get mapping from bug"
+#~ msgstr "Ottieni Mapping da issue"
+
+#~ msgid "New mapping field"
+#~ msgstr "Nuovo mapping campo"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "Content"
+#~ msgstr "Contenuto"
+
+#~ msgid "Needs sanitizing"
+#~ msgstr "Necessita sanitizzazione"
+
+#~ msgid "Contains JSON"
+#~ msgstr "Contiene JSON"
+
+#~ msgid "Search..."
+#~ msgstr "Cerca..."
+
+#~ msgid ""
+#~ "Search by id, name, category, status, severity,tags or "
+#~ "'duplicated','unique','uploaded','to-upload'. The search is in OR, use + "
+#~ "to search in AND (e.g. HIGH+approved)"
+#~ msgstr ""
+#~ "Ricerca per id, titolo, tipologia, status, severity, tags o "
+#~ "'duplicated','unique','uploaded','to-upload'. La ricerca è in OR, "
+#~ "utilizza + per cercare in AND (e.g. HIGH+approved)"
+
+#~ msgid "View"
+#~ msgstr "Mostra"
+
+#~ msgid "Message"
+#~ msgstr "Titolo"
+
+#~ msgid "Category"
+#~ msgstr "Tipologia"
+
+#~ msgid "Status"
+#~ msgstr "Stato"
+
+#~ msgid "Severity"
+#~ msgstr "Gravità"
+
+#~ msgid "Duplicated"
+#~ msgstr "Duplicato"
+
+#~ msgid "Tags"
+#~ msgstr "Tags"
+
+#~ msgid "Delete this field?"
+#~ msgstr "Cancellare il campo?"
+
+#~ msgid "Delete field"
+#~ msgstr "Cancella campo"
+
+#~ msgid "Cancel"
+#~ msgstr "Annulla"
+
+#~ msgid "Delete current tracker settings?"
+#~ msgstr "Cancellare le impostazioni del tracker?"
+
+#~ msgid "Delete settings"
+#~ msgstr "Cancella impostazioni"
+
+#~ msgid "Edit available field"
+#~ msgstr "Modifica campo"
+
+#~ msgid "Source field"
+#~ msgstr "Campo sorgente"
+
+#~ msgid "{Bug.xx}"
+#~ msgstr "{Bug.xx}"
+
+#~ msgid "Target field"
+#~ msgstr "Nuovo campo"
+
+#~ msgid "{Bug.yy}"
+#~ msgstr "{Bug.yy}"
+
+#~ msgid "Save field"
+#~ msgstr "Salva campo"
+
+#~ msgid "Field value"
+#~ msgstr "Valore del campo"
+
+#~ msgid "Some value"
+#~ msgstr "Un valore"
+
+#~ msgid "Map value"
+#~ msgstr "Valore da mappare"
+
+#~ msgid "Some other value"
+#~ msgstr "Un altro valore"
+
+#~ msgid "Setup your issue tracker"
+#~ msgstr "Configura il tuo issue tracker"
+
+#~ msgid "Select Issue Tracker"
+#~ msgstr "Seleziona il tuo Issue Tracker"
+
+#~ msgid "Save settings"
+#~ msgstr "Salva impostazioni"
+
+#~ msgid "Import settings"
+#~ msgstr "Importa Impostazioni"
+
+#~ msgid "Search campaign"
+#~ msgstr "Cerca una campagna"
+
+#~ msgid "Import now"
+#~ msgstr "Importa"
+
+#~ msgid "Add available field"
+#~ msgstr "Aggiungi campo"
+
+#~ msgid "Tracker settings"
+#~ msgstr "Impostazioni tracker"
+
+#~ msgid "Import settings from an existing campaign"
+#~ msgstr "Importa impostazioni da una campagna esistente"
+
+#~ msgid "Create a new setup"
+#~ msgstr "Crea una nuova impostazione"
+
+#~ msgid "Setup manually"
+#~ msgstr "Imposta manualmente"
+
+#~ msgid "Available fields"
+#~ msgstr "Campi disponibili"
+
+#~ msgid "Add new field"
+#~ msgstr "Aggiungi un nuovo campo"
+
+#~ msgid "Save Capability"
+#~ msgstr "Salva Capability"
+
+#~ msgid "Customer Visibility"
+#~ msgstr "Visibilità Cliente"
+
+#~ msgid "Add On"
+#~ msgstr "Add On"
+
+#~ msgid "visible to customer"
+#~ msgstr "visibile al cliente"
+
+#~ msgid "Save Visibility"
+#~ msgstr "Salva visibilità"
+
+#~ msgid "Update example issue"
+#~ msgstr "Modifica issue di esempio"
+
+#~ msgid "Show example issue"
+#~ msgstr "Mostra issue di esempio"
+
+#~ msgid "Create example issue"
+#~ msgstr "Crea issue di esempio"
