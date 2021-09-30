@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: appq-integration-center\n"
-"POT-Creation-Date: 2021-09-28 09:22+0200\n"
-"PO-Revision-Date: 2021-09-28 09:23+0200\n"
+"POT-Creation-Date: 2021-09-30 11:25+0200\n"
+"PO-Revision-Date: 2021-09-30 11:33+0200\n"
 "Last-Translator: Luca Cannarozzo <luca.cannarozzo@app-quality.com>\n"
 "Language-Team: AppQuality\n"
 "Language: it\n"
@@ -35,6 +35,14 @@ msgstr "Bugs"
 #: admin/partials/appq-integration-center-admin-bugs.php:45
 msgid "Settings"
 msgstr "Impostazioni"
+
+#: admin/partials/appq-integration-center-admin-bugs/available-fields.php:18
+msgid "Bug Field"
+msgstr "Campo del bug"
+
+#: admin/partials/appq-integration-center-admin-bugs/available-fields.php:19
+msgid "Field Value"
+msgstr "Valore del campo"
 
 #: admin/partials/appq-integration-center-admin-bugs/fields-mapping.php:12
 msgid "Field mapping"
@@ -345,15 +353,6 @@ msgstr "Clicca qui per aprire il bug sul tuo tracker"
 
 #: assets/js/front.js:1 assets/js/front.min.js:1
 #: src/front/scripts/components/intro.js:55
-#, fuzzy
-#| msgctxt "Integration Center Introjs"
-#| msgid ""
-#| "Here you can filter the bug list.\n"
-#| "\t\t\t\t\t\tThe search is really powerful, you can search by ID or text "
-#| "if you are looking for a specific bug,\n"
-#| "\t\t\t\t\t\tbut most likely you will be willing to look groups of bugs by "
-#| "status etc.\n"
-#| "\t\t\t\t\t\tYou can see a list of feature below the search bar."
 msgctxt "Integration Center Introjs"
 msgid ""
 "Here you can filter the bug list. The search is really powerful, you can "
@@ -361,11 +360,10 @@ msgid ""
 "you will be willing to look groups of bugs by status etc. You can see a list "
 "of feature below the search bar."
 msgstr ""
-"Qui puoi filtrare la tua lista di bug.\n"
-"\t\t\t\t\t\tLa ricerca è molto potente, puoi effettuare una ricerca per ID o "
-"testo all'interno di un bug specifico,\n"
-"\t\t\t\t\t\tma se volessi invece filtrare i bug per stato o altri parametri, "
-"potrai trovare una lista di queste funzionalità sotto la barra di ricerca."
+"Qui puoi filtrare la tua lista di bug. La ricerca è molto potente, puoi "
+"effettuare una ricerca per ID o testo all'interno di un bug specifico, ma se "
+"volessi invece filtrare i bug per stato o altri parametri, potrai trovare "
+"una lista di queste funzionalità sotto la barra di ricerca."
 
 #: assets/js/front.js:1 assets/js/front.min.js:1
 #: src/front/scripts/components/intro.js:60
@@ -481,17 +479,6 @@ msgstr ""
 
 #: assets/js/front.js:1 assets/js/front.min.js:1
 #: src/front/scripts/components/intro.js:148
-#, fuzzy
-#| msgctxt "Integration Center Introjs"
-#| msgid ""
-#| "Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
-#| "and the name of the label that you should see.\n"
-#| "\t\t\t\t\t\t\t\tIn Content we invite you to use all the informations you "
-#| "find useful from our platform, format them as you prefer and then send it "
-#| "over, you can choose any field from the Available Field (also listed "
-#| "above).\n"
-#| "\t\t\t\t\t\t\t\tIn Name you need to use the proper naming that your Issue "
-#| "Tracker expects."
 msgctxt "Integration Center Introjs"
 msgid ""
 "Each row maps a Content to a Name, that is a Key in the Issue Tracker API "
@@ -502,12 +489,11 @@ msgid ""
 "naming that your Issue Tracker expects."
 msgstr ""
 "Ogni riga associa un Contenuto ad un Nome, che è una Chiave per le API del "
-"Bug Tracker e anche il nome dell'etichetta che dovresti vedere. \n"
-"\t\t\t\t\t\t\t\tTi invitiamo ad inserire nel Contenuto tutte le informazioni "
-"che trovi utili sulla nostra piattaforma, formattandole come preferisci, per "
-"poi inviarle. Puoi scegliere qualsiasi campo da quelli disponibili. Nel "
-"campo Nome devi usare la corretta nomenclatura che si aspetta il tuo Bug "
-"Tracker."
+"Bug Tracker e anche il nome dell'etichetta che dovresti vedere. Ti invitiamo "
+"ad inserire nel Contenuto tutte le informazioni che trovi utili sulla nostra "
+"piattaforma, formattandole come preferisci, per poi inviarle. Puoi scegliere "
+"qualsiasi campo da quelli disponibili. Nel campo Nome devi usare la corretta "
+"nomenclatura che si aspetta il tuo Bug Tracker."
 
 #: assets/js/front.js:1 assets/js/front.min.js:1
 #: src/front/scripts/components/intro.js:152

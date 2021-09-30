@@ -29,7 +29,7 @@ module.exports = function(grunt)
                         'src/admin/scripts/components/add-field-modal.js',
                         'src/admin/scripts/components/copy-to-clipboard.js',
                         'src/admin/scripts/components/cp-configuration-modal.js',
-                        'src/admin/scripts/components/delete-settings.js',
+                        'src/admin/scripts/components/delete_settings.js',
                         'src/admin/scripts/components/select2.js',
                     ],
                     dest: 'assets/js/admin.min.js'
