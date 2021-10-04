@@ -3,17 +3,17 @@
 	<?php if ( isset( $campaign->bugtracker->default_bug ) ): ?>
 
 						<button id="update_default_bug" class="btn btn-secondary mr-1" title="Click to update the example bug previously uploaded" type="button">
-			<?= __( 'Update example issue', $this->plugin_name ) ?>
+			<?= __( 'Update example issue', 'appq-integration-center' ) ?>
 						</button>
 						<a href="<?= $campaign->bugtracker->default_bug; ?>" target="_blank" class="btn btn-secondary mr-1"
-							title="<?= __( 'Show example issue', $this->plugin_name ) ?>">
+							title="<?= __( 'Show example issue', 'appq-integration-center' ) ?>">
 								<i class="fa fa-external-link"></i>
 						</a>
 
 	<?php else: ?>
 
 						<button id="import_default_bug" type="button" class="btn btn-secondary mr-1">
-			<?=  __( 'Create example issue', $this->plugin_name ) ?>
+			<?=  __( 'Create example issue', 'appq-integration-center' ) ?>
 						</button>
 	<?php endif; ?>
 

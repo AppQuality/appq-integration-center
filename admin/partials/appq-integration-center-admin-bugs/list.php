@@ -19,15 +19,15 @@ if(function_exists( 'pll_current_language'))
     <div class="row">
         <div class="col d-flex flex-column">
             <div class="input-group mb-3">
-              <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="<?= __("Search...", $this->plugin_name); ?>" aria-label="Search">
-              <small><?= __("Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)", $this->plugin_name); ?></small>
+              <input id="bugs_list-search" class="form-control custom-search w-100" type="search" placeholder="<?= __("Search...", 'appq-integration-center'); ?>" aria-label="Search">
+              <small><?= __("Search by id, name, category, status, severity,tags or 'duplicated','unique','uploaded','to-upload'. The search is in OR, use + to search in AND (e.g. HIGH+approved)", 'appq-integration-center'); ?></small>
             </div>
         </div>
 
         <div class="col-sm-auto">
             <div class="btn-group" role="group" aria-label="table controls button group">
-                <button class="send-all btn btn-primary btn"><?= __("Send All", $this->plugin_name) ?></button>
-                <button class="send-selected btn btn-primary btn"><?= __("Send Selected", $this->plugin_name) ?></button>
+                <button class="send-all btn btn-primary btn"><?= __("Send All", 'appq-integration-center') ?></button>
+                <button class="send-selected btn btn-primary btn"><?= __("Send Selected", 'appq-integration-center') ?></button>
             </div>
         </div>
     </div>
@@ -36,13 +36,13 @@ if(function_exists( 'pll_current_language'))
         <tr>
             <th><input class="select_all" type="checkbox" aria-label="Select all for upload"></th>
             <th>#</th>
-			<th><?= __("View", $this->plugin_name)?></th>
-            <th><?= __("Message", $this->plugin_name) ?></th>
-            <th><?= __("Category", $this->plugin_name) ?></th>
-            <th><?= __("Status", $this->plugin_name) ?></th>
-            <th><?= __("Severity", $this->plugin_name) ?></th>
-            <th><?= __("Duplicated", $this->plugin_name) ?></th>
-            <th><?= __("Tags", $this->plugin_name) ?></th>
+			<th><?= __("View", 'appq-integration-center')?></th>
+            <th><?= __("Message", 'appq-integration-center') ?></th>
+            <th><?= __("Category", 'appq-integration-center') ?></th>
+            <th><?= __("Status", 'appq-integration-center') ?></th>
+            <th><?= __("Severity", 'appq-integration-center') ?></th>
+            <th><?= __("Duplicated", 'appq-integration-center') ?></th>
+            <th><?= __("Tags", 'appq-integration-center') ?></th>
             <th></th>
             <th></th>
         </tr>

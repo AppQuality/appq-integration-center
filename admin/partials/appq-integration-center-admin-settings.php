@@ -31,20 +31,20 @@
 						</div>
 					</div>
 				<?php endforeach ?>
-				<?php submit_button(__( "Save Capability", $this->plugin_name )); ?>
+				<?php submit_button(__( "Save Capability", 'appq-integration-center' )); ?>
 			</form>
 		</div>
 			
 		<div id="visibility">
-			<h4><?= __( 'Customer Visibility', $this->plugin_name ) ?></h4>
+			<h4><?= __( 'Customer Visibility', 'appq-integration-center' ) ?></h4>
 			<table>
 				<tbody>
 					<?php foreach ($integrations as $integration) : ?>
 						<tr>
 							<td>
-								<b><?= __( $integration['name'], $this->plugin_name ) ?></b>
-								<?= __( 'Add On', $this->plugin_name ) ?>
-								<?=  __( 'visible to customer', $this->plugin_name ) ?>
+								<b><?= __( $integration['name'], 'appq-integration-center' ) ?></b>
+								<?= __( 'Add On', 'appq-integration-center' ) ?>
+								<?=  __( 'visible to customer', 'appq-integration-center' ) ?>
 							</td>
 							<td>
 								<input data-integration="<?= $integration['slug'] ?>" class="visible_to_customer" <?= ($integration['visible_to_customer']) ? 'checked="checked"' : '' ?> type="checkbox" name="visible_to_customer" style="margin-left: 10px;">
@@ -54,7 +54,7 @@
 				</tbody>
 			</table>
 			<p class="submit">
-				<button id="save_visibility" type="button" class="button button-primary"><?= __( "Save Visibility", $this->plugin_name ); ?></button>
+				<button id="save_visibility" type="button" class="button button-primary"><?= __( "Save Visibility", 'appq-integration-center' ); ?></button>
 			</p>
 		</div>
 		

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div style="z-index: 99999;" class="modal-content">
             <div class="modal-header">
-                <?php printf('<h5 class="modal-title">%s</h5>', __('Delete this field?', $this->plugin_name)); ?>
+                <?php printf('<h5 class="modal-title">%s</h5>', __('Delete this field?', 'appq-integration-center')); ?>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,11 +16,11 @@
                             <div class="col-6 col-lg-4 offset-lg-2 text-right">
                                 <?php printf(
                                     '<button type="submit" id="delete_available_field" class="btn btn-primary confirm">%s</button>',
-                                    __('Delete field', $this->plugin_name)
+                                    __('Delete field', 'appq-integration-center')
                                 ); ?>
                             </div>
                             <div class="col-6 col-lg-4">
-                                <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', $this->plugin_name)); ?>
+                                <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
                             </div>
                         </div>
                     </form>

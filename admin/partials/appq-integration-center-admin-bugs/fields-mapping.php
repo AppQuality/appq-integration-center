@@ -9,24 +9,24 @@ foreach ($api->basic_configuration as $key => $value) {
 ?>
 
 <div class="row">
-	<div class="col-6"><?php printf('<h4 class="title py-3">%s</h4>', __('Field mapping', $this->plugin_name)); ?></div>
+	<div class="col-6"><?php printf('<h4 class="title py-3">%s</h4>', __('Field mapping', 'appq-integration-center')); ?></div>
 	<div class="col-6 text-right actions mt-2">
-		<button type="button" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#get_from_bug"><?php _e('Get mapping from bug', $this->plugin_name); ?></button>
-		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#add_mapping_field_modal"><?php _e('New mapping field', $this->plugin_name); ?></button>
+		<button type="button" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#get_from_bug"><?php _e('Get mapping from bug', 'appq-integration-center'); ?></button>
+		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#add_mapping_field_modal"><?php _e('New mapping field', 'appq-integration-center'); ?></button>
 	</div>
 </div>
 <div class="row mb-2">
     <div class="col-2">
-        <?php printf('<small><strong>%s</strong></small>', __('Name', $this->plugin_name)); ?>
+        <?php printf('<small><strong>%s</strong></small>', __('Name', 'appq-integration-center')); ?>
     </div>
     <div class="col-4">
-        <?php printf('<small><strong>%s</strong></small>', __('Content', $this->plugin_name)); ?>
+        <?php printf('<small><strong>%s</strong></small>', __('Content', 'appq-integration-center')); ?>
     </div>
     <div class="col-2 text-center">
-        <?php printf('<small><strong>%s</strong></small>', __('Needs sanitizing', $this->plugin_name)); ?>
+        <?php printf('<small><strong>%s</strong></small>', __('Needs sanitizing', 'appq-integration-center')); ?>
     </div>
     <div class="col-2 text-center">
-        <?php printf('<small><strong>%s</strong></small>', __('Contains JSON', $this->plugin_name)); ?>
+        <?php printf('<small><strong>%s</strong></small>', __('Contains JSON', 'appq-integration-center')); ?>
     </div>
 </div>
 <div class="fields-list">

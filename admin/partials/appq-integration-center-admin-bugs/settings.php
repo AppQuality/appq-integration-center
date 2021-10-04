@@ -10,13 +10,13 @@
  */
 ?>
 
-	<h4 class="pb-3"><?= __("Tracker settings", $this->plugin_name) ?></h4>
+	<h4 class="pb-3"><?= __("Tracker settings", 'appq-integration-center') ?></h4>
 	<div class="pb-4">
 		<?php if ( empty( $campaign->bugtracker ) ): ?>
 	        <div class="settings-wizard">
 	            <div class="info pb-5">
 					<?php
-					printf( '<h3 class="title">%s</h3>', __( 'Setup your issue tracker', $this->plugin_name ) );
+					printf( '<h3 class="title">%s</h3>', __( 'Setup your issue tracker', 'appq-integration-center' ) );
 					?>
 	            </div>
 	            <div class="actions">
@@ -25,16 +25,16 @@
 	                        <div class="col-6 col-lg-4 offset-lg-2 text-center">
 	                            <div class="wrapper p-3">
 									<?php
-									printf( '<h4>%s</h4>', __( 'Import settings from an existing campaign', $this->plugin_name ) );
-									printf( '<button data-toggle="modal" data-target="#import_tracker_settings_modal" type="button" class="btn btn-primary mt-3">%s</button>', __( 'Import settings', $this->plugin_name ) );
+									printf( '<h4>%s</h4>', __( 'Import settings from an existing campaign', 'appq-integration-center' ) );
+									printf( '<button data-toggle="modal" data-target="#import_tracker_settings_modal" type="button" class="btn btn-primary mt-3">%s</button>', __( 'Import settings', 'appq-integration-center' ) );
 									?>
 	                            </div>
 	                        </div>
 	                        <div class="col-6 col-lg-4 text-center">
 	                            <div class="wrapper p-3">
 									<?php
-									printf( '<h4>%s</h4>', __( 'Create a new setup', $this->plugin_name ) );
-									printf( '<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mt-3">%s</button>', __( 'Setup manually', $this->plugin_name ) );
+									printf( '<h4>%s</h4>', __( 'Create a new setup', 'appq-integration-center' ) );
+									printf( '<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mt-3">%s</button>', __( 'Setup manually', 'appq-integration-center' ) );
 									?>
 	                            </div>
 	                        </div>
@@ -62,7 +62,7 @@
 	                        <a class="btn btn-link btn-block p-0" type="button" data-toggle="collapse" data-target="#available_fields_<?= $bugtracker_slug; ?>" aria-expanded="true" aria-controls="available_fields">
 	                            <div class="card-header">
 	                                <h5 class="m-0 text-left">
-										<?= __( 'Available fields', $this->plugin_name ); ?>
+										<?= __( 'Available fields', 'appq-integration-center' ); ?>
 	                                    <i class="fa fa-angle-down"></i>
 	                                </h5>
 	                            </div>
@@ -74,7 +74,7 @@
 	                    <div class="row">
 	                        <div class="col">
 	                            <button type="button" class="btn btn-secondary float-right m-2" data-toggle="modal" data-target="#add_field_modal">
-			                        <?php _e( 'Add new field', $this->plugin_name ); ?>
+			                        <?php _e( 'Add new field', 'appq-integration-center' ); ?>
 	                            </button>
 	                        </div>
 	                    </div>

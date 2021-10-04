@@ -15,8 +15,8 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
         <table class="table table-hover table-sm">
             <thead>
             <tr>
-                <th scope="col"><?= __("Bug Field", $this->plugin_name); ?></th>
-                <th scope="col"><?= __("Field Value", $this->plugin_name); ?></th>
+                <th scope="col"><?= __("Bug Field", 'appq-integration-center'); ?></th>
+                <th scope="col"><?= __("Field Value", 'appq-integration-center'); ?></th>
                 <th scope="col" class="col-2"></th>
             </tr>
             </thead>

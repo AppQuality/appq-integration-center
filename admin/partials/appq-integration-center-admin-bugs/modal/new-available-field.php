@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div style="z-index: 99999;" class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Add available field', $this->plugin_name)); ?>
+        <?php printf('<h5 class="modal-title">%s</h5>', __('Add available field', 'appq-integration-center')); ?>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,16 +13,16 @@
           <div class="col-6">
             <div class="form-group">
               <?php
-              printf('<label for="custom_map_source">%s</label>', __('Source field', $this->plugin_name));
-              printf('<input required type="text" class="form-control" name="custom_map_source" id="custom_map_source" placeholder="%s">', __('{Bug.xx}', $this->plugin_name));
+              printf('<label for="custom_map_source">%s</label>', __('Source field', 'appq-integration-center'));
+              printf('<input required type="text" class="form-control" name="custom_map_source" id="custom_map_source" placeholder="%s">', __('{Bug.xx}', 'appq-integration-center'));
               ?>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
               <?php
-              printf('<label for="custom_map_name">%s</label>', __('Target field', $this->plugin_name));
-              printf('<input required type="text" class="form-control" name="custom_map_name" id="custom_map_name" placeholder="%s">', __('{Bug.yy}', $this->plugin_name));
+              printf('<label for="custom_map_name">%s</label>', __('Target field', 'appq-integration-center'));
+              printf('<input required type="text" class="form-control" name="custom_map_name" id="custom_map_name" placeholder="%s">', __('{Bug.yy}', 'appq-integration-center'));
               ?>
             </div>
           </div>
@@ -37,11 +37,11 @@
           <div class="col-6 col-lg-2 offset-lg-4 text-right">
             <?php printf(
               '<button type="button" id="add_new_field" class="btn btn-block btn-primary">%s</button>',
-              __('Save field', $this->plugin_name)
+              __('Save field', 'appq-integration-center')
             ); ?>
           </div>
           <div class="col-6 col-lg-4">
-            <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', $this->plugin_name)); ?>
+            <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
           </div>
         </div>
       </div>
@@ -53,16 +53,16 @@
               <div class="col-6">
                 <div class="form-group">
                   <?php
-                  printf('<label for="key">%s</label>', __('Field value', $this->plugin_name));
-                  printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', $this->plugin_name));
+                  printf('<label for="key">%s</label>', __('Field value', 'appq-integration-center'));
+                  printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', 'appq-integration-center'));
                   ?>
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <?php
-                  printf('<label for="value">%s</label>', __('Map value', $this->plugin_name));
-                  printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', $this->plugin_name));
+                  printf('<label for="value">%s</label>', __('Map value', 'appq-integration-center'));
+                  printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', 'appq-integration-center'));
                   ?>
                 </div>
               </div>

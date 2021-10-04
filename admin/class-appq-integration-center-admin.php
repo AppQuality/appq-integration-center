@@ -147,7 +147,7 @@ class AppQ_Integration_Center_Admin
 		$necessary_capability = get_option( $this->plugin_name . '_capability' );
 
 		add_menu_page(
-			__( 'Integration center', $this->plugin_name ),
+			__( 'Integration center', 'appq-integration-center' ),
 			'Integration center',
 			$necessary_capability,
 			'integration-center',
@@ -158,7 +158,7 @@ class AppQ_Integration_Center_Admin
 
 		add_submenu_page(
 			'',
-			__( 'Integration center', $this->plugin_name ),
+			__( 'Integration center', 'appq-integration-center' ),
 			'Integration center',
 			$necessary_capability,
 			'integration-center-campaign',
@@ -167,7 +167,7 @@ class AppQ_Integration_Center_Admin
 
 		add_submenu_page(
 			'integration-center',
-			__( 'Integration center', $this->plugin_name ),
+			__( 'Integration center', 'appq-integration-center' ),
 			'Settings',
 			'manage_options',
 			'integration-center-settings',
