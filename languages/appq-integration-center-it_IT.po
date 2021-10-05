@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: appq-integration-center\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/appq-integration-"
 "center\n"
-"POT-Creation-Date: 2021-10-05 11:36+0200\n"
+"POT-Creation-Date: 2021-10-05T09:54:45+00:00\n"
 "PO-Revision-Date: 2021-10-05 11:38+0200\n"
 "Last-Translator: Luca Cannarozzo <luca.cannarozzo@app-quality.com>\n"
 "Language-Team: AppQuality\n"
@@ -19,6 +19,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: webpack-config.js\n"
+
+#. Plugin Name of the plugin
+#, fuzzy
+msgid "Integration Center"
+msgstr "Centro Integrazioni"
+
+#. Plugin URI of the plugin
+msgid "https://bitbucket.org/appqdevel/appq-integration-center"
+msgstr ""
+
+#. Description of the plugin
+msgid "Integrate AppQuality Campaigns with most used BugTracking services"
+msgstr ""
+
+#. Author of the plugin
+msgid "Davide Bizzi"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://bitbucket.org/%7B1c7dab51-4872-4f3e-96ac-11f21c44fd4b%7D/"
+msgstr ""
 
 #: admin/class-appq-integration-center-admin.php:150
 #: admin/class-appq-integration-center-admin.php:161
@@ -294,6 +315,11 @@ msgstr "Dati non validi: cp_id o bugtracker_id mancanti"
 msgid "You need to configure the bugtracker"
 msgstr "E' necessario configurare il bugtracker"
 
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:23
+msgctxt "Integration Center delete issue"
+msgid "Are you sure you want to delete issue"
+msgstr "Sei sicuro di voler cancellare l'issue"
+
 #: assets/js/admin.min.js:1 src/admin/scripts/hold.js:118
 msgctxt "Integration Center edit available field"
 msgid "Custom field updated"
@@ -303,6 +329,55 @@ msgstr "Custom field aggiornato"
 msgctxt "Integration Center add available field"
 msgid "Custom field added"
 msgstr "Custom field aggiunto"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:146
+msgctxt "Integration Center available fields modal error"
+msgid "Something went wrong"
+msgstr "Qualcosa è andato storto"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:153
+#: src/admin/scripts/hold.js:158
+#, fuzzy
+msgctxt "Integration Center available fields modal error"
+msgid "Please fill the mapping fields"
+msgstr "Nuovo mapping campo"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:242
+#, fuzzy
+msgctxt "Integration Center delete custom field"
+msgid "Custom field deleted"
+msgstr "Custom field aggiornato"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:244
+msgctxt "Integration Center delete custom field error"
+msgid "There was an error deleting custom field"
+msgstr "C'è stato un errore nella cancellazione del custom field"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:305
+msgctxt "Integration Center available fields modal error"
+msgid "Updated!"
+msgstr "Aggiornato!"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:350
+msgctxt "Integration Center send all confirm"
+msgid ""
+"Are you sure you want to process ALL the bugs? It will take a while. The "
+"list could contain REFUSED and PENDING bugs. If you want to send only some "
+"bugs, please use the \"Send Selected\" button."
+msgstr ""
+"Sei sicuro di voler processare TUTTI i bug? Richiederà un po' di tempo. La "
+"lista può contenere bug RIFIUTATI e IN ATTESA. Se vuoi processare soltanto "
+"alcuni bug, per favore usa il buttone \"Carica Selezionati\""
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:437
+msgctxt "Integration Center default bug upload"
+msgid "Default bug uploaded"
+msgstr "Bug di esempio caricato"
+
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:469
+msgctxt "Integration Center default bug update"
+msgid "Default bug updated"
+msgstr "Bug di esempio aggiornato"
 
 #: assets/js/front.min.js:1 src/front/scripts/components/intro.js:15
 msgctxt "Integration Center Introjs"
@@ -505,63 +580,3 @@ msgstr "← Indietro"
 msgctxt "Integration Center Introjs"
 msgid "Next →"
 msgstr "Avanti →"
-
-#: src/admin/scripts/hold.js:23
-msgctxt "Integration Center delete issue"
-msgid "Are you sure you want to delete issue"
-msgstr "Sei sicuro di voler cancellare l'issue"
-
-#: src/admin/scripts/hold.js:146
-msgctxt "Integration Center available fields modal error"
-msgid "Something went wrong"
-msgstr "Qualcosa è andato storto"
-
-#: src/admin/scripts/hold.js:153 src/admin/scripts/hold.js:158
-#, fuzzy
-#| msgid "New mapping field"
-msgctxt "Integration Center available fields modal error"
-msgid "Please fill the mapping fields"
-msgstr "Nuovo mapping campo"
-
-#: src/admin/scripts/hold.js:242
-#, fuzzy
-#| msgctxt "Integration Center edit available field"
-#| msgid "Custom field updated"
-msgctxt "Integration Center delete custom field"
-msgid "Custom field deleted"
-msgstr "Custom field aggiornato"
-
-#: src/admin/scripts/hold.js:244
-msgctxt "Integration Center delete custom field error"
-msgid "There was an error deleting custom field"
-msgstr "C'è stato un errore nella cancellazione del custom field"
-
-#: src/admin/scripts/hold.js:305
-msgctxt "Integration Center available fields modal error"
-msgid "Updated!"
-msgstr "Aggiornato!"
-
-#: src/admin/scripts/hold.js:350
-msgctxt "Integration Center send all confirm"
-msgid ""
-"Are you sure you want to process ALL the bugs? It will take a while. The "
-"list could contain REFUSED and PENDING bugs. If you want to send only some "
-"bugs, please use the \"Send Selected\" button."
-msgstr ""
-"Sei sicuro di voler processare TUTTI i bug? Richiederà un po' di tempo. La "
-"lista può contenere bug RIFIUTATI e IN ATTESA. Se vuoi processare soltanto "
-"alcuni bug, per favore usa il buttone \"Carica Selezionati\""
-
-#: src/admin/scripts/hold.js:437
-msgctxt "Integration Center default bug upload"
-msgid "Default bug uploaded"
-msgstr "Bug di esempio caricato"
-
-#: src/admin/scripts/hold.js:469
-msgctxt "Integration Center default bug update"
-msgid "Default bug updated"
-msgstr "Bug di esempio aggiornato"
-
-#, fuzzy
-#~ msgid "Integration Center"
-#~ msgstr "Centro Integrazioni"
