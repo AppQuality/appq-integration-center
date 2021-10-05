@@ -1,5 +1,6 @@
 # Copyright (C) 2021 Davide Bizzi
 # This file is distributed under the GPL-2.0+.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Integration Center 1.0.0\n"
@@ -9,30 +10,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-10-04T11:29:38+00:00\n"
+"POT-Creation-Date: 2021-10-05 11:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: Poedit 3.0\n"
 "X-Domain: appq-integration-center\n"
-
-#. Plugin Name of the plugin
-msgid "Integration Center"
-msgstr ""
-
-#. Plugin URI of the plugin
-msgid "https://bitbucket.org/appqdevel/appq-integration-center"
-msgstr ""
-
-#. Description of the plugin
-msgid "Integrate AppQuality Campaigns with most used BugTracking services"
-msgstr ""
-
-#. Author of the plugin
-msgid "Davide Bizzi"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://bitbucket.org/%7B1c7dab51-4872-4f3e-96ac-11f21c44fd4b%7D/"
-msgstr ""
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2;_n_noop:1,2;_nx_noop:1,2;esc_attr__;esc_attr_e;__withlang;esc_html_e;esc_html__;esc_html_x\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: assets/libs/bootstrap-4.3.1-dist\n"
 
 #: admin/class-appq-integration-center-admin.php:150
 #: admin/class-appq-integration-center-admin.php:161
@@ -302,226 +288,207 @@ msgstr ""
 msgid "You need to configure the bugtracker"
 msgstr ""
 
-#: assets/js/admin.js:1
-#: assets/js/admin.min.js:1
-#: src/admin/scripts/hold.js:118
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:118
 msgctxt "Integration Center edit available field"
 msgid "Custom field updated"
 msgstr ""
 
-#: assets/js/admin.js:1
-#: assets/js/admin.min.js:1
-#: src/admin/scripts/hold.js:123
+#: assets/js/admin.min.js:1 src/admin/scripts/hold.js:123
 msgctxt "Integration Center add available field"
 msgid "Custom field added"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:15
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:15
 msgctxt "Integration Center Introjs"
 msgid "Read carefully the following steps to learn to integrate AppQuality's Issue Tracker with your company's one."
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:20
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:20
 msgctxt "Integration Center Introjs"
 msgid "This is the full list of bugs created by tester for this specific Campaign"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:26
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:26
 msgctxt "Integration Center Introjs"
 msgid "Click here to export a specific bug"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:31
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:31
 msgctxt "Integration Center Introjs"
 msgid "Click here to upload a specific bug"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:38
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:38
 msgctxt "Integration Center Introjs"
 msgid "Click here to update a specific bug"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:44
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:44
 msgctxt "Integration Center Introjs"
 msgid "Click here to delete a specific bug"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:50
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:50
 msgctxt "Integration Center Introjs"
 msgid "Click here to go to bug on your tracker"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:55
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:55
 msgctxt "Integration Center Introjs"
 msgid "Here you can filter the bug list. The search is really powerful, you can search by ID or text if you are looking for a specific bug, but most likely you will be willing to look groups of bugs by status etc. You can see a list of feature below the search bar."
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:60
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:60
 msgctxt "Integration Center Introjs"
 msgid "You can export all the list"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:64
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:64
 msgctxt "Integration Center Introjs"
 msgid "You can export all the selected bugs"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:69
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:69
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the list"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:73
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:73
 msgctxt "Integration Center Introjs"
 msgid "You can upload all the selected bugs"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:77
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:77
 msgctxt "Integration Center Introjs"
 msgid "But first, you need to setup the connection with your Issue Tracker"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:82
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:82
 msgctxt "Integration Center Introjs"
 msgid "This is the summary of your settings for this campaign"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:93
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:93
 msgctxt "Integration Center Introjs"
 msgid "Configure a connection to your Issue Tracker if it's the first time you're pushing some bugs to it"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:105
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:105
 msgctxt "Integration Center Introjs"
 msgid "In order to be able to fill this settings make sure you have enough rights on your Issue Tracker and a bit of knowledge about how its API works, but don't worry, we're here to help"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:110
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:110
 msgctxt "Integration Center Introjs"
 msgid "You can create a new fake bug at anytime to test the settings"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:116
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:116
 msgctxt "Integration Center Introjs"
 msgid "Update the fake bug used to test settings"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:122
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:122
 msgctxt "Integration Center Introjs"
 msgid "Edit settings, here you can also select the file format and the fields for the export"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:127
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:127
 msgctxt "Integration Center Introjs"
 msgid "Edit settings, this might come in handy also in the future if the token is expired or you change the project ID"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:132
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:132
 msgctxt "Integration Center Introjs"
 msgid "Delete settings"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:137
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:137
 msgctxt "Integration Center Introjs"
 msgid "Read bugs from your tracker"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:143
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:143
 msgctxt "Integration Center Introjs"
 msgid "This is the most important part, where you decide how to map and write the bug on your side starting from the info you have here."
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:148
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:148
 msgctxt "Integration Center Introjs"
 msgid "Each row maps a Content to a Name, that is a Key in the Issue Tracker API and the name of the label that you should see. In Content we invite you to use all the informations you find useful from our platform, format them as you prefer and then send it over, you can choose any field from the Available Field (also listed above). In Name you need to use the proper naming that your Issue Tracker expects."
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:152
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:152
 msgctxt "Integration Center Introjs"
 msgid "Here you will find a modal to better customize the mapping for a single field"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:157
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:157
 msgctxt "Integration Center Introjs"
 msgid "Delete a single mapping"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:174
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:174
 msgctxt "Integration Center Introjs"
 msgid "Done"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:175
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:175
 msgctxt "Integration Center Introjs"
 msgid "Skip"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:176
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:176
 msgctxt "Integration Center Introjs"
 msgid "← Back"
 msgstr ""
 
-#: assets/js/front.js:1
-#: assets/js/front.min.js:1
-#: src/front/scripts/components/intro.js:177
+#: assets/js/front.min.js:1 src/front/scripts/components/intro.js:177
 msgctxt "Integration Center Introjs"
 msgid "Next →"
+msgstr ""
+
+#: src/admin/scripts/hold.js:23
+msgctxt "Integration Center delete issue"
+msgid "Are you sure you want to delete issue"
+msgstr ""
+
+#: src/admin/scripts/hold.js:146
+msgctxt "Integration Center available fields modal error"
+msgid "Something went wrong"
+msgstr ""
+
+#: src/admin/scripts/hold.js:153 src/admin/scripts/hold.js:158
+msgctxt "Integration Center available fields modal error"
+msgid "Please fill the mapping fields"
+msgstr ""
+
+#: src/admin/scripts/hold.js:242
+msgctxt "Integration Center delete custom field"
+msgid "Custom field deleted"
+msgstr ""
+
+#: src/admin/scripts/hold.js:244
+msgctxt "Integration Center delete custom field error"
+msgid "There was an error deleting custom field"
+msgstr ""
+
+#: src/admin/scripts/hold.js:305
+msgctxt "Integration Center available fields modal error"
+msgid "Updated!"
+msgstr ""
+
+#: src/admin/scripts/hold.js:350
+msgctxt "Integration Center send all confirm"
+msgid "Are you sure you want to process ALL the bugs? It will take a while. The list could contain REFUSED and PENDING bugs. If you want to send only some bugs, please use the \"Send Selected\" button."
+msgstr ""
+
+#: src/admin/scripts/hold.js:437
+msgctxt "Integration Center default bug upload"
+msgid "Default bug uploaded"
+msgstr ""
+
+#: src/admin/scripts/hold.js:469
+msgctxt "Integration Center default bug update"
+msgid "Default bug updated"
 msgstr ""
