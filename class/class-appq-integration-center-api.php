@@ -337,10 +337,10 @@ class IntegrationCenterRestApi
 	 */
 	public function get_configuration($cp_id)
 	{
-		global $wpdb;
+		global $tbdb;
 
-		return $wpdb->get_row(
-			$wpdb->prepare('SELECT * FROM ' . $wpdb->prefix .'appq_integration_center_config WHERE campaign_id = %d AND integration = %s', $cp_id, $this->integration['slug'])
+		return $tbdb->get_row(
+			$tbdb->prepare('SELECT * FROM ' . $tbdb->prefix .'appq_integration_center_config WHERE campaign_id = %d AND integration = %s', $cp_id, $this->integration['slug'])
 		);
 	}
 
@@ -390,7 +390,7 @@ class IntegrationCenterRestApi
 	 */
 	public function bug_data_replace($bug, $value)
 	{
-		global $wpdb;
+		global $tbdb;
 		$value_function = false;
 		$value_function_args = false;
 		if (strpos($value, '::appq::') !== false) {
@@ -410,13 +410,13 @@ class IntegrationCenterRestApi
 		}
 
 		if (!property_exists($bug,'type'))
-			$bug->type = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
+			$bug->type = $tbdb->get_var($tbdb->prepare('SELECT name FROM ' . $tbdb->prefix . 'appq_evd_bug_type WHERE id = %d', $bug->bug_type_id));
 		if (!property_exists($bug,'severity'))
-			$bug->severity = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
+			$bug->severity = $tbdb->get_var($tbdb->prepare('SELECT name FROM ' . $tbdb->prefix . 'appq_evd_severity WHERE id = %d', $bug->severity_id));
 		if (!property_exists($bug,'status'))
-			$bug->status = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
+			$bug->status = $tbdb->get_var($tbdb->prepare('SELECT name FROM ' . $tbdb->prefix . 'appq_evd_bug_status WHERE id = %d', $bug->status_id));
 		if (!property_exists($bug,'replicability'))
-			$bug->replicability = $wpdb->get_var($wpdb->prepare('SELECT name FROM ' . $wpdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
+			$bug->replicability = $tbdb->get_var($tbdb->prepare('SELECT name FROM ' . $tbdb->prefix . 'appq_evd_bug_replicability WHERE id = %d', $bug->bug_replicability_id));
 
 		$mappings = [];
 		foreach ($this->mappings as $map_name => $map_data) {
@@ -430,7 +430,7 @@ class IntegrationCenterRestApi
 		if (strpos($value,'{Bug.tags}') !== false || strpos($value,'{Bug.tags_list}') !== false )
 		{
 			if (!property_exists($bug,'tags') || !property_exists($bug,'tags_list')) {
-				$tags =  $wpdb->get_col($wpdb->prepare('SELECT display_name FROM wp_appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
+				$tags =  $tbdb->get_col($tbdb->prepare('SELECT display_name FROM wp_appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
 				$mappings['{Bug.tags}'] = implode(' ; ',$tags);
 				$tags_list = '["' . implode('","',$tags) . '"]';
 				$mappings['{Bug.tags_list}'] = $tags_list;
@@ -447,7 +447,7 @@ class IntegrationCenterRestApi
 		if (strpos($value,'{Bug.media}') !== false || strpos($value,'{Bug.media_links}') !== false )
 		{
 			if (!property_exists($bug,'media')) {
-				$media =  $wpdb->get_col($wpdb->prepare('SELECT location FROM ' . $wpdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id));
+				$media =  $tbdb->get_col($tbdb->prepare('SELECT location FROM ' . $tbdb->prefix . 'appq_evd_bug_media WHERE bug_id = %d', $bug->id));
 			} else {
 				$media = $bug->media;
 			}
@@ -577,11 +577,15 @@ class IntegrationCenterRestApi
 	 */
 	public function get_bug($bug_id)
 	{
+		global $tbdb;
 		if ($bug_id == 'default') {
 			return $this->get_default_bug();
 		}
-		$bug_model = mvc_model('Bug');
-		$bug = $bug_model->find_by_id($bug_id);
+
+		$bug = $tbdb->get_row(
+			$tbdb->prepare("SELECT * FROM wp_appq_evd_bug WHERE `id` = %d", $bug_id)
+		);
+		
 		$additional_fields = appq_get_campaign_additional_fields_data($bug_id);
 
 		if (sizeof($additional_fields) > 0)
