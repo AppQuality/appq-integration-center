@@ -53,14 +53,13 @@ class AppQ_Integration_Center_Admin
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( $plugin_name, $version )
+	public function __construct($plugin_name, $version)
 	{
 
 		$this->plugin_name  = $plugin_name;
 		$this->version      = $version;
-		$this->integrations = apply_filters( 'register_integrations', null );
-		if ( empty( $this->integrations ) )
-		{
+		$this->integrations = apply_filters('register_integrations', null);
+		if (empty($this->integrations)) {
 			$this->integrations = array();
 		}
 	}
@@ -70,13 +69,12 @@ class AppQ_Integration_Center_Admin
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles( $hook )
+	public function enqueue_styles($hook)
 	{
-		if ( strpos( $hook, 'integration-center' ) !== false )
-		{
-			wp_enqueue_style( 'bootstrap-style', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '4.1.3' );
-			wp_enqueue_style( 'toastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css', array(), '2.1.3' );
-			wp_enqueue_style( $this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/css/admin.css', array(), $this->version );
+		if (strpos($hook, 'integration-center') !== false) {
+			wp_enqueue_style('bootstrap-style', plugin_dir_url(__FILE__) . 'css/bootstrap.min.css', array(), '4.1.3');
+			wp_enqueue_style('toastr', plugin_dir_url(__FILE__) . 'css/toastr.min.css', array(), '2.1.3');
+			wp_enqueue_style($this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/css/admin.css', array(), $this->version);
 		}
 	}
 
@@ -85,45 +83,46 @@ class AppQ_Integration_Center_Admin
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts( $hook )
+	public function enqueue_scripts($hook)
 	{
 
-		if ( strpos( $hook, 'integration-center' ) !== false )
-		{
-			wp_enqueue_script( 'bootstrap-4', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery' ), '4.1.3', 'all' );
-			wp_enqueue_script( 'toastr', plugin_dir_url( __FILE__ ) . 'js/toastr.min.js', array(), '2.1.3', 'all' );
-			wp_enqueue_script( 'listjs', plugin_dir_url( __FILE__ ) . 'js/list.min.js', array(), '1.5.0', 'all' );
-			wp_enqueue_script( 'listjs-fuzzysearch', plugin_dir_url( __FILE__ ) . 'js/list.fuzzysearch.min.js', array(), '0.1.0', 'all' );
-			wp_enqueue_script( $this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/js/admin.js', array(
+		if (strpos($hook, 'integration-center') !== false) {
+			wp_enqueue_script('bootstrap-4', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), '4.1.3', 'all');
+			wp_enqueue_script('toastr', plugin_dir_url(__FILE__) . 'js/toastr.min.js', array(), '2.1.3', 'all');
+			wp_enqueue_script('listjs', plugin_dir_url(__FILE__) . 'js/list.min.js', array(), '1.5.0', 'all');
+			wp_enqueue_script('listjs-fuzzysearch', plugin_dir_url(__FILE__) . 'js/list.fuzzysearch.min.js', array(), '0.1.0', 'all');
+			wp_enqueue_script($this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/js/admin.js', array(
 				'jquery',
 				'listjs',
 				'listjs-fuzzysearch',
 				'bootstrap-4',
 				'toastr'
-			), $this->version, false );
-			wp_localize_script( $this->plugin_name, 'appq_ajax', array(
-				'url'   => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'appq-ajax-nonce' )
-			) );
+			), $this->version, false);
+			wp_localize_script($this->plugin_name, 'appq_ajax', array(
+				'url'   => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('appq-ajax-nonce')
+			));
 		}
 	}
 
-	public function enqueue_integration_scripts() {
-		foreach($this->get_integrations() as $i) {
+	public function enqueue_integration_scripts()
+	{
+		foreach ($this->get_integrations() as $i) {
 			$i['class']->enqueue_scripts($i['class']->plugin_name);
 		}
 	}
 
-	public function enqueue_integration_styles() {
-		foreach($this->get_integrations() as $i) {
+	public function enqueue_integration_styles()
+	{
+		foreach ($this->get_integrations() as $i) {
 			$i['class']->enqueue_styles($i['class']->plugin_name);
 		}
 	}
 
 	public function enqueueAdminAssets()
 	{
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
+		add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
 	}
 
 	/**
@@ -133,45 +132,46 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function register_settings()
 	{
-		add_option( $this->plugin_name . '_capability', 'manage_options' );
-		register_setting( $this->plugin_name . '_settings_group', $this->plugin_name . '_capability' );
+		add_option($this->plugin_name . '_capability', 'manage_options');
+		register_setting($this->plugin_name . '_settings_group', $this->plugin_name . '_capability');
 	}
 
 	/**
 	 * Register the WP admin menus.
 	 *
 	 * @since    1.0.0
+	 * @deprecated 1.1.3
 	 */
 	public function register_menus()
 	{
-		$necessary_capability = get_option( $this->plugin_name . '_capability' );
+		$necessary_capability = get_option($this->plugin_name . '_capability');
 
 		add_menu_page(
-			__( 'Integration center', 'appq-integration-center' ),
+			__('Integration center', 'appq-integration-center'),
 			'Integration center',
 			$necessary_capability,
 			'integration-center',
-			array( $this, 'campaigns_page' ),
-			plugins_url( $this->plugin_name . '/admin/images/icon.png' ),
+			array($this, 'campaigns_page'),
+			plugins_url($this->plugin_name . '/admin/images/icon.png'),
 			6
 		);
 
 		add_submenu_page(
 			'',
-			__( 'Integration center', 'appq-integration-center' ),
+			__('Integration center', 'appq-integration-center'),
 			'Integration center',
 			$necessary_capability,
 			'integration-center-campaign',
-			array( $this, 'bugs_page' )
+			array($this, 'bugs_page')
 		);
 
 		add_submenu_page(
 			'integration-center',
-			__( 'Integration center', 'appq-integration-center' ),
+			__('Integration center', 'appq-integration-center'),
 			'Settings',
 			'manage_options',
 			'integration-center-settings',
-			array( $this, 'settings_page' )
+			array($this, 'settings_page')
 		);
 	}
 
@@ -180,7 +180,7 @@ class AppQ_Integration_Center_Admin
 	 * Return admin partial path
 	 * @var $slug
 	 */
-	public function get_partial( $slug )
+	public function get_partial($slug)
 	{
 		return $this->plugin_name . '/admin/partials/appq-integration-center-admin-' . $slug . '.php';
 	}
@@ -189,16 +189,14 @@ class AppQ_Integration_Center_Admin
 	 * Include admin partial
 	 * @var $slug
 	 */
-	public function partial( $slug, $variables = false )
+	public function partial($slug, $variables = false)
 	{
-		if ( is_array($variables) )
-		{
-			foreach ( $variables as $key => $value )
-			{
+		if (is_array($variables)) {
+			foreach ($variables as $key => $value) {
 				${$key} = $value;
 			}
 		}
-		include( WP_PLUGIN_DIR . '/' . $this->get_partial( $slug ) );
+		include(WP_PLUGIN_DIR . '/' . $this->get_partial($slug));
 	}
 
 
@@ -212,31 +210,33 @@ class AppQ_Integration_Center_Admin
 	 * @return object                      MVC Campaign Object with bugtracker property and credentials property
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_campaign( $id )
+	public static function get_campaign($id)
 	{
-		global $wpdb;
-		$campaign_model = mvc_model( 'Campaign' );
-		$campaign       = $campaign_model->find_by_id( $id );
-		$bugtracker     = $wpdb->get_row(
-			$wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND is_active = 1', $id )
+		global $tbdb;
+
+		$campaign       = $tbdb->get_row(
+			$tbdb->prepare("SELECT * FROM wp_appq_evd_campaign WHERE id = %d", $id)
+		);
+
+		if (empty($campaign)) return false;
+
+		$bugtracker     = $tbdb->get_row(
+			$tbdb->prepare('SELECT * FROM ' . $tbdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND is_active = 1', $id)
 		);
 
 		$campaign->bugtracker  = '';
 		$campaign->credentials = false;
 		$campaign->url_model   = '';
-		if ( ! empty( $bugtracker ) )
-		{
+		if (!empty($bugtracker)) {
 			$campaign->bugtracker  = $bugtracker;
 			$campaign->credentials = true;
-			$integration           = str_replace( '-', '_', $bugtracker->integration );
+			$integration           = str_replace('-', '_', $bugtracker->integration);
 			$url_model_function    = 'appq_ic_' . $integration . '_get_url_model';
-			if ( function_exists( $url_model_function ) )
-			{
-				$campaign->url_model = $url_model_function( $bugtracker );
-				$default_bug_id      = AppQ_Integration_Center_Admin::get_uploaded_bug( $integration, - $id );
-				if ( ! empty( $default_bug_id ) )
-				{
-					$campaign->bugtracker->default_bug = str_replace( '{bugtracker_id}', $default_bug_id, $campaign->url_model );
+			if (function_exists($url_model_function)) {
+				$campaign->url_model = $url_model_function($bugtracker);
+				$default_bug_id      = AppQ_Integration_Center_Admin::get_uploaded_bug($integration, -$id);
+				if (!empty($default_bug_id)) {
+					$campaign->bugtracker->default_bug = str_replace('{bugtracker_id}', $default_bug_id, $campaign->url_model);
 				}
 			}
 		}
@@ -253,38 +253,37 @@ class AppQ_Integration_Center_Admin
 	 */
 	public static function get_campaigns()
 	{
-		global $wpdb;
-		$campaign_model = mvc_model( 'Campaign' );
-		$sql = 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_config WHERE is_active = 1';
+		global $tbdb;
+		$sql = 'SELECT * FROM ' . $tbdb->prefix . 'appq_integration_center_config WHERE is_active = 1';
 
 
-		$bugtrackers    = $wpdb->get_results( $sql , OBJECT_K );
+		$bugtrackers    = $tbdb->get_results($sql, OBJECT_K);
 
 		$available_campaign_ids = AppQ_Integration_Center_Admin::get_available_campaign_ids();
 
 		$campaigns = array();
 		if (!empty($available_campaign_ids)) {
-			$campaigns = $campaign_model->find(array(
-				'conditions' => array(
-					'id' => $available_campaign_ids
-				)
-			));
+
+			$campaigns       = $tbdb->get_results(
+				sprintf("SELECT * FROM wp_appq_evd_campaign WHERE id IN (%s)", implode(',', $available_campaign_ids))
+			);
 		}
-		$campaigns = array_map( function ( $cp ) use ( $bugtrackers ) {
-			$cp->bugtracker  = array_key_exists( $cp->id, $bugtrackers ) ? $bugtrackers[ $cp->id ] : '';
-			$cp->credentials = array_key_exists( $cp->id, $bugtrackers );
+
+		$campaigns = array_map(function ($cp) use ($bugtrackers) {
+			$cp->bugtracker  = array_key_exists($cp->id, $bugtrackers) ? $bugtrackers[$cp->id] : '';
+			$cp->credentials = array_key_exists($cp->id, $bugtrackers);
 
 			return $cp;
-		}, $campaigns );
+		}, $campaigns);
 
 		return $campaigns;
 	}
 
-	public static function get_available_campaign_ids() {
-		global $wpdb;
-		$sql = false;
-		if (is_a_customer()) {
-			$sql = '
+	public static function get_available_campaign_ids()
+	{
+		global $tbdb, $current_customer;
+
+		$sql = '
 			SELECT cp.id
 			FROM wp_appq_customer c
 			         JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
@@ -304,23 +303,17 @@ class AppQ_Integration_Center_Admin
 						WHERE u2p.project_id = p.id
 					)
 			  )';
-			$sql = $wpdb->prepare(
-				$sql,
-				get_current_user_id(),
-				get_current_user_id()
-			);
-		} else {
-			$cp_item = new CampaignItem();
-			if ($cp_item->has_full_access()) {
-				$sql = 'SELECT id FROM wp_appq_evd_campaign';
-			}
-		}
+		$sql = $tbdb->prepare(
+			$sql,
+			$current_customer->ID,
+			$current_customer->ID
+		);
+
 
 		if (!$sql) {
 			return [];
 		}
-		return $wpdb->get_col($sql);
-
+		return $tbdb->get_col($sql);
 	}
 
 	/**
@@ -333,11 +326,11 @@ class AppQ_Integration_Center_Admin
 	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_bugs( $campaign )
+	public static function get_bugs($campaign)
 	{
-		global $wpdb;
+		global $tbdb;
 
-		$bug_model = mvc_model( 'Bug' );
+		$bug_model = mvc_model('Bug');
 		$conditions = array(
 			'campaign_id' => $campaign->id,
 			'publish'     => 1
@@ -346,56 +339,52 @@ class AppQ_Integration_Center_Admin
 		if (is_a_customer()) {
 			$conditions['status_id'] = array(2);
 			if ($campaign->cust_bug_vis == "1") {
-				$conditions['status_id'] = array(2,4);
+				$conditions['status_id'] = array(2, 4);
 			}
 		}
 
-		$bugs      = $bug_model->find( array(
+		$bugs      = $bug_model->find(array(
 			'conditions' => $conditions
-		) );
+		));
 
 
-		$type     = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_type', OBJECT_K );
-		$severity = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_severity', OBJECT_K );
-		$status   = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'appq_evd_bug_status', OBJECT_K );
+		$type     = $tbdb->get_results('SELECT * FROM ' . $tbdb->prefix . 'appq_evd_bug_type', OBJECT_K);
+		$severity = $tbdb->get_results('SELECT * FROM ' . $tbdb->prefix . 'appq_evd_severity', OBJECT_K);
+		$status   = $tbdb->get_results('SELECT * FROM ' . $tbdb->prefix . 'appq_evd_bug_status', OBJECT_K);
 		$data     = array(
 			'status'   => $status,
 			'severity' => $severity,
 			'type'     => $type
 		);
-		$bugs     = array_map( function ( $bug ) use ( $data, $campaign ) {
-			global $wpdb;
+		$bugs     = array_map(function ($bug) use ($data, $campaign) {
+			global $tbdb;
 
-			$bug->status   = array_key_exists( $bug->status_id, $data['status'] ) ? $data['status'][ $bug->status_id ]->name : 'Not valid';
-			$bug->severity = array_key_exists( $bug->severity_id, $data['severity'] ) ? $data['severity'][ $bug->severity_id ]->name : 'Not valid';
-			$bug->category = array_key_exists( $bug->bug_type_id, $data['type'] ) ? $data['type'][ $bug->bug_type_id ]->name : 'Not valid';
-			$bug->tags     = $wpdb->get_col( $wpdb->prepare( 'SELECT display_name FROM ' . $wpdb->prefix . 'appq_bug_taxonomy WHERE bug_id = %d', $bug->id ) );
+			$bug->status   = array_key_exists($bug->status_id, $data['status']) ? $data['status'][$bug->status_id]->name : 'Not valid';
+			$bug->severity = array_key_exists($bug->severity_id, $data['severity']) ? $data['severity'][$bug->severity_id]->name : 'Not valid';
+			$bug->category = array_key_exists($bug->bug_type_id, $data['type']) ? $data['type'][$bug->bug_type_id]->name : 'Not valid';
+			$bug->tags     = $tbdb->get_col($tbdb->prepare('SELECT display_name FROM ' . $tbdb->prefix . 'appq_bug_taxonomy WHERE bug_id = %d', $bug->id));
 			$bug->uploaded = false;
-			if ( ! empty( $campaign->bugtracker ) )
-			{
-				$sql = $wpdb->prepare( 'SELECT bug_id,bugtracker_id FROM ' . $wpdb->prefix . 'appq_integration_center_bugs 
-					WHERE bug_id = %d AND integration = %s', $bug->id, $campaign->bugtracker->integration );
+			if (!empty($campaign->bugtracker)) {
+				$sql = $tbdb->prepare('SELECT bug_id,bugtracker_id FROM ' . $tbdb->prefix . 'appq_integration_center_bugs 
+					WHERE bug_id = %d AND integration = %s', $bug->id, $campaign->bugtracker->integration);
 
-				$uploaded_bug_data   = $wpdb->get_row( $sql );
+				$uploaded_bug_data   = $tbdb->get_row($sql);
 				$bug->uploaded       = false;
 				$bug->bugtracker_url = false;
 
-				if ( ! empty( $uploaded_bug_data ) )
-				{
+				if (!empty($uploaded_bug_data)) {
 					$bug->uploaded = true;
-					if ( ! empty( $uploaded_bug_data->bugtracker_id ) )
-					{
+					if (!empty($uploaded_bug_data->bugtracker_id)) {
 						$bug->bugtracker_id = $uploaded_bug_data->bugtracker_id;
-						if ( ! empty( $campaign->url_model ) )
-						{
-							$bug->bugtracker_url = str_replace( '{bugtracker_id}', $uploaded_bug_data->bugtracker_id, $campaign->url_model );
+						if (!empty($campaign->url_model)) {
+							$bug->bugtracker_url = str_replace('{bugtracker_id}', $uploaded_bug_data->bugtracker_id, $campaign->url_model);
 						}
 					}
 				}
 			}
 
 			return $bug;
-		}, $bugs );
+		}, $bugs);
 
 		return $bugs;
 	}
@@ -410,7 +399,8 @@ class AppQ_Integration_Center_Admin
 	 * );
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public function get_integrations() {
+	public function get_integrations()
+	{
 		$integrations = array();
 		foreach ($this->integrations as $k => $v) {
 			$visible_to_customer = $this->is_visible_to_customer($v['slug']);
@@ -441,16 +431,15 @@ class AppQ_Integration_Center_Admin
 		$capabilities = array();
 
 		$all_roles      = $wp_roles->roles;
-		$editable_roles = apply_filters( 'editable_roles', $all_roles );
+		$editable_roles = apply_filters('editable_roles', $all_roles);
 
-		foreach ( $editable_roles as $role )
-		{
-			$capabilities = array_merge( $capabilities, array_keys( $role['capabilities'] ) );
+		foreach ($editable_roles as $role) {
+			$capabilities = array_merge($capabilities, array_keys($role['capabilities']));
 		}
-		$capabilities = array_unique( $capabilities );
-		sort( $capabilities );
+		$capabilities = array_unique($capabilities);
+		sort($capabilities);
 
-		$necessary_capability = get_option( $this->plugin_name . '_capability' );
+		$necessary_capability = get_option($this->plugin_name . '_capability');
 
 		$integrations = $this->get_integrations();
 
@@ -463,16 +452,16 @@ class AppQ_Integration_Center_Admin
 			)
 		);
 
-		wp_enqueue_style( 'toastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css', array(), '2.1.3' );
-		wp_enqueue_script( 'toastr', APPQ_INTEGRATION_CENTER_URL . 'admin/js/toastr.min.js', array(), '2.1.3', 'all' );
-		wp_enqueue_script( 'visible_to_customer_ajax', APPQ_INTEGRATION_CENTER_URL . 'admin/js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
+		wp_enqueue_style('toastr', plugin_dir_url(__FILE__) . 'css/toastr.min.css', array(), '2.1.3');
+		wp_enqueue_script('toastr', APPQ_INTEGRATION_CENTER_URL . 'admin/js/toastr.min.js', array(), '2.1.3', 'all');
+		wp_enqueue_script('visible_to_customer_ajax', APPQ_INTEGRATION_CENTER_URL . 'admin/js/visible_to_customer.js', array('jquery'), '1.0.0', 'all');
 
-		$this->partial( 'settings', array(
+		$this->partial('settings', array(
 			'capabilities' => $capabilities,
 			'integrations' => $integrations,
 			'settings'     => $settings,
 			'group_name'   => $this->plugin_name . '_settings_group'
-		) );
+		));
 	}
 
 	/**
@@ -483,9 +472,9 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function campaigns_page()
 	{
-		$this->partial( 'campaigns', array(
+		$this->partial('campaigns', array(
 			'campaigns' => $this->get_campaigns()
-		) );
+		));
 	}
 
 	/**
@@ -499,22 +488,21 @@ class AppQ_Integration_Center_Admin
 		global $wp;
 		$id = $this->get_campaign_id();
 		if ($id == 0) {
-			$this->partial( 'not-found' );
+			$this->partial('not-found');
 
 			return;
 		}
 
-		$campaign = $this->get_campaign( $id );
-		if ( ! $campaign )
-		{
-			$this->partial( 'not-found' );
+		$campaign = $this->get_campaign($id);
+		if (!$campaign) {
+			$this->partial('not-found');
 
 			return;
 		}
-		$this->partial( 'bugs', array(
-			'bugs'     => $this->get_bugs( $campaign ),
+		$this->partial('bugs', array(
+			'bugs'     => $this->get_bugs($campaign),
 			'campaign' => $campaign
-		) );
+		));
 	}
 
 	/**
@@ -527,14 +515,14 @@ class AppQ_Integration_Center_Admin
 	 * @return array
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_custom_fields( $campaign_id )
+	public static function get_custom_fields($campaign_id)
 	{
-		global $wpdb;
+		global $tbdb;
 
-		$sql = $wpdb->prepare( 'SELECT * FROM wp_appq_integration_center_custom_map 
-			WHERE campaign_id = %d', $campaign_id );
+		$sql = $tbdb->prepare('SELECT * FROM wp_appq_integration_center_custom_map 
+			WHERE campaign_id = %d', $campaign_id);
 
-		return $wpdb->get_results( $sql );
+		return $tbdb->get_results($sql);
 	}
 
 	/**
@@ -546,56 +534,56 @@ class AppQ_Integration_Center_Admin
 	 *
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public function available_fields( $campaign = null )
+	public function available_fields($campaign = null)
 	{
-		$custom_fields = $this->get_custom_fields( $campaign->id );
+		$custom_fields = $this->get_custom_fields($campaign->id);
 
-		$this->partial( 'bugs/available-fields', array(
+		$this->partial('bugs/available-fields', array(
 			'integrations'  => $this->get_integrations(),
 			'campaign'      => $campaign,
 			'custom_fields' => $custom_fields,
-		) );
+		));
 	}
 
-	public function current_setup( $campaign = null )
+	public function current_setup($campaign = null)
 	{
-		$this->partial( 'bugs/current-setup', [ 'campaign' => $campaign ] );
+		$this->partial('bugs/current-setup', ['campaign' => $campaign]);
 	}
 
-	public function fields_mapping( $campaign = null )
+	public function fields_mapping($campaign = null)
 	{
-		$this->partial( 'bugs/fields-mapping', [ 'campaign' => $campaign ] );
+		$this->partial('bugs/fields-mapping', ['campaign' => $campaign]);
 	}
 
-	public function current_setup_edit_buttons( $campaign = null )
+	public function current_setup_edit_buttons($campaign = null)
 	{
-		$this->partial( 'settings/current-setup-edit-buttons', [ 'campaign' => $campaign ] );
+		$this->partial('settings/current-setup-edit-buttons', ['campaign' => $campaign]);
 	}
 
-	public static function get_uploaded_bug( $integration_type, $bug_id )
+	public static function get_uploaded_bug($integration_type, $bug_id)
 	{
-		global $wpdb;
+		global $tbdb;
 
-		$sql = $wpdb->prepare( 'SELECT bugtracker_id FROM wp_appq_integration_center_bugs
-			WHERE bug_id = %d AND integration = %s', $bug_id, $integration_type );
+		$sql = $tbdb->prepare('SELECT bugtracker_id FROM wp_appq_integration_center_bugs
+			WHERE bug_id = %d AND integration = %s', $bug_id, $integration_type);
 
-		return $wpdb->get_var( $sql );
+		return $tbdb->get_var($sql);
 	}
 
 
-	public function get_campaign_id() {
+	public function get_campaign_id()
+	{
 		global $wp;
-		if ( ! array_key_exists( 'id', $_GET ) && ! array_key_exists( 'appq-integration-center', $wp->query_vars ) )
-		{
+		if (!array_key_exists('id', $_GET) && !array_key_exists('appq-integration-center', $wp->query_vars)) {
 			return 0;
 		}
 		$id = 0;
-		if (array_key_exists( 'id', $_GET )) {
+		if (array_key_exists('id', $_GET)) {
 			$id = $_GET['id'];
 		}
 		if (
 			!empty($wp->query_vars)
-			&& array_key_exists( 'appq-integration-center', $wp->query_vars )
+			&& array_key_exists('appq-integration-center', $wp->query_vars)
 			&& !empty($wp->query_vars['appq-integration-center'])
 		) {
 			$id = $wp->query_vars['appq-integration-center'];
@@ -603,20 +591,20 @@ class AppQ_Integration_Center_Admin
 		return $id;
 	}
 
-	public function get_integration_by_slug($slug) {
-		global $wpdb;
-		$integration = $wpdb->get_row(
-			$wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . 'appq_integration_center_integrations WHERE integration_slug = %s', $slug )
+	public function get_integration_by_slug($slug)
+	{
+		global $tbdb;
+		$integration = $tbdb->get_row(
+			$tbdb->prepare('SELECT * FROM ' . $tbdb->prefix . 'appq_integration_center_integrations WHERE integration_slug = %s', $slug)
 		);
 
 		return $integration;
 	}
 
-	public function is_visible_to_customer($slug) : bool
-    {
+	public function is_visible_to_customer($slug): bool
+	{
 		$integration = $this->get_integration_by_slug($slug);
 
 		return $integration->visible_to_customer === "1";
-
 	}
 }

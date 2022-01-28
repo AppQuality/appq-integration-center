@@ -327,6 +327,7 @@ class AppQ_Integration_Center
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @deprecated 
 	 */
 	private function define_admin_hooks()
 	{
