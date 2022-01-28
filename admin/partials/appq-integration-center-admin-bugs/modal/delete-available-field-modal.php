@@ -1,12 +1,9 @@
 <!-- Modal -->
-<div class="modal" style="z-index: 99999;" id="delete_available_field_modal" tabindex="-1" role="dialog" aria-labelledby="reset_tracker_settings" aria-hidden="true">
+<div class="modal" id="delete_available_field_modal" tabindex="-1" role="dialog" aria-labelledby="reset_tracker_settings" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div style="z-index: 99999;" class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <?php printf('<h5 class="modal-title">%s</h5>', __('Delete this field?', 'appq-integration-center')); ?>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body form px-4">
                 <div class="modal-form pb-4">

@@ -11,54 +11,29 @@
  * @package    AppQ_Integration_Center
  * @subpackage AppQ_Integration_Center/admin/partials
  */
-?> 
+?>
 
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
-<div class="d-flex justify-content-between">
-  <h2 class="py-3"><?= $campaign->title ?></h2>
-    <?php if ( isset( $campaign->bugtracker->integration ) ) : ?>
-      <div class="d-flex align-items-center">
-        <div class="h4 mr-3">
-          <?php
-          $docs_link = get_field('appq_integration_center_docs','options');
-          if (!empty($docs_link)): ?>
-          <a class="clean" href="<?= $docs_link ?>" target="_blank">
-            <span><?= __('Documentation', 'appq-integration-center') ?></span>
-            <i class="fa fa-book"></i>
-          </a>
-          <?php endif; ?>
-        </div>
-        <div class="h4">
-          <a href="#" id="start-introjs" class="clean" data-integration="<?= $campaign->bugtracker->integration; ?>">
-            <i class="fa fa-question-circle"></i>
-          </a>
-        </div>
-      </div>
-    <?php endif; ?>
-</div>
+<h2 class="text-primary"><?= $campaign->title ?></h2>
 <div class="card">
-    <ul class="nav nav-tabs" id="campaign-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active px-5 clean" id="bugs-tab" data-toggle="tab" href="#bugs_list"><?= __("Bugs", 'appq-integration-center') ?></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link px-5 clean" id="settings-tab" data-toggle="tab" href="#settings" role="tab"><?= __("Settings", 'appq-integration-center') ?></a>
-        </li>
-    </ul>
-  <div class="card-body">
-    <div class="tab-content" id="bugs-tabs-content">
-        <input id="cp_id" type="hidden" value="<?= $campaign->id ?>"/>
-        <div class="tab-pane active" id="bugs_list" role="tabpanel"
-             aria-labelledby="bugs-tab">
-            <?php $this->partial( 'bugs/list', array( 'bugs' => $bugs ) ) ?>
-        </div>
-        <div class="tab-pane" id="settings" role="tabpanel"
-             aria-labelledby="settings-tab">
-            <?php $this->partial( 'bugs/settings', array(
-              'integrations' => $this->get_integrations(),
-              'campaign'     => $campaign
-            ) ) ?>
-        </div>
-    </div>
-</div>
+	<div class="card-head">
+		<ul class="nav nav-tabs tabs-accent" id="campaign-tabs" data-toggle="tabs">
+			<li class="active"><a id="bugs-tab" data-toggle="tab" href="#bugs_list"><?= __("Bugs", 'appq-integration-center') ?></a></li>
+			<li><a id="settings-tab" data-toggle="tab" href="#settings"><?= __("Settings", 'appq-integration-center') ?></a></li>
+		</ul>
+	</div>
+
+	<div class="card-body">
+		<div class="tab-content" id="bugs-tabs-content">
+			<div class="tab-pane active" id="bugs_list" role="tabpanel" aria-labelledby="bugs-tab">
+				<?php $this->partial('bugs/list', array('bugs' => $bugs)) ?>
+			</div>
+			<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+				<?php $this->partial('bugs/settings', array(
+					'integrations' => $this->get_integrations(),
+					'campaign'     => $campaign
+				)) ?>
+			</div>
+		</div>
+	</div>
 </div>

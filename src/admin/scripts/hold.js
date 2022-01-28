@@ -17,7 +17,7 @@
 		if ($('.delete_issue').length) {
 			$('.delete_issue').click(function(e) {
 				e.preventDefault()
-				var cp_id = $('#cp_id').val()
+				var cp_id = $('#campaign_id').val()
 				var bug_name = $(this).closest('tr').find('td.name').text()
 				var bugtracker_id = $(this).attr('data-bugtracker-id')
 				if (confirm(_x("Are you sure you want to delete issue", "Integration Center delete issue", "appq-integration-center") + " " + bugtracker_id + " - " + bug_name + "?")) {
@@ -106,7 +106,7 @@
 			e.preventDefault()
 			var self = this
 			var content = $(this).html()
-			var cp_id = $('#cp_id').val()
+			var cp_id = $('#campaign_id').val()
 			var form;
 			var action;
 			var fields_limit;
@@ -214,7 +214,7 @@
 			e.preventDefault();
 			var self = this;
 			var content = $(this).html();
-			var cp_id = $('#cp_id').val();
+			var cp_id = $('#campaign_id').val();
 			$(this).html('<i class="fa fa-spinner fa-spin"></i>');
 			$(this).prop('disabled', true);
 			var name = $('#delete_available_field_form').find('input[name="name"]').val();
@@ -252,7 +252,7 @@
 		});
 
 		$('#bugs-tabs-content .upload_bug').not('.disabled').click(function() {
-			var cp_id = $('#cp_id').val()
+			var cp_id = $('#campaign_id').val()
 			var bug_id = $(this).data('bug-id')
 			var button = $(this)
 			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
@@ -286,7 +286,7 @@
 			});
 		})
 		$('#bugs-tabs-content .update_bug').not('.disabled').click(function() {
-			var cp_id = $('#cp_id').val()
+			var cp_id = $('#campaign_id').val()
 			var bug_id = $(this).data('bug-id')
 			var button = $(this)
 			button.removeClass('fa-upload').addClass('fa-spinner fa-spin text-secondary disabled')
@@ -415,7 +415,7 @@
 		})	
 		$('#import_default_bug').click(function(e){
 			e.preventDefault()
-			var cp_id = $('#cp_id').val()
+			var cp_id = $('#campaign_id').val()
 			var bug_id = 'default'
 			var button = $(this)
 			var text = $(this).html()
@@ -447,7 +447,7 @@
 		})
 		$('#update_default_bug').click(function(e){
 			e.preventDefault()
-			var cp_id = $('#cp_id').val()
+			var cp_id = $('#campaign_id').val()
 			var bug_id = 'default'
 			var button = $(this)
 			var text = $(this).html()

@@ -5,16 +5,15 @@ $cp_id = $admin->get_campaign_id();
 $available_campaign_ids = $admin->get_available_campaign_ids();
 
 get_header();
-?>
-
-<div id="base">
-  <?php if (in_array($cp_id, $available_campaign_ids) || current_user_can('manage_options')) : ?>
-    <div id="content">
-      <section>
+if (in_array($cp_id, $available_campaign_ids) || current_user_can('manage_options')) : ?>
+  <div id="content">
+    <section>
+      <div class="section-body">
         <?php $admin->bugs_page(); ?>
-      </section>
-    </div>
-  <?php else : ?>
-    <?php $admin->partial('generic-error-page'); ?>
-  <?php endif ?>
-</div>
+      </div>
+    </section>
+  </div>
+<?php else :
+  $admin->partial('generic-error-page');
+endif;
+get_footer();

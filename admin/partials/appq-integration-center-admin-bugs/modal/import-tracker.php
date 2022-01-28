@@ -4,9 +4,6 @@
     <div style="z-index: 99999;" class="modal-content">
       <div class="modal-header">
         <?php printf('<h5 class="modal-title">%s</h5>', __('Import settings', 'appq-integration-center')); ?>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body form px-4">
         <form id="import_from_cp" class="modal-form pb-4">

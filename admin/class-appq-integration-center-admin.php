@@ -487,7 +487,6 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function bugs_page()
 	{
-		global $wp;
 		$id = $this->get_campaign_id();
 		if ($id == 0) {
 			$this->partial('not-found');

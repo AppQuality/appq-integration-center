@@ -1,12 +1,9 @@
 <!-- Modal -->
-<div class="modal" style="z-index: 99999;" id="custom_tracker_settings_modal" tabindex="-1" role="dialog" aria-labelledby="custom_tracker_settings_modal" aria-hidden="true">
+<div class="modal" id="custom_tracker_settings_modal" tabindex="-1" role="dialog" aria-labelledby="custom_tracker_settings_modal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <div style="z-index: 99999;" class="modal-content">
+    <div class="modal-content">
       <div class="modal-header">
         <?php printf('<h5 class="modal-title">%s</h5>', __('Setup your issue tracker', 'appq-integration-center')); ?>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body form px-4">
         <div id="setup_manually_cp" class="modal-form pb-4">

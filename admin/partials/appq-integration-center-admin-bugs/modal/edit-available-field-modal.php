@@ -1,12 +1,9 @@
 <!-- Modal -->
-<div class="modal" style="z-index: 99999;" id="edit_available_field_modal" tabindex="-1" role="dialog" aria-labelledby="addFieldModalLabel" aria-hidden="true">
+<div class="modal" id="edit_available_field_modal" tabindex="-1" role="dialog" aria-labelledby="addFieldModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div style="z-index: 99999;" class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <?php printf('<h5 class="modal-title">%s</h5>', __('Edit available field', 'appq-integration-center')); ?>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <form class="modal-body form px-4" id="edit_available_field_form">
                 <div class="row">
