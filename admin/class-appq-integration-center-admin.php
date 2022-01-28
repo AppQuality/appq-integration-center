@@ -283,8 +283,7 @@ class AppQ_Integration_Center_Admin
 	{
 		global $tbdb, $current_customer;
 
-		$sql = '
-			SELECT cp.id
+		$sql = 'SELECT cp.id
 			FROM wp_appq_customer c
 			         JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
 			         JOIN wp_appq_project p ON p.customer_id = c.id

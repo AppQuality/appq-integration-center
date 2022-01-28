@@ -86,31 +86,9 @@ class AppQ_Integration_Center
 	public function define_frontend_hooks()
 	{
 		$scripts = array(
-			'popper' => array(
-				'src' =>  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
-				'version' => '1.12.9'
-			),
-			'bootstrap-4' => array(
-				'src' =>  APPQ_INTEGRATION_CENTER_URL . 'admin/js/bootstrap.min.js',
-				'version' => '4.1.3',
-				'dependencies' => array('popper')
-			),
-			'toastr-min' => array(
-				'src' =>  APPQ_INTEGRATION_CENTER_URL . 'admin/js/toastr.min.js',
-				'version' => '2.1.3',
-				'dependencies' => array('jquery')
-			),
-			'listjs' => array(
-				'src' =>  APPQ_INTEGRATION_CENTER_URL . 'admin/js/list.min.js',
-				'version' => '1.5.0'
-			),
 			'listjs-fuzzysearch' => array(
 				'src' =>  APPQ_INTEGRATION_CENTER_URL . 'admin/js/list.fuzzysearch.min.js',
 				'version' => '0.1.0'
-			),
-			'introjs' => array(
-				'src' => 'https://unpkg.com/intro.js/minified/intro.min.js',
-				'version' => '3.3.1'
 			),
 			$this->plugin_name . '-front' => array(
 				'src' => APPQ_INTEGRATION_CENTER_URL . 'assets/js/front.min.js',
@@ -122,37 +100,11 @@ class AppQ_Integration_Center
 				'version' => '1.0',
 				'dependencies' => array(
 					'jquery',
-					'listjs',
 					'listjs-fuzzysearch',
-					'bootstrap-4',
-					'toastr'
 				)
 			)
 		);
-		$styles = array(
-			'bootstrap-style' => array(
-				'src' => APPQ_INTEGRATION_CENTER_URL . 'admin/css/bootstrap.min.css',
-				'version' => '4.1.3'
-			),
-			'toastr' => array(
-				'src' => APPQ_INTEGRATION_CENTER_URL . 'admin/css/toastr.min.css',
-				'version' => '2.1.3'
-			),
-			$this->plugin_name => array(
-				'src' => APPQ_INTEGRATION_CENTER_URL . 'assets/css/admin.css',
-				'version' => '1.0',
-			),
-			'material-bootstrap-ic' => array(
-				'src' => get_stylesheet_directory_uri() . '/assets/css/material-bootstrap.css',
-				'version' => '1.0',
-				'dependencies' => array($this->plugin_name)
-			),
-			$this->plugin_name . '-front' => array(
-				'src' => APPQ_INTEGRATION_CENTER_URL . 'assets/css/front.css',
-				'version' => '1.0',
-				'dependencies' => array('bootstrap-3')
-			),
-		);
+		$styles = array();
 
 		$this->add_custom_frontoffice_page(
 			'appq-integration-center',
@@ -162,19 +114,10 @@ class AppQ_Integration_Center
 			function () {
 				$admin = new AppQ_Integration_Center_Admin($this->plugin_name, $this->version);
 
-				add_action('wp_print_scripts', function () {
-					wp_dequeue_script('app-script');
-					wp_dequeue_style('material-bootstrap');
-					wp_dequeue_script('bootstrap');
-				});
 				add_action('wp_enqueue_scripts', function () {
-					wp_localize_script($this->plugin_name, 'appq_ajax', array(
-						'url'   => admin_url('admin-ajax.php'),
+					wp_localize_script($this->plugin_name, 'integration_center_obj', array(
+						'ajax_url' => admin_url('admin-ajax.php'),
 						'nonce' => wp_create_nonce('appq-ajax-nonce')
-					));
-
-					wp_localize_script($this->plugin_name, 'custom_object', array(
-						'ajax_url' => admin_url('admin-ajax.php')
 					));
 				}, 11);
 

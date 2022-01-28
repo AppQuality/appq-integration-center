@@ -27,7 +27,7 @@
 					$.ajax({
 						type: "post",
 						dataType: "json",
-						url: custom_object.ajax_url,
+						url: integration_center_obj.ajax_url,
 						data: {
 							'action': 'appq_delete_bug_from_bugtracker',
 							'cp_id': cp_id,
@@ -136,7 +136,7 @@
 					$.ajax({
 						type: "post",
 						dataType: "json",
-						url: custom_object.ajax_url,
+						url: integration_center_obj.ajax_url,
 						data: formData
 					}).then(function(res){
 						if (res.success) {
@@ -234,7 +234,7 @@
 			$.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: data
 			}).then(function(res){
 				if (res.success) {
@@ -259,7 +259,7 @@
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: {
 					'action': 'appq_upload_bugs_to_bugtracker',
 					'cp_id': cp_id,
@@ -293,7 +293,7 @@
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: {
 					'action': 'appq_update_bugs_in_bugtracker',
 					'cp_id': cp_id,
@@ -406,7 +406,7 @@
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: data,
 				success: function(msg) {
 					button.text(text)
@@ -423,7 +423,7 @@
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: {
 					'action': 'appq_upload_bugs_to_bugtracker',
 					'cp_id': cp_id,
@@ -455,7 +455,7 @@
 			jQuery.ajax({
 				type: "post",
 				dataType: "json",
-				url: custom_object.ajax_url,
+				url: integration_center_obj.ajax_url,
 				data: {
 					'action': 'appq_update_bugs_in_bugtracker',
 					'cp_id': cp_id,

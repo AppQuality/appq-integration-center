@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <div id="base">
-  <?php if (in_array($cp_id, $available_campaign_ids)) : ?>
+  <?php if (in_array($cp_id, $available_campaign_ids) || current_user_can('manage_options')) : ?>
     <div id="content">
       <section>
         <?php $admin->bugs_page(); ?>

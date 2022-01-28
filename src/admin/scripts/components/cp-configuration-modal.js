@@ -23,13 +23,13 @@
         });
         data.push({
           name: "nonce",
-          value: appq_ajax.nonce,
+          value: integration_center_obj.nonce,
         });
         jQuery
           .ajax({
             type: "post",
             dataType: "json",
-            url: appq_ajax.url,
+            url: integration_center_obj.ajax_url,
             data: data,
           })
           .then(function (res) {

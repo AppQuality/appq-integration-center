@@ -12,7 +12,7 @@
         <div id="setup_manually_cp" class="modal-form pb-4">
           <select <?= isset($campaign->bugtracker->integration) ? '' : 'data-clear' ?> name="bugtracker" data-parent="#setup_manually_cp" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', 'appq-integration-center'); ?>">
             <option></option>
-            <?php if (is_a_customer()): ?>
+            <?php if (!current_user_can('manage_options')): ?>
               <?php foreach ($integrations as $integration) : ?>
                 <?php if ($integration['visible_to_customer']): ?>
                   <option value="<?= $integration['slug'] ?>" <?= (isset($campaign->bugtracker->integration) && ($campaign->bugtracker->integration === $integration['slug'])) ? 'selected' : '' ?>><?= $integration['name'] ?></option>
