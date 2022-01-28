@@ -44,17 +44,8 @@ class AppQ_Integration_Center_Activator
 	 */
 	public static function activate()
 	{
-		global $wpdb;
+		global $tbdb;
 		$error = false;
-
-		if (!is_plugin_active('app-q-test/app_q_test.php'))
-		{
-			if (!$error)
-			{
-				$error = array();
-			}
-			$error[] = "App Q Test dependency plugin is not active";
-		}
 
 		$tmp_folder = ABSPATH . 'wp-content/plugins/appq-integration-center/tmp/';
 		if (!file_exists($tmp_folder)) {
@@ -64,10 +55,10 @@ class AppQ_Integration_Center_Activator
 		// CREATE TABLES
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-		$charset_collate = $wpdb->get_charset_collate();
+		$charset_collate = $tbdb->get_charset_collate();
 
 		// Table: appq_integration_center_integrations
-		$table = $wpdb->prefix . "appq_integration_center_integrations";
+		$table = $tbdb->prefix . "appq_integration_center_integrations";
 		$integrationsTable = "CREATE TABLE $table (
 			integration_id int NOT NULL AUTO_INCREMENT,
 			integration_slug varchar(32) NOT NULL,
@@ -78,37 +69,38 @@ class AppQ_Integration_Center_Activator
 		dbDelta($integrationsTable);
 
 		// Hardcoded integrations
-		$integrations = $wpdb->get_results('SELECT * FROM ' . $table);
-		if ($wpdb->num_rows <= 0) {
-			$sql = $wpdb->prepare(
+		$integrations = $tbdb->get_results('SELECT * FROM ' . $table);
+		if ($tbdb->num_rows <= 0) 
+		{
+			$sql = $tbdb->prepare(
 				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'azure-devops', 'Azure Devops', 1
 			);
-			$wpdb->query($sql);
+			$tbdb->query($sql);
 
-			$sql = $wpdb->prepare(
+			$sql = $tbdb->prepare(
 				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'csv_exporter', 'Csv Exporter', 1
 			);
-			$wpdb->query($sql);
+			$tbdb->query($sql);
 
-			$sql = $wpdb->prepare(
+			$sql = $tbdb->prepare(
 				"INSERT INTO " . $table . "
 				(integration_slug,integration_name,visible_to_customer) 
 				VALUES (%s,%s,%d)", 
 				'jira', 'Jira', 1
 			);
-			$wpdb->query($sql);
+			$tbdb->query($sql);
 		}
 
 		// Table: appq_integration_center_bugs
-		$table = $wpdb->prefix . "appq_integration_center_bugs";
-		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
-			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		$table = $tbdb->prefix . "appq_integration_center_bugs";
+		if ($tbdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$tbdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
 		}
 		$bugUploadedTable = "CREATE TABLE $table (
 			bug_id int NOT NULL,
@@ -119,9 +111,9 @@ class AppQ_Integration_Center_Activator
         ) $charset_collate;";
 		dbDelta($bugUploadedTable);
 
-		$table = $wpdb->prefix . "appq_integration_center_config";
-		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
-			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		$table = $tbdb->prefix . "appq_integration_center_config";
+		if ($tbdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$tbdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
 		}
 		$campaignConfigTable = "CREATE TABLE $table (
 			campaign_id int NOT NULL,
@@ -136,9 +128,9 @@ class AppQ_Integration_Center_Activator
 		dbDelta($campaignConfigTable);
 		
 		// Table: appq_integration_center_custom_map
-		$table = $wpdb->prefix . "appq_integration_center_custom_map";
-		if ($wpdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
-			$wpdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
+		$table = $tbdb->prefix . "appq_integration_center_custom_map";
+		if ($tbdb->get_var('SHOW TABLES LIKE "'.$table.'"') == $table) {
+			$tbdb->query("ALTER TABLE $table DROP PRIMARY KEY;");
 		}
 		$campaignCustomMapTable = "CREATE TABLE $table (
 			campaign_id int NOT NULL,

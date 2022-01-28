@@ -76,7 +76,7 @@ class AppQ_Integration_Center_Admin
 		{
 			wp_enqueue_style( 'bootstrap-style', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '4.1.3' );
 			wp_enqueue_style( 'toastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css', array(), '2.1.3' );
-			wp_enqueue_style( $this->plugin_name, APPQ_INTEGRATION_CENTERURL . 'assets/css/admin.css', array(), $this->version );
+			wp_enqueue_style( $this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/css/admin.css', array(), $this->version );
 		}
 	}
 
@@ -94,7 +94,7 @@ class AppQ_Integration_Center_Admin
 			wp_enqueue_script( 'toastr', plugin_dir_url( __FILE__ ) . 'js/toastr.min.js', array(), '2.1.3', 'all' );
 			wp_enqueue_script( 'listjs', plugin_dir_url( __FILE__ ) . 'js/list.min.js', array(), '1.5.0', 'all' );
 			wp_enqueue_script( 'listjs-fuzzysearch', plugin_dir_url( __FILE__ ) . 'js/list.fuzzysearch.min.js', array(), '0.1.0', 'all' );
-			wp_enqueue_script( $this->plugin_name, APPQ_INTEGRATION_CENTERURL . 'assets/js/admin.js', array(
+			wp_enqueue_script( $this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/js/admin.js', array(
 				'jquery',
 				'listjs',
 				'listjs-fuzzysearch',
@@ -191,7 +191,7 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function partial( $slug, $variables = false )
 	{
-		if ( $variables )
+		if ( is_array($variables) )
 		{
 			foreach ( $variables as $key => $value )
 			{
@@ -464,8 +464,8 @@ class AppQ_Integration_Center_Admin
 		);
 
 		wp_enqueue_style( 'toastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css', array(), '2.1.3' );
-		wp_enqueue_script( 'toastr', APPQ_INTEGRATION_CENTERURL . 'admin/js/toastr.min.js', array(), '2.1.3', 'all' );
-		wp_enqueue_script( 'visible_to_customer_ajax', APPQ_INTEGRATION_CENTERURL . 'admin/js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
+		wp_enqueue_script( 'toastr', APPQ_INTEGRATION_CENTER_URL . 'admin/js/toastr.min.js', array(), '2.1.3', 'all' );
+		wp_enqueue_script( 'visible_to_customer_ajax', APPQ_INTEGRATION_CENTER_URL . 'admin/js/visible_to_customer.js', array( 'jquery' ), '1.0.0', 'all' );
 
 		$this->partial( 'settings', array(
 			'capabilities' => $capabilities,
