@@ -321,31 +321,32 @@ class AppQ_Integration_Center_Admin
 	 * @method get_bugs
 	 * @date   2019-10-25T12:51:29+020
 	 *
-	 * @param MvcObject $campaign  The campaign
+	 * @param object $campaign  The campaign
 	 *
-	 * @return object                         MVC Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
+	 * @return object  Bug Object with status, severity, type as text, a list of tags and a property is_uploaded
 	 * @author: Davide Bizzi <clochard>
 	 */
 	public static function get_bugs($campaign)
 	{
 		global $tbdb;
 
-		$bug_model = mvc_model('Bug');
-		$conditions = array(
-			'campaign_id' => $campaign->id,
-			'publish'     => 1
+		$bugSql = $tbdb->prepare(
+			"SELECT * FROM wp_appq_evd_bug WHERE campaign_id = %d AND publish = 1",
+			$campaign->id
 		);
 
-		if (is_a_customer()) {
-			$conditions['status_id'] = array(2);
+		if (!current_user_can('manage_options')) {
+
+
 			if ($campaign->cust_bug_vis == "1") {
-				$conditions['status_id'] = array(2, 4);
+				$bugSql .= ' AND status_id IN (2, 4)';
+			} else {
+				$bugSql .= ' AND status_id = 2'; // only show bugs that are published
 			}
 		}
 
-		$bugs      = $bug_model->find(array(
-			'conditions' => $conditions
-		));
+
+		$bugs = $tbdb->get_results($bugSql);
 
 
 		$type     = $tbdb->get_results('SELECT * FROM ' . $tbdb->prefix . 'appq_evd_bug_type', OBJECT_K);
@@ -356,6 +357,8 @@ class AppQ_Integration_Center_Admin
 			'severity' => $severity,
 			'type'     => $type
 		);
+
+
 		$bugs     = array_map(function ($bug) use ($data, $campaign) {
 			global $tbdb;
 
@@ -530,19 +533,21 @@ class AppQ_Integration_Center_Admin
 	 * @method available_fields
 	 * @date   2019-10-25T12:55:22+020
 	 *
-	 * @param int $campaign The campaign data
+	 * @param object|null $campaign The campaign data
 	 *
 	 * @author: Davide Bizzi <clochard>
 	 */
 	public function available_fields($campaign = null)
 	{
-		$custom_fields = $this->get_custom_fields($campaign->id);
+		if (isset($campaign)) {
+			$custom_fields = $this->get_custom_fields($campaign->id);
 
-		$this->partial('bugs/available-fields', array(
-			'integrations'  => $this->get_integrations(),
-			'campaign'      => $campaign,
-			'custom_fields' => $custom_fields,
-		));
+			$this->partial('bugs/available-fields', array(
+				'integrations'  => $this->get_integrations(),
+				'campaign'      => $campaign,
+				'custom_fields' => $custom_fields,
+			));
+		}
 	}
 
 	public function current_setup($campaign = null)
