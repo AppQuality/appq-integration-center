@@ -12,7 +12,7 @@ const setVisibleStatus = function setVisibleStatus() {
     let jsonIntegrations = JSON.stringify(integrations);
     
     jQuery.ajax( {
-        url: custom_object.ajax_url,
+        url: integration_center_obj.ajax_url,
         type: "POST",
         data: {
             action: "appq_set_visible_to_customer",

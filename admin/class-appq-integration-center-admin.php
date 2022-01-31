@@ -80,33 +80,6 @@ class AppQ_Integration_Center_Admin
 		}
 	}
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts($hook)
-	{
-
-		if (strpos($hook, 'integration-center') !== false) {
-			wp_enqueue_script('bootstrap-4', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), '4.1.3', 'all');
-			wp_enqueue_script('toastr', plugin_dir_url(__FILE__) . 'js/toastr.min.js', array(), '2.1.3', 'all');
-			wp_enqueue_script('listjs', plugin_dir_url(__FILE__) . 'js/list.min.js', array(), '1.5.0', 'all');
-			wp_enqueue_script('listjs-fuzzysearch', plugin_dir_url(__FILE__) . 'js/list.fuzzysearch.min.js', array(), '0.1.0', 'all');
-			wp_enqueue_script($this->plugin_name, APPQ_INTEGRATION_CENTER_URL . 'assets/js/admin.js', array(
-				'jquery',
-				'listjs',
-				'listjs-fuzzysearch',
-				'bootstrap-4',
-				'toastr'
-			), $this->version, false);
-			wp_localize_script($this->plugin_name, 'appq_ajax', array(
-				'url'   => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('appq-ajax-nonce')
-			));
-		}
-	}
-
 	public function enqueue_integration_scripts()
 	{
 		foreach ($this->get_integrations() as $i) {
@@ -121,11 +94,6 @@ class AppQ_Integration_Center_Admin
 		}
 	}
 
-	public function enqueueAdminAssets()
-	{
-		add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
-		add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
-	}
 
 	/**
 	 * Register the WP admin settings.

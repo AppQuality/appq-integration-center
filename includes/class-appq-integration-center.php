@@ -159,8 +159,7 @@ class AppQ_Integration_Center
 						add_action('wp_enqueue_scripts', $fn);
 					}
 					if (is_array($styles)) {
-						foreach ($styles as $name => $style) 
-						{
+						foreach ($styles as $name => $style) {
 							if (array_key_exists('src', $style)) {
 								$version = array_key_exists('version', $style) ? $style['version'] : '1.0';
 								$dependencies = array_key_exists('dependencies', $style) ? $style['dependencies'] : array();
@@ -171,8 +170,7 @@ class AppQ_Integration_Center
 							}
 						}
 					}
-					if (is_array($scripts)) 
-					{
+					if (is_array($scripts)) {
 						foreach ($scripts as $name => $script) {
 							if (array_key_exists('src', $script)) {
 								$version = array_key_exists('version', $script) ? $script['version'] : '1.0';
@@ -180,6 +178,10 @@ class AppQ_Integration_Center
 
 								add_action('wp_enqueue_scripts', function () use ($name, $script, $dependencies, $version) {
 									wp_enqueue_script($name, $script['src'], $dependencies, $version);
+									wp_localize_script($name, 'integration_center_obj', [
+										'ajax_url' => admin_url('admin-ajax.php'),
+										'nonce' => wp_create_nonce('appq-ajax-nonce')
+									]);
 									if ($name == "appq-integration-center-front") {
 										wp_set_script_translations('appq-integration-center-front', 'appq-integration-center', APPQ_INTEGRATION_CENTER_PATH . 'languages');
 									}
@@ -264,27 +266,7 @@ class AppQ_Integration_Center
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
-	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @deprecated 
-	 */
-	private function define_admin_hooks()
-	{
 
-		$plugin_admin = new AppQ_Integration_Center_Admin($this->get_plugin_name(), $this->get_version());
-
-		$this->loader->add_action('load-toplevel_page_integration-center', $plugin_admin, 'enqueueAdminAssets');
-		$this->loader->add_action('load-admin_page_integration-center-settings', $plugin_admin, 'enqueueAdminAssets');
-		$this->loader->add_action('load-admin_page_integration-center-campaign', $plugin_admin, 'enqueueAdminAssets');
-		$this->loader->add_action('load-admin_page_campaigns_page', $plugin_admin, 'enqueueAdminAssets');
-
-		$this->loader->add_action('admin_menu', $plugin_admin, 'register_menus');
-		$this->loader->add_action('admin_menu', $plugin_admin, 'register_settings');
-	}
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
