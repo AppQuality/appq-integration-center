@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><?= __('Add available field', 'appq-integration-center'); ?></h5>
+        <h4 class="text-primary"><?= __('Add available field', 'appq-integration-center'); ?></h5>
       </div>
       <form class="modal-body form px-4" id="add_custom_map">
         <div class="row">
@@ -38,38 +38,40 @@
             ); ?>
           </div>
           <div class="col-6 col-lg-4">
-            <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
+            <button type="button" class="btn btn-link" data-dismiss="modal">
+              <?= __('Cancel', 'appq-integration-center') ?>
+            </button>
           </div>
         </div>
-      </div>
-      <script type="text/html" id="field_map_template">
-        <div class="custom_field_map row mt-2">
+    </div>
+    <script type="text/html" id="field_map_template">
+      <div class="custom_field_map row mt-2">
 
-          <div class="col-sm-11">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <?php
-                  printf('<label for="key">%s</label>', __('Field value', 'appq-integration-center'));
-                  printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', 'appq-integration-center'));
-                  ?>
-                </div>
+        <div class="col-sm-11">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <?php
+                printf('<label for="key">%s</label>', __('Field value', 'appq-integration-center'));
+                printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', 'appq-integration-center'));
+                ?>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <?php
-                  printf('<label for="value">%s</label>', __('Map value', 'appq-integration-center'));
-                  printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', 'appq-integration-center'));
-                  ?>
-                </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <?php
+                printf('<label for="value">%s</label>', __('Map value', 'appq-integration-center'));
+                printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', 'appq-integration-center'));
+                ?>
               </div>
             </div>
           </div>
-          <div class="col-sm-1 text-right">
-            <button class="btn btn-secondary remove mt-4"><i class="fa fa-trash"></i></button>
-          </div>
         </div>
-      </script>
-    </div>
+        <div class="col-sm-1 text-right">
+          <button class="btn btn-secondary remove mt-4"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </script>
   </div>
+</div>
 </div>

@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div style="z-index: 99999;" class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Import settings', 'appq-integration-center')); ?>
+        <?php printf('<h5 class="text-primary">%s</h5>', __('Import settings', 'appq-integration-center')); ?>
       </div>
       <div class="modal-body form px-4">
         <form id="import_from_cp" class="modal-form pb-4">
@@ -20,7 +20,9 @@
               <?php printf('<button type="submit" class="btn btn-primary" disabled="disabled">%s</button>', __('Import now', 'appq-integration-center')); ?>
             </div>
             <div class="col-6 col-lg-4">
-              <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
+              <button type="button" class="btn btn-link" data-dismiss="modal">
+                <?= __('Cancel', 'appq-integration-center') ?>
+              </button>
             </div>
           </div>
         </form>

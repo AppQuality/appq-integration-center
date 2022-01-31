@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Delete current tracker settings?', 'appq-integration-center')); ?>
+        <?php printf('<h5 class="text-primary">%s</h5>', __('Delete current tracker settings?', 'appq-integration-center')); ?>
       </div>
       <div class="modal-body form px-4">
         <div class="modal-form pb-4">
@@ -15,7 +15,9 @@
               ); ?>
             </div>
             <div class="col-6 col-lg-4">
-              <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
+              <button type="button" class="btn btn-link" data-dismiss="modal">
+                <?= __('Cancel', 'appq-integration-center-jira-addon') ?>
+              </button>
             </div>
           </div>
         </div>

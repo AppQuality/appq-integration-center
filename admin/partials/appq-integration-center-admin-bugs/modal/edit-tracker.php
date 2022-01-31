@@ -3,21 +3,21 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <?php printf('<h5 class="modal-title">%s</h5>', __('Setup your issue tracker', 'appq-integration-center')); ?>
+        <?php printf('<h5 class="text-primary">%s</h5>', __('Setup your issue tracker', 'appq-integration-center')); ?>
       </div>
       <div class="modal-body form px-4">
         <div id="setup_manually_cp" class="modal-form pb-4">
           <select <?= isset($campaign->bugtracker->integration) ? '' : 'data-clear' ?> name="bugtracker" data-parent="#setup_manually_cp" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', 'appq-integration-center'); ?>">
             <option></option>
-            <?php if (!current_user_can('manage_options')): ?>
+            <?php if (!current_user_can('manage_options')) : ?>
               <?php foreach ($integrations as $integration) : ?>
-                <?php if ($integration['visible_to_customer']): ?>
+                <?php if ($integration['visible_to_customer']) : ?>
                   <option value="<?= $integration['slug'] ?>" <?= (isset($campaign->bugtracker->integration) && ($campaign->bugtracker->integration === $integration['slug'])) ? 'selected' : '' ?>><?= $integration['name'] ?></option>
                 <?php endif; ?>
               <?php endforeach ?>
-            <?php else: ?>
+            <?php else : ?>
               <?php foreach ($integrations as $integration) : ?>
-                  <option value="<?= $integration['slug'] ?>" <?= (isset($campaign->bugtracker->integration) && ($campaign->bugtracker->integration === $integration['slug'])) ? 'selected' : '' ?>><?= $integration['name'] ?></option>
+                <option value="<?= $integration['slug'] ?>" <?= (isset($campaign->bugtracker->integration) && ($campaign->bugtracker->integration === $integration['slug'])) ? 'selected' : '' ?>><?= $integration['name'] ?></option>
               <?php endforeach ?>
             <?php endif; ?>
           </select>
@@ -46,7 +46,9 @@
               ); ?>
             </div>
             <div class="col-6 col-lg-4">
-              <?php printf('<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="%1$s">%1$s</button>', __('Cancel', 'appq-integration-center')); ?>
+              <button type="button" class="btn btn-link" data-dismiss="modal">
+                <?= __('Cancel', 'appq-integration-center') ?>
+              </button>
             </div>
           </div>
         </div>

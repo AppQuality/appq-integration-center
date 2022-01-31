@@ -35,7 +35,12 @@ foreach ($api->basic_configuration as $key => $value) {
                         <td><i class="fa <?= array_key_exists('sanitize', $item) && $item['sanitize'] == 'on' ? 'fa-check text-success' : '' ?>"></i></td>
                         <td><i class="fa <?= array_key_exists('is_json', $item) && $item['is_json'] == 'on' ? 'fa-minus' : '' ?>"></i></td>
                         <td>
-                            <button data-toggle="modal" data-target="#add_mapping_field_modal" type="button" class="btn btn-secondary mr-1 edit-mapping-field" data-key="<?= esc_attr($key) ?>" data-content="<?= isset($item['value']) ? esc_attr($item['value']) : '' ?>" data-sanitize="<?= isset($item['sanitize']) ? esc_attr($item['sanitize']) : '' ?>" data-json="<?= isset($item['is_json']) ? esc_attr($item['is_json']) : '' ?>">
+                            <button data-toggle="modal" data-target="#add_mapping_field_modal" type="button" 
+                                    class="btn btn-secondary mr-1 edit-mapping-field" 
+                                    data-key="<?= esc_attr($key) ?>" 
+                                    data-content="<?= isset($item['value']) ? esc_attr($item['value']) : '' ?>" 
+                                    data-sanitize="<?= isset($item['sanitize']) ? esc_attr($item['sanitize']) : '' ?>" 
+                                    data-json="<?= isset($item['is_json']) ? esc_attr($item['is_json']) : '' ?>">
                                 <i class="fa fa-pencil"></i>
                             </button>
                             <button data-toggle="modal" data-target="#delete_mapping_field_modal" type="button" class="btn btn-secondary delete-mapping-field" data-key="<?= esc_attr($key) ?>">
