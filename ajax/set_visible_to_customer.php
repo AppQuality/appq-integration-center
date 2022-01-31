@@ -12,14 +12,14 @@ function appq_set_visible_to_customer() {
 	}
 
 	// Update fields
-	global $wpdb;
+	global $tbdb;
 
 	foreach ($data as $slug => $visible_to_customer) {
-		$sql = $wpdb->prepare(
-			"UPDATE " . $wpdb->prefix . "appq_integration_center_integrations SET visible_to_customer = %d WHERE integration_slug = %s;", 
+		$sql = $tbdb->prepare(
+			"UPDATE " . $tbdb->prefix . "appq_integration_center_integrations SET visible_to_customer = %d WHERE integration_slug = %s;", 
 			$visible_to_customer, $slug
 		);
-		$res = $wpdb->query($sql);
+		$res = $tbdb->query($sql);
 
 		if ($res === false) {
 			wp_send_json_error(array( "type" => "error", "message" => "Something went wrong during the update" ));

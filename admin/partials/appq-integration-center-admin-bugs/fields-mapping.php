@@ -17,7 +17,7 @@ foreach ($api->basic_configuration as $key => $value) {
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table class="table table-card visible-md visible-lg">
+        <table class="table">
             <thead>
                 <tr>
                     <th><?= __("Name", 'appq-integration-center'); ?></th>

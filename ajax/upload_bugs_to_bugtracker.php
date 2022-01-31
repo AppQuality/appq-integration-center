@@ -19,7 +19,8 @@ function appq_upload_bugs_to_bugtracker()
 		if (!$cp_id || !$bug_id) {
 			wp_send_json_error('Invalid data: CP_ID or BUG_ID not set');
 		}
-		$campaign = AppQ_Integration_Center_Admin::get_campaign($cp_id);
+		$admin = new AppQ_Integration_Center_Admin('appq-integration-center', APPQ_INTEGRATION_CENTERVERSION);
+		$campaign = $admin->get_campaign($cp_id);
 
 		$bugtracker = $campaign->bugtracker;
 		if (property_exists($bugtracker, 'integration')) {

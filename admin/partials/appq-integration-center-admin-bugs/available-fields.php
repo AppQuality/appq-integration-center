@@ -10,7 +10,7 @@
  */
 $api = new IntegrationCenterRestApi($campaign->id, null, null);
 ?>
-<div class="offcanvas-pane width-15" id="oc-available-fields-<?= $campaign->id ?>">
+<div class="offcanvas-pane" id="oc-available-fields-<?= $campaign->id ?>" style="min-width: 480px; width: 50vw;">
     <div class="offcanvas-head background-filled">
         <h4 class="text-default-bright" style="margin: 12px auto;"><?= __('Available fields', 'appq-integration-center') ?></h4>
         <div class="offcanvas-tools">
@@ -22,20 +22,20 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
         </div>
     </div>
     <div class="offcanvas-body">
-        <div class="row mb-2 p-0">
-            <div class="col-12">
-                <table class="table table-hover table-sm">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover table-condensed">
                     <thead>
                         <tr>
                             <th scope="col"><?= __("Bug Field", 'appq-integration-center'); ?></th>
                             <th scope="col"><?= __("Field Value", 'appq-integration-center'); ?></th>
-                            <th scope="col" class="col-2"></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($api->mappings as $key => $value) : ?>
                             <tr>
-                                <th scope="row"><?= $key ?></th>
+                                <td class="text-primary text-medium"><?= $key ?></td>
                                 <td><?= $value['description'] ?></td>
                                 <td></td>
                             </tr>
@@ -48,15 +48,17 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
                             $map = $custom_field->map;
                             ?>
                             <tr data-name="<?= $custom_field->name ?>">
-                                <th scope="row"><?= $custom_field->name ?></th>
+                                <td class="text-primary text-medium"><?= $custom_field->name ?></td>
                                 <td><?= isset($custom_field->map) ? implode(', ', (array) json_decode($custom_field->map)) : '' ?></td>
                                 <td class="text-right actions">
-                                    <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field" data-source='<?= $source ?>' data-name='<?= $name ?>' data-map='<?= $map ?>'>
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field" data-name="<?= $custom_field->name ?>">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    <div class="btn-group">
+                                        <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field" data-source='<?= $source ?>' data-name='<?= $name ?>' data-map='<?= $map ?>'>
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field" data-name="<?= $custom_field->name ?>">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

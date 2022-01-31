@@ -2,7 +2,7 @@
 
 
 function appq_edit_custom_field() {
-	global $wpdb;
+	global $tbdb;
 	$cp_id = array_key_exists("cp_id",$_POST) ? intval($_POST["cp_id"]) : 0;
 	$custom_map_source = array_key_exists("custom_map_source",$_POST) ? $_POST["custom_map_source"] : null;
 	$custom_map_name = array_key_exists("custom_map_name",$_POST) ? $_POST["custom_map_name"] : null;
@@ -20,7 +20,7 @@ function appq_edit_custom_field() {
 	}
 	$custom_map = json_encode($custom_map_object);
 	
-	$sql = $wpdb->prepare(
+	$sql = $tbdb->prepare(
 	    "UPDATE wp_appq_integration_center_custom_map 
 		SET map = %s
         WHERE name = %s
@@ -28,7 +28,7 @@ function appq_edit_custom_field() {
         AND campaign_id = %d",
         $custom_map, $custom_map_name, $custom_map_source, $cp_id);
 	
-	$res = $wpdb->query($sql);
+	$res = $tbdb->query($sql);
 	
 	if ($res === false) {
 		wp_send_json_error();

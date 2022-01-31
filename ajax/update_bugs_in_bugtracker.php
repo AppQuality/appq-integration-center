@@ -19,14 +19,15 @@ function appq_update_bugs_in_bugtracker()
 		if (!$cp_id || !$bug_id) {
 			wp_send_json_error('Invalid data: CP_ID or BUG_ID not set');
 		}
-		$campaign = AppQ_Integration_Center_Admin::get_campaign($cp_id);
+		$admin = new AppQ_Integration_Center_Admin('appq-integration-center', APPQ_INTEGRATION_CENTERVERSION);
+		$campaign = $admin->get_campaign($cp_id);
 
 		$bugtracker = $campaign->bugtracker;
 		if (property_exists($bugtracker, 'integration')) {
 			$update_fn = 'appq_' . str_replace('-', '_', $bugtracker->integration) . '_update_bugs';
 			
 			if (!function_exists($update_fn)) {
-				wp_send_json_error("Current bugtracker cannot handle updates. Update fn \"$upload_fn\" does not exists");
+				wp_send_json_error("Current bugtracker cannot handle updates. Update fn \"$update_fn\" does not exists");
 			}
 		} else {
 			wp_send_json_error("You need to configure the bugtracker");

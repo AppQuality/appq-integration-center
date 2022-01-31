@@ -12,11 +12,12 @@ function appq_delete_bug_from_bugtracker()
 	try {
 		$cp_id = array_key_exists('cp_id', $_POST) ? intval($_POST['cp_id']) : false;
 		$bugtracker_id = array_key_exists('bugtracker_id', $_POST) ? $_POST['bugtracker_id'] : false;
+		$admin = new AppQ_Integration_Center_Admin('appq-integration-center', APPQ_INTEGRATION_CENTERVERSION);
 
 		if (!$cp_id || !$bugtracker_id) {
 			wp_send_json_error(__("Invalid data: CP_ID or bugtracker_id not set", "appq-integration-center"));
 		}
-		$campaign = AppQ_Integration_Center_Admin::get_campaign($cp_id);
+		$campaign = $admin->get_campaign($cp_id);
 
 		$bugtracker = $campaign->bugtracker;
 		if (property_exists($bugtracker, 'integration')) {
