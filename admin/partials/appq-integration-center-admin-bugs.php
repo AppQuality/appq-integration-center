@@ -16,7 +16,7 @@
 <input type="hidden" value="<?= $campaign->id ?>" id="campaign_id" />
 <h2 class="text-primary"><?= $campaign->title ?></h2>
 <div class="card">
-	<div class="card-head">
+	<div class="card-head" data-toggle="sticky" style="background-color: white;">
 		<ul class="nav nav-tabs tabs-accent" id="campaign-tabs" data-toggle="tabs">
 			<li class="active"><a id="bugs-tab" data-toggle="tab" href="#bugs_list"><?= __("Bugs", 'appq-integration-center') ?></a></li>
 			<li><a id="settings-tab" data-toggle="tab" href="#settings"><?= __("Settings", 'appq-integration-center') ?></a></li>

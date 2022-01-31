@@ -62,6 +62,8 @@ class AppQ_Integration_Center_Admin
 		if (empty($this->integrations)) {
 			$this->integrations = array();
 		}
+
+		$this->campaign = null;
 	}
 
 	/**
@@ -210,7 +212,7 @@ class AppQ_Integration_Center_Admin
 	 * @return object                      MVC Campaign Object with bugtracker property and credentials property
 	 * @author: Davide Bizzi <clochard>
 	 */
-	public static function get_campaign($id)
+	public function get_campaign($id)
 	{
 		global $tbdb;
 
@@ -240,6 +242,8 @@ class AppQ_Integration_Center_Admin
 				}
 			}
 		}
+
+		$this->campaign = $campaign;
 
 		return $campaign;
 	}
@@ -479,6 +483,8 @@ class AppQ_Integration_Center_Admin
 		));
 	}
 
+
+
 	/**
 	 * Bugs page show
 	 * @method campaigns_page
@@ -487,22 +493,25 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function bugs_page()
 	{
-		$id = $this->get_campaign_id();
-		if ($id == 0) {
-			$this->partial('not-found');
+		if (!isset($this->campaign)) 
+		{
+			$id = $this->get_campaign_id();
+			if ($id == 0) {
+				$this->partial('not-found');
 
-			return;
+				return;
+			}
+
+			$campaign = $this->get_campaign($id);
+			if (!$campaign) {
+				$this->partial('not-found');
+				return;
+			}
 		}
 
-		$campaign = $this->get_campaign($id);
-		if (!$campaign) {
-			$this->partial('not-found');
-
-			return;
-		}
 		$this->partial('bugs', array(
-			'bugs'     => $this->get_bugs($campaign),
-			'campaign' => $campaign
+			'bugs'     => $this->get_bugs($this->campaign),
+			'campaign' => $this->campaign
 		));
 	}
 
