@@ -22,23 +22,29 @@
 </div>
 <?php if (empty($campaign->bugtracker)) : ?>
 	<div class="settings-wizard">
-		<div class="info pb-5">
-			<h3 class="title"><?= __('Setup your issue tracker', 'appq-integration-center'); ?></h3>
+		<div class="info">
+			<h3 class="text-primary text-center"><?= __('Setup your issue tracker', 'appq-integration-center'); ?></h3>
 		</div>
 		<div class="actions">
-			<div class="container">
-				<div class="row">
-					<div class="col-6 col-lg-4 offset-lg-2 text-center">
-						<div class="wrapper p-3">
-							<h4><?= __('Import settings from an existing campaign', 'appq-integration-center'); ?></h4>
+			<br>
+			<div class="row prevent-cols-breaking">
+				<div class="col-sm-6 col-lg-5 col-xl-4 col-lg-offset-1 col-xl-offset-2 text-center">
+					<div class="card full-height">
+						<div class="card-body full-height flex flex-col">
+							<h4 style="flex-grow: 1">
+								<?= __('Import settings from an existing campaign', 'appq-integration-center'); ?>
+							</h4>
+							<br>
 							<button data-toggle="modal" data-target="#import_tracker_settings_modal" type="button" class="btn btn-primary mt-3">
 								<?= __('Import settings', 'appq-integration-center'); ?>
-							</button>',
+							</button>
 						</div>
 					</div>
-					<div class="col-6 col-lg-4 text-center">
-						<div class="wrapper p-3">
-							<h4><?= __('Create a new setup', 'appq-integration-center') ?></h4>
+				</div>
+				<div class="col-sm-6 col-lg-5 col-xl-4 text-center">
+					<div class="card full-height">
+						<div class="card-body full-height flex flex-col">
+							<h4 style="flex-grow: 1"><?= __('Create a new setup', 'appq-integration-center') ?></h4>
 							<button data-toggle="modal" data-target="#custom_tracker_settings_modal" type="button" class="btn btn-secondary mt-3">
 								<?= __('Setup manually', 'appq-integration-center') ?>
 							</button>
@@ -71,11 +77,6 @@
 	$this->partial('bugs/modal/new-available-field');
 	$this->partial('bugs/modal/delete-tracker-settings');
 
-
-	$this->partial('bugs/modal/edit-tracker', [
-		'campaign'     => $campaign,
-		'integrations' => $integrations,
-	]);
 	$apikey = '';
 	if (
 		property_exists($campaign, 'bugtracker')
@@ -87,3 +88,8 @@
 		'apikey' => $apikey
 	));
 endif;
+
+$this->partial('bugs/modal/edit-tracker', [
+	'campaign'     => $campaign,
+	'integrations' => $integrations,
+]);

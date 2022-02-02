@@ -8,7 +8,7 @@
       <div class="modal-body form px-4">
         <div id="setup_manually_cp" class="modal-form pb-4">
           <div class="form-group">
-            <select <?= isset($campaign->bugtracker->integration) ? '' : 'data-clear' ?> name="bugtracker" data-parent="#setup_manually_cp" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', 'appq-integration-center'); ?>">
+            <select <?= isset($campaign->bugtracker->integration) ? '' : 'data-clear' ?> id="bugtracker_select" name="bugtracker" data-parent="#setup_manually_cp" class="ux-select" data-placeholder="<?php _e('Select Issue Tracker', 'appq-integration-center'); ?>">
               <option></option>
               <?php if (!current_user_can('manage_options')) : ?>
                 <?php foreach ($integrations as $integration) : ?>
@@ -22,6 +22,7 @@
                 <?php endforeach ?>
               <?php endif; ?>
             </select>
+            <label for="bugtracker_select" style="margin-bottom: 4px;"><?= _x('Bug Tracker','select label', 'appq-integration-center') ?></label>
           </div>
           <div class="settings" style="display: <?= isset($campaign->bugtracker->integration) ? 'block' : 'none'; ?>;">
             <?php
