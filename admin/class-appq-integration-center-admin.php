@@ -554,7 +554,7 @@ class AppQ_Integration_Center_Admin
 	public function get_campaign_id()
 	{
 		global $wp;
-		if (!array_key_exists('id', $_GET) && !array_key_exists('appq-integration-center', $wp->query_vars)) {
+		if (!array_key_exists('id', $_GET) && !array_key_exists('integration-center', $wp->query_vars)) {
 			return 0;
 		}
 		$id = 0;
@@ -563,10 +563,10 @@ class AppQ_Integration_Center_Admin
 		}
 		if (
 			!empty($wp->query_vars)
-			&& array_key_exists('appq-integration-center', $wp->query_vars)
-			&& !empty($wp->query_vars['appq-integration-center'])
+			&& array_key_exists('integration-center', $wp->query_vars)
+			&& !empty($wp->query_vars['integration-center'])
 		) {
-			$id = $wp->query_vars['appq-integration-center'];
+			$id = $wp->query_vars['integration-center'];
 		}
 		return $id;
 	}

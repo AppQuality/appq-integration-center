@@ -107,7 +107,7 @@ class AppQ_Integration_Center
 		$styles = array();
 
 		$this->add_custom_frontoffice_page(
-			'appq-integration-center',
+			'integration-center',
 			'appq-integration-center-frontoffice.php',
 			$styles,
 			$scripts,
