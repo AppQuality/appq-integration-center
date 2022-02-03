@@ -186,9 +186,10 @@
 			var field_name = $(this).data('name');
 			var field_map = $(this).data('map');
 			var count = 0;
+			console.log(field_map);
 			for (var value in field_map) {
 				var map = field_map[value];
-				addCustomFieldToModal($('#add_new_field_map'));
+				addCustomFieldToModal($('#edit_available_field_modal .add_new_field_map'));
 				modal.find('input[name="custom_map[' + count + '][key]"]').val(value);
 				modal.find('input[name="custom_map[' + count + '][value]"]').val(map);
 				count++;
@@ -238,8 +239,8 @@
 				data: data
 			}).then(function(res){
 				if (res.success) {
-					$('#accordionFields').find('tr[data-name="' + name + '"]').remove();
-					toastr.error(_x("Custom field deleted", "Integration Center delete custom field", "appq-integration-center"));
+					$('#availableFields').find('tr[data-name="' + name + '"]').remove();
+					toastr.success(_x("Custom field deleted", "Integration Center delete custom field", "appq-integration-center"));
 				} else {
 					toastr.error(_x("There was an error deleting custom field", "Integration Center delete custom field error", "appq-integration-center"));
 				}

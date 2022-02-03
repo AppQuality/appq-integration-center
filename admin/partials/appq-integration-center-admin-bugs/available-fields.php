@@ -24,7 +24,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
     <div class="offcanvas-body">
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-hover table-condensed">
+                <table class="table table-hover table-condensed" id="availableFields">
                     <thead>
                         <tr>
                             <th scope="col"><?= __("Bug Field", 'appq-integration-center'); ?></th>
@@ -52,7 +52,7 @@ $api = new IntegrationCenterRestApi($campaign->id, null, null);
                                 <td><?= isset($custom_field->map) ? implode(', ', (array) json_decode($custom_field->map)) : '' ?></td>
                                 <td class="text-right actions">
                                     <div class="btn-group">
-                                        <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-info btn-icon-toggle mr-1 edit-available-field" data-source='<?= $source ?>' data-name='<?= $name ?>' data-map='<?= $map ?>'>
+                                        <button data-toggle="modal" data-target="#edit_available_field_modal" type="button" class="btn btn-primary btn-icon-toggle edit-available-field" data-source='<?= $source ?>' data-name='<?= $name ?>' data-map='<?= $map ?>'>
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                         <button data-toggle="modal" data-target="#delete_available_field_modal" type="button" class="btn btn-danger btn-icon-toggle delete-available-field" data-name="<?= $custom_field->name ?>">
