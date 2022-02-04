@@ -14,7 +14,8 @@ if (function_exists('pll_current_language')) {
     $currentLanguage = '';
 }
 
-$bugLink = function_exists('appq_get_translated_page') ? appq_get_translated_page('functional-customer-dashboard') : rtrim(site_url(), "/") . '/functional-customer-dashboard'
+$bugLink = function_exists('appq_get_translated_page') ? appq_get_translated_page('functional-customer-dashboard') : rtrim(site_url(), "/") . '/functional-customer-dashboard';
+$bugLink = rtrim($bugLink, "/");
 
 ?>
 <div class="row">
@@ -58,7 +59,7 @@ $bugLink = function_exists('appq_get_translated_page') ? appq_get_translated_pag
                     <input class="check" type="checkbox" aria-label="Select for upload">
                 </td>
                 <td class="id"><?= $bug->id ?></td>
-                <td><a href="<?= site_url() . "/$currentLanguage/bugs/show/$bug->id" ?>"><i class="fa fa-search"></i></a></td>
+                <td><a href="<?= sprintf("%s/?cid=%d&bug_id=%d",$bugLink, $bug->campaign_id, $bug->id); ?>"><i class="fa fa-search"></i></a></td>
                 <td class="name"><?= $bug->message ?></td>
                 <td class="category"><?= $bug->category ?></td>
                 <td class="status"><?= $bug->status ?></td>
