@@ -13,12 +13,14 @@
 	<div class="col-sm-6">
 		<h4 class="text-primary"><?= __("Tracker settings", 'appq-integration-center') ?></h4>
 	</div>
-	<div class="col-sm-6">
-		<a class="btn btn-link btn-primary stick-top-right" href="#oc-available-fields-<?= $campaign->id ?>" data-toggle="offcanvas">
-			<?= __('Available fields', 'appq-integration-center') ?>
-			<i class="fa fa-bars fa-fw"></i>
-		</a>
-	</div>
+	<?php if (!empty($campaign->bugtracker)) : ?>
+		<div class="col-sm-6">
+			<a class="btn btn-link btn-primary stick-top-right" href="#oc-available-fields-<?= $campaign->id ?>" data-toggle="offcanvas">
+				<?= __('Available fields', 'appq-integration-center') ?>
+				<i class="fa fa-bars fa-fw"></i>
+			</a>
+		</div>
+	<?php endif; ?>
 </div>
 <?php if (empty($campaign->bugtracker)) : ?>
 	<div class="settings-wizard">

@@ -13,6 +13,9 @@ if (function_exists('pll_current_language')) {
 } else {
     $currentLanguage = '';
 }
+
+$bugLink = function_exists('appq_get_translated_page') ? appq_get_translated_page('functional-customer-dashboard') : rtrim(site_url(), "/") . '/functional-customer-dashboard'
+
 ?>
 <div class="row">
     <div class="col-sm-12">

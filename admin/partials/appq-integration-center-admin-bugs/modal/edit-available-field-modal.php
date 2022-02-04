@@ -36,32 +36,29 @@
             </form>
         </div>
         <script type="text/html" id="field_map_template">
-            <div class="custom_field_map row mt-2">
-                <div class="col-11">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <?php
-                                printf('<label for="key">%s</label>', __('Field value', 'appq-integration-center'));
-                                printf('<input required type="text" class="key form-control" name="key" placeholder="%s">', __('Some value', 'appq-integration-center'));
-                                ?>
-                            </div>
+            <div class="custom_field_map">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input required type="text" class="key form-control" name="key" placeholder="<?= __('Some value', 'appq-integration-center') ?>">
+                            <label for="key"><?= __('Field value', 'appq-integration-center') ?></label>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <?php
-                                printf('<label for="value">%s</label>', __('Map value', 'appq-integration-center'));
-                                printf('<input required type="text" class="value form-control" name="value" placeholder="%s">', __('Some other value', 'appq-integration-center'));
-                                ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-content">
+                                    <input required type="text" class="value form-control" name="value" placeholder="<?= __('Some other value', 'appq-integration-center') ?>">
+                                    <label for="value"><?= __('Map value', 'appq-integration-center') ?></label>
+                                </div>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-secondary remove"><i class="fa fa-trash"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-1 text-right">
-                    <button class="btn btn-secondary remove mt-4"><i class="fa fa-trash"></i></button>
-                </div>
             </div>
         </script>
     </div>
-</div>
 </div>
