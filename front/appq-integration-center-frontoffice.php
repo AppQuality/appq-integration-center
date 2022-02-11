@@ -2,7 +2,7 @@
 
 $admin = new AppQ_Integration_Center_Admin('appq-integration-center', APPQ_INTEGRATION_CENTERVERSION);
 $cp_id = $admin->get_campaign_id();
-$available_campaign_ids = $admin->get_available_campaign_ids();
+$available_campaign_ids = $admin->get_customer_available_campaign_ids();
 
 get_header();
 if (in_array($cp_id, $available_campaign_ids) || current_user_can('manage_options')) : ?>

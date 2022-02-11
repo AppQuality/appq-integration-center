@@ -184,13 +184,13 @@ class AppQ_Integration_Center_Admin
 	{
 		global $tbdb;
 
-		$campaign       = $tbdb->get_row(
+		$campaign = $tbdb->get_row(
 			$tbdb->prepare("SELECT * FROM wp_appq_evd_campaign WHERE id = %d", $id)
 		);
 
 		if (empty($campaign)) return false;
 
-		$bugtracker     = $tbdb->get_row(
+		$bugtracker = $tbdb->get_row(
 			$tbdb->prepare('SELECT * FROM ' . $tbdb->prefix . 'appq_integration_center_config WHERE campaign_id = %d AND is_active = 1', $id)
 		);
 
@@ -226,60 +226,90 @@ class AppQ_Integration_Center_Admin
 	public static function get_campaigns()
 	{
 		global $tbdb;
-		$sql = 'SELECT * FROM ' . $tbdb->prefix . 'appq_integration_center_config WHERE is_active = 1';
-
-
-		$bugtrackers    = $tbdb->get_results($sql, OBJECT_K);
-
-		$available_campaign_ids = AppQ_Integration_Center_Admin::get_available_campaign_ids();
-
+		$is_admin = current_user_can('manage_options');
 		$campaigns = array();
-		if (!empty($available_campaign_ids)) {
+		$filter_cp_ids = "";
 
-			$campaigns       = $tbdb->get_results(
-				sprintf("SELECT * FROM wp_appq_evd_campaign WHERE id IN (%s)", implode(',', $available_campaign_ids))
-			);
+		if (!$is_admin) {
+			$available_campaign_ids = AppQ_Integration_Center_Admin::get_bugtracker_available_campaign_ids();
+			if (empty($available_campaign_ids)) {
+				return [];
+			}
+			$filter_cp_ids = sprintf("WHERE c.id IN (%s)", implode(",", $available_campaign_ids));
 		}
 
-		$campaigns = array_map(function ($cp) use ($bugtrackers) {
-			$cp->bugtracker  = array_key_exists($cp->id, $bugtrackers) ? $bugtrackers[$cp->id] : '';
-			$cp->credentials = array_key_exists($cp->id, $bugtrackers);
-
-			return $cp;
-		}, $campaigns);
+		$campaigns = $tbdb->get_results("
+			SELECT c.id, c.title
+			FROM wp_appq_evd_campaign c
+			JOIN wp_appq_integration_center_config icc ON (icc.campaign_id = c.id)
+		" . $filter_cp_ids);
 
 		return $campaigns;
 	}
 
-	public static function get_available_campaign_ids()
+	public static function get_bugtracker_available_campaign_ids()
 	{
 		global $tbdb, $current_customer;
 
 		$sql = 'SELECT cp.id
 			FROM wp_appq_customer c
-			         JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
-			         JOIN wp_appq_project p ON p.customer_id = c.id
-			         JOIN wp_appq_evd_campaign cp on p.id = cp.project_id
-			WHERE 
-				u2c.wp_user_id = %d
-			  AND (
-			    EXISTS(
-						SELECT * 
+				JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
+				JOIN wp_appq_project p ON p.customer_id = c.id
+				JOIN wp_appq_evd_campaign cp ON p.id = cp.project_id
+				JOIN wp_appq_integration_center_config icc ON (cp.id = icc.campaign_id)
+				JOIN wp_appq_integration_center_integrations ici ON (ici.integration_slug = icc.integration)
+			WHERE u2c.wp_user_id = %d
+			AND (EXISTS
+					(SELECT * 
+					FROM wp_appq_user_to_project u2p 
+					WHERE u2p.wp_user_id = %d AND u2p.project_id = p.id)
+					OR NOT EXISTS
+						(SELECT * 
 						FROM wp_appq_user_to_project u2p 
-						WHERE u2p.wp_user_id = %d AND u2p.project_id = p.id
-					)
-			    OR NOT EXISTS(
-						SELECT * 
-						FROM wp_appq_user_to_project u2p 
-						WHERE u2p.project_id = p.id
-					)
-			  )';
+						WHERE u2p.project_id = p.id)
+				)
+			AND ici.visible_to_customer = 1
+		';
+
 		$sql = $tbdb->prepare(
 			$sql,
 			$current_customer->ID,
 			$current_customer->ID
 		);
 
+		if (!$sql) {
+			return [];
+		}
+
+		return $tbdb->get_col($sql);
+	}
+
+	public static function get_customer_available_campaign_ids()
+	{
+		global $tbdb, $current_customer;
+
+		$sql = 'SELECT cp.id
+			FROM wp_appq_customer c
+				JOIN wp_appq_user_to_customer u2c ON c.id = u2c.customer_id
+				JOIN wp_appq_project p ON p.customer_id = c.id
+				JOIN wp_appq_evd_campaign cp ON p.id = cp.project_id
+			WHERE u2c.wp_user_id = %d
+			AND (EXISTS
+					(SELECT * 
+					FROM wp_appq_user_to_project u2p 
+					WHERE u2p.wp_user_id = %d AND u2p.project_id = p.id)
+					OR NOT EXISTS
+						(SELECT * 
+						FROM wp_appq_user_to_project u2p 
+						WHERE u2p.project_id = p.id)
+				)
+		';
+
+		$sql = $tbdb->prepare(
+			$sql,
+			$current_customer->ID,
+			$current_customer->ID
+		);
 
 		if (!$sql) {
 			return [];
@@ -378,8 +408,10 @@ class AppQ_Integration_Center_Admin
 		$integrations = array();
 		foreach ($this->integrations as $k => $v) {
 			$visible_to_customer = $this->is_visible_to_customer($v['slug']);
-			$integrations[$k] = $v;
-			$integrations[$k]['visible_to_customer'] = $visible_to_customer;
+			if ($visible_to_customer || current_user_can('manage_options')) {
+				$integrations[$k] = $v;
+				$integrations[$k]['visible_to_customer'] = $visible_to_customer;
+			}
 		}
 
 
@@ -461,8 +493,7 @@ class AppQ_Integration_Center_Admin
 	 */
 	public function bugs_page()
 	{
-		if (!isset($this->campaign)) 
-		{
+		if (!isset($this->campaign)) {
 			$id = $this->get_campaign_id();
 			if ($id == 0) {
 				$this->partial('not-found');

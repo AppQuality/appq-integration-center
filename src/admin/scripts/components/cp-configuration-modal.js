@@ -5,7 +5,7 @@
       var modal = $("#import_tracker_settings_modal");
       var form = $(modal).find("form");
       var submit_button = $(modal).find('button[type="submit"]');
-      var select = $(modal).find(".ux-select");
+      var select = $(modal).find(".import-select");
       form.submit(function (e) {
         e.preventDefault();
         var submit_btn = $(this).find('button[type="submit"]');
@@ -51,7 +51,7 @@
     $("#custom_tracker_settings_modal").ready(function () {
       var modal = $("#custom_tracker_settings_modal");
       var submit_button = $(modal).find(".confirm");
-      var select = $(modal).find(".ux-select");
+      var select = $(modal).find(".settings-select");
       var form = select.val() ? select.val() + "_tracker_settings" : "";
       var settings = $(modal).find(".settings");
       submit_button.on("click", function () {
