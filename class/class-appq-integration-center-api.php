@@ -1,11 +1,12 @@
 <?php
-
 class IntegrationCenterRestApi
 {
 
 	protected $cp_id;
 	protected $configuration;
 	protected $content_type;
+
+	protected $ALLOW_SELF_SIGNED_CERTIFICATE = false;
 
 
 	public function __construct($cp_id,$slug,$name)
@@ -176,7 +177,7 @@ class IntegrationCenterRestApi
 	 */
 	public function http_post($url, $headers, $data)
 	{
-		return Requests::post($url, $headers, $data);
+		return Requests::post($url, $headers, $data, array('verify' => !$this->ALLOW_SELF_SIGNED_CERTIFICATE));
 	}
 	/**
 	 * Send put request
@@ -190,7 +191,7 @@ class IntegrationCenterRestApi
 	 */
 	public function http_put($url, $headers, $data)
 	{
-		return Requests::put($url, $headers, $data);
+		return Requests::put($url, $headers, $data, array('verify' => !$this->ALLOW_SELF_SIGNED_CERTIFICATE));
 	}
 
 	/**
@@ -205,7 +206,7 @@ class IntegrationCenterRestApi
 	 */
 	public function http_patch($url, $headers, $data)
 	{
-		return Requests::patch($url, $headers, $data);
+		return Requests::patch($url, $headers, $data, array('verify' => !$this->ALLOW_SELF_SIGNED_CERTIFICATE));
 	}
 
 	/**
@@ -219,7 +220,8 @@ class IntegrationCenterRestApi
 	 */
 	public function http_get($url, $headers)
 	{
-		return Requests::get($url, $headers);
+		
+		return Requests::get($url, $headers, array('verify' => !$this->ALLOW_SELF_SIGNED_CERTIFICATE));
 	}
 
 	/**
@@ -233,7 +235,7 @@ class IntegrationCenterRestApi
 	 */
 	public function http_delete($url, $headers)
 	{
-		return Requests::delete($url, $headers);
+		return Requests::delete($url, $headers, array('verify' => !$this->ALLOW_SELF_SIGNED_CERTIFICATE));
 	}
 
 	/**
