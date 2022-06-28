@@ -17,7 +17,7 @@
               <?php endforeach ?>
             </select>
           </div>
-          <div style="display: <?= isset($campaign->bugtracker->integration) ? 'block' : 'none'; ?>;">
+          <div>
             <?php
             foreach ($integrations as $integration) :
               $slug = $integration['slug'];
